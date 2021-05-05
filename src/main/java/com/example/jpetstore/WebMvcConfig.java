@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
-	//명진4
+	
 	@Autowired
 	@Qualifier(value = "signonInterceptor")
 	private HandlerInterceptor interceptor;
