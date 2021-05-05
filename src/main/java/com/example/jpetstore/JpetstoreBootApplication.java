@@ -21,7 +21,7 @@ public class JpetstoreBootApplication {
 	//채연1
 
 	//연제2
-
+	
     public static void main(String[] args) throws Exception {
         SpringApplication.run(JpetstoreBootApplication.class, args);
     }
