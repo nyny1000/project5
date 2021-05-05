@@ -23,6 +23,7 @@ public class JpetstoreBootApplication {
 
 	//연제2
 	//룰루랄라
+	//악ㅇ가
     public static void main(String[] args) throws Exception {
         SpringApplication.run(JpetstoreBootApplication.class, args);
     }
