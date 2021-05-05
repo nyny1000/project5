@@ -9,12 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
 import org.springframework.web.util.WebUtils;
 
-/**
- * @author Juergen Hoeller
- * @since 01.12.2003
- */
 @Component
-public class SignonInterceptor implements HandlerInterceptor {
+public class LoginInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, 
 			HttpServletResponse response, Object handler)
@@ -24,12 +20,12 @@ public class SignonInterceptor implements HandlerInterceptor {
 		if (userSession == null) {
 			String url = request.getRequestURL().toString(); 
 			String query = request.getQueryString();
-			ModelAndView modelAndView = new ModelAndView("SignonForm");
+			ModelAndView modelAndView = new ModelAndView("tiles/loginForm"); 	// use Tiles
 			if (query != null) {
-				modelAndView.addObject("signonForwardAction", url+"?"+query);
+				modelAndView.addObject("loginForwardAction", url+"?"+query);
 			}
 			else {
-				modelAndView.addObject("signonForwardAction", url);
+				modelAndView.addObject("loginForwardAction", url);
 			}
 			throw new ModelAndViewDefiningException(modelAndView);
 		}

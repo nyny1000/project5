@@ -10,48 +10,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import com.example.jpetstore.domain.Category;
+import com.example.jpetstore.domain.Item;
 import com.example.jpetstore.domain.Product;
+import com.example.jpetstore.service.ArtSellFacade;
 import com.example.jpetstore.service.PetStoreFacade;
 
-/**
- * @author Juergen Hoeller
- * @since 30.11.2003
- * @modified-by Changsup Park
- */
 @Controller
-@SessionAttributes({"category", "productList"})
+@SessionAttributes({"category", "itemList"})
 public class ViewCategoryController { 
-	private PetStoreFacade petStore;
+	private ArtSellFacade artSell;
 
 	@Autowired
-	public void setPetStore(PetStoreFacade petStore) {
-		this.petStore = petStore;
+	public void setArtSell(ArtSellFacade artSell) {
+		this.artSell = artSell;
 	}
 	
-	@RequestMapping("/shop/viewCategory.do")
-	public String handleRequest(
-			@RequestParam("categoryId") String categoryId,
-			ModelMap model
-			) throws Exception {
-		Category category = this.petStore.getCategory(categoryId);
-		PagedListHolder<Product> productList = new PagedListHolder<Product>(this.petStore.getProductListByCategory(categoryId));
-		productList.setPageSize(4);
+	@RequestMapping("/shop/viewCategory")
+	public String handleRequest(@RequestParam("categoryId") String categoryId, ModelMap model) throws Exception
+	{
+		Category category = this.artSell.getCategory(categoryId);
+		PagedListHolder<Item> itemList = new PagedListHolder<Item>(this.artSell.getItemListByCategory(categoryId));
+		itemList.setPageSize(10);
 		model.put("category", category);
-		model.put("productList", productList);
-		return "Category";
+		model.put("itemList", itemList);
+		return "tiles/category";
 	}
-
-	@RequestMapping("/shop/viewCategory2.do")
-	public String handleRequest2(
-			@RequestParam("page") String page,
-			@ModelAttribute("category") Category category,
-			@ModelAttribute("productList") PagedListHolder<Product> productList,
-			BindingResult result) throws Exception {
-		if (category == null || productList == null) {
-			throw new IllegalStateException("Cannot find pre-loaded category and product list");
+	
+	@RequestMapping("shop/viewCategory2")
+	public String handleRequest2(@RequestParam("page") String page, @ModelAttribute("category") Category category,
+			@ModelAttribute("itemList") PagedListHolder<Item> itemList, BindingResult result) throws Exception
+	{
+		if (category == null || itemList == null) {
+			throw new IllegalStateException("cannot find pre-loaded category and item list");
 		}
-		if ("next".equals(page)) { productList.nextPage(); }
-		else if ("previous".equals(page)) { productList.previousPage(); }
-		return "Category";
+		if ("next".equals(page)) {
+			itemList.nextPage();
+		} else if ("previous".equals(page)) {
+			itemList.previousPage();
+		}
+		return "tiles/category";
 	}
 }
