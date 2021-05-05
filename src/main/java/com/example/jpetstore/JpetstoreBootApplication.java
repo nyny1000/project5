@@ -14,7 +14,7 @@ public class JpetstoreBootApplication {
 		return application.sources(JpetstoreBootApplication.class);
 	}
 	*/
-	//명진test
+	//명진test1
     public static void main(String[] args) throws Exception {
         SpringApplication.run(JpetstoreBootApplication.class, args);
     }
