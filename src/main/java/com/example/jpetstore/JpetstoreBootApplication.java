@@ -22,7 +22,7 @@ public class JpetstoreBootApplication {
 	//채연1
 
 	//연제2
-
+	//명3
     public static void main(String[] args) throws Exception {
         SpringApplication.run(JpetstoreBootApplication.class, args);
     }
