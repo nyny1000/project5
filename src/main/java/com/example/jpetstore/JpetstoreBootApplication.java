@@ -15,6 +15,7 @@ public class JpetstoreBootApplication {
 	}
 	*/
 	//명진test1
+	//명진test2
     public static void main(String[] args) throws Exception {
         SpringApplication.run(JpetstoreBootApplication.class, args);
     }
