@@ -22,11 +22,7 @@ public class JpetstoreBootApplication {
 	//채연1
 
 	//연제2
-<<<<<<< HEAD
-	//명3
-=======
-	//룰루랄라
->>>>>>> branch 'master' of https://github.com/Myung518/project5.git
+	//명진3
     public static void main(String[] args) throws Exception {
         SpringApplication.run(JpetstoreBootApplication.class, args);
     }
