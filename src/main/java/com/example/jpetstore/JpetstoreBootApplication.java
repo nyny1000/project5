@@ -17,6 +17,7 @@ public class JpetstoreBootApplication {
 	//명진test1
 	//명진test2
 	//연제1
+	//나영이이이이다
 
 	//채연1
 
