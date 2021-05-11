@@ -61,9 +61,9 @@ public class ArtSellImpl implements ArtSellFacade {
 	@Override
 	public List<Item> searchItemList(String keywords, String categoryId) {
 		if (categoryId != null) {
-			
+			itemDao.searchItemListByKewordInCate(keywords, categoryId);
 		} else {
-			
+			itemDao.searchItemListByKeword(keywords);
 		}
 	}
 	
@@ -72,15 +72,15 @@ public class ArtSellImpl implements ArtSellFacade {
 		// TODO Auto-generated method stub
 		if (categoryId != null) {
 			if (keywords != null) {
-				itemDao.
+				itemDao.searchItemListByAllInCate(keywords, artist, categoryId);
 			} else {
-				
+				itemDao.searchItemListByArtistInCate(artist, categoryId);
 			}
 		} else {
 			if (keywords != null) {
-				
+				itemDao.searchItemListByArtist(artist);
 			} else {
-				
+				itemDao.searchItemListByAll(keywords, artist);
 			}
 		}
 	}
