@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="thyme/Top :: head(~{::title})"> <!-- 고치기 -->
+<meta charset="EUC-KR">
+<title>itemList</title>
+</head>
+<body>
+
+<div th:replace="thyme/Top :: header"></div> <!-- 고치기 -->
+
+<div align="center">
+	<h2 th:text="">카테고리</h2>
+	<form th:action="@{/search/item}" method="post">
+		<select>
+			<option th:value="all" selected>all</option>
+			<option th:each="" th:value="" th:text="">artist</option> <!-- 고치기 -->
+		</select>
+		<input type="hidden" name="search" value="true"/>
+	    <input type="search" name="keyword" />&nbsp;
+	    <input src="/images/search.png" type="image" />
+	</form>
+</div>
+<p>
+<div align="center">
+	<a href="" th:href="@{/myitem/add}">작품 등록</a>
+	<a href="" th:href="@{/myitem/list}">내 그림 관리</a>
+</div>
+<p>
+
+<div align="center">
+	<table>
+		<th>작품</th>
+		<th>제목</th>
+		<th>화가</th>
+		<tr th:each="item : ${itemList}">
+			<td>
+				<a href="" th:href="@{/shop/viewitem(itemId=${item.itemId})}">
+					<img src="" th:src="${item.picture}" />
+				</a>
+			</td>
+			<td th:text="${item.itemName}">
+				<a href="" th:href="@{/shop/viewitem(itemId=${item.itemId})}">제목</a>
+			</td>
+			<td th:text="${item.artist}">
+				<a href="" th:href="@{/search/item(artist=${item.artist})}">화가</a>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" align="center">
+				<p>
+				<a th:if="${!itemList.firstPage}"
+				   href="" th:href="@{/search/item(page=${'previous'})}"
+				   th:utext="${'<B>&lt;&lt; Prev</B>'}">Prev</a>
+				<a th:if="${!itemList.lastPage}"
+				   href="" th:href="@{/search/item(page=${'next'})}"
+				   th:utext="${'<B>Next &gt;&gt;</B>'}">Next</a>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div th:replace="thyme/Bottom :: footer"></div> <!-- 고치기 -->
