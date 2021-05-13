@@ -1,4 +1,4 @@
-package com.example.jpetstore.controller;
+package com.example.artsell.controller;
 
 import java.io.Serializable;
 import org.springframework.beans.support.PagedListHolder;

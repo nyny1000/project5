@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
+import com.example.artsell.controller.UserSession;
 import com.example.jpetstore.domain.Cart;
 
 /**

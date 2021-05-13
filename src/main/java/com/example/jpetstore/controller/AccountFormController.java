@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.WebUtils;
+
+import com.example.artsell.controller.UserSession;
 import com.example.jpetstore.domain.Category;
 import com.example.jpetstore.domain.Product;
 import com.example.jpetstore.service.AccountFormValidator;

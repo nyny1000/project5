@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
-import com.example.jpetstore.controller.UserSession;
 import com.example.jpetstore.domain.Cart;
 import com.example.jpetstore.domain.Item;
 import com.example.jpetstore.domain.Order;

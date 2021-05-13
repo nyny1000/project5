@@ -1,4 +1,4 @@
-package com.example.jpetstore.controller;
+package com.example.artsell.controller;
 
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.beans.factory.annotation.Autowired;

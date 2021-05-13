@@ -15,6 +15,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
 
+import com.example.artsell.controller.UserSession;
 import com.example.jpetstore.domain.Account;
 import com.example.jpetstore.domain.Cart;
 import com.example.jpetstore.service.OrderValidator;

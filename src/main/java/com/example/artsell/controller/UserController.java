@@ -1,4 +1,4 @@
-package com.example.jpetstore.controller;
+package com.example.artsell.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
