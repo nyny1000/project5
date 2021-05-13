@@ -10,9 +10,15 @@ public class AuctionItemListController {
 	@Autowired
 	private ArtSellFacade artSell;
 	public String viewAuctionItemList(@ModelAttribute("userSession") UserSession userSession, ModelMap model) {
-		PagedListHolder<Item> itemList = new PagedListHolder<Item>(this.artSell.getItemListByAuctionItem(userSession.getAccount().getUserId());
+		PagedListHolder<Item> itemList1 = new PagedListHolder<Item>(this.artSell.getItemListByAuctionItem(userSession.getAccount().getUserId());
 		//ItemList.setPageSize(8);
-		model.put("itemList", itemList);
+		model.put("itemList1", itemList2);
+		
+		//낙찰된(결제까지 다 한) 목록
+		PagedListHolder<Item> itemList2 = new PagedListHolder<Item>(this.artSell.getItemListByAuctionedItem(userSession.getAccount().getUserId());
+		//ItemList.setPageSize(8);
+		model.put("itemList2", itemList2);
+
 		return "myAuctionList";
 	}
 
