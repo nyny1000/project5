@@ -1,6 +1,7 @@
 package com.example.jpetstore.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.example.jpetstore.domain.Account;
 import com.example.jpetstore.domain.Category;
@@ -48,4 +49,6 @@ public interface ArtSellFacade {
 	List<Order> getOrdersByUsername(String username);
 	
 	List<Item> getItemListByCategory(String categoryId);
+
+	Map<String, Integer> getBuyersByItemId(String itemId);
 }

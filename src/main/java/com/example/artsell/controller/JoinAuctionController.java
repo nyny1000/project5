@@ -23,8 +23,8 @@ import com.example.jpetstore.service.ArtSellFacade;
 public class JoinAuctionController {
    @Autowired
    private ArtSellFacade artSell;
-   //입찰, 재입찰
    
+   //입찰, 재입찰
    @RequestMapping("/auction/bid")
    public void addAuctionItem(@ModelAttribute("userSession") UserSession userSession, 
          @RequestParam("ItemId") String workingItemId, 

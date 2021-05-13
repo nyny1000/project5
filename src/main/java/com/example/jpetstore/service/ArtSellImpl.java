@@ -1,6 +1,7 @@
 package com.example.jpetstore.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.example.jpetstore.domain.Account;
 import com.example.jpetstore.domain.Category;
@@ -131,6 +132,11 @@ public class ArtSellImpl implements ArtSellFacade {
 	public List<Item> getItemListByCategory(String categoryId) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	Map<String, Integer> getBuyersByItemId(String itemId) {
+		return auctionItemDao.getBuyersByItemId(itemId);
 	}
 
 }
