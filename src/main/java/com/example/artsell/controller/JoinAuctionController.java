@@ -21,8 +21,8 @@ import com.example.jpetstore.service.ArtSellFacade;
 public class JoinAuctionController {
 	@Autowired
 	private ArtSellFacade artSell;
-	//입찰, 재입찰
 	
+	//입찰, 재입찰
 	@RequestMapping("/auction/bid")
 	private void addAuctionItem(@ModelAttribute("userSession") UserSession userSession, 
 			@RequestParam("ItemId") String workingItemId, 
@@ -33,14 +33,6 @@ public class JoinAuctionController {
 		else {	//새로운 값
 			artSell.addPrice(userId, itemId, price);
 		}
-		
-		if (artSell.getBestPrice() < price) { //최고값이면
-			artSell.updateItemBestPrice(price);
-		}
-		else {
-			throw new Exception("error");
-		}
-
 	}
 	
 	// 아이템아이디에 해당하는 경매참여자들
