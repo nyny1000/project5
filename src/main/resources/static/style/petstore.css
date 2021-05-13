@@ -3,6 +3,39 @@
 	color: red;
 	font-weight: bold;
 }
+/*채연이*/
+div.bg {
+	background-color : #FFFFCC;
+	margin-left : 30%;
+	margin-right : 30%;
+	border-radius : 25px;
+	
+}
+table.border {
+	border-collapse: collapse;
+	border: 1px solid;
+}
+table.border tr td{
+	border: 1px solid;
+}
+table.border tr th{
+	border: 1px solid black;
+}
+ul.align { 
+	display: inline-block; 
+	text-align: left; 
+}
+td.bold {
+	font-weight : bold;
+}
+table.border tr#c1 td{
+	text-align:right;
+	border-top: hidden;
+	border-left: hidden;
+	border-right: hidden;
+}
+/*채연이*/
+
 table#main-menu {
 	background-color: #008800;
     border: none;

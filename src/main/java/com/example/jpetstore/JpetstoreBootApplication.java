@@ -14,7 +14,7 @@ public class JpetstoreBootApplication {
 		return application.sources(JpetstoreBootApplication.class);
 	}
 	*/
-	
+
     public static void main(String[] args) throws Exception {
         SpringApplication.run(JpetstoreBootApplication.class, args);
     }

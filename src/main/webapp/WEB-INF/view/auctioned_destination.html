@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>주문확인창</title>
+<link rel="stylesheet" href="../../../resources/static/style/petstore.css" type="text/css" />
+<!--<style>
+div.bg {
+	background-color : #FFFFCC;
+	margin-left : 30%;
+	margin-right : 30%;
+	border-radius : 25px;
+	
+}
+table.border {
+	border-collapse: collapse;
+	border: 1px solid;
+}
+table.border tr td{
+	border: 1px solid;
+}
+ul.align { 
+	display: inline-block; 
+	text-align: left; 
+}
+td.bold {
+	font-weight : bold;
+}
+
+
+</style>-->
+</head>
+<body>
+<div align="center">
+	<h2>주문확인</h2>
+	<div class="bg">
+		<ul class="align">
+			<li><b>낙찰품목</b> : 해바라기</li>
+			<li><b>가격</b> : 122220원</li>
+		</ul>
+	</div>
+	
+	<p>
+
+	<table class="border">
+		<tr bgcolor="#FFD700">
+			<th colspan="2">배송정보</th>
+		</tr>
+		<tr>
+			<td class="bold">이름</td>
+			<td>곽철민</td>
+		</tr>
+		<tr>
+			<td class="bold">전화번호</td>
+			<td>010-7777-7777</td>
+		</tr>
+		<tr>
+			<td class="bold">주소</td>
+			<td>경기도 고양시 덕양구 도봉로 777 144동 144호</td>
+		</tr>
+		<tr>
+			<td class="bold">카드번호</td>
+			<td>999-9999-9999-9999</td>
+		</tr>	
+	</table>
+	
+	<p>
+	<a href="<c:url value='/auction/' />"><input type="button" value="이전"/></a>
+	<a href="<c:url value='/auction/pay' />"><input type="button" value="결제하기"/></a></p>
+</div>
+</body>
+</html>
