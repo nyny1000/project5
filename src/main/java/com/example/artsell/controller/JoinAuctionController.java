@@ -35,6 +35,37 @@ public class JoinAuctionController {
 		}
 	}
 	
+	//낙찰포기 //if 후순위자있을경우->후순위자상태바꿈   else 유찰 
+
+	String giveup(@ModelAttribute("userSession") UserSession userSession, 
+				@RequestParam("itemId") String itemId, ModelMap model) {
+
+	String userId = userSession.getAccount().getUserId();
+
+	//auctionitem table에서 해당 아이디 / 아이템아이디의 행 삭제
+	Artsell.deleteAuctionItem(userId, itemId);
+
+
+	//AuctionedItem auctionedItem = artSell.getOrder(itemid); //해당 아이템가져와
+
+	List<AuctionItem> auctionBuyerList = artsell.getBuyersByItemId(itemid);
+
+
+	if (Artsell.countAuctionJoinList != 0) // 후순위자가 있다면
+	{//낙찰
+		AuctionItem secondAuctionitem = auctionBuyerList.get(0);
+		String secondUser = secondAuctionitem.getUserId();
+		String secondPrice = secondAuctionitem.getMyPrice();
+		
+	Artsell.updateItem(secondUser, secondPrice);
+
+	return "auction/list/";
+
+	}
+	else
+	{return "auction/fail";}
+		
+
 	// 아이템아이디에 해당하는 경매참여자들
 	@RequestMapping("/auction/info")
 	public String viewAutionJoinerList(@RequestParam("ItemId") String itemId, ModelMap model) {	
@@ -62,6 +93,8 @@ public class JoinAuctionController {
 		model.addObject("deadline", deadline);
 		return model;
 	}
+	
+	
 
 	
 }
