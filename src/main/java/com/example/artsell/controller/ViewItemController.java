@@ -19,7 +19,7 @@ public class ViewItemController {
 		this.artSell = artSell;
 	}
 
-	@RequestMapping("/shop.viewItem")
+	@RequestMapping("/shop/viewItem")
 	public String handleRequest(@RequestParam("itemId") String itemId, ModelMap model) throws Exception {
 		Item item = this.artSell.getItem(itemId);
 		model.put("item", item);
