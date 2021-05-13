@@ -27,9 +27,11 @@ public class JoinAuctionController {
    //입찰, 재입찰
    @RequestMapping("/auction/bid")
    public void addAuctionItem(@ModelAttribute("userSession") UserSession userSession, 
-         @RequestParam("ItemId") String workingItemId, 
+         @RequestParam("itemId") String itemId, 
          @RequestParam("price") int price) throws Exception {
-      if (auctionItem.isNewUserPrice(userSession.getAccount().getUserId(), ItemId)) { //헌값 수정!
+	  
+	  String userId = userSession.getAccount().getUserId();
+      if (auctionItem.isNewUserPrice(userId, itemId)) { //헌값 수정!
             artSell.updatePrice(userId, itemId, price);
       }
       else {   //새로운 값
