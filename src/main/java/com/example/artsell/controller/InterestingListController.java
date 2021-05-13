@@ -43,7 +43,7 @@ public class InterestingListController {
 	@RequestMapping("/interesting/add")
 	public String addItemToInterestingList(@ModelAttribute("userSession") UserSession userSession, 
 			@RequestParam("interItemId") String itemId, ModelMap model) {
-		String userId = artSell.getInterestingItemList(userSession.getAccount().getUserId());
+		String userId =userSession.getAccount().getUserId();
 		if(artSell.containsInterestingItem(userId, itemId) == 1) {
 			model.addAttribute("intermsg", "이미 찜하였습니다.");
 		}
@@ -59,7 +59,7 @@ public class InterestingListController {
 	@RequestMapping("/interesting/delete")
 	public String deleteItemFromInterestingList(@ModelAttribute("userSession") UserSession userSession, 
 			@RequestParam("interItemId") String itemId) {
-		String userId = artSell.getInterestingItemList(userSession.getAccount().getUserId());
+		String userId = userSession.getAccount().getUserId();
 		artSell.deleteItemFromInterestingList(userId, itemId);
 
 		return "redirect:/interesting/list";

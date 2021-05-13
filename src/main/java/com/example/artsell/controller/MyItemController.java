@@ -54,7 +54,7 @@ public class MyItemController {
 		if (result.hasErrors()) {
 			return "paintingRegister";
 		}
-		item.setUserId(artSell.getInterestingItemList(userSession.getAccount().getUserId()));
+		item.setUserId(userSession.getAccount().getUserId());
 		artSell.insertItem(item);	
 		return "/myitem/list";
 	}
@@ -62,7 +62,7 @@ public class MyItemController {
 	@RequestMapping("/myitem/delete")
 	public String deleteMyItem(@ModelAttribute("userSession") UserSession userSession, 
 			@RequestParam("myItemId") String itemId) {
-		String userId = artSell.getInterestingItemList(userSession.getAccount().getUserId());
+		String userId = userSession.getAccount().getUserId();
 		artSell.deleteMyItem(userId, itemId);
 
 		return "redirect:/myitem/list";
