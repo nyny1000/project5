@@ -32,7 +32,7 @@
 			<td th:text="${item.deadline}">마감기한</td>
 		</tr>
 		<tr>
-			<td colspan="2"><img src="" th:src="${item.picture}" /></td>
+			<td colspan="2"><img src="${item.picture}" /></td>
 		</tr>
 		<tr>
 			<td colspan="2" width="40" height="8" th:text="${item.description}">그림 설명</td>
@@ -40,10 +40,10 @@
 	</table>
 	<a href="" th:href="@{/auction/info}">경매 참여</a>
 	<a href="" th:unless="(찜한 목록에 있으면)" th:href="@{/interesting/add}"> <!-- 고치기 -->
-		<img src="" th:src="/images/iconmonstr-heart-thin-32.png" />
+		<img src="../../static/images/iconmonstr-heart-thin-32.png" />
 	</a>
 	<a href="" th:if="(찜한 목록에 있으면)" th:href="@{/interesting/delete}"> <!-- 고치기 -->
-		<img src="" th:src="/images/iconmonstr-favorite-3-32.png" />
+		<img src="../../static/images/iconmonstr-favorite-3-32.png" />
 	</a>
 </div>
 
