@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.jpetstore.domain.Item;
+import com.example.jpetstore.service.ArtSellFacade;
 import com.example.jpetstore.service.PetStoreFacade;
 
 @Controller
@@ -23,7 +24,7 @@ public class MyItemController {
 	
 	@Autowired
 	private ArtSellFacade artSell;
-	public void setPetStore(PetStoreFacade artSell) {
+	public void setPetStore(ArtSellFacade artSell) {
 		this.artSell = artSell;
 	}
 	
