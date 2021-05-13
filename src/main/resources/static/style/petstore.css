@@ -3,6 +3,54 @@
 	color: red;
 	font-weight: bold;
 }
+/*나영이*/
+/* 추가 */
+table.search {
+	width: 100%;
+	border: none;
+	border-collapse: collapse;
+}
+
+table.top tr td {
+	padding: 5px;
+}
+
+/* 수정 */
+table.t1 {
+	margin: 30px;
+	background-color: #B89063;
+	width: 100%;
+	border: none;
+	border-collapse: collapse;
+}
+
+/* 수정 */
+table.t1 tr td {
+	padding: 30px;
+}
+
+/* 추가 */
+table.mypage {
+	margin: 30px;
+	background-color: #FBF8EF;
+	width: 100%;
+	border: none;
+}
+
+/* 추가 */
+div.itembidding {
+	margin: 30px;
+	background-color: #FBF8EF;
+	width: 100%;
+}
+
+/* 추가 */
+table.biddingcheck {
+	text-align:center;
+	margin: 30px;
+	width: 100%;
+}
+
 /*채연이*/
 div.bg {
 	background-color : #FFFFCC;
