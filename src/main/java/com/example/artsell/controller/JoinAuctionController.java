@@ -19,5 +19,13 @@ public class JoinAuctionController {
 		else {	//새로운 값
 			artSell.addPrice(userId, itemId, price);
 		}
+		
+		if (artSell.getBestPrice() < price) { //최고값이면
+			artSell.updateItemBestPrice(price);
+		}
+		else {
+			throw new Exception("error");
+		}
+
 	}
 }
