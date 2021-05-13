@@ -1,6 +1,7 @@
 package com.example.artsell.controller;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.jpetstore.service.ArtSellFacade;
 
@@ -74,27 +76,45 @@ public class JoinAuctionController {
 		return "auction/myAuctionList";
 	}
 
+	
+
+	
 	//유찰
 	@RequestMapping("/auction/fail")
     public ModelAndView miscarry(@ModelAttribute("userSession") UserSession userSession, 
 	@RequestParam("itemId") String itemId) {
-    	String userId = userSession.getAccount().getUserId();
-		int price = artSell.getItemPrice(itemId);
-		price = price*0.7;
+		String userId = userSession.getAccount().getUserId();
+		int minPrice= artSell.getItemPrice(minPrice);
+		minPrice = (int) (minPrice * 0.7);
 
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
 		cal.add(Calendar.DATE, 7);
-		Date deadline = df.format(cal.getTime());
-		ModelAndView model = new ModelAndView(myPainting_bidding);
-		model.addObject("price", price);
+		Date deadline = df.parse(df.format(cal.getTime()));
+		ModelAndView model = new ModelAndView("myPainting_bidding");
+		model.addObject("minPrice", minPrice);
 		model.addObject("deadline", deadline);
 		return model;
+
 	}
 	
-	
+	@RequestMapping("/auction/fail/ok")
+    public String Reupload(@ModelAttribute("userSession") UserSession userSession, @RequestParam("itemId") String itemId, 
+    		@RequestParam("minPrice") String minPrice, @RequestParam("deadline") String deadline, RedirectAttributes redirectAttributes) {
 
-	
+		artSell.updateReload(itemId, minPrice, deadline);
+		redirectAttributes.addAttribute("itemId", itemId);
+		
+		return "redirect:/shop/viewItem";
+}
+
+	//유찰 안하겠다고 했을때
+	@RequestMapping("/auction/fail/no")
+    public String Reupload(@ModelAttribute("userSession") UserSession userSession, @RequestParam("itemId") String itemId) {
+		artSell.deleteItem(itemId);
+		return "/home";
+	}
+
 }
