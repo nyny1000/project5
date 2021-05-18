@@ -2,7 +2,7 @@ package com.example.artsell.service;
 
 import java.util.List;
 
-import com.example.jpetstore.domain.Account;
+import com.example.artsell.domain.Account;
 import com.example.jpetstore.domain.Category;
 import com.example.jpetstore.domain.Item;
 import com.example.jpetstore.domain.Order;

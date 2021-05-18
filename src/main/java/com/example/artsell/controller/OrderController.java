@@ -14,14 +14,14 @@ import org.springframework.web.servlet.ModelAndViewDefiningException;
 
 import com.example.jpetstore.domain.Account;
 import com.example.jpetstore.domain.Cart;
-import com.example.jpetstore.service.OrderValidator;
-import com.example.jpetstore.service.PetStoreFacade;
+import com.example.artsell.service.OrderValidator;
+import com.example.artsell.service.ArtSellFacade;
 
 @Controller
 @SessionAttributes({"sessionCart", "orderForm"})
 public class OrderController {
 	@Autowired
-	private PetStoreFacade petStore;
+	private ArtSellFacade artsell;
 	@Autowired
 	private OrderValidator orderValidator;
 	
@@ -38,7 +38,7 @@ public class OrderController {
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
 		if (cart != null) {
 			// Re-read account from DB at team's request.
-			Account account = petStore.getAccount(userSession.getAccount().getUsername());
+			Account account = artsell.getAccount(userSession.getAccount().getUsername());
 			orderForm.getOrder().initOrder(account, cart);
 			return "NewOrderForm";	
 		}
@@ -68,7 +68,7 @@ public class OrderController {
 	public ModelAndView viewOrder(
 			@ModelAttribute("orderForm") OrderForm orderForm, 
 			SessionStatus status) {
-		petStore.insertOrder(orderForm.getOrder());
+		artsell.insertOrder(orderForm.getOrder());
 		ModelAndView mav = new ModelAndView("ViewOrder");
 		mav.addObject("order", orderForm.getOrder());
 		mav.addObject("message", "Thank you, your order has been submitted.");

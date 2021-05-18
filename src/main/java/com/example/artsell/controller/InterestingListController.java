@@ -17,7 +17,7 @@ import com.example.jpetstore.domain.Cart;
 import com.example.jpetstore.domain.Item;
 import com.example.jpetstore.domain.Order;
 import com.example.jpetstore.domain.Product;
-import com.example.jpetstore.service.ArtSellFacade;
+import com.example.artsell.service.ArtSellFacade;
 import com.example.jpetstore.service.PetStoreFacade;
 
 @Controller

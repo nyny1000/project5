@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.example.jpetstore.domain.Category;
 import com.example.jpetstore.domain.Item;
-import com.example.jpetstore.domain.Product;
-import com.example.jpetstore.service.ArtSellFacade;
-import com.example.jpetstore.service.PetStoreFacade;
+import com.example.artsell.service.ArtSellFacade;
 
 @Controller
 @SessionAttributes({"category", "itemList"})
