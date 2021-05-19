@@ -13,12 +13,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
-import com.example.jpetstore.domain.Cart;
-import com.example.jpetstore.domain.Item;
-import com.example.jpetstore.domain.Order;
-import com.example.jpetstore.domain.Product;
-import com.example.jpetstore.service.ArtSellFacade;
-import com.example.jpetstore.service.PetStoreFacade;
+import com.example.artsell.domain.Item;
+import com.example.artsell.service.ArtSellFacade;
 
 @Controller
 @SessionAttributes("userSession")
@@ -33,7 +29,7 @@ public class InterestingListController {
 			@ModelAttribute("userSession") UserSession userSession) throws Exception {
 		// List<Item> interestList = new
 		PagedListHolder<Item> itemList = new PagedListHolder<Item>(
-				this.artSell.getInterestingItemList(userSession.getAccount().getUserId()));
+				artSell.getInterestingItemList(userSession.getAccount().getUserId()));
 		itemList.setPageSize(5);
 		handleRequest(page, itemList);
 
@@ -60,7 +56,7 @@ public class InterestingListController {
 	public String deleteItemFromInterestingList(@ModelAttribute("userSession") UserSession userSession, 
 			@RequestParam("interItemId") String itemId) {
 		String userId = userSession.getAccount().getUserId();
-		artSell.deleteItemFromInterestingList(userId, itemId);
+		artSell.deleteInterestingItem(userId, itemId);
 
 		return "redirect:/interesting/list";
 	}

@@ -3,8 +3,8 @@ package com.example.artsell.controller;
 import java.io.Serializable;
 import org.springframework.beans.support.PagedListHolder;
 
-import com.example.jpetstore.domain.Account;
-import com.example.jpetstore.domain.Product;
+import com.example.artsell.domain.Account;
+//import com.example.artsell.domain.Product;
 
 @SuppressWarnings("serial")
 public class UserSession implements Serializable {

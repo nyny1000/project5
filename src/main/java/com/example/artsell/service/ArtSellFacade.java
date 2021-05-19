@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.example.jpetstore.domain.Account;
 import com.example.jpetstore.domain.Category;
-import com.example.jpetstore.domain.Item;
+import com.example.artsell.domain.Item;
 import com.example.jpetstore.domain.Order;
 import com.example.jpetstore.domain.Product;
 
@@ -48,4 +48,14 @@ public interface ArtSellFacade {
 	List<Order> getOrdersByUsername(String username);
 	
 	List<Item> getItemListByCategory(String categoryId);
+	
+	List<Item> getInterestingItemList(String userId);
+	
+	void insertInterestingItem(String userId, String itemId);
+	
+	void deleteInterestingItem(String userId, String itemId);
+	
+	int containsInterestingItem(String userId, String itemId);
+	
+	
 }
