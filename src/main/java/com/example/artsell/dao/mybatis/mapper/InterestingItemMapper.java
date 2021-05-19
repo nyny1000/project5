@@ -1,5 +1,8 @@
 package com.example.artsell.dao.mybatis.mapper;
 
-public class InterestingItemMapper {
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface InterestingItemMapper {
 
 }

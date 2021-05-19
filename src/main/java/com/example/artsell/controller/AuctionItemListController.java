@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import com.example.jpetstore.service.ArtSellFacade;
+import com.example.artsell.service.ArtSellFacade;
 
 public class AuctionItemListController {
 	@Autowired

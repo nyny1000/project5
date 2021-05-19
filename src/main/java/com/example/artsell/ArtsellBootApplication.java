@@ -2,20 +2,13 @@ package com.example.artsell;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-//import org.springframework.boot.builder.SpringApplicationBuilder;
-//import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class ArtsellBootApplication { 
-//public class JpetstoreBootApplication extends SpringBootServletInitializer {
-	/*
-    @Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(JpetstoreBootApplication.class);
-	}
-	*/
+public class ArtsellBootApplication {
 
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(ArtsellBootApplication.class, args);
-    }
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		SpringApplication.run(ArtsellBootApplication.class, args);
+	}
+
 }

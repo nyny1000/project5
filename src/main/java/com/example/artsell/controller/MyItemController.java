@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.artsell.domain.Item;
+import com.example.jpetstore.domain.Item;
 import com.example.artsell.service.ArtSellFacade;
 import com.example.jpetstore.service.PetStoreFacade;
 

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import org.springframework.beans.support.PagedListHolder;
 
 import com.example.artsell.domain.Account;
+
 @SuppressWarnings("serial")
 public class UserSession implements Serializable {
 

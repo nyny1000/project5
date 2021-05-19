@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.artsell.dao.mybatis.mapper.ItemMapper">
+  <cache />
+
+  <select id="searchItemList" resultType="Item">
+  	SELECT ITEMID,
+  		   ITEMNAME,
+  		   MINPRICE,
+  		   BESTPRICE,
+  		   DEADLINE,
+  		   DESCRIPTION,
+  		   PICTURE,
+  		   ARTIST,
+  		   CATEGORYID,
+  		   USERID AS sellerId
+  	FROM ITEM
+  	<where>
+  		<if test="keywords != null">
+  			LOWER(ITEMNAME) LIKE #{keywords}
+  		</if>
+  		<if test="artist != null">
+  			AND ARTIST = #{artist}
+  		</if>
+  		<if test="categoryId != null">
+  			AND CATEGORYID = #{categoryId}
+  		</if>
+  	</where>
+  </select>
+
+  <select id="getItemListByCategory" resultType="Item">
+  	SELECT ITEMID,
+  		   ITEMNAME,
+  		   MINPRICE,
+  		   BESTPRICE,
+  		   DEADLINE,
+  		   DESCRIPTION,
+  		   PICTURE,
+  		   ARTIST,
+  		   CATEGORYID,
+  		   USERID AS sellerId
+  	FROM ITEM
+  	WHERE CATEGORYID = #{categoryId}
+  	  AND ITEMID NOT IN (SELECT ITEMID
+  					     FROM AUCTIONEDITEM)
+  </select>
+
+  <select id="getItem" resultType="Item">
+  	SELECT ITEMID,
+  		   ITEMNAME,
+  		   MINPRICE,
+  		   BESTPRICE,
+  		   DEADLINE,
+  		   DESCRIPTION,
+  		   PICTURE,
+  		   ARTIST,
+  		   CATEGORYID,
+  		   USERID AS sellerId
+  	FROM ITEM
+  	WHERE ITEMID = #{itemId}
+  </select>
+
+  <select id="getItemListByUserId" resultType="Item">
+  	SELECT ITEMID,
+  		   ITEMNAME,
+  		   MINPRICE,
+  		   BESTPRICE,
+  		   DEADLINE,
+  		   DESCRIPTION,
+  		   PICTURE,
+  		   ARTIST,
+  		   CATEGORYID,
+  		   USERID AS sellerId
+  	FROM ITEM
+  	WHERE USERID = #{userId}
+  	  AND ITEMID NOT IN (SELECT ITEMID
+  					   	 FROM AUCTIONEDITEM)
+  </select>
+
+  <select id="getMyItemList" resultType="Item">
+  	SELECT ITEMID,
+  		   ITEMNAME,
+  		   MINPRICE,
+  		   BESTPRICE,
+  		   DEADLINE,
+  		   DESCRIPTION,
+  		   PICTURE,
+  		   ARTIST,
+  		   CATEGORYID,
+  		   USERID AS sellerId
+  	FROM ITEM
+  	WHERE USERID = #{userId}
+  </select>
+  
+  <select id="getArtistList" resultType="String">
+  	SELECT DISTINCT ARTIST
+  	FROM ITEM
+  </select>
+  
+  <delete id="deleteItem" parameterType="String">
+  	DELETE FROM ITEM
+  		WHERE ITEMID = #{itemId}
+  </delete>
+  
+  <insert id="insertItem" parameterType="Item">
+  	<selectKey keyProperty="itemId" resultType="int" order="BEFORE">
+  		SELECT 'I'||TO_CHAR(ITEM_SEQ.NEXTVAL) AS ITEMID FORM DUAL
+  	</selectKey>
+  	INSERT INTO ITEM
+  		VALUES (#{itemId}, #{itemName}, #{minPrice}, #{bestPrice}, #{deadline}, #{description}, #{picture}, #{artist}, #{categoryId}, #{sellerId})
+  </insert>
+
+  <update id="updateItemPrice" parameterType="Item">
+    UPDATE ITEM 
+    SET MAXPRICE = #{price}
+    WHERE ITEMID = #{itemId}
+  </update>
+  
+  <update id="updateReload" parameterType="Item">
+  	UPDATE ITEM
+  	SET MINPRICE = #{minPrice} AND DEADLINE = #{deadline}
+  	WHERE ITEMID = #{itemId}
+  </update>
+</mapper>
