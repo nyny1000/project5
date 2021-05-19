@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.example.artsell.dao.mybatis.mapper.AccountMapper">
+	<cache />
+
+	<select id="getAccountByUserId" resultType="Account">
+		SELECT *
+		FROM ACCOUNT
+		WHERE ACCOUNT.USER_ID = #{param1}
+	</select>
+
+	<select id="getAccountByUsernameAndPassword"
+		resultType="Account">
+		SELECT *
+		FROM ACCOUNT
+		WHERE ACCOUNT.USER_ID = #{param1}
+		AND
+		ACCOUNT_PASSWORD = #{parem2}
+	</select>
+
+	<select id="getUsernameList" resultType="java.lang.String">
+		SELECT NAME FROM ACCOUNT
+	</select>
+
+	<select id="viewAccountList" resultType="Account">
+		SELECT * FROM ACCOUNT
+	</select>
+
+
+	<update id="updateAccount" parameterType="Account">
+		UPDATE ACCOUNT SET
+		EMAIL = #{email},
+		NAME = #{name},
+		ADDRRESS = #{address},
+		PASSWORD = #{password},
+		PHONE = #{phone},
+		CREDIT = #{credit}
+		WHERE USERID = #{userId}
+	</update>
+
+	<insert id="insertAccount" parameterType="Account">
+		INSERT INTO ACCOUNT
+		(EMAIL, NAME, ADDRESS, PHONE, CREDIT, USERID)
+		VALUES
+		(#{email}, #{name}, #{address}, #{phone}, #{credit}, #{userId})
+	</insert>
+
+	<!-- TODO MyBatis 3 does not map booleans to integers <update id="updateProfile" 
+		parameterType="Account"> UPDATE PROFILE SET LANGPREF = #{languagePreference}, 
+		FAVCATEGORY = #{favouriteCategoryId}, MYLISTOPT = #{listOption}, BANNEROPT 
+		= #{bannerOption} WHERE USERID = #{username} </update> -->
+
+	<update id="updateProfile" parameterType="Account">
+		UPDATE PROFILE SET
+		LANGPREF = #{languagePreference},
+		FAVCATEGORY = #{favouriteCategoryId}
+		WHERE USERID = #{username}
+	</update>
+
+	<!-- TODO MyBatis 3 does not map booleans to integers <insert id="insertProfile" 
+		parameterType="Account"> INSERT INTO PROFILE (LANGPREF, FAVCATEGORY, MYLISTOPT, 
+		BANNEROPT, USERID) VALUES (#{languagePreference}, #{favouriteCategoryId}, 
+		#{listOption}, #{bannerOption}, #{username}) </insert> -->
+
+	<insert id="insertProfile" parameterType="Account">
+		INSERT INTO PROFILE (LANGPREF, FAVCATEGORY, USERID)
+		VALUES (#{languagePreference}, #{favouriteCategoryId}, #{username})
+	</insert>
+
+	<update id="updateSignon" parameterType="Account">
+		UPDATE SIGNON SET PASSWORD = #{password}
+		WHERE USERNAME = #{username}
+	</update>
+
+	<insert id="insertSignon" parameterType="Account">
+		INSERT INTO SIGNON (PASSWORD,USERNAME)
+		VALUES (#{password}, #{username})
+	</insert>
+</mapper>

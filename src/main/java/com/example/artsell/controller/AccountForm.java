@@ -2,7 +2,7 @@ package com.example.artsell.controller;
 
 import java.io.Serializable;
 
-import com.example.jpetstore.domain.Account;
+import com.example.artsell.domain.Account;
 
 /**
  * @author Juergen Hoeller

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.jpetstore.service.ArtSellFacade;
+import com.example.artsell.service.ArtSellFacade;
 
 @Controller
 @SessionAttributes("userSession")
