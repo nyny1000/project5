@@ -93,6 +93,11 @@
   	WHERE USERID = #{userId}
   </select>
   
+  <select id="getArtistList" resultType="String">
+  	SELECT DISTINCT ARTIST
+  	FROM ITEM
+  </select>
+  
   <delete id="deleteItem" parameterType="String">
   	DELETE FROM ITEM
   		WHERE ITEMID = #{itemId}

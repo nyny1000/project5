@@ -1,6 +1,10 @@
 package com.example.artsell.controller;
 
 import org.springframework.beans.support.PagedListHolder;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.example.jpetstore.domain.Category;
-import com.example.jpetstore.domain.Item;
+import com.example.artsell.domain.Category;
+import com.example.artsell.domain.Item;
 import com.example.artsell.service.ArtSellFacade;
 
 @Controller
@@ -29,10 +33,14 @@ public class ViewCategoryController {
 	{
 		Category category = this.artSell.getCategory(categoryId);
 		PagedListHolder<Item> itemList = new PagedListHolder<Item>(this.artSell.getItemListByCategory(categoryId));
-		itemList.setPageSize(10);
+		//itemList.setPageSize(10);
+		itemList.setPageSize(1);
 		model.put("category", category);
 		model.put("itemList", itemList);
-		return "tiles/category";
+		List<String> artistList = new ArrayList<String>(this.artSell.getArtistList());
+		model.put("artistList", artistList);
+		//return "tiles/itemList";
+		return "itemList";
 	}
 	
 	@RequestMapping("shop/viewCategory2")
@@ -47,6 +55,7 @@ public class ViewCategoryController {
 		} else if ("previous".equals(page)) {
 			itemList.previousPage();
 		}
-		return "tiles/category";
+		//return "tiles/itemList";
+		return "itemList";
 	}
 }

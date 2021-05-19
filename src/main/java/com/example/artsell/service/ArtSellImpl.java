@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.artsell.dao.AccountDao;
+import com.example.artsell.dao.ItemDao;
 import com.example.artsell.domain.Account;
-import com.example.jpetstore.domain.Category;
-import com.example.jpetstore.domain.Item;
+import com.example.artsell.domain.Category;
+import com.example.artsell.domain.Item;
 import com.example.jpetstore.domain.Order;
-import com.example.jpetstore.domain.Product;
 
 @Service
 @Transactional
@@ -19,6 +19,8 @@ public class ArtSellImpl implements ArtSellFacade {
 
 	@Autowired
 	private AccountDao accountDao;
+	@Autowired
+	private ItemDao itemDao;
 	
 	@Override
 	public Account getAccount(String username) {
@@ -63,12 +65,6 @@ public class ArtSellImpl implements ArtSellFacade {
 	}
 
 	@Override
-	public List<Product> getProductListByCategory(String categoryId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Item> searchItemList(String keywords, String categoryId) {
 		if (categoryId != null) {
 			itemDao.searchItemListByKewordInCate(keywords, categoryId);
@@ -93,12 +89,6 @@ public class ArtSellImpl implements ArtSellFacade {
 				itemDao.searchItemListByAll(keywords, artist);
 			}
 		}
-	}
-
-	@Override
-	public Product getProduct(String productId) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -140,7 +130,13 @@ public class ArtSellImpl implements ArtSellFacade {
 	@Override
 	public List<Item> getItemListByCategory(String categoryId) {
 		// TODO Auto-generated method stub
-		return null;
+		return itemDao.getItemListByCategory(categoryId);
+	}
+
+	@Override
+	public List<String> getArtistList() {
+		// TODO Auto-generated method stub
+		return itemDao.getArtistList();
 	}
 
 }

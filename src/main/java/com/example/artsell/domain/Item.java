@@ -13,7 +13,7 @@ public class Item implements Serializable {
 	@NotBlank
 	private String itemName;
 	
-	@NotBlank
+	//@NotBlank
 	@Min(0)
 	private int minPrice;
 	private int bestPrice;
@@ -22,7 +22,7 @@ public class Item implements Serializable {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date deadline;
 	
-	@NotBlank
+	//@NotBlank
 	private String description;
 	
 	@NotBlank

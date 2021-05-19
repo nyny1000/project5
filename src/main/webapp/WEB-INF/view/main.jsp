@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,7 +68,7 @@
 	<table class="t1">
 		<tr>
 
-			<td><p>&lt;«≥∞Ê»≠&gt;</p> <a href=".."> <img width="130px"
+			<td><p>&lt;«≥∞Ê»≠&gt;</p> <a href="<c:url value="/shop/viewCategory?categoryId=landscape" />"> <img width="130px"
 					height="130px" border="0" src="images/landscape.jpg" /></a></td>
 			<td><p>&lt;¿Œπ∞»≠&gt;</p> <a href=".."> <img width="130px"
 					height="130px" border="0" src="images/figure-painting.jpg" /></a></td>

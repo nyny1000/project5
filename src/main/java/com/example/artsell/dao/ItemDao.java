@@ -29,6 +29,8 @@ public interface ItemDao {
 	//위아래 두개 무슨 차이인지 모르겠음
 	List<Item> getMyItemList(String userId) throws DataAccessException;
 	
+	List<String> getArtistList() throws DataAccessException;
+	
 	void deleteItem(String userId, String itemId) throws DataAccessException;
 	
 	void insertItem(Item item) throws DataAccessException;

@@ -27,7 +27,7 @@ public class MybatisItemDao implements ItemDao {
 
 	public List<Item> searchItemList(String keywords, String artist, String categoryId) throws DataAccessException {
 		// TODO Auto-generated method stub
-		itemMapper.searchItemList(keywords, artist, categoryId);
+		return itemMapper.searchItemList(keywords, artist, categoryId);
 	}
 
 	public List<Item> getItemListByCategory(String categoryId) throws DataAccessException {
@@ -80,5 +80,11 @@ public class MybatisItemDao implements ItemDao {
 		public List<String> getKeywordList() {
 			return keywordList;
 		}
+	}
+
+	@Override
+	public List<String> getArtistList() throws DataAccessException {
+		// TODO Auto-generated method stub
+		return itemMapper.getArtistList();
 	}
 }

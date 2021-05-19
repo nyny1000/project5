@@ -20,6 +20,8 @@ public interface ItemMapper {
 	
 	List<Item> getMyItemList(String userId) throws DataAccessException;
 	
+	List<String> getArtistList() throws DataAccessException;
+	
 	void deleteItem(String itemId) throws DataAccessException;
 	
 	void insertItem(Item item) throws DataAccessException;
