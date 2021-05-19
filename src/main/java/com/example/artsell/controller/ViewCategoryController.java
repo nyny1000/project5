@@ -28,6 +28,11 @@ public class ViewCategoryController {
 		this.artSell = artSell;
 	}
 	
+	@ModelAttribute("category")
+	public Category setSessionInit() {
+		return new Category();
+	}
+	
 	@RequestMapping("/shop/viewCategory")
 	public String handleRequest(@RequestParam("categoryId") String categoryId, ModelMap model) throws Exception
 	{
