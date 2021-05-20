@@ -62,7 +62,8 @@ public class UserController {
 	@RequestMapping("/user/mypage")
 	public String myPage(@ModelAttribute("userSession") UserSession userSession) throws Exception {
 		//String userId = userSession.getAccount().getUserId();
-		return "tiles/mypage";
+		return "myPage";
+		//return "tiles/mypage";
 	}
 	
 
