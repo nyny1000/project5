@@ -4,8 +4,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-import com.example.jpetstore.controller.AccountForm;
-import com.example.jpetstore.domain.Account;
+import com.example.artsell.controller.AccountForm;
+import com.example.artsell.domain.Account;
 /**
  * @author Juergen Hoeller
  * @since 01.12.2003
@@ -25,14 +25,14 @@ public class AccountFormValidator implements Validator {
 
 		//에러 코드 수정완료.
 		
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.userName", "FIRST_NAME_REQUIRED", "User name is required.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.name", "UER_NAME_REQUIRED", "User name is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.email", "EMAIL_REQUIRED", "Email address is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.phone", "PHONE_REQUIRED", "Phone number is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.address", "ADDRESS_REQUIRED", "Address is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.credit", "CREDIT_REQUIRED", "Credit card is required.");
 		
 		if (accountForm.isNewAccount()) {
-			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.username", "USER_ID_REQUIRED", "User ID is required.");
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.userId", "USER_ID_REQUIRED", "User ID is required.");
 			if (account.getPassword() == null || account.getPassword().length() < 1 ||
 					!account.getPassword().equals(accountForm.getRepeatedPassword())) {
 				errors.reject("PASSWORD_MISMATCH",
