@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.artsell.dao.AccountDao;
-import com.example.artsell.dao.CategoryDao;
 import com.example.artsell.dao.InterestingItemDao;
 import com.example.artsell.dao.ItemDao;
 import com.example.artsell.domain.Account;
@@ -23,8 +22,6 @@ public class ArtSellImpl implements ArtSellFacade {
 	private AccountDao accountDao;
 	@Autowired
 	private ItemDao itemDao;
-	@Autowired
-	private CategoryDao categoryDao;
 	@Autowired
 	private InterestingItemDao interestingItemDao;
 	
@@ -80,23 +77,35 @@ public class ArtSellImpl implements ArtSellFacade {
 	@Override
 	public Category getCategory(String categoryId) {
 		// TODO Auto-generated method stub
-		return categoryDao.getCategory(categoryId);
+		return null;
 	}
 
-	/*
-	 * @Override public List<Item> searchItemList(String keywords, String
-	 * categoryId) { if (categoryId != null) {
-	 * itemDao.searchItemListByKewordInCate(keywords, categoryId); } else {
-	 * itemDao.searchItemListByKeword(keywords); } }
-	 * 
-	 * @Override public List<Item> searchItemListByArtist(String keywords, String
-	 * artist, String categoryId) { // TODO Auto-generated method stub if
-	 * (categoryId != null) { if (keywords != null) {
-	 * itemDao.searchItemListByAllInCate(keywords, artist, categoryId); } else {
-	 * itemDao.searchItemListByArtistInCate(artist, categoryId); } } else { if
-	 * (keywords != null) { itemDao.searchItemListByArtist(artist); } else {
-	 * itemDao.searchItemListByAll(keywords, artist); } } }
-	 */
+	@Override
+	public List<Item> searchItemList(String keywords, String categoryId) {
+		if (categoryId != null) {
+			itemDao.searchItemListByKewordInCate(keywords, categoryId);
+		} else {
+			itemDao.searchItemListByKeword(keywords);
+		}
+	}
+	
+	@Override
+	public List<Item> searchItemListByArtist(String keywords, String artist, String categoryId) {
+		// TODO Auto-generated method stub
+		if (categoryId != null) {
+			if (keywords != null) {
+				itemDao.searchItemListByAllInCate(keywords, artist, categoryId);
+			} else {
+				itemDao.searchItemListByArtistInCate(artist, categoryId);
+			}
+		} else {
+			if (keywords != null) {
+				itemDao.searchItemListByArtist(artist);
+			} else {
+				itemDao.searchItemListByAll(keywords, artist);
+			}
+		}
+	}
 
 	@Override
 	public List<Item> getItemListByProduct(String productId) {
@@ -107,7 +116,7 @@ public class ArtSellImpl implements ArtSellFacade {
 	@Override
 	public Item getItem(String itemId) {
 		// TODO Auto-generated method stub
-		return itemDao.getItem(itemId);
+		return null;
 	}
 
 	@Override
@@ -164,12 +173,6 @@ public class ArtSellImpl implements ArtSellFacade {
 	@Override
 	public int containsInterestingItem(String userId, String itemId) {
 		return interestingItemDao.containsInterestingItem(userId, itemId);
-	}
-
-	@Override
-	public List<Item> searchItemList(String keywords, String artist, String categoryId) {
-		// TODO Auto-generated method stub
-		return itemDao.searchItemList(keywords, artist, categoryId);
 	}
 
 }
