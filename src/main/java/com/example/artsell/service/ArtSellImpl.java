@@ -14,7 +14,7 @@ import com.example.artsell.domain.Account;
 import com.example.artsell.domain.Category;
 import com.example.artsell.domain.Item;
 import com.example.jpetstore.domain.Order;
-//12
+//qwer
 @Service
 @Transactional
 public class ArtSellImpl implements ArtSellFacade {
