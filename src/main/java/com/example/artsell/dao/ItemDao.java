@@ -8,7 +8,7 @@ import org.springframework.dao.DataAccessException;
 import com.example.artsell.domain.Item;
 
 public interface ItemDao {
-	Item getItem(String itemId) throws DataAccessException;
+//	Item getItem(String itemId) throws DataAccessException;
 //	
 //	List<Item> searchItemListByKeyword(String keywords) throws DataAccessException;
 //	

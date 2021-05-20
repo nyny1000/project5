@@ -6,7 +6,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.artsell.domain.Item;
+import com.example.jpetstore.domain.Item;
 import com.example.artsell.service.ArtSellFacade;
 
 @Controller
