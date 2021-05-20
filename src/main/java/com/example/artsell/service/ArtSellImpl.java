@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.artsell.dao.AccountDao;
 import com.example.artsell.dao.CategoryDao;
+import com.example.artsell.dao.InterestingItemDao;
 import com.example.artsell.dao.ItemDao;
 import com.example.artsell.domain.Account;
 import com.example.artsell.domain.Category;
@@ -24,6 +25,8 @@ public class ArtSellImpl implements ArtSellFacade {
 	private ItemDao itemDao;
 	@Autowired
 	private CategoryDao categoryDao;
+	@Autowired
+	private InterestingItemDao interestingItemDao;
 	
 
 	//ny수정
@@ -141,6 +144,26 @@ public class ArtSellImpl implements ArtSellFacade {
 	public List<String> getArtistList() {
 		// TODO Auto-generated method stub
 		return itemDao.getArtistList();
+	}
+	
+	@Override
+	public List<Item> getInterestingItemList(String userId) {
+		return interestingItemDao.getInterestingItemList(userId);
+	}
+	
+	@Override
+	public void insertInterestingItem(String userId, String itemId) {
+		interestingItemDao.insertInterestingItem(userId, itemId);
+	}
+	
+	@Override
+	public void deleteInterestingItem(String userId, String itemId) {
+		interestingItemDao.deleteInterestingItem(userId, itemId);
+	}
+	
+	@Override
+	public int containsInterestingItem(String userId, String itemId) {
+		return interestingItemDao.containsInterestingItem(userId, itemId);
 	}
 
 	@Override
