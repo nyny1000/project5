@@ -27,6 +27,9 @@ public class MybatisItemDao implements ItemDao {
 
 	public List<Item> searchItemList(String keywords, String artist, String categoryId) throws DataAccessException {
 		// TODO Auto-generated method stub
+		if ("".equals(keywords)) {
+			keywords = null;
+		}
 		return itemMapper.searchItemList(keywords, artist, categoryId);
 	}
 

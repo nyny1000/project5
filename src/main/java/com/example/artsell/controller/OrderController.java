@@ -12,11 +12,11 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
 
-import com.example.jpetstore.domain.Account;
+import com.example.artsell.domain.Account;
 import com.example.jpetstore.domain.Cart;
 import com.example.artsell.service.OrderValidator;
 import com.example.artsell.service.ArtSellFacade;
-
+//123
 @Controller
 @SessionAttributes({"sessionCart", "orderForm"})
 public class OrderController {
@@ -38,8 +38,8 @@ public class OrderController {
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
 		if (cart != null) {
 			// Re-read account from DB at team's request.
-			Account account = artsell.getAccount(userSession.getAccount().getUsername());
-			orderForm.getOrder().initOrder(account, cart);
+			Account account = artsell.getAccount(userSession.getAccount().getUserId());
+			//orderForm.getOrder().initOrder(account, cart);
 			return "NewOrderForm";	
 		}
 		else {
@@ -50,7 +50,7 @@ public class OrderController {
 	}
 	
 	//auctioned_buyer.jsp
-	@RequestMapping("/shop/newOrderSubmitted.do")
+	@RequestMapping("/acution/check")
 	public String viewConfirmOrder(HttpServletRequest request,
 			@ModelAttribute("orderForm") OrderForm orderForm, 
 			BindingResult result) {	
@@ -64,7 +64,7 @@ public class OrderController {
 		}
 	}
 	//auctioned_destination.jsp
-	@RequestMapping("/shop/confirmOrder.do")
+	@RequestMapping("/auction/pay")
 	public ModelAndView viewOrder(
 			@ModelAttribute("orderForm") OrderForm orderForm, 
 			SessionStatus status) {

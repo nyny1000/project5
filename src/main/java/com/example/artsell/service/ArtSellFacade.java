@@ -32,10 +32,15 @@ public interface ArtSellFacade {
 
 	Category getCategory(String categoryId);
 
-	List<Item> searchItemList(String keywords, String categoryId);
-	
-	List<Item> searchItemListByArtist(String keywords, String artist, String categoryId);
+	/*
+	 * List<Item> searchItemList(String keywords, String categoryId);
+	 * 
+	 * List<Item> searchItemListByArtist(String keywords, String artist, String
+	 * categoryId);
+	 */
 
+	List<Item> searchItemList(String keywords, String artist, String categoryId);
+	
 	List<Item> getItemListByProduct(String productId);
 
 	Item getItem(String itemId);
@@ -60,9 +65,5 @@ public interface ArtSellFacade {
 	void deleteInterestingItem(String userId, String itemId);
 	
 	int containsInterestingItem(String userId, String itemId);
-
-	List<Item> getMyItemList(String userId);
-
-	void deleteItem(String userId, String itemId);
 	
 }

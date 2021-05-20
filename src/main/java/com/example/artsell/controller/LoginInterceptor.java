@@ -20,7 +20,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 		if (userSession == null) {
 			String url = request.getRequestURL().toString(); 
 			String query = request.getQueryString();
-			ModelAndView modelAndView = new ModelAndView("tiles/loginForm"); 	// use Tiles
+			//ModelAndView modelAndView = new ModelAndView("tiles/loginForm"); 	// use Tiles
+			ModelAndView modelAndView = new ModelAndView("loginForm");
 			if (query != null) {
 				modelAndView.addObject("loginForwardAction", url+"?"+query);
 			}
