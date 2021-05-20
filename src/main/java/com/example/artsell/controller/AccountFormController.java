@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.WebUtils;
-import com.example.jpetstore.domain.Category;
-import com.example.jpetstore.domain.Product;
 import com.example.artsell.service.AccountFormValidator;
 import com.example.artsell.service.ArtSellFacade;
 
@@ -22,13 +20,13 @@ import com.example.artsell.service.ArtSellFacade;
  * @author Juergen Hoeller
  * @since 01.12.2003
  * @modified by Changsup Park 
- * 나영 수정1
+ * 나영 수정2
  */
 @Controller
-@RequestMapping({ "/user/register.do", "/user/update.do" }) //do 빼아하나
+@RequestMapping({ "/user/register", "/user/update" })
 public class AccountFormController {
 
-	@Value("EditAccountForm")
+	@Value("editAccountForm")
 	private String formViewName;
 	
 	//회원가입 or 회원정보 수정 성공 시 가게 되는 뷰 (원래는 index)
@@ -80,7 +78,7 @@ public class AccountFormController {
 				artsell.updateAccount(accountForm.getAccount());
 			}
 		} catch (DataIntegrityViolationException ex) {
-			result.rejectValue("account.username", "USER_ID_ALREADY_EXISTS",
+			result.rejectValue("account.userId", "USER_ID_ALREADY_EXISTS",
 					"User ID already exists: choose a different ID.");
 			return formViewName;
 		}
@@ -90,4 +88,18 @@ public class AccountFormController {
 		session.setAttribute("userSession", userSession);
 		return successViewName;
 	}
+	
+
+	/*
+	 * //2차수정
+	 * 
+	 * @RequestMapping("/user/delete") public String deleteAccount(HttpSession
+	 * session) throws Exception { UserSession userSession = (UserSession)
+	 * session.getAttribute("userSession"); String userId =
+	 * userSession.getAccount().getUserId(); artsell.deleteAccount(userId);
+	 * 
+	 * session.removeAttribute("userSession"); session.invalidate(); return
+	 * successViewName; }
+	 */
+	
 }
