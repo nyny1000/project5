@@ -47,11 +47,12 @@ public class MybatisItemDao implements ItemDao {
 		// TODO Auto-generated method stub
 		return itemMapper.getMyItemList(userId);
 	}
-
+	
+	//경매참여자가 한명도 없을때만 취소 가능
 	public void deleteItem(String userId, String itemId) throws DataAccessException {
 		// TODO Auto-generated method stub
 		itemMapper.deleteItem(itemId);
-		interestingItemMapper.deleteItem(userId, itemId);
+		interestingItemMapper.deleteInterestingItem(userId, itemId);
 	}
 
 	public void insertItem(Item item) throws DataAccessException {

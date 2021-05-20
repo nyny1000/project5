@@ -109,6 +109,11 @@ public class ArtSellImpl implements ArtSellFacade {
 		// TODO Auto-generated method stub
 		return itemDao.getItem(itemId);
 	}
+	
+	@Override
+	public void insertItem(Item item) {
+		itemDao.insertItem(item);
+	}
 
 	@Override
 	public boolean isItemInStock(String itemId) {

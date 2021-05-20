@@ -44,6 +44,10 @@ public interface ArtSellFacade {
 	List<Item> getItemListByProduct(String productId);
 
 	Item getItem(String itemId);
+	
+	void insertItem(Item item);
+	
+	void deleteItem(String userId, String itemId);
 
 	boolean isItemInStock(String itemId);
 
