@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.artsell.dao.mybatis.mapper.OrderMapper">
+  <cache />
+  
+  <select id="getOrder" resultType="Order">
+  	SELECT ADDRESS,
+  		   PHONE, 
+  		   CREDIT
+  	FROM ACCOUNT
+  	WHERE USERID = #{userId}
+  </select>
+  
+  <select id="editDestination" resultType="Order">
+  	UPDATE AUCTIONEDITEM
+	SET DESTINATION = #{destination}
+	WHERE USERID = #{userId}
+	AND ITEMID = #{itemId}
+  </select>
+
+  <select id="SaveAuctionedItem" parameterType="AuctionItem">
+  	UPDATE AUCTIONEDITEM
+	SET ITEMID = #{itemId},
+	USERID  = #{userId},
+	AUCTIONEDPRICE = #{auctionedPrice},
+	DESTINATION = #{destination}
+  </select>
+  
+</mapper>
