@@ -1,11 +1,14 @@
 package com.example.artsell.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,31 +16,32 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
-import com.example.jpetstore.domain.Cart;
-import com.example.jpetstore.domain.Item;
-import com.example.jpetstore.domain.Order;
-import com.example.jpetstore.domain.Product;
+import com.example.artsell.domain.Item;
 import com.example.artsell.service.ArtSellFacade;
-import com.example.jpetstore.service.PetStoreFacade;
 
 @Controller
-@SessionAttributes("userSession")
+@SessionAttributes({"userSession", "interestList"})
 public class InterestingListController {
 
 	@Autowired
 	//private PetStoreFacade artSell;
 	private ArtSellFacade artSell;
 
-	@RequestMapping("/interesting/list")
-	public ModelAndView viewInterestingList(@RequestParam(value = "page", required = false) String page,
-			@ModelAttribute("userSession") UserSession userSession) throws Exception {
-		// List<Item> interestList = new
+	@RequestMapping("/interesting/list") 
+	public String viewInterestingList(
+			@ModelAttribute("userSession") UserSession userSession, ModelMap model) throws Exception {
 		PagedListHolder<Item> itemList = new PagedListHolder<Item>(
 				this.artSell.getInterestingItemList(userSession.getAccount().getUserId()));
-		itemList.setPageSize(5);
-		handleRequest(page, itemList);
-
-		return new ModelAndView("myInterestingList", "interestList", itemList.getPageList());
+		itemList.setPageSize(1);
+		model.put("interestList", itemList);	//handleRequest(page, itemList);
+		
+		return "myInterestingList";
+//		System.out.println(userSession.getAccount().getUserId());
+//		List<Item> itemList = artSell.getInterestingItemList(userSession.getAccount().getUserId());
+//		//itemList.setPageSize(5);
+//		//handleRequest(page, itemList);
+//		System.out.println(itemList.get(0).getItemId());
+		//return new ModelAndView("myInterestingList", "interestList", itemList.);
 	}
 	
 	@RequestMapping("/interesting/add")
@@ -60,17 +64,33 @@ public class InterestingListController {
 	public String deleteItemFromInterestingList(@ModelAttribute("userSession") UserSession userSession, 
 			@RequestParam("interItemId") String itemId) {
 		String userId = userSession.getAccount().getUserId();
-		artSell.deleteItemFromInterestingList(userId, itemId);
+		artSell.deleteInterestingItem(userId, itemId);
 
 		return "redirect:/interesting/list";
 	}
 
+	
 	private void handleRequest(String page, PagedListHolder<Item> itemList) throws Exception {
 
-		if ("nextCart".equals(page)) {
+		if ("next".equals(page)) {
 			itemList.nextPage();
-		} else if ("previousCart".equals(page)) {
+		} else if ("previous".equals(page)) {
 			itemList.previousPage();
 		}
-	}
+	} 
+	
+	@RequestMapping("/interesting/list2")
+	public String handleRequest2(
+			@RequestParam("page") String page, 
+			@ModelAttribute("interestList") PagedListHolder<Item> itemList,
+			BindingResult result) throws Exception {
+
+		if ("next".equals(page)) {
+			itemList.nextPage();
+		} else if ("previous".equals(page)) {
+			itemList.previousPage();
+		} 
+		
+		return "myInterestingList";
+	} 
 }

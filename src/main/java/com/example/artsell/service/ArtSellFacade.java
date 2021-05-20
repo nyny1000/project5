@@ -2,6 +2,7 @@ package com.example.artsell.service;
 
 import java.util.List;
 
+
 import com.example.artsell.domain.Account;
 import com.example.artsell.domain.Category;
 import com.example.artsell.domain.Item;
@@ -51,4 +52,13 @@ public interface ArtSellFacade {
 	List<Item> getItemListByCategory(String categoryId);
 	
 	List<String> getArtistList();
+	
+	List<Item> getInterestingItemList(String userId);
+	
+	void insertInterestingItem(String userId, String itemId);
+	
+	void deleteInterestingItem(String userId, String itemId);
+	
+	int containsInterestingItem(String userId, String itemId);
+	
 }

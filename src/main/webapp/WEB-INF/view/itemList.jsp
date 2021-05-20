@@ -56,7 +56,7 @@
 				<p>
 				<c:if test="${!itemList.firstPage}">
 					<a href="<c:url value="/shop/viewCategory2">
-						<c:param name="page" value="privious" /></c:url>">
+						<c:param name="page" value="previous" /></c:url>">
 				   			<B>&lt;&lt; Prev</B></a>
 				</c:if>
 				<c:if test="${!itemList.lastPage}">
