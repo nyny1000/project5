@@ -175,4 +175,19 @@ public class ArtSellImpl implements ArtSellFacade {
 		return interestingItemDao.containsInterestingItem(userId, itemId);
 	}
 
+<<<<<<< HEAD
+	@Override
+	public List<Item> searchItemList(String keywords, String artist, String categoryId) {
+		// TODO Auto-generated method stub
+		return itemDao.searchItemList(keywords, artist, categoryId);
+	}
+
+	@Override
+	public List<Item> getMyItemList(String userId) {
+		// TODO Auto-generated method stub
+		return itemDao.getMyItemList(userId);
+	}
+
+=======
+>>>>>>> branch 'master' of https://github.com/Myung518/project5
 }
