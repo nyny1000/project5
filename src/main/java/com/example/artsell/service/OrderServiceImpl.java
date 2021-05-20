@@ -14,14 +14,12 @@ import com.example.jpetstore.domain.Order;
 @Service("orderServiceImpl")
 public class OrderServiceImpl implements OrderService {
 
-	@Autowired
-	private OrderDao orderDao;
-
-	public Order getOrder(int orderId) {
-		return orderDao.getOrder(orderId);
-	}
-
-	public List<Order> getOrdersByUsername(String username) {
-		return orderDao.getOrdersByUsername(username);
-	}
+	/*
+	 * @Autowired private OrderDao orderDao;
+	 * 
+	 * public Order getOrder(int orderId) { return orderDao.getOrder(orderId); }
+	 * 
+	 * public List<Order> getOrdersByUsername(String username) { return
+	 * orderDao.getOrdersByUsername(username); }
+	 */
 }

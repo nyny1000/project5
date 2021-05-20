@@ -15,9 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.WebUtils;
 import com.example.jpetstore.domain.Category;
 import com.example.jpetstore.domain.Product;
-import com.example.jpetstore.service.AccountFormValidator;
-import com.example.jpetstore.service.ArtSellFacade;
-import com.example.jpetstore.service.PetStoreFacade;
+import com.example.artsell.service.AccountFormValidator;
+import com.example.artsell.service.ArtSellFacade;
 
 /**
  * @author Juergen Hoeller

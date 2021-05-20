@@ -2,14 +2,29 @@ package com.example.artsell.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.example.artsell.dao.AccountDao;
+import com.example.artsell.dao.InterestingItemDao;
+import com.example.artsell.dao.ItemDao;
 import com.example.artsell.domain.Account;
 import com.example.artsell.domain.Category;
 import com.example.artsell.domain.Item;
-import com.example.artsell.domain.Order;
-import com.example.artsell.domain.Product;
+import com.example.jpetstore.domain.Order;
 
+@Service
+@Transactional
 public class ArtSellImpl implements ArtSellFacade {
 
+	@Autowired
+	private AccountDao accountDao;
+	@Autowired
+	private ItemDao itemDao;
+	@Autowired
+	private InterestingItemDao interestingItemDao;
+	
 	@Override
 	public Account getAccount(String username) {
 		// TODO Auto-generated method stub
@@ -17,9 +32,9 @@ public class ArtSellImpl implements ArtSellFacade {
 	}
 
 	@Override
-	public Account getAccount(String username, String password) {
+	public Account getAccount(String userId, String password) {
 		// TODO Auto-generated method stub
-		return null;
+		return accountDao.getAccount(userId, password);
 	}
 
 	@Override
@@ -53,12 +68,6 @@ public class ArtSellImpl implements ArtSellFacade {
 	}
 
 	@Override
-	public List<Product> getProductListByCategory(String categoryId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Item> searchItemList(String keywords, String categoryId) {
 		if (categoryId != null) {
 			itemDao.searchItemListByKewordInCate(keywords, categoryId);
@@ -83,12 +92,6 @@ public class ArtSellImpl implements ArtSellFacade {
 				itemDao.searchItemListByAll(keywords, artist);
 			}
 		}
-	}
-
-	@Override
-	public Product getProduct(String productId) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -130,27 +133,33 @@ public class ArtSellImpl implements ArtSellFacade {
 	@Override
 	public List<Item> getItemListByCategory(String categoryId) {
 		// TODO Auto-generated method stub
-		return null;
+		return itemDao.getItemListByCategory(categoryId);
+	}
+
+	@Override
+	public List<String> getArtistList() {
+		// TODO Auto-generated method stub
+		return itemDao.getArtistList();
 	}
 	
 	@Override
 	public List<Item> getInterestingItemList(String userId) {
-		return null;
+		return interestingItemDao.getInterestingItemList(userId);
 	}
 	
 	@Override
 	public void insertInterestingItem(String userId, String itemId) {
-		
+		interestingItemDao.insertInterestingItem(userId, itemId);
 	}
 	
 	@Override
 	public void deleteInterestingItem(String userId, String itemId) {
-		
+		interestingItemDao.deleteInterestingItem(userId, itemId);
 	}
 	
 	@Override
 	public int containsInterestingItem(String userId, String itemId) {
-		return 0;
+		return interestingItemDao.containsInterestingItem(userId, itemId);
 	}
 
 }

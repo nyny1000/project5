@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.jpetstore.domain.Account;
-import com.example.jpetstore.service.ArtSellFacade;
+import com.example.artsell.domain.Account;
+import com.example.artsell.service.ArtSellFacade;
 
 @Controller
 @SessionAttributes("userSession")
@@ -24,6 +24,11 @@ public class UserController {
 		this.artSell = artSell;
 	}
 
+	@RequestMapping("/loginform")
+	public String home() throws Exception {
+		return "login";
+	}
+	
 	@RequestMapping("/user/login")
 	public ModelAndView login(HttpServletRequest request,
 			@RequestParam("userId") String userId,
@@ -41,7 +46,8 @@ public class UserController {
 			if (forwardAction != null) 
 				return new ModelAndView("redirect:" + forwardAction);
 			else 
-				return new ModelAndView("tiles/main");	// use Tiles
+				//return new ModelAndView("tiles/main");	// use Tiles
+				return new ModelAndView("main");
 		}
 	}
 	
@@ -49,13 +55,14 @@ public class UserController {
 	public String logout(HttpSession session) throws Exception {
 		session.removeAttribute("userSession");
 		session.invalidate();
-		return "tiles/login";	// use Tiles
+		//return "tiles/login";	// use Tiles
+		return "login";
 	}
 	
 	@RequestMapping("/user/mypage")
 	public String myPage(@ModelAttribute("userSession") UserSession userSession) throws Exception {
 		//String userId = userSession.getAccount().getUserId();
-		return "tiles/mypage";
+		return "mypage";
 	}
 	
 	//AccountFormController에 있어야 할 것 같음

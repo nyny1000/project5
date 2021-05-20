@@ -13,7 +13,7 @@ public class Item implements Serializable {
 	@NotBlank
 	private String itemName;
 	
-	@NotBlank
+	//@NotBlank
 	@Min(0)
 	private int minPrice;
 	private int bestPrice;
@@ -22,7 +22,7 @@ public class Item implements Serializable {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date deadline;
 	
-	@NotBlank
+	//@NotBlank
 	private String description;
 	
 	@NotBlank
@@ -32,7 +32,7 @@ public class Item implements Serializable {
 	private String artist;
 	@NotBlank
 	private String categoryId;
-	private String userId;
+	private String sellerId;
 	
 	
 	public String getItemId() {
@@ -89,11 +89,11 @@ public class Item implements Serializable {
 	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
 	}
-	public String getUserId() {
-		return userId;
+	public String getSellerId() {
+		return sellerId;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setSellerId(String sellerId) {
+		this.sellerId = sellerId;
 	}
 	
 	

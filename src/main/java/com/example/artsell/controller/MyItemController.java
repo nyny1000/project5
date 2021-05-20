@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.jpetstore.domain.Item;
-import com.example.jpetstore.service.ArtSellFacade;
-import com.example.jpetstore.service.PetStoreFacade;
+import com.example.artsell.domain.Category;
+import com.example.artsell.domain.Item;
+import com.example.artsell.service.ArtSellFacade;
+
 
 @Controller
 @SessionAttributes("userSession")
@@ -24,13 +25,10 @@ public class MyItemController {
 	
 	@Autowired
 	private ArtSellFacade artSell;
-	public void setPetStore(ArtSellFacade artSell) {
-		this.artSell = artSell;
-	}
 	
 	@ModelAttribute("cateList")
-	public List<String> kinds() {
-		List<String> cateList = artSell.getCategoryList();
+	public List<Category> kinds() {
+		List<Category> cateList = artSell.getCategoryList();
 
 		return cateList;
 	}
@@ -56,23 +54,23 @@ public class MyItemController {
 		}
 		item.setUserId(userSession.getAccount().getUserId());
 		artSell.insertItem(item);	
-		return "/myitem/list";
+		return "redirect:/myitem/list";
 	}
 	
 	@RequestMapping("/myitem/delete")
 	public String deleteMyItem(@ModelAttribute("userSession") UserSession userSession, 
 			@RequestParam("myItemId") String itemId) {
 		String userId = userSession.getAccount().getUserId();
-		artSell.deleteMyItem(userId, itemId);
+		artSell.deleteItem(userId, itemId);
 
 		return "redirect:/myitem/list";
 	}
 	
 	private void handleRequest(String page, PagedListHolder<Item> itemList) throws Exception {
 
-		if ("nextCart".equals(page)) {
+		if ("next".equals(page)) {
 			itemList.nextPage();
-		} else if ("previousCart".equals(page)) {
+		} else if ("previous".equals(page)) {
 			itemList.previousPage();
 		}
 	}

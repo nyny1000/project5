@@ -1,11 +1,10 @@
 package com.example.artsell.dao.mybatis.mapper;
 
 import java.util.List;
-
-import org.springframework.dao.DataAccessException;
-
+import org.apache.ibatis.annotations.Mapper;
 import com.example.artsell.domain.Item;
 
+@Mapper
 public interface InterestingItemMapper {
 	List<Item> getInterestingItemList(String userId);
 	
@@ -13,6 +12,6 @@ public interface InterestingItemMapper {
 	
 	void deleteInterestingItem(String userId, String itemId);
 	
-	int containsInterestingItem(String userId, String itemId);
+	int containsInterestingItem(String userId, String itemId); 
 	
 }

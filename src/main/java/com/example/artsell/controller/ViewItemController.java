@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.jpetstore.domain.Item;
-import com.example.jpetstore.service.ArtSellFacade;
+import com.example.artsell.service.ArtSellFacade;
 
 @Controller
 public class ViewItemController { 

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.jpetstore.domain.Item;
-import com.example.jpetstore.service.ArtSellFacade;
+import com.example.artsell.service.ArtSellFacade;
 
 @Controller
 public class SearchController {
