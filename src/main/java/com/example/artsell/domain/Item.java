@@ -95,7 +95,5 @@ public class Item implements Serializable {
 	public void setSellerId(String sellerId) {
 		this.sellerId = sellerId;
 	}
-	
-	
   
 }

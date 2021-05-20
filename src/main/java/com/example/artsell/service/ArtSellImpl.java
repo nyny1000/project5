@@ -172,4 +172,10 @@ public class ArtSellImpl implements ArtSellFacade {
 		return itemDao.searchItemList(keywords, artist, categoryId);
 	}
 
+	@Override
+	public List<Item> getMyItemList(String userId) {
+		// TODO Auto-generated method stub
+		return itemDao.getMyItemList(userId);
+	}
+
 }

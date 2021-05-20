@@ -65,5 +65,9 @@ public interface ArtSellFacade {
 	void deleteInterestingItem(String userId, String itemId);
 	
 	int containsInterestingItem(String userId, String itemId);
+
+	List<Item> getMyItemList(String userId);
+
+	void deleteItem(String userId, String itemId);
 	
 }
