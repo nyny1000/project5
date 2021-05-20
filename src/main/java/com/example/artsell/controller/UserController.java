@@ -60,7 +60,7 @@ public class UserController {
 	@RequestMapping("/user/mypage")
 	public String myPage(@ModelAttribute("userSession") UserSession userSession) throws Exception {
 		// String userId = userSession.getAccount().getUserId();
-		return "myPage";
+		return "/myPage";
 	}
 
 	// 2차수정
@@ -77,10 +77,5 @@ public class UserController {
 		return "main";
 	}
 
-	// AccountFormController에 있어야 할 것 같음
-//	@Autowired
-//	private AccountFormValidator validator;
-//	public void setValidator(AccountFormValidator validator) {
-//		this.validator = validator;
-//	}
+
 }
