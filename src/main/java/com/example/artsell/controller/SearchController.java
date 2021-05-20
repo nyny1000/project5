@@ -1,5 +1,8 @@
 package com.example.artsell.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +51,8 @@ public class SearchController {
 			itemList.setPageSize(10);
 			request.getSession().setAttribute("SearchController_itemList", itemList);
 			ModelAndView mv = new ModelAndView("searchResult", "itemList", itemList);
+			List<String> artistList = new ArrayList<String>(this.artSell.getArtistList());
+			mv.addObject("artistList", artistList);
 			mv.addObject("total", total);
 			mv.addObject("categoryName", categoryName);
 			return mv;
@@ -68,6 +73,8 @@ public class SearchController {
 			}
 			int total = this.artSell.searchItemList(keyword, artist, categoryId).size();
 			ModelAndView mv = new ModelAndView("searchResult", "itemList", itemList);
+			List<String> artistList = new ArrayList<String>(this.artSell.getArtistList());
+			mv.addObject("artistList", artistList);
 			mv.addObject("total", total);
 			mv.addObject("categoryName", categoryName);
 			return mv;

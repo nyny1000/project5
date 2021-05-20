@@ -48,9 +48,9 @@ public class ViewCategoryController {
 		return "itemList";
 	}
 	
-	@RequestMapping("shop/viewCategory2")
+	@RequestMapping("/shop/viewCategory2")
 	public String handleRequest2(@RequestParam("page") String page, @ModelAttribute("category") Category category,
-			@ModelAttribute("itemList") PagedListHolder<Item> itemList, BindingResult result) throws Exception
+			@ModelAttribute("itemList") PagedListHolder<Item> itemList, BindingResult result, ModelMap model) throws Exception
 	{
 		if (category == null || itemList == null) {
 			throw new IllegalStateException("cannot find pre-loaded category and item list");
@@ -60,6 +60,8 @@ public class ViewCategoryController {
 		} else if ("previous".equals(page)) {
 			itemList.previousPage();
 		}
+		List<String> artistList = new ArrayList<String>(this.artSell.getArtistList());
+		model.put("artistList", artistList);
 		//return "tiles/itemList";
 		return "itemList";
 	}
