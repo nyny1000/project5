@@ -10,16 +10,15 @@
 <div align="center">
 	<h2><c:out value="${category.name}" /></h2>
 	<form action="<c:url value="/search/item" />" method="post">
-		<select name="artist">
+		<select>
 			<option value="all" selected>all</option>
 			<c:forEach var="artist" items="${artistList}">
 				<option value="${artist}"><c:out value="${artist}" /></option> <!-- °íÄ¡±â -->
 			</c:forEach>
 		</select>
 		<input type="hidden" name="search" value="true"/>
-		<input type="hidden" name="categoryId" value="${category.categoryId}" value="true" />
 	    <input type="search" name="keyword" />&nbsp;
-	    <input src="/images/search.png" type="image" />
+	    <input src="../../static/images/search.png" type="image" />
 	</form>
 </div>
 <p>
@@ -37,13 +36,13 @@
 		<c:forEach var="item" items="${itemList.pageList}">
 		<tr>
 			<td>
-				<a href="<c:url value="/shop/viewItem">
+				<a href="<c:url value="/shop/viewitem">
 					<c:param name="itemId" value="${item.itemId}" /></c:url>">
 					<img src="${item.picture}" />
 				</a>
 			</td>
 			<td>
-				<a href="<c:url value="/shop/viewItem">
+				<a href="<c:url value="/shop/viewitem">
 					<c:param name="itemId" value="${item.itemId}" /></c:url>"><c:out value="${item.itemName}" /></a>
 			</td>
 			<td>
