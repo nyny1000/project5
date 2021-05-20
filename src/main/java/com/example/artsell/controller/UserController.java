@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-package com.example.artsell.controller;
-=======
 package com.example.artsell.controller;
 
 import javax.servlet.http.HttpServletRequest;
