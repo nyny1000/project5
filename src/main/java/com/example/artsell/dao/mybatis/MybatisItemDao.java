@@ -30,6 +30,9 @@ public class MybatisItemDao implements ItemDao {
 		if ("".equals(keywords)) {
 			keywords = null;
 		}
+		if (artist.equals("all")) {
+			artist = null;
+		}
 		return itemMapper.searchItemList(keywords, artist, categoryId);
 	}
 
