@@ -27,7 +27,7 @@ public class InterestingListController {
 	//private PetStoreFacade artSell;
 	private ArtSellFacade artSell;
 
-	@RequestMapping("/interesting/list")
+	@RequestMapping("/interesting/list") 
 	public String viewInterestingList(
 			@ModelAttribute("userSession") UserSession userSession, ModelMap model) throws Exception {
 		PagedListHolder<Item> itemList = new PagedListHolder<Item>(
