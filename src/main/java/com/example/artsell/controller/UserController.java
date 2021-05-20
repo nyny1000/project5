@@ -65,10 +65,4 @@ public class UserController {
 		return "tiles/mypage";
 	}
 	
-	//AccountFormController에 있어야 할 것 같음
-//	@Autowired
-//	private AccountFormValidator validator;
-//	public void setValidator(AccountFormValidator validator) {
-//		this.validator = validator;
-//	}
 }
