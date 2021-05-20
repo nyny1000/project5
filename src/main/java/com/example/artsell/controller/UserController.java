@@ -27,8 +27,7 @@ public class UserController {
 
 	@RequestMapping("/loginform")
 	public String home() throws Exception {
-		//return "login";
-		return "main";
+		return "login";
 	}
 
 	@RequestMapping("/user/login")
