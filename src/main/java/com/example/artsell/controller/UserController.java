@@ -65,4 +65,25 @@ public class UserController {
 		return "tiles/mypage";
 	}
 	
+
+	// 2차수정
+	@RequestMapping("/user/delete")
+	public String deleteAccount(HttpSession session) throws Exception {
+		UserSession userSession = (UserSession) session.getAttribute("userSession");
+		String userId = userSession.getAccount().getUserId();
+		artSell.deleteAccount(userId);
+
+		session.removeAttribute("userSession");
+		session.invalidate();
+		
+		System.out.println("계정이 삭제되었습니다.");
+		return "main";
+	}
+
+	// AccountFormController에 있어야 할 것 같음
+//	@Autowired
+//	private AccountFormValidator validator;
+//	public void setValidator(AccountFormValidator validator) {
+//		this.validator = validator;
+//	}
 }

@@ -25,35 +25,48 @@ public class ArtSellImpl implements ArtSellFacade {
 	@Autowired
 	private CategoryDao categoryDao;
 	
-	@Override
-	public Account getAccount(String username) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
+	//ny수정
 	@Override
 	public Account getAccount(String userId, String password) {
 		// TODO Auto-generated method stub
 		return accountDao.getAccount(userId, password);
 	}
+	
+	@Override
+	public Account getAccount(String userId) {
+		// TODO Auto-generated method stub
+		return accountDao.getAccount(userId);
+	}
 
 	@Override
 	public void insertAccount(Account account) {
 		// TODO Auto-generated method stub
-
+		accountDao.insertAccount(account);
 	}
 
 	@Override
 	public void updateAccount(Account account) {
 		// TODO Auto-generated method stub
-
+		accountDao.updateAccount(account);
 	}
 
 	@Override
 	public List<String> getUsernameList() {
 		// TODO Auto-generated method stub
-		return null;
+		return accountDao.getUsernameList();
 	}
+	
+	@Override
+	public void deleteAccount(String userId) {
+		accountDao.deleteAccount(userId);
+	}
+	
+	@Override
+	public List<Account> viewAccountList() {
+		return accountDao.viewAccountList();
+	} 
+	//-- ny수정.
 
 	@Override
 	public List<Category> getCategoryList() {

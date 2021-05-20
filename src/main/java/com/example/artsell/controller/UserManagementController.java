@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.example.jpetstore.domain.*;
+import com.example.artsell.domain.*;
 import com.example.artsell.service.ArtSellFacade;
 
 public class UserManagementController {
