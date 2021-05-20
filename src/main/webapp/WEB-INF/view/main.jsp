@@ -17,6 +17,7 @@
 			<td><a href="<c:url value="/home"/>"> <img border="0"
 					src="images/artsell_logo_white.jpg" /></a></td>
 			<td style="text-align: right">
+			<%-- <c:out value="${userSession.account.userId}" /> --%> <!-- cnrk -->
 			<c:if test="${empty userSession.account}">
 					<a href="<c:url value='/user/register'/>">
 						<button>회원가입</button>

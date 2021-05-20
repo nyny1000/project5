@@ -23,10 +23,11 @@ public class UserController {
 	public void setArtSell(ArtSellFacade artSell) {
 		this.artSell = artSell;
 	}
-
+	
 	@RequestMapping("/loginform")
 	public String home() throws Exception {
 		return "login";
+		//return "main";
 	}
 	
 	@RequestMapping("/user/login")

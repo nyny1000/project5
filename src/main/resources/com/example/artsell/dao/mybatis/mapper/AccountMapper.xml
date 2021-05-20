@@ -17,7 +17,7 @@
 		FROM ACCOUNT
 		WHERE ACCOUNT.USERID = #{param1}
 		AND
-		ACCOUNT.PASSWORD = #{parem2}
+		ACCOUNT.PASSWORD = #{param2}
 	</select>
 
 	<select id="getUsernameList" resultType="java.lang.String">
