@@ -43,11 +43,7 @@
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
-						<td><button type="submit" name="update">로그인</button>&nbsp;
-							<a href="<c:url value='/user/register'/>">
-								<button>회원가입</button>
-							</a>
-						</td>
+						<td><button type="submit" name="update">로그인</button>&nbsp;<button type="button" name="button">회원가입</button></td>
 					</tr>
 				</table>
 			</div>
