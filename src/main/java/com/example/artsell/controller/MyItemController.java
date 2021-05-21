@@ -28,7 +28,7 @@ import com.example.artsell.service.PaintRegiValidator;
 
 
 @Controller
-@SessionAttributes("userSession")
+@SessionAttributes({"userSession", "myPaintList"})
 public class MyItemController {
 	
 	@Autowired
@@ -49,21 +49,22 @@ public class MyItemController {
 	}
 	
 	@RequestMapping("/myitem/list")
-	public ModelAndView ViewMyItemList(@RequestParam(value = "page", required = false) String page,
-			@ModelAttribute("userSession") UserSession userSession) throws Exception {
+	public String ViewMyItemList(
+			@ModelAttribute("userSession") UserSession userSession, ModelMap model) throws Exception {
 
 		PagedListHolder<Item> itemList = new PagedListHolder<Item>(
 				this.artSell.getMyItemList(userSession.getAccount().getUserId()));
-		itemList.setPageSize(5);
+		itemList.setPageSize(2);
+		model.put("myPaintList", itemList);
 		//handleRequest(page, itemList);
 
-		return new ModelAndView("myPaintingList", "mypaintList", itemList.getPageList());
+		return "myPaintingList";
 	}
 	
 	@PostMapping("/myitem/add")
 	public String addMyItem(@Valid @ModelAttribute("item") ItemForm item, Errors result,
 			@ModelAttribute("userSession") UserSession userSession) {
-		System.out.println(item.getBestPrice());
+//		System.out.println(item.getBestPrice());
 		new PaintRegiValidator().validate(item, result); 
 		if (result.hasErrors()) {
 //			System.out.println("a");
@@ -93,7 +94,7 @@ public class MyItemController {
 	@RequestMapping("/myitem/list2")
 	private void handleRequest2(
 		@RequestParam("page") String page, 
-		@ModelAttribute("myList") PagedListHolder<Item> itemList,
+		@ModelAttribute("myPaintList") PagedListHolder<Item> itemList,
 		BindingResult result) throws Exception {
 
 		if ("next".equals(page)) {

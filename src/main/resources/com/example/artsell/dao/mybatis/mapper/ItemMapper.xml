@@ -104,7 +104,7 @@
   </delete>
   
   <insert id="insertItem" parameterType="Item" >
-  	<selectKey keyProperty="itemId" resultType="int" order="BEFORE">
+  	<selectKey keyProperty="itemId" resultType="String" order="BEFORE">
   		SELECT 'I'||TO_CHAR(ITEM_SEQ.NEXTVAL) AS ITEMID FROM DUAL
   	</selectKey>
   	INSERT INTO ITEM(itemId, itemName, minPrice, bestPrice, deadline, description, picture, artist, categoryId, userId)

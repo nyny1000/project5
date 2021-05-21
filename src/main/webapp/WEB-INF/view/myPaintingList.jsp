@@ -40,7 +40,20 @@
           <td>경매중</td>
           <td>그림등록취소</td>
         </tr>
-        
+        <tr>
+	      <td>
+		      <c:if test="${!myPaintList.firstPage}">
+		          <a href='<c:url value="/myitem/list2">
+		            <c:param name="page" value="previous"/></c:url>'>
+		              <B>&lt;&lt; Prev</B></a>
+		      </c:if> 
+	        <c:if test="${!myPaintList.lastPage}">
+	          <a href='<c:url value="/myitem/list2">
+	            <c:param name="page" value="next"/></c:url>'>
+	              <B>Next &gt;&gt;</B></a>
+	        </c:if>
+	      </td>
+		</tr>
       </table>
     </form>
   </div>
