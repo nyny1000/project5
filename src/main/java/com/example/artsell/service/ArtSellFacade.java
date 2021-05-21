@@ -6,6 +6,7 @@ import java.util.List;
 import com.example.artsell.domain.Account;
 import com.example.artsell.domain.Category;
 import com.example.artsell.domain.Item;
+import com.example.artsell.domain.ItemForm;
 import com.example.jpetstore.domain.Order;
 
 
@@ -44,6 +45,12 @@ public interface ArtSellFacade {
 	List<Item> getItemListByProduct(String productId);
 
 	Item getItem(String itemId);
+	
+	void insertItem(ItemForm item);
+	
+	void deleteItem(String userId, String itemId);
+	
+	List<Item> getMyItemList(String userId);
 
 	boolean isItemInStock(String itemId);
 
