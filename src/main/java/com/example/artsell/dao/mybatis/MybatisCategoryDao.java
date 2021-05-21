@@ -15,8 +15,8 @@ public class MybatisCategoryDao implements CategoryDao {
 	@Autowired
 	private CategoryMapper categoryMapper;
 	
-	public List<Category> getCategoryList(String categoryId) throws DataAccessException {
-		return categoryMapper.getCategoryList(categoryId);
+	public List<Category> getCategoryList() throws DataAccessException {
+		return categoryMapper.getCategoryList();
 	}
 	
 	public Category getCategory(String categoryId) throws DataAccessException {

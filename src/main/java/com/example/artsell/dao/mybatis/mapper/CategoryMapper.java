@@ -8,7 +8,7 @@ import com.example.artsell.domain.Category;
 
 @Mapper
 public interface CategoryMapper {
-	List<Category> getCategoryList(String categoryId);
+	List<Category> getCategoryList();
 	
 	Category getCategory(String categoryId);
 }

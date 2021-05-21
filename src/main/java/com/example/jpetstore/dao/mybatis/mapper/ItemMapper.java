@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.dao.DataAccessException;
 
 import com.example.jpetstore.domain.Item;
 
@@ -37,6 +38,12 @@ public interface ItemMapper {
   List<Item> getItemListByProduct(String productId);
 
   Item getItem(String itemId);
+  
+  List<Item> getMyItemList(String userId);
+  
+  void deleteItem(String userId, String itemId);
+	
+  void insertItem(Item item);
   
   boolean isItemInStock(String itemId);
 

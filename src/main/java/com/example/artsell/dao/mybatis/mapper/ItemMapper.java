@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.dao.DataAccessException;
 
 import com.example.artsell.domain.Item;
+import com.example.artsell.domain.ItemForm;
 
 @Mapper
 public interface ItemMapper {
@@ -24,7 +25,7 @@ public interface ItemMapper {
 	
 	void deleteItem(String itemId) throws DataAccessException;
 	
-	void insertItem(Item item) throws DataAccessException;
+	void insertItem(ItemForm item) throws DataAccessException;
 	
 	void updateItemPrice(String itemId, String price) throws DataAccessException;
 	

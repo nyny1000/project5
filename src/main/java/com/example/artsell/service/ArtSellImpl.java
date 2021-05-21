@@ -13,6 +13,7 @@ import com.example.artsell.dao.ItemDao;
 import com.example.artsell.domain.Account;
 import com.example.artsell.domain.Category;
 import com.example.artsell.domain.Item;
+import com.example.artsell.domain.ItemForm;
 import com.example.jpetstore.domain.Order;
 
 @Service
@@ -74,7 +75,7 @@ public class ArtSellImpl implements ArtSellFacade {
 	@Override
 	public List<Category> getCategoryList() {
 		// TODO Auto-generated method stub
-		return null;
+		return categoryDao.getCategoryList();
 	}
 
 	@Override
@@ -111,8 +112,17 @@ public class ArtSellImpl implements ArtSellFacade {
 	}
 	
 	@Override
-	public void insertItem(Item item) {
+	public void insertItem(ItemForm item) {
 		itemDao.insertItem(item);
+	}
+	
+	@Override
+	public void deleteItem(String userId, String itemId) {
+		itemDao.deleteItem(userId, itemId);
+	}
+	
+	public List<Item> getMyItemList(String userId) {
+		return itemDao.getMyItemList(userId);
 	}
 
 	@Override

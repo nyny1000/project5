@@ -13,6 +13,7 @@ import com.example.artsell.dao.ItemDao;
 import com.example.artsell.dao.mybatis.mapper.InterestingItemMapper;
 import com.example.artsell.dao.mybatis.mapper.ItemMapper;
 import com.example.artsell.domain.Item;
+import com.example.artsell.domain.ItemForm;
 
 @Repository
 public class MybatisItemDao implements ItemDao {
@@ -58,7 +59,7 @@ public class MybatisItemDao implements ItemDao {
 		interestingItemMapper.deleteInterestingItem(userId, itemId);
 	}
 
-	public void insertItem(Item item) throws DataAccessException {
+	public void insertItem(ItemForm item) throws DataAccessException {
 		// TODO Auto-generated method stub
 		itemMapper.insertItem(item);
 	}

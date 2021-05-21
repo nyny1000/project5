@@ -1,13 +1,12 @@
 package com.example.artsell.domain;
 
-import java.io.Serializable;
 import java.util.Date;
 import javax.validation.constraints.*;
 
-import org.springframework.format.annotation.DateTimeFormat;;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;;
 
-@SuppressWarnings("serial")
-public class Item implements Serializable {
+public class ItemForm {
 	private String itemId;
 	
 	@NotBlank
@@ -18,22 +17,21 @@ public class Item implements Serializable {
 	private int minPrice;
 	private int bestPrice;
 	
-	@NotBlank
+	//@NotBlank
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date deadline;
 	
-	//@NotBlank
+	@NotBlank
 	private String description;
 	
-	@NotBlank
-	private String picture;
+	@NotNull
+	private MultipartFile picture;
 	
 	@NotBlank
 	private String artist;
 	@NotBlank
 	private String categoryId;
 	private String userId;
-	
 	
 	public String getItemId() {
 		return itemId;
@@ -71,10 +69,11 @@ public class Item implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getPicture() {
+
+	public MultipartFile getPicture() {
 		return picture;
 	}
-	public void setPicture(String picture) {
+	public void setPicture(MultipartFile picture) {
 		this.picture = picture;
 	}
 	public String getArtist() {
