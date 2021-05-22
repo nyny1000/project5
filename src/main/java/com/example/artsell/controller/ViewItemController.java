@@ -1,5 +1,7 @@
 package com.example.artsell.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,9 +27,11 @@ public class ViewItemController {
 	@RequestMapping("/shop/viewItem")
 	public String handleRequest(@RequestParam("itemId") String itemId, 
 			@ModelAttribute("userSession") UserSession userSession, ModelMap model) throws Exception {
+
 		Item item = this.artSell.getItem(itemId);
 		model.put("item", item);
-		model.put("isInInterest", artSell.containsInterestingItem(userSession.getAccount().getUserId(), itemId));
+		model.put("isInterested", artSell.containsInterestingItem(userSession.getAccount().getUserId(), itemId));
+		
 		return "paintingDetail";
 	}
 }
