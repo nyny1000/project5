@@ -88,7 +88,7 @@
   		   PICTURE,
   		   ARTIST,
   		   CATEGORYID,
-  		   USERID AS sellerId
+  		   USERID
   	FROM ITEM
   	WHERE USERID = #{userId}
   </select>
@@ -96,6 +96,12 @@
   <select id="getArtistList" resultType="String">
   	SELECT DISTINCT ARTIST
   	FROM ITEM
+  </select>
+  
+  <select id="isAuctioning" parameterType="String" resultType="int">
+  	SELECT count(*)
+  	FROM AUCTIONITEM
+  	WHERE ITEMID = #{itemId}
   </select>
   
   <delete id="deleteItem" parameterType="String">

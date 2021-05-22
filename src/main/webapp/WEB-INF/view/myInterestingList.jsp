@@ -37,13 +37,17 @@
         <c:forEach var="interestItem" items="${interestList.pageList}">
 	        <tr align="center">
 	          <td><c:out value="${interestItem.itemId}" /></td>
-	          <td><c:out value="${interestItem.itemName}" /></td>
+	          <td><a href="<c:url value="/shop/viewItem">
+						<c:param name="itemId" value="${interestItem.itemId}" /></c:url>">
+						<c:out value="${interestItem.itemName}" />
+				  </a>
+			  </td>
 	          <td><fmt:formatDate value="${interestItem.deadline}" pattern="yyyy-MM-dd" /></td>
 	          <td><c:out value="${interestItem.bestPrice}" /></td>
 	          <td>
 	          	<a href='<c:url value="/aution/info">
             		<c:param name="itemId" value="${interestItem.itemId}"/></c:url>'>
-             		<c:out value="경매하기" />
+             		<c:out value="경매참여" />
          		</a>
 	          </td>
 	          	
@@ -53,21 +57,18 @@
          		</a></td>
 	        </tr>
 	    </c:forEach>
-	    <tr>
-	      <td>
-		      <c:if test="${!interestList.firstPage}">
-		          <a href='<c:url value="/interesting/list2">
-		            <c:param name="page" value="previous"/></c:url>'>
-		              <B>&lt;&lt; Prev</B></a>
-		      </c:if> 
-	        <c:if test="${!interestList.lastPage}">
-	          <a href='<c:url value="/interesting/list2">
-	            <c:param name="page" value="next"/></c:url>'>
-	              <B>Next &gt;&gt;</B></a>
-	        </c:if>
-	      </td>
-		</tr>
+
       </table>
+      <c:if test="${!interestList.firstPage}">
+		<a href='<c:url value="/interesting/list2">
+		    <c:param name="page" value="previous"/></c:url>'>
+		     <B>&lt;&lt; Prev</B></a>
+	</c:if> 
+	  <c:if test="${!interestList.lastPage}">
+	    <a href='<c:url value="/interesting/list2">
+	        <c:param name="page" value="next"/></c:url>'>
+	        <B>Next &gt;&gt;</B></a>
+	  </c:if>
     </form>
   </div>
 </body>

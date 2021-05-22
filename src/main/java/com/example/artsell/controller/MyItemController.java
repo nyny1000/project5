@@ -1,8 +1,11 @@
 package com.example.artsell.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,15 +87,23 @@ public class MyItemController {
 	
 	@RequestMapping("/myitem/delete")
 	public String deleteMyItem(@ModelAttribute("userSession") UserSession userSession, 
-			@RequestParam("myItemId") String itemId) {
+			@RequestParam("itemId") String itemId, ModelMap model, HttpServletResponse response) throws Exception {
 		String userId = userSession.getAccount().getUserId();
-		artSell.deleteItem(userId, itemId);
+		if(artSell.isAuctioning(itemId) == 0)
+			artSell.deleteItem(userId, itemId);
+		else {
+			response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('경매 참여자가 있으므로 삭제할 수 없습니다.'); history.go(-1);</script>");
+            out.flush();
+		}
+			//model.put("alertmsg", "true");
 
 		return "redirect:/myitem/list";
 	}
 	
 	@RequestMapping("/myitem/list2")
-	private void handleRequest2(
+	public String handleRequest2(
 		@RequestParam("page") String page, 
 		@ModelAttribute("myPaintList") PagedListHolder<Item> itemList,
 		BindingResult result) throws Exception {
@@ -102,6 +113,6 @@ public class MyItemController {
 		} else if ("previous".equals(page)) {
 			itemList.previousPage();
 		} 
-
+		return "myPaintingList";
 	}
 }
