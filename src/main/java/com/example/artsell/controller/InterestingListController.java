@@ -69,16 +69,16 @@ public class InterestingListController {
 		return "redirect:/interesting/list";
 	}
 
-	
-	private void handleRequest(String page, PagedListHolder<Item> itemList) throws Exception {
-
-		if ("next".equals(page)) {
-			itemList.nextPage();
-		} else if ("previous".equals(page)) {
-			itemList.previousPage();
-		}
-	} 
-	
+//	
+//	private void handleRequest(String page, PagedListHolder<Item> itemList) throws Exception {
+//
+//		if ("next".equals(page)) {
+//			itemList.nextPage();
+//		} else if ("previous".equals(page)) {
+//			itemList.previousPage();
+//		}
+//	} 
+//	
 	@RequestMapping("/interesting/list2")
 	public String handleRequest2(
 			@RequestParam("page") String page, 

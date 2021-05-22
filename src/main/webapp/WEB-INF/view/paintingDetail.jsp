@@ -39,14 +39,16 @@
 		</tr>
 	</table>
 	<a href="<c:url value="/auction/info" />">경매 참여</a>
-	<c:if test="(찜한 목록에 있으면)">
-		<a href="<c:url value="/interesting/add" />"> <!-- 고치기 -->
-			<img src="../../static/images/iconmonstr-heart-thin-32.png" />
+	<c:if test="${!isInterested}">
+		<a href="<c:url value="/interesting/add">
+			<c:param name="interItemId" value="${item.itemId}" /></c:url>"> <!-- 고치기 -->
+			<img src="/images/iconmonstr-heart-thin-32.png" />
 		</a>
 	</c:if>
-	<c:if test="(찜한 목록에 없으면)">
-		<a href="<c:url value="/interesting/delete" />"> <!-- 고치기 -->
-			<img src="../../static/images/iconmonstr-favorite-3-32.png" />
+	<c:if test="${isInterested}">
+		<a href="<c:url value="/interesting/delete">
+			<c:param name="interItemId" value="${item.itemId}" /></c:url>"> <!-- 고치기 -->
+			<img src="/images/iconmonstr-favorite-3-32.png" />
 		</a>
 	</c:if>
 </div>

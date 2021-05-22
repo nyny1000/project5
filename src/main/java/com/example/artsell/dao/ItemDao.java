@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import com.example.artsell.domain.Item;
+import com.example.artsell.domain.ItemForm;
 
 public interface ItemDao {
 	Item getItem(String itemId) throws DataAccessException;
@@ -33,7 +34,7 @@ public interface ItemDao {
 	
 	void deleteItem(String userId, String itemId) throws DataAccessException;
 	
-	void insertItem(Item item) throws DataAccessException;
+	void insertItem(ItemForm item) throws DataAccessException;
 	
 	void updateItem(String itemId, String price) throws DataAccessException;
 	

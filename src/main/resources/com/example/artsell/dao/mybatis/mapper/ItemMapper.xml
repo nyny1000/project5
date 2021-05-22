@@ -103,12 +103,12 @@
   		WHERE ITEMID = #{itemId}
   </delete>
   
-  <insert id="insertItem" parameterType="Item">
-  	<selectKey keyProperty="itemId" resultType="int" order="BEFORE">
-  		SELECT 'I'||TO_CHAR(ITEM_SEQ.NEXTVAL) AS ITEMID FORM DUAL
+  <insert id="insertItem" parameterType="Item" >
+  	<selectKey keyProperty="itemId" resultType="String" order="BEFORE">
+  		SELECT 'I'||TO_CHAR(ITEM_SEQ.NEXTVAL) AS ITEMID FROM DUAL
   	</selectKey>
-  	INSERT INTO ITEM
-  		VALUES (#{itemId}, #{itemName}, #{minPrice}, #{bestPrice}, #{deadline}, #{description}, #{picture}, #{artist}, #{categoryId}, #{sellerId})
+  	INSERT INTO ITEM(itemId, itemName, minPrice, bestPrice, deadline, description, picture, artist, categoryId, userId)
+  		VALUES (#{itemId}, #{itemName}, #{minPrice}, #{bestPrice}, #{deadline}, #{description}, 'pp', #{artist}, #{categoryId}, #{userId})
   </insert>
 
   <update id="updateItemPrice" parameterType="Item">
