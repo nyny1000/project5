@@ -26,7 +26,7 @@
         		value='<c:url value="${signonForwardAction}"/>' />
    			</c:if>
 			<div id="leftD">
-				<input name="pic" type="image" src="../resources/static/images/t1.jpg" width="650px" height="450px">
+				<input name="pic" type="image" src="/images/t1.jpg" width="650px" height="450px">
 			</div>
 			<div id="rightD" >
 				<table>

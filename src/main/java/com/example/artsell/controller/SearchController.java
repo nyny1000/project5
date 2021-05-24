@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.artsell.domain.Category;
 import com.example.artsell.domain.Item;
 import com.example.artsell.service.ArtSellFacade;
 
@@ -28,34 +29,29 @@ public class SearchController {
 	@RequestMapping("/search/item")
 	public ModelAndView handleRequest(HttpServletRequest request, @RequestParam(value="keyword", required=false) String keyword,
 			@RequestParam(value="artist", required=false) String artist, @RequestParam(value="categoryId", required=false) String categoryId,
-			@RequestParam(value="page", required=false) String page) throws Exception
+			@RequestParam(value="page", required=false) String page, @RequestParam(value="job", required=false) String job) throws Exception
 	{
+		if ("화가명".equals(job)) {
+			artist = keyword;
+			keyword = null;
+		} else if ("작품명".equals(job)){
+			artist = "all";
+		}
+		
+		ModelAndView mv;
+		int total;
 		if (keyword != null || artist != null) {
 			if (!StringUtils.hasLength(keyword) && "all".equals(artist)) {
 				return new ModelAndView("Error", "message", "Please enter a keyword to search for or select artist, then press the search button.");
 			}
-			int total = this.artSell.searchItemList(keyword, artist, categoryId).size();
+			total = this.artSell.searchItemList(keyword, artist, categoryId).size();
+			
 			PagedListHolder<Item> itemList = new PagedListHolder<Item>(this.artSell.searchItemList(keyword, artist, categoryId));
 			System.out.println("keyword: " + keyword + " artist: " + artist + " categoryId: " + categoryId);
-			/*
-			 * if (artist == "all") { itemList = new
-			 * PagedListHolder<Item>(this.artSell.searchItemList(keyword.toLowerCase(),
-			 * categoryId)); } else { itemList = new
-			 * PagedListHolder<Item>(this.artSell.searchItemListByArtist(keyword.toLowerCase
-			 * (), artist, categoryId)); }
-			 */
-			String categoryName = null;
-			if (categoryId != null) {
-				categoryName = this.artSell.getCategory(categoryId).getName();
-			}
+			
 			itemList.setPageSize(10);
 			request.getSession().setAttribute("SearchController_itemList", itemList);
-			ModelAndView mv = new ModelAndView("searchResult", "itemList", itemList);
-			List<String> artistList = new ArrayList<String>(this.artSell.getArtistList());
-			mv.addObject("artistList", artistList);
-			mv.addObject("total", total);
-			mv.addObject("categoryName", categoryName);
-			return mv;
+			mv = new ModelAndView("searchResult", "itemList", itemList);
 		} else {
 			@SuppressWarnings("unchecked")
 			PagedListHolder<Item> itemList = (PagedListHolder<Item>)request.getSession().getAttribute("SearchController_itemList");
@@ -67,18 +63,23 @@ public class SearchController {
 			} else if ("previous".equals(page)) {
 				itemList.previousPage();
 			}
-			String categoryName = null;
-			if (categoryId != null) {
-				categoryName = this.artSell.getCategory(categoryId).getName();
-			}
-			int total = this.artSell.searchItemList(keyword, artist, categoryId).size();
-			ModelAndView mv = new ModelAndView("searchResult", "itemList", itemList);
-			List<String> artistList = new ArrayList<String>(this.artSell.getArtistList());
-			mv.addObject("artistList", artistList);
-			mv.addObject("total", total);
-			mv.addObject("categoryName", categoryName);
-			return mv;
+			
+			total = this.artSell.searchItemList(keyword, artist, categoryId).size();
+			mv = new ModelAndView("searchResult", "itemList", itemList);
 		}
+		List<String> artistList = new ArrayList<String>(this.artSell.getArtistList());
+		mv.addObject("artistList", artistList);
+		mv.addObject("total", total);
 		
+		String categoryName = null;
+		if (categoryId != null && !"".equals(categoryId)) {
+			categoryName = this.artSell.getCategory(categoryId).getName();
+		}
+		mv.addObject("categoryName", categoryName);
+		
+		List<Category> categoryList = new ArrayList<Category>(this.artSell.getCategoryList());
+		mv.addObject("categoryList", categoryList);
+		
+		return mv;
 	}
 }
