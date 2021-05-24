@@ -35,7 +35,7 @@
 			<td colspan="2"><img src="${item.picture}" /></td>
 		</tr>
 		<tr>
-			<td colspan="2" width="40" height="8"><c:out value="${item.description}" />그림 설명</td>
+			<td colspan="2" width="40" height="8"><c:out value="${item.description}" /></td>
 		</tr>
 	</table>
 	<a href="<c:url value="/auction/info" />">경매 참여</a>
