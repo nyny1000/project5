@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
 import com.example.artsell.domain.Item;
@@ -46,19 +47,22 @@ public class InterestingListController {
 	
 	@RequestMapping("/interesting/add")
 	public String addItemToInterestingList(@ModelAttribute("userSession") UserSession userSession, 
-			@RequestParam("interItemId") String itemId, ModelMap model) {
+			@RequestParam("itemId") String itemId, RedirectAttributes redirect) {
 		String userId =userSession.getAccount().getUserId();
-		if(artSell.containsInterestingItem(userId, itemId) == 1) {
-			model.addAttribute("intermsg", "이미 찜하였습니다.");
-		}
-		else {
-			artSell.insertInterestingItem(userId, itemId);
-			model.addAttribute("intermsg", "찜 되었습니다.");
-		}
 		
-		return "paintingDetail";
+		artSell.insertInterestingItem(userId, itemId);
+		redirect.addAttribute("itemId", itemId);
+		return "redirect:/shop/viewItem";
 	}
 	
+	@RequestMapping("/interesting/delete2")
+	public String deleteItemFromInterestingList2(@ModelAttribute("userSession") UserSession userSession, 
+			@RequestParam("itemId") String itemId, RedirectAttributes redirect) {
+		String userId = userSession.getAccount().getUserId();
+		artSell.deleteInterestingItem(userId, itemId);
+		redirect.addAttribute("itemId", itemId); 
+		return "redirect:/shop/viewItem";
+	}
 	
 	@RequestMapping("/interesting/delete")
 	public String deleteItemFromInterestingList(@ModelAttribute("userSession") UserSession userSession, 

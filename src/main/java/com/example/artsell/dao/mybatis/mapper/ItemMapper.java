@@ -30,4 +30,6 @@ public interface ItemMapper {
 	void updateItemPrice(String itemId, String price) throws DataAccessException;
 	
 	void updateReload(String itemId, int minPrice, Date deadline) throws DataAccessException;
+	
+	int isAuctioning(String itemId) throws DataAccessException;
 }

@@ -95,4 +95,8 @@ public class MybatisItemDao implements ItemDao {
 		// TODO Auto-generated method stub
 		return itemMapper.getArtistList();
 	}
+	
+	public int isAuctioning(String itemId) throws DataAccessException {
+		return itemMapper.isAuctioning(itemId);
+	}
 }

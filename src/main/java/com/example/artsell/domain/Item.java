@@ -96,6 +96,5 @@ public class Item implements Serializable {
 		this.userId = userId;
 	}
 	
-	
   
 }
