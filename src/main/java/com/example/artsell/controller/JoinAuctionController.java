@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +28,7 @@ import com.example.artsell.service.ArtSellFacade;
 @SessionAttributes("userSession")
 public class JoinAuctionController {
    @Autowired
-   private ArtSellFacade artSell;
+   private static ArtSellFacade artSell;
    
    //입찰, 재입찰
    @RequestMapping("/auction/bid")
@@ -66,16 +67,16 @@ public class JoinAuctionController {
       List<AuctionItem> auctionBuyerList = artSell.getBuyersByItemId(itemid);
    
    
-      if (artSell.countAuctionJoinList != 0) // 후순위자가 있다면
+      if (artSell.countAuctionJoinList(userId) != 0) // 후순위자가 있다면
       {//후순위자에게 낙찰
-         AuctionItem secondAuctionitem = auctionBuyerList.get(0);
+         AuctionItem secondAuctionitem = auctionBuyerList.get(0); //후순위자
          String secondUser = secondAuctionitem.getUserId();
-         String secondPrice = secondAuctionitem.getMyPrice();
+         int secondPrice = secondAuctionitem.getMyPrice();
          
          //해당 아이템 최고가 변경.
-         artSell.updateItem(secondUser, secondPrice);
+         artSell.updateItemBestPrice(secondUser, secondPrice);
          
-         changeState(secondUser, itemId);
+         changeState(secondUser, itemId, 1);
          
          return "/auction/list";
    
@@ -87,15 +88,15 @@ public class JoinAuctionController {
    }
    
    //해당 아이템을 낙찰상태로 바꿔주기
-   public static void changeState(String userId, String itemId) {
-	   artSell.changeState(userId, itemId, 1);
+   public static void changeState(String userId, String itemId, int state) {
+	   artSell.changeState(userId, itemId, state);
    }
       
 
    // 아이템아이디에 해당하는 경매참여자들
    @RequestMapping("/auction/info")
    public String viewAutionJoinerList(@ModelAttribute("item") Item item, ModelMap model) { 
-      Map<String, Integer> buyers = this.artSell.getBuyersByItemId(item.getItemId());
+      List<AuctionItem> buyers = this.artSell.getBuyersByItemId(item.getItemId());
       model.put("buyers", buyers);
       return "auction_buyer";
    }
