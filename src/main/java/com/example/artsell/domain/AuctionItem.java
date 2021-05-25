@@ -33,12 +33,4 @@ public class AuctionItem implements Serializable {
 	public void setState(int state) {
 		this.state = state;
 	}
-	
-	public boolean isNewUserPrice(String userId, String itemId) {
-		if (this.itemId == itemId && this.userId == itemId) {
-			return true;
-		}
-		else
-			return false;
-	}
 }
