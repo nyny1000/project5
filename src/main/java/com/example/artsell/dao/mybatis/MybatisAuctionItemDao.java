@@ -20,15 +20,9 @@ public class MybatisAuctionItemDao implements AuctionItemDao {
 	private AuctionItemMapper auctionItemMapper;
 
 	@Override
-	public Map<String, Integer> getBuyersByItemId(String itemId) throws DataAccessException {
+	public List<AuctionItem> getBuyersByItemId(String itemId) throws DataAccessException {
 		// TODO Auto-generated method stub
-
-		List<AuctionItem> list = auctionItemMapper.getBuyersByItemId(itemId);
-		Map<String, Integer> buyer = new HashMap<String, Integer>();
-		for (int i = 0; i < list.size(); i++) {
-			buyer.put(list.get(i).getUserId(), list.get(i).getMyPrice());
-		}
-		return buyer;
+		return auctionItemMapper.getBuyersByItemId(itemId);
 	}
 
 	@Override
@@ -73,9 +67,9 @@ public class MybatisAuctionItemDao implements AuctionItemDao {
 	}
 	
 	@Override
-	public void deleteAuctionItem(String itemId) throws DataAccessException {
+	public void deleteAuctionItem(String userId, String itemId) throws DataAccessException {
 		// TODO Auto-generated method stub
-		auctionItemMapper.deleteAuctionItem(itemId);
+		auctionItemMapper.deleteAuctionItem(userId, itemId);
 	}
 	
 	@Override

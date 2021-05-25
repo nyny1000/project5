@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 
 import com.example.artsell.domain.Account;
+import com.example.artsell.domain.AuctionItem;
 import com.example.artsell.domain.Category;
 import com.example.artsell.domain.Item;
 import com.example.artsell.domain.ItemForm;
@@ -81,13 +82,11 @@ public interface ArtSellFacade {
 	
 	int isAuctioning(String itemId);
 
-	Map<String, Integer> getBuyersByItemId(String itemId);
+	List<AuctionItem> getBuyersByItemId(String itemId);
 	
 	int getItemPrice(String itemId);
 	
 	void updateReload(String itemId, int minPrice, Date deadline, String userId);
-	
-	
 
 	void updatePrice(String userId, String itemId, int price);
 
@@ -100,5 +99,12 @@ public interface ArtSellFacade {
 	void addPrice(String userId, String itemId, int price);
 	
 	int calcBestPrice(String itemId);
-
+	
+	void deleteAuctionItem(String userId, String itemId);
+	
+	int countAuctionJoinList(String userId);
+	
+	void changeState(String userId, String itemId, int state);
+	
+	getItemListByAuctionItem
 }

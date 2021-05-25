@@ -12,7 +12,8 @@ import com.example.artsell.domain.AuctionItem;
 public interface AuctionItemDao {
 	AuctionItem getAuctionItemByItemIdAndUserId(String itemId, String userId) throws DataAccessException;
 
-	Map<String, Integer> getBuyersByItemId(String itemId) throws DataAccessException;
+
+	List<AuctionItem> getBuyersByItemId(String itemId) throws DataAccessException;
 
 	List<AuctionItem> getAllAuctionItemByUserId(String userId) throws DataAccessException;
 
@@ -28,7 +29,7 @@ public interface AuctionItemDao {
 	
 	void updateItemBestPrice(String itemId, int price) throws DataAccessException;
 
-	void deleteAuctionItem(String itemId) throws DataAccessException;
+	void deleteAuctionItem(String userId, String itemId) throws DataAccessException;
 
 	List<AuctionItem> getAuctionedItem(String userId) throws DataAccessException;
 
