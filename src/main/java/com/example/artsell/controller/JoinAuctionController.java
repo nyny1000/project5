@@ -91,7 +91,7 @@ public class JoinAuctionController {
    
 
    
-   //유찰
+   //유찰 //기간은 현재 날짜에서 7일후
    @RequestMapping("/auction/fail")
     public ModelAndView miscarry(@ModelAttribute("userSession") UserSession userSession, 
    @RequestParam("itemId") String itemId) {
