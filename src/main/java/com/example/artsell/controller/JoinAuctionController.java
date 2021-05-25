@@ -97,7 +97,7 @@ public class JoinAuctionController {
     public ModelAndView miscarry(@ModelAttribute("userSession") UserSession userSession, 
    @RequestParam("itemId") String itemId) {
       String userId = userSession.getAccount().getUserId();
-      int minPrice= artSell.getItemPrice(minPrice);
+      int minPrice= artSell.getItemPrice(itemId);
       minPrice = (int) (minPrice * 0.7);
 
       Calendar cal = Calendar.getInstance();

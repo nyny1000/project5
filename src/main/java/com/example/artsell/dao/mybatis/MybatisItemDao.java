@@ -103,4 +103,8 @@ public class MybatisItemDao implements ItemDao {
 	public int isAuctioning(String itemId) throws DataAccessException {
 		return itemMapper.isAuctioning(itemId);
 	}
+	
+	public int getItemPrice(String itemId) throws DataAccessException {
+		return itemMapper.getItemPrice(itemId);
+	}
 }

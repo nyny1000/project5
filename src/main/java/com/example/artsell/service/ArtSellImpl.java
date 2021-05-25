@@ -186,5 +186,10 @@ public class ArtSellImpl implements ArtSellFacade {
 		// TODO Auto-generated method stub
 		return auctionItemDao.getBuyersByItemId(itemId);
 	}
+	
+	@Override
+	public int getItemPrice(String itemId) {
+		return itemDao.getItemPrice(itemId);
+	}
 
 }

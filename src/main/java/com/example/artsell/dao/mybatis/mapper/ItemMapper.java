@@ -32,4 +32,6 @@ public interface ItemMapper {
 	void updateReload(String itemId, int minPrice, Date deadline) throws DataAccessException;
 	
 	int isAuctioning(String itemId) throws DataAccessException;
+	
+	int getItemPrice(String itemId) throws DataAccessException;
 }
