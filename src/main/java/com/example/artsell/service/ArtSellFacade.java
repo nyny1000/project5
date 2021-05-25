@@ -1,7 +1,7 @@
 package com.example.artsell.service;
 
 import java.util.List;
-
+import java.util.Map;
 
 import com.example.artsell.domain.Account;
 import com.example.artsell.domain.Category;
@@ -74,6 +74,8 @@ public interface ArtSellFacade {
 	int containsInterestingItem(String userId, String itemId);
 	
 	int isAuctioning(String itemId);
+
+	Map<String, Integer> getBuyersByItemId(String itemId);
 	
 	int getItemPrice(String itemId);
 	
