@@ -22,7 +22,6 @@ public class MybatisAuctionItemDao implements AuctionItemDao {
 	@Override
 	public List<AuctionItem> getBuyersByItemId(String itemId) throws DataAccessException {
 		// TODO Auto-generated method stub
-
 		return auctionItemMapper.getBuyersByItemId(itemId);
 	}
 

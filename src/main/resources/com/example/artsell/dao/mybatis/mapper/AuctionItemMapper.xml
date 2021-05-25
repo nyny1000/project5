@@ -41,7 +41,7 @@
 	</select>
 
 	<select id="calcBestPrice" resultType="int">
-		select price
+		select myPrice
 		from auctionItem
 		where itemId = #{itemId}
 	</select>
@@ -58,6 +58,18 @@
 		where userId={#userId} and
 		itemId={#itemId}
 	</update>
+	
+	<update id="updateItemBestPrice" parameterType="String">
+		update Item
+		set
+		bestPrice = {#price}
+		itemId={#itemId}
+	</update>
+	
+	<insert id="addPrice" parameterType="String">
+		insert into
+		AuctionItem values (#{userId}, #{itemId}, #{myPrice}, 0)
+	</insert>
 
 	<delete id="deleteAuctionItem" parameterType="String">
 		DELETE
@@ -65,6 +77,13 @@
 		WHERE USERID = #{param1} and itemId = #{param2}
 	</delete>
 
+	<select id="isNewUserPrice" resultType="int">
+		select count*
+		from AuctionItem
+		where userId = #{userId} and
+		itemId = #{itemId}
+	</select>
+	
 	<select id="getAuctionedItem" resultType="AuctionItem">
 		select itemId,
 		auctionedPrice, userId
