@@ -17,7 +17,6 @@ public class MybatisAuctionItemDao implements AuctionItemDao {
 	@Autowired
 	private AuctionItemMapper auctionItemMapper;
 
-	@SuppressWarnings("null")
 	@Override
 	public Map<String, Integer> getBuyersByItemId(String itemId) throws DataAccessException {
 		// TODO Auto-generated method stub
