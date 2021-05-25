@@ -30,7 +30,8 @@ public class OrderController {
 		return new OrderForm();
 	}
 
-	@RequestMapping("/shop/newOrder.do")
+	
+	@RequestMapping("/auction/auctioned_buyer")
 	public String viewShippingForm(HttpServletRequest request,
 			@ModelAttribute("sessionCart") Cart cart,
 			@ModelAttribute("orderForm") OrderForm orderForm
@@ -50,7 +51,7 @@ public class OrderController {
 	}
 	
 	//auctioned_buyer.jsp
-	@RequestMapping("/acution/check")
+	@RequestMapping("/auction/auctioned_destination")
 	public String viewConfirmOrder(HttpServletRequest request,
 			@ModelAttribute("orderForm") OrderForm orderForm, 
 			BindingResult result) {	
@@ -64,7 +65,7 @@ public class OrderController {
 		}
 	}
 	//auctioned_destination.jsp
-	@RequestMapping("/auction/pay")
+	@RequestMapping("/auction/auctioned_receipt")
 	public ModelAndView viewOrder(
 			@ModelAttribute("orderForm") OrderForm orderForm, 
 			SessionStatus status) {
