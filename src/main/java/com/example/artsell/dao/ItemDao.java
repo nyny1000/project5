@@ -38,7 +38,9 @@ public interface ItemDao {
 	
 	void updateItem(String itemId, String price) throws DataAccessException;
 	
-	void updateReload(String itemId, int minPrice, Date deadline) throws DataAccessException;
+	void updateReload(String itemId, int minPrice, Date deadline, String userId) throws DataAccessException;
 
 	int isAuctioning(String itemId) throws DataAccessException;
+	
+	public int getItemPrice(String itemId) throws DataAccessException;
 }

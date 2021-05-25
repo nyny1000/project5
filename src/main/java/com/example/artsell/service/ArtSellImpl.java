@@ -198,7 +198,18 @@ public class ArtSellImpl implements ArtSellFacade {
 		return auctionItemDao.getBuyersByItemId(itemId);
 	}
 	
+
 	@Override
+	public int getItemPrice(String itemId) {
+		return itemDao.getItemPrice(itemId);
+	}
+	
+	@Override
+	public void updateReload(String itemId, int minPrice, Date deadline, String userId) {
+		itemDao.updateReload(itemId, minPrice, deadline, userId);
+	}
+
+
 	public void updatePrice(String userId, String itemId, int price) {
 		auctionItemDao.updatePrice(userId, itemId, price);
 	}
@@ -235,5 +246,4 @@ public class ArtSellImpl implements ArtSellFacade {
 		
 		
 	}
-
 }

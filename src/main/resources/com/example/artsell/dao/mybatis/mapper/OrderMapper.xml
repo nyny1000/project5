@@ -12,19 +12,19 @@
   	WHERE USERID = #{userId}
   </select>
   
-  <select id="editDestination" parameterType="String">
+  <update id="editDestination" parameterType="String">
   	UPDATE AUCTIONEDITEM
 	SET DESTINATION = #{destination}
 	WHERE USERID = #{userId}
 	AND ITEMID = #{itemId}
-  </select>
+  </update>
 
-  <select id="SaveAuctionedItem" parameterType="AuctionItem">
+  <update id="SaveAuctionedItem" parameterType="AuctionItem">
   	UPDATE AUCTIONEDITEM
 	SET ITEMID = #{itemId},
 	USERID  = #{userId},
 	AUCTIONEDPRICE = #{auctionedPrice},
 	DESTINATION = #{destination}
-  </select>
+  </update>
   
 </mapper>

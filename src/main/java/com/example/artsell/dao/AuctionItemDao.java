@@ -1,5 +1,7 @@
 package com.example.artsell.dao;
 
+
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -34,7 +36,8 @@ public interface AuctionItemDao {
 
 	int countAuctionJoinList(String userId) throws DataAccessException;
 
-	void changeState(String userId, String itemId) throws DataAccessException;
-	
+	void changeState(String userId, String itemId, int state) throws DataAccessException;
+
 	int isNewUserPrice(String userId, String itemId) throws DataAccessException;
+
 }

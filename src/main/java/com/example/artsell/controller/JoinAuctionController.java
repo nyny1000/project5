@@ -2,6 +2,7 @@ package com.example.artsell.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
@@ -60,12 +61,12 @@ public class JoinAuctionController {
    
       //AuctionedItem auctionedItem = artSell.getOrder(itemid); //해당 아이템가져와
    
-      List<AuctionItem> auctionBuyerList = artSell.getBuyersByItemId(itemid);
+      List<AuctionItem> auctionBuyerList = artSell.getBuyersByItemId(itemId);
    
    
       if (artSell.countAuctionJoinList != 0) // 후순위자가 있다면
       {//후순위자에게 낙찰
-         AuctionItem secondAuctionitem = auctionBuyerList.get(0);
+         AuctionItem secondAuctionitem = auctionBuyerList.get(0); //후순위자
          String secondUser = secondAuctionitem.getUserId();
          String secondPrice = secondAuctionitem.getMyPrice();
          
@@ -100,12 +101,12 @@ public class JoinAuctionController {
    
 
    
-   //유찰
+   //유찰 //기간은 현재 날짜에서 7일후
    @RequestMapping("/auction/fail")
     public ModelAndView miscarry(@ModelAttribute("userSession") UserSession userSession, 
    @RequestParam("itemId") String itemId) {
       String userId = userSession.getAccount().getUserId();
-      int minPrice= artSell.getItemPrice(minPrice);
+      int minPrice= artSell.getItemPrice(itemId);
       minPrice = (int) (minPrice * 0.7);
 
       Calendar cal = Calendar.getInstance();
@@ -113,7 +114,13 @@ public class JoinAuctionController {
       DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
       cal.add(Calendar.DATE, 7);
-      Date deadline = df.parse(df.format(cal.getTime()));
+      Date deadline = null;
+      try {
+    	  deadline = df.parse(df.format(cal.getTime()));
+      } catch (ParseException e) {
+          e.printStackTrace();
+      }
+      
       ModelAndView model = new ModelAndView("myPainting_bidding");
       model.addObject("minPrice", minPrice);
       model.addObject("deadline", deadline);
@@ -123,9 +130,10 @@ public class JoinAuctionController {
    
    @RequestMapping("/auction/fail/ok")
     public String Reupload(@ModelAttribute("userSession") UserSession userSession, @RequestParam("itemId") String itemId, 
-          @RequestParam("minPrice") String minPrice, @RequestParam("deadline") String deadline, RedirectAttributes redirectAttributes) {
-
-      artSell.updateReload(itemId, minPrice, deadline);
+          @RequestParam("minPrice") int minPrice, @RequestParam("deadline") Date deadline, RedirectAttributes redirectAttributes) {
+	   String userId = userSession.getAccount().getUserId();
+      artSell.updateReload(itemId, minPrice, deadline, userId);
+      
       redirectAttributes.addAttribute("itemId", itemId);
       
       return "redirect:/shop/viewItem";
@@ -134,8 +142,9 @@ public class JoinAuctionController {
    //유찰 안하겠다고 했을때
    @RequestMapping("/auction/fail/no")
     public String Reupload(@ModelAttribute("userSession") UserSession userSession, @RequestParam("itemId") String itemId) {
-      artSell.deleteItem(itemId);
-      return "/home";
+	   String userId = userSession.getAccount().getUserId(); 
+      artSell.deleteItem(userId, itemId);
+      return "redirect:/home";
    }
 
 }

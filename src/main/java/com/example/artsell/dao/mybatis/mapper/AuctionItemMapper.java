@@ -1,5 +1,6 @@
 package com.example.artsell.dao.mybatis.mapper;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -37,5 +38,7 @@ public interface AuctionItemMapper {
 
 	int countAuctionJoinList(String userId);
 
-	void changeState(String userId, String itemId);
+
+	void changeState(String userId, String itemId, int state);
+
 }

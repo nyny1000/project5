@@ -128,4 +128,10 @@
   	SET MINPRICE = #{minPrice} AND DEADLINE = #{deadline}
   	WHERE ITEMID = #{itemId}
   </update>
+  
+  <select id="getItemPrice" parameterType="String" resultType="int" >
+  	Select minPrice
+  	from ITEM
+  	where itemId = #{itemId}
+  </select>
 </mapper>
