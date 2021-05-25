@@ -23,7 +23,8 @@
 
 	<!-- 카테고리 2번째 줄 -->
 	<tr>
-		<td><p>&lt;추상화&gt;</p> <a"<c:url value="/shop/viewCategory?categoryId=abstract" />">
+		<td><p>&lt;추상화&gt;</p> <a 
+			href="<c:url value="/shop/viewCategory?categoryId=abstract" />">
 				<img width="130px" height="130px" border="0"
 				src="../images/abstract.jpg" />
 		</a></td>
