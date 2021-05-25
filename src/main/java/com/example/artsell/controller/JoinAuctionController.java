@@ -48,8 +48,7 @@ public class JoinAuctionController {
 
    }
    
-   //낙찰포기 //if 후순위자있을경우->후순위자상태바꿈   else 유찰 
-
+   //낙찰포기 //if 후순위자있을경우->후순위자상태바꿈   else 
    public String giveup(@ModelAttribute("userSession") UserSession userSession, 
             @RequestParam("itemId") String itemId, ModelMap model) {
 
@@ -65,19 +64,28 @@ public class JoinAuctionController {
    
    
       if (artSell.countAuctionJoinList != 0) // 후순위자가 있다면
-      {//낙찰
+      {//후순위자에게 낙찰
          AuctionItem secondAuctionitem = auctionBuyerList.get(0);
          String secondUser = secondAuctionitem.getUserId();
          String secondPrice = secondAuctionitem.getMyPrice();
          
+         //해당 아이템 최고가 변경.
          artSell.updateItem(secondUser, secondPrice);
-   
-         return "auction/list/";
+         
+         changeState(secondUser, itemId);
+         
+         return "/auction/list";
    
       }
       else{
-         return "auction/fail";
+    	  //사는 사람은 포기하고 경매목록 리다이렉트
+         return "redirect:/auction/list";
       }
+   }
+   
+   //해당 아이템을 낙찰상태로 바꿔주기
+   public static void changeState(String userId, String itemId) {
+	   artSell.changeState(userId, itemId);
    }
       
 
