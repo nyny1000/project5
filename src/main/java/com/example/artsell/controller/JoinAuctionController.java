@@ -88,13 +88,8 @@ public class JoinAuctionController {
    }
    
    //해당 아이템을 낙찰상태로 바꿔주기
-<<<<<<< HEAD
    public static void changeState(String userId, String itemId, int state) {
 	   artSell.changeState(userId, itemId, state);
-=======
-   public void changeState(String userId, String itemId) {
-	   artSell.changeState(userId, itemId, 1);
->>>>>>> branch 'master' of https://github.com/Myung518/project5.git
    }
       
 
