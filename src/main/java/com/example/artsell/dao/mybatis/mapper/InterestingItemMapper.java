@@ -10,7 +10,7 @@ public interface InterestingItemMapper {
 	
 	void insertInterestingItem(String userId, String itemId);
 	
-	void deleteInterestingItem(String userId, String itemId);
+	void deleteInterestingItem(String userId, String itemId); 
 	
 	int containsInterestingItem(String userId, String itemId); 
 	
