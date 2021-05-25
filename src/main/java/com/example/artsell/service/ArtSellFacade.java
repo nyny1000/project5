@@ -1,5 +1,6 @@
 package com.example.artsell.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -80,4 +81,5 @@ public interface ArtSellFacade {
 
 	Map<String, Integer> getBuyersByItemId(String itemId);
 	
+	void auctionScheduler(Date closingTime);
 }
