@@ -204,7 +204,8 @@ public class ArtSellImpl implements ArtSellFacade {
 		Runnable updateTableRunner = new Runnable() {
 			@Override
 			public void run() {
-				
+				Date curTime = new Date();
+				auctionItemDao.changeState(null, null);
 			}
 		};
 		

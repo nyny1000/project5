@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -139,4 +141,13 @@ public class JoinAuctionController {
       return "/home";
    }
 
+   @RequestMapping("/auction/scheduler")
+   public String handleRequest(HttpServletRequest request) {
+	  Item item = (Item) request.getSession().getAttribute("item");
+	  Date deadline = item.getDeadline();
+	  
+	  artSell.auctionScheduler(deadline);
+	  
+	  return "redirect:/myitem/list";
+   }
 }

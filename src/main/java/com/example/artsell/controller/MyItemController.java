@@ -97,8 +97,11 @@ public class MyItemController {
 		
 //		System.out.println("b");
 		item.setUserId(userSession.getAccount().getUserId());
-		artSell.insertItem(item);	
-		return "redirect:/myitem/list";
+		artSell.insertItem(item);
+		
+		request.getSession().setAttribute("itemSession", this.artSell.getItem(item.getItemId()));
+		return "/auction/scheduler";
+		//return "redirect:/myitem/list";
 	}
 	
 	@GetMapping("/myitem/add")
