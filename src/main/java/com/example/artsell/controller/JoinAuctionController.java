@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.artsell.domain.AuctionItem;
+import com.example.artsell.domain.Item;
 import com.example.artsell.service.ArtSellFacade;
 
 @Controller
@@ -91,10 +92,10 @@ public class JoinAuctionController {
 
    // 아이템아이디에 해당하는 경매참여자들
    @RequestMapping("/auction/info")
-   public String viewAutionJoinerList(@RequestParam("itemId") String itemId, ModelMap model) {   
-      Map<String, Integer> buyers = this.artSell.getBuyersByItemId(itemId);
+   public String viewAutionJoinerList(@ModelAttribute("item") Item item, ModelMap model) { 
+      Map<String, Integer> buyers = this.artSell.getBuyersByItemId(item.getItemId());
       model.put("buyers", buyers);
-      return "auction/auction_buyer";
+      return "auction_buyer";
    }
 
    

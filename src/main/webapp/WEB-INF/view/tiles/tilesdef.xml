@@ -84,4 +84,8 @@
 			value="/WEB-INF/view/tiles/auctioned_receipt.jsp" />
 	</definition>
 
+	<definition name="auction_buyer" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/view/tiles/auction_buyer.jsp" />
+	</definition>
 </tiles-definitions>
