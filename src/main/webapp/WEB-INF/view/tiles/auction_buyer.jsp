@@ -14,7 +14,7 @@
 		<c:forEach var="buyer" items="${buyers}">
 		<tr>
 			<td>
-				<c:out value="${buyer.value}" />
+				<c:out value="${buyer.key}" />
 			</td>
 			<td>
 				<c:out value="${buyer.value}" />
