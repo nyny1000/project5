@@ -24,7 +24,7 @@ public interface AuctionItemMapper {
 
 	void updatePrice(String userId, String itemId, int price);
 
-	void deleteAuctionItem(String itemId);
+	void deleteAuctionItem(String userId, String itemId);
 	
 	void updateItemBestPrice(String itemId, int price);
 	

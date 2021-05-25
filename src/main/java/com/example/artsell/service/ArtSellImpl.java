@@ -16,6 +16,7 @@ import com.example.artsell.dao.InterestingItemDao;
 import com.example.artsell.dao.ItemDao;
 import com.example.artsell.dao.OrderDao;
 import com.example.artsell.domain.Account;
+import com.example.artsell.domain.AuctionItem;
 import com.example.artsell.domain.Category;
 import com.example.artsell.domain.Item;
 import com.example.artsell.domain.ItemForm;
@@ -193,7 +194,7 @@ public class ArtSellImpl implements ArtSellFacade {
 	}
 
 	@Override
-	public Map<String, Integer> getBuyersByItemId(String itemId) {
+	public List<AuctionItem> getBuyersByItemId(String itemId) {
 		// TODO Auto-generated method stub
 		return auctionItemDao.getBuyersByItemId(itemId);
 	}
@@ -235,6 +236,21 @@ public class ArtSellImpl implements ArtSellFacade {
 	}
 	
 	@Override
+	public int countAuctionJoinList(String userId) {
+		return auctionItemDao.countAuctionJoinList(userId);
+	}
+	
+	@Override
+	public void deleteAuctionItem(String userId, String itemId) {
+		auctionItemDao.deleteAuctionItem(userId, itemId);;
+	}
+	
+	@Override
+	public void changeState(String userId, String itemId, int state) {
+		auctionItemDao.changeState(userId, itemId, state);
+	}
+	
+	@Override
 	public void auctionScheduler(Date closingTime) {
 		// TODO Auto-generated method stub
 		Runnable updateTableRunner = new Runnable() {
@@ -247,4 +263,7 @@ public class ArtSellImpl implements ArtSellFacade {
 		
 		
 	}
+	
+	
+	
 }
