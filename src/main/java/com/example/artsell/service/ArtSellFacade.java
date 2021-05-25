@@ -8,6 +8,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.example.artsell.domain.Account;
 import com.example.artsell.domain.AuctionItem;
+import com.example.artsell.domain.AuctionedItem;
 import com.example.artsell.domain.Category;
 import com.example.artsell.domain.Item;
 import com.example.artsell.domain.ItemForm;
@@ -106,5 +107,7 @@ public interface ArtSellFacade {
 	
 	void changeState(String userId, String itemId, int state);
 	
-	getItemListByAuctionItem
+	List<AuctionItem> getItemListByAuctionItem(String userId);
+	
+	List<AuctionedItem> getItemListByAuctionedItem(String userId);
 }

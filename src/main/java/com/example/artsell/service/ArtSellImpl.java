@@ -17,6 +17,7 @@ import com.example.artsell.dao.ItemDao;
 import com.example.artsell.dao.OrderDao;
 import com.example.artsell.domain.Account;
 import com.example.artsell.domain.AuctionItem;
+import com.example.artsell.domain.AuctionedItem;
 import com.example.artsell.domain.Category;
 import com.example.artsell.domain.Item;
 import com.example.artsell.domain.ItemForm;
@@ -248,6 +249,16 @@ public class ArtSellImpl implements ArtSellFacade {
 	@Override
 	public void changeState(String userId, String itemId, int state) {
 		auctionItemDao.changeState(userId, itemId, state);
+	}
+	
+	@Override
+	public List<AuctionItem> getItemListByAuctionItem(String userId) {
+		return auctionItemDao.getItemListByAuctionItem(userId);
+	}
+	
+	@Override
+	public List<AuctionedItem> getItemListByAuctionedItem(String userId) {
+		return auctionItemDao.getItemListByAuctionedItem(userId);
 	}
 	
 	@Override

@@ -1,6 +1,7 @@
 package com.example.artsell.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @SuppressWarnings("serial")
 public class AuctionedItem implements Serializable {
@@ -8,6 +9,7 @@ public class AuctionedItem implements Serializable {
 	private String itemId;
 	private int auctionedPrice;
 	private int destination;
+	private Date deadline;
 	
 	public String getUserId() {
 		return userId;
@@ -32,5 +34,11 @@ public class AuctionedItem implements Serializable {
 	}
 	public void setDestination(int destination) {
 		this.destination = destination;
+	}
+	public Date getDeadline() {
+		return deadline;
+	}
+	public void setDeadline(Date deadline) {
+		this.deadline = deadline;
 	}
 }

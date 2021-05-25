@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.example.artsell.dao.AuctionItemDao;
 import com.example.artsell.dao.mybatis.mapper.AuctionItemMapper;
 import com.example.artsell.domain.AuctionItem;
+import com.example.artsell.domain.AuctionedItem;
 
 @Repository
 public class MybatisAuctionItemDao implements AuctionItemDao {
@@ -104,6 +105,16 @@ public class MybatisAuctionItemDao implements AuctionItemDao {
 	public void changeState(String userId, String itemId, int state) throws DataAccessException {
 		// TODO Auto-generated method stub
 		auctionItemMapper.changeState(userId, itemId, state);
+	}
+	
+	@Override
+	public List<AuctionItem> getItemListByAuctionItem(String userId) throws DataAccessException {
+		return auctionItemMapper.getItemListByAuctionItem(userId);
+	}
+	
+	@Override
+	public List<AuctionedItem> getItemListByAuctionedItem(String userId) throws DataAccessException {
+		return auctionItemMapper.getItemListByAuctionedItem(userId);
 	}
 
 }

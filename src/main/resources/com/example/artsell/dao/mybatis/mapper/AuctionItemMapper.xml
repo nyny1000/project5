@@ -111,5 +111,17 @@
 		state = #{state}
 		where userId = #{userId} and itemId = #{itemId}
 	</update>
+	
+	<select id="getItemListByAuctionItem" parameterType="String" resultType="AuctionItem">
+		select *
+		from auctionItem
+		where userId = #{userId} and state in (0,1,3)
+	</select>
+	
+	<select id="getItemListByAuctionedItem" parameterType="String" resultType="AuctionedItem">
+		select *
+		from auctionedItem
+		where userId = #{userId} and state = 2
+	</select>
 
 </mapper>

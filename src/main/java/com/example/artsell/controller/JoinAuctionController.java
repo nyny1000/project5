@@ -76,7 +76,7 @@ public class JoinAuctionController {
          //해당 아이템 최고가 변경.
          artSell.updateItemBestPrice(secondUser, secondPrice);
          
-         changeState(secondUser, itemId);
+         changeState(secondUser, itemId, 1);
          
          return "/auction/list";
    
@@ -88,8 +88,8 @@ public class JoinAuctionController {
    }
    
    //해당 아이템을 낙찰상태로 바꿔주기
-   public void changeState(String userId, String itemId) {
-	   artSell.changeState(userId, itemId, 1);
+   public void changeState(String userId, String itemId, int state) {
+	   artSell.changeState(userId, itemId, state);
    }
       
 
