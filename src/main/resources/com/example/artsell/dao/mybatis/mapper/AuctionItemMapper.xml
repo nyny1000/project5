@@ -26,7 +26,7 @@
 	</select>
 
 	<select id="calcBestPrice" resultType="int">
-		select myprice
+		select price
 		from auctionItem
 		where itemId = #{itemId}
 	</select>

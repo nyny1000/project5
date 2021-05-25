@@ -7,7 +7,8 @@ import com.example.artsell.domain.Account;
 import com.example.artsell.domain.Category;
 import com.example.artsell.domain.Item;
 import com.example.artsell.domain.ItemForm;
-import com.example.jpetstore.domain.Order;
+import com.example.artsell.domain.Order;
+
 
 
 public interface ArtSellFacade {
@@ -57,7 +58,9 @@ public interface ArtSellFacade {
 
 	void insertOrder(Order order);
 
-	Order getOrder(int orderId);
+	Order getOrder(String itemId, String userId);
+	
+	void SaveAuctionedItem(Order order);
 
 	List<Order> getOrdersByUsername(String username);
 	
