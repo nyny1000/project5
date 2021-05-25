@@ -75,4 +75,6 @@ public interface ArtSellFacade {
 	
 	int isAuctioning(String itemId);
 	
+	int getItemPrice(String itemId);
+	
 }
