@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.dao.DataAccessException;
 
 import com.example.artsell.domain.AuctionItem;
 
@@ -22,13 +21,19 @@ public interface AuctionItemMapper {
 
 	void insertAuctionItem(AuctionItem auctionItem);
 
-	void updatePrice(String userId);
+	void updatePrice(String userId, String itemId, int price);
 
 	void deleteAuctionItem(String itemId);
+	
+	void updateItemBestPrice(String itemId, int price);
+	
+	void addPrice(String userId, String itemId, int price);
 
 	List<AuctionItem> getAuctionedItem(String userId);
 
 	List<AuctionItem> getOrderedItem(String userId);
+	
+	int isNewUserPrice(String userId, String itemId);
 
 	int countAuctionJoinList(String userId);
 

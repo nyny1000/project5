@@ -198,10 +198,31 @@ public class ArtSellImpl implements ArtSellFacade {
 		return auctionItemDao.getBuyersByItemId(itemId);
 	}
 	
+	@Override
 	public void updatePrice(String userId, String itemId, int price) {
 		auctionItemDao.updatePrice(userId, itemId, price);
 	}
 
+	@Override
+	public void addPrice(String userId, String itemId, int price) {
+		auctionItemDao.addPrice(userId, itemId, price);
+	}
+	
+	@Override
+	public int calcBestPrice(String itemId) {
+		return auctionItemDao.calcBestPrice(itemId);
+	}
+	
+	@Override
+	public void updateItemBestPrice(String itemId, int price) {
+		auctionItemDao.updateItemBestPrice(itemId, price);
+	}
+	
+	@Override
+	public int isNewUserPrice(String userId, String itemId) {
+		return auctionItemDao.isNewUserPrice(userId, itemId);
+	}
+	
 	@Override
 	public void auctionScheduler(Date closingTime) {
 		// TODO Auto-generated method stub

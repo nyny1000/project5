@@ -3,6 +3,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.dao.DataAccessException;
+
 import com.example.artsell.domain.Account;
 import com.example.artsell.domain.Category;
 import com.example.artsell.domain.Item;
@@ -81,5 +83,14 @@ public interface ArtSellFacade {
 	Map<String, Integer> getBuyersByItemId(String itemId);
 	
 	void updatePrice(String userId, String itemId, int price);
+	
+	void updateItemBestPrice(String itemId, int price);
+	
+	int isNewUserPrice(String userId, String itemId);
+	
 	void auctionScheduler(Date closingTime);
+	
+	void addPrice(String userId, String itemId, int price);
+	
+	int calcBestPrice(String itemId);
 }
