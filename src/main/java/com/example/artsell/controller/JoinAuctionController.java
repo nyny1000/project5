@@ -24,7 +24,7 @@ import com.example.artsell.service.ArtSellFacade;
 @SessionAttributes("userSession")
 public class JoinAuctionController {
    @Autowired
-   private ArtSellFacade artSell;
+   private static ArtSellFacade artSell;
    
    //입찰, 재입찰
    @RequestMapping("/auction/bid")
