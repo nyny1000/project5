@@ -12,7 +12,7 @@
   	WHERE USERID = #{userId}
   </select>
   
-  <select id="editDestination" resultType="Order">
+  <select id="editDestination" parameterType="String">
   	UPDATE AUCTIONEDITEM
 	SET DESTINATION = #{destination}
 	WHERE USERID = #{userId}

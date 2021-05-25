@@ -41,7 +41,8 @@ public interface ArtSellFacade {
 
 	boolean isItemInStock(String itemId);
 
-
+	void SaveAuctionedItem(Order order);
+	
 	void insertOrder(Order order);
 
 	Order getOrder(int orderId);
