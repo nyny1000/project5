@@ -22,6 +22,6 @@ public class AuctionItemListController {
 		model.put("itemList2", itemList2);
 
 		return "myAuctionList";
+	
 	}
-
 }
