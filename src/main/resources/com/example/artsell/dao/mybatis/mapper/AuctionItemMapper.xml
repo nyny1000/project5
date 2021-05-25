@@ -53,7 +53,7 @@
 	<update id="updatePrice" parameterType="String">
 		update auctionItem
 		set
-		myPrice = {#myPrice}
+		myPrice = {#price}
 		where userId={#userId} and
 		itemId={#itemId}
 	</update>

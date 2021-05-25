@@ -33,7 +33,7 @@ public class MybatisOrderDao implements OrderDao {
 		order.setDestination(des);
 		orderMapper.editDestination(order, des);
 	}
-	
+	@Transactional
 	public void SaveAuctionedItem (Order order) throws DataAccessException {
 		if (order != null) {
 			orderMapper.SaveAuctionedItem(order);
