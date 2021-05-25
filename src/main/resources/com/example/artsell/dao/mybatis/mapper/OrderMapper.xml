@@ -7,8 +7,7 @@
   <select id="getOrder" resultType="Order">
   	SELECT ADDRESS,
   		   PHONE, 
-  		   CREDIT,
-  		   USERNAME
+  		   CREDIT
   	FROM ACCOUNT
   	WHERE USERID = #{userId}
   </select>

@@ -16,7 +16,6 @@ import com.example.jpetstore.domain.LineItem;
 public class Order implements Serializable {
 
 	private String userId;
-	private String userName;
 	private String itemName;
 	private String itemId;
 	private String phone;
@@ -32,12 +31,6 @@ public class Order implements Serializable {
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
-	}
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 	public String getItemName() {
 		return itemName;
@@ -92,7 +85,6 @@ public class Order implements Serializable {
 
 	public void initOrder(Account account, Item item) {
 		userId = account.getUserId();
-		//userName = account.getUserName();
 		orderDate = new Date();
 		phone = account.getPhone();
 		destination = account.getAddress();

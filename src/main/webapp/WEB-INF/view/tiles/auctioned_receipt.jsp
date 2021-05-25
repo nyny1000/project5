@@ -19,8 +19,8 @@
 			<th colspan="2">배송정보</th>
 		</tr>
 		<tr>
-			<td class="bold">이름</td>
-			<td><c:out value="${order.userName}" /></td>
+			<td class="bold">아이디</td>
+			<td><c:out value="${order.userId}" /></td>
 		</tr>
 		<tr>
 			<td class="bold">전화번호</td>
