@@ -1,10 +1,15 @@
 package com.example.artsell.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -21,6 +26,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.artsell.domain.Category;
@@ -66,13 +72,29 @@ public class MyItemController {
 	
 	@PostMapping("/myitem/add")
 	public String addMyItem(@Valid @ModelAttribute("item") ItemForm item, Errors result,
-			@ModelAttribute("userSession") UserSession userSession) {
+			@ModelAttribute("userSession") UserSession userSession, @RequestParam("picture") MultipartFile picture, HttpServletRequest request) {
 //		System.out.println(item.getBestPrice());
-		new PaintRegiValidator().validate(item, result); 
-		if (result.hasErrors()) {
-//			System.out.println("a");
-			return "paintingRegister";
+		
+		try {
+			String fileName = picture.getOriginalFilename();
+			String savePath = request.getSession().getServletContext().getRealPath("/files/");
+			picture.transferTo(new File(savePath + fileName));
+			
+			item.setPicture("/files/" + fileName);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
+		/*
+		 * new PaintRegiValidator().validate(item, result); if (result.hasErrors()) { //
+		 * System.out.println("a"); return "paintingRegister"; }
+		 */
+		//연제테스트
+		
 //		System.out.println("b");
 		item.setUserId(userSession.getAccount().getUserId());
 		artSell.insertItem(item);	

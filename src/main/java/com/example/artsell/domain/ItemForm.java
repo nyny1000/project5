@@ -25,7 +25,7 @@ public class ItemForm {
 	private String description;
 	
 	@NotNull
-	private MultipartFile picture;
+	private String picture;
 	
 	@NotBlank
 	private String artist;
@@ -70,11 +70,14 @@ public class ItemForm {
 		this.description = description;
 	}
 
-	public MultipartFile getPicture() {
+//	public MultipartFile getPicture() {
+//		return picture;
+//	}
+	public String getPicture() {
 		return picture;
-	}
-	public void setPicture(MultipartFile picture) {
-		this.picture = picture;
+	}//연제 테스트
+	public void setPicture(String filePath) {
+		this.picture = filePath;
 	}
 	public String getArtist() {
 		return artist;

@@ -18,11 +18,15 @@ public class PaintRegiValidator implements Validator {
 	public void validate(Object obj, Errors errors) {
 		ItemForm model = (ItemForm) obj;
 		
-		MultipartFile file = model.getPicture();
+		//MultipartFile file = model.getPicture();
+		String file = model.getPicture();//연제 테스트
 		
-		if(file.isEmpty()){
-            errors.rejectValue("picture", "upload.file.required");
-        }
+//		if(file.isEmpty()){
+//            errors.rejectValue("picture", "upload.file.required");
+//        }
+		if (file == null) {
+			errors.rejectValue("picture", "upload.file.required");
+		}
 	
 //	    for (CommonsMultipartFile multipartFile: commonsMultipartFiles) {
 //	        if (multipartFile.getSize() == 0) {

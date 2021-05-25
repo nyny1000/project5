@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>itemList</title>
 </head>
 <body>
@@ -11,9 +11,9 @@
 	<h2><c:out value="${category.name}" /></h2>
 	<form action="<c:url value="/search/item" />" method="post">
 		<select name="artist">
-			<option value="all" selected>all</option>
+			<option value="all" selected>화가명</option>
 			<c:forEach var="artist" items="${artistList}">
-				<option value="${artist}"><c:out value="${artist}" /></option> <!-- ��ġ�� -->
+				<option value="${artist}"><c:out value="${artist}" /></option> <!-- 고치기 -->
 			</c:forEach>
 		</select>
 		<input type="hidden" name="search" value="true"/>
@@ -24,16 +24,16 @@
 </div>
 <p>
 <div align="center">
-	<a href="<c:url value="/myitem/add" />">��ǰ ���</a>
-	<a href="<c:url value="/myitem/list" />">�� �׸� ����</a>
+	<a href="<c:url value="/myitem/add" />">작품 등록</a>
+	<a href="<c:url value="/myitem/list" />">내 그림 관리</a>
 </div>
 <p>
 
 <div align="center">
 	<table>
-		<th>��ǰ</th>
-		<th>����</th>
-		<th>ȭ��</th>
+		<th>작품</th>
+		<th>제목</th>
+		<th>화가</th>
 		<c:forEach var="item" items="${itemList.pageList}">
 		<tr>
 			<td>

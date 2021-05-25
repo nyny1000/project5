@@ -1,58 +1,58 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>paintingDetail</title>
 </head>
 <body>
 <div align="center">
-	<h2>ÀÛÇ° Á¤º¸</h2>
-	<table>
-		<tr>
-			<td>ÀÛÇ°¸í</td>
-			<td><c:out value="${item.itemName}" /></td>
-		</tr>
-		<tr>
-			<td>Ä«Å×°í¸®</td>
-			<td><c:out value="${item.categoryId}" /></td> <!-- Ä«Å×°í¸® ÀÌ¸§À¸·Î ¹Ù²Ù±â -->
-		</tr>
-		<tr>
-			<td>ÇöÀç ÃÖ°í°¡</td>
-			<td><c:out value="${item.bestPrice}" /></td>
-		</tr>
-		<tr>
-			<td>È­°¡</td>
-			<td><c:out value="${item.artist}" /></td>
-		</tr>
-		<tr>
-			<td>¸¶°¨ ±âÇÑ</td>
-			<td>~<c:out value="${item.deadline}" /></td>
-		</tr>
-		<tr>
-			<td colspan="2"><img src="${item.picture}" /></td>
-		</tr>
-		<tr>
-			<td colspan="2" width="40" height="8"><c:out value="${item.description}" />±×¸² ¼³¸í</td>
-		</tr>
-	</table>
-	<a href="<c:url value="/auction/info" />">°æ¸Å Âü¿©</a>
+   <h2>ìž‘í’ˆ ì •ë³´</h2>
+   <table>
+      <tr>
+         <td>ìž‘í’ˆëª…</td>
+         <td><c:out value="${item.itemName}" /></td>
+      </tr>
+      <tr>
+         <td>ì¹´í…Œê³ ë¦¬</td>
+         <td><c:out value="${item.categoryId}" /></td> <!-- ì¹´í…Œê³ ë¦¬ ì´ë¦„ìœ¼ë¡œ ë°”ê¾¸ê¸° -->
+      </tr>
+      <tr>
+         <td>í˜„ìž¬ ìµœê³ ê°€</td>
+         <td><c:out value="${item.bestPrice}" /></td>
+      </tr>
+      <tr>
+         <td>í™”ê°€</td>
+         <td><c:out value="${item.artist}" /></td>
+      </tr>
+      <tr>
+         <td>ë§ˆê° ê¸°í•œ</td>
+         <td>~<c:out value="${item.deadline}" /></td>
+      </tr>
+      <tr>
+         <td colspan="2"><img src="${item.picture}" /></td>
+      </tr>
+      <tr>
+         <td colspan="2" width="40" height="8"><c:out value="${item.description}" /></td>
+      </tr>
+   </table>
+   <a href="<c:url value="/auction/info" />">ê²½ë§¤ ì°¸ì—¬</a>
 
-	<c:if test="${isInterested == 0}">
-		<a href="<c:url value="/interesting/add">
-			<c:param name="itemId" value="${item.itemId}" /></c:url>"> <!-- °íÄ¡±â -->
-			<img src="/images/iconmonstr-heart-thin-32.png" />
-		</a>
-	</c:if>
+   <c:if test="${isInterested == 0}">
+      <a href="<c:url value="/interesting/add">
+         <c:param name="itemId" value="${item.itemId}" /></c:url>"> <!-- ê³ ì¹˜ê¸° -->
+         <img src="/images/iconmonstr-heart-thin-32.png" />
+      </a>
+   </c:if>
 
-	<c:if test="${isInterested == 1}">
-		<a href="<c:url value="/interesting/delete2">
-			<c:param name="itemId" value="${item.itemId}" /></c:url>"> <!-- °íÄ¡±â -->
-			<img src="/images/iconmonstr-favorite-3-32.png" />
-		</a>
-	</c:if>
+   <c:if test="${isInterested == 1}">
+      <a href="<c:url value="/interesting/delete2">
+         <c:param name="itemId" value="${item.itemId}" /></c:url>"> <!-- ê³ ì¹˜ê¸° -->
+         <img src="/images/iconmonstr-favorite-3-32.png" />
+      </a>
+   </c:if>
 </div>
 </body>
 </html>
