@@ -12,11 +12,11 @@ import com.example.artsell.dao.mybatis.mapper.AuctionItemMapper;
 @Repository
 public class MybatisAuctionItemDao implements AuctionItemDao {
 	@Autowired
-	private AuctionItemMapper aucitonItemMapper;
+	private AuctionItemMapper auctionItemMapper;
 
 	@Override
 	public Map<String, Integer> getBuyersByItemId(String itemId) throws DataAccessException {
 		// TODO Auto-generated method stub
-		return auctionItemMapper.;
+		return AuctionItemMapper.;
 	}
 }
