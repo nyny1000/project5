@@ -10,27 +10,27 @@ import com.example.artsell.domain.AuctionItem;
 
 @Mapper
 public interface AuctionItemMapper {
-	AuctionItem getAuctionItemByItemIdAndUserId(String itemId, String userId) throws DataAccessException;
+	AuctionItem getAuctionItemByItemIdAndUserId(String itemId, String userId);
 
-	Map<String, Integer> getBuyersByItemId(String itemId) throws DataAccessException;
+	Map<String, Integer> getBuyersByItemId(String itemId);
 
-	List<AuctionItem> getAllAuctionItemByUserId(String userId) throws DataAccessException;
+	List<AuctionItem> getAllAuctionItemByUserId(String userId);
 
-	List<AuctionItem> getAuctionItem(String userId) throws DataAccessException;
+	List<AuctionItem> getAuctionItem(String userId);
 
-	int calcBestPrice(String itemId) throws DataAccessException;
+	int calcBestPrice(String itemId);
 
-	void insertAuctionItem(AuctionItem auctionItem) throws DataAccessException;
+	void insertAuctionItem(AuctionItem auctionItem);
 
-	void updatePrice(String userId) throws DataAccessException;
+	void updatePrice(String userId);
 
-	void deleteAuctionItem(String itemId) throws DataAccessException;
+	void deleteAuctionItem(String itemId);
 
-	List<AuctionItem> getAuctionedItem(String userId) throws DataAccessException;
+	List<AuctionItem> getAuctionedItem(String userId);
 
-	List<AuctionItem> getOrderedItem(String userId) throws DataAccessException;
+	List<AuctionItem> getOrderedItem(String userId);
 
-	int countAuctionJoinList(String userId) throws DataAccessException;
+	int countAuctionJoinList(String userId);
 
-	void changeState(String userId, String itemId) throws DataAccessException;
+	void changeState(String userId, String itemId);
 }

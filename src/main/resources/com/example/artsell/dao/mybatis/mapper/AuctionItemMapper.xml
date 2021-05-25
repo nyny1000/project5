@@ -1,18 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.artsell.dao.mybatis.mapper.AuctionItemMapper">
-  <cache />
-  <select id="getAuctionItemByItemIdAndUserId" resultType="AuctionItem">
-  	SELECT *
-  	FROM AUCTIONITEM
-  	WHERE USERID = #{userId}
-  	AND ITEMID = #{itemId}
-  </select>
-  
-  <select id="getBuyersByItemId" resultType="map">
-  	SELECT USERID, MYPRICE
-  	FROM AUCTIONITEM
-  	WHERE ITEMID = #{itemId} AND STATE = 0
-  </select>
+<mapper
+	namespace="com.example.artsell.dao.mybatis.mapper.AuctionItemMapper">
+	<cache />
+	<select id="getAuctionItemByItemIdAndUserId"
+		resultType="AuctionItem">
+		SELECT *
+		FROM AUCTIONITEM
+		WHERE USERID = #{userId}
+		AND ITEMID
+		= #{itemId}
+	</select>
+
+	<select id="getAuctionItem" resultType="AuctionItem">
+		SELECT *
+		FROM auctionItem
+		WHERE userId = #{userId} and state = 0
+	</select>
+
+	<select id="getBuyersByItemId" resultType="map">
+		SELECT USERID, MYPRICE
+		FROM AUCTIONITEM
+		WHERE ITEMID = #{itemId} AND STATE = 0
+	</select>
+
+	<select id="calcBestPrice" resultType="int">
+		select myprice
+		from auctionItem
+		where itemId = #{itemId}
+	</select>
+
+	<insert id="insertAuctionItem" parameterType="AuctionItem">
+		insert into
+		AuctionItem values (#{userId}, #{itemId}, #{myPrice}, 0)
+	</insert>
+
+	<update id="updatePrice" parameterType="String">
+		update auctionItem
+		set
+		myPrice = {#myPrice}
+		where userId={#userId} and
+		itemId={#itemId}
+	</update>
+
+	<delete id="deleteAuctionItem" parameterType="String">
+		DELETE
+		FROM ACCOUNT
+		WHERE USERID = #{param1}
+	</delete>
+
+	<select id="getAuctionedItem" resultType="AuctionItem">
+		select itemId,
+		auctionedPrice, userId
+		from AuctionItem
+		where userId = #{userId} and
+		state = 1
+	</select>
+
+	<select id="getOrderedItem" resultType="AuctionItem">
+		SELECT itemId,
+		auctionedPrice
+		FROM auctionItem
+		WHERE userId = #{userId} and state = 2
+	</select>
+
+
+	<select id="countAuctionJoinList" resultType="int">
+		select count(*)
+		from auctionItem where userId = #{userId}
+	</select>
+
+	<update id="changeState" parameterType="String">
+		UPDATE auctionItem
+		SET
+		state = 1
+		where userId = #{userId} and itemId = #{itemId}
+	</update>
+
+
+
 </mapper>
