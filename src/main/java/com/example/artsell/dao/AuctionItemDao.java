@@ -20,7 +20,7 @@ public interface AuctionItemDao {
 
 	void insertAuctionItem(AuctionItem auctionItem) throws DataAccessException;
 
-	void updatePrice(String userId) throws DataAccessException;
+	void updatePrice(String userId, String itemId, int price) throws DataAccessException;
 
 	void deleteAuctionItem(String itemId) throws DataAccessException;
 

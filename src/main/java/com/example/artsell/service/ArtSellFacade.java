@@ -80,4 +80,6 @@ public interface ArtSellFacade {
 
 	Map<String, Integer> getBuyersByItemId(String itemId);
 	
+	void updatePrice(String userId, String itemId, int price);
+	
 }
