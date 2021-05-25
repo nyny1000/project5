@@ -55,21 +55,21 @@ public class JoinAuctionController {
       String userId = userSession.getAccount().getUserId();
    
       //auctionitem table에서 해당 아이디 / 아이템아이디의 행 삭제
-      Artsell.deleteAuctionItem(userId, itemId);
+      artSell.deleteAuctionItem(userId, itemId);
    
    
       //AuctionedItem auctionedItem = artSell.getOrder(itemid); //해당 아이템가져와
    
-      List<AuctionItem> auctionBuyerList = artsell.getBuyersByItemId(itemid);
+      List<AuctionItem> auctionBuyerList = artSell.getBuyersByItemId(itemid);
    
    
-      if (Artsell.countAuctionJoinList != 0) // 후순위자가 있다면
+      if (artSell.countAuctionJoinList != 0) // 후순위자가 있다면
       {//낙찰
          AuctionItem secondAuctionitem = auctionBuyerList.get(0);
          String secondUser = secondAuctionitem.getUserId();
          String secondPrice = secondAuctionitem.getMyPrice();
          
-         Artsell.updateItem(secondUser, secondPrice);
+         artSell.updateItem(secondUser, secondPrice);
    
          return "auction/list/";
    
