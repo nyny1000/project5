@@ -38,7 +38,9 @@ public interface AuctionItemMapper {
 
 	int countAuctionJoinList(String userId);
 
-
 	void changeState(String userId, String itemId, int state);
 
+	void bidSuccess(int bestPrice, String itemId);
+	
+	void bidFail(int bestPrice, String itemId);
 }

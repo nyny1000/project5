@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -52,9 +51,7 @@ public class JoinAuctionController {
 
    }
    
-   
    //낙찰포기 //if 후순위자있을경우->후순위자상태바꿈   else 
-   @RequestMapping("/auction/cancel")
    public String giveup(@ModelAttribute("userSession") UserSession userSession, 
             @RequestParam("itemId") String itemId, ModelMap model) {
 
@@ -66,17 +63,17 @@ public class JoinAuctionController {
    
       //AuctionedItem auctionedItem = artSell.getOrder(itemid); //해당 아이템가져와
    
-      List<AuctionItem> auctionBuyerList = artSell.getBuyersByItemId(itemId);
+      List<AuctionItem> auctionBuyerList = artSell.getBuyersByItemId(itemid);
    
    
-      if (artSell.countAuctionJoinList(userId) != 0) // 후순위자가 있다면
+      if (artSell.countAuctionJoinList != 0) // 후순위자가 있다면
       {//후순위자에게 낙찰
          AuctionItem secondAuctionitem = auctionBuyerList.get(0);
          String secondUser = secondAuctionitem.getUserId();
-         int secondPrice = secondAuctionitem.getMyPrice();
+         String secondPrice = secondAuctionitem.getMyPrice();
          
          //해당 아이템 최고가 변경.
-         artSell.updateItemBestPrice(secondUser, secondPrice);
+         artSell.updateItem(secondUser, secondPrice);
          
          changeState(secondUser, itemId);
          
@@ -90,7 +87,7 @@ public class JoinAuctionController {
    }
    
    //해당 아이템을 낙찰상태로 바꿔주기
-   public void changeState(String userId, String itemId) {
+   public static void changeState(String userId, String itemId) {
 	   artSell.changeState(userId, itemId, 1);
    }
       
@@ -98,7 +95,7 @@ public class JoinAuctionController {
    // 아이템아이디에 해당하는 경매참여자들
    @RequestMapping("/auction/info")
    public String viewAutionJoinerList(@ModelAttribute("item") Item item, ModelMap model) { 
-      List<AuctionItem> buyers = this.artSell.getBuyersByItemId(item.getItemId());
+      Map<String, Integer> buyers = this.artSell.getBuyersByItemId(item.getItemId());
       model.put("buyers", buyers);
       return "auction_buyer";
    }
@@ -157,7 +154,7 @@ public class JoinAuctionController {
 	  Item item = (Item) request.getSession().getAttribute("item");
 	  Date deadline = item.getDeadline();
 	  
-	  artSell.auctionScheduler(deadline);
+	  artSell.auctionScheduler(deadline, item.getItemId());
 	  
 	  return "redirect:/myitem/list";
    }

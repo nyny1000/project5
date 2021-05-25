@@ -40,5 +40,7 @@ public interface AuctionItemDao {
 	void changeState(String userId, String itemId, int state) throws DataAccessException;
 
 	int isNewUserPrice(String userId, String itemId) throws DataAccessException;
+	
+	void bid(int bestPrice, String itemId) throws DataAccessException;
 
 }

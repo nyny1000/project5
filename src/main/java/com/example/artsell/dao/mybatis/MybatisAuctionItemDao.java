@@ -106,4 +106,11 @@ public class MybatisAuctionItemDao implements AuctionItemDao {
 		auctionItemMapper.changeState(userId, itemId, state);
 	}
 
+	@Override
+	public void bid(int bestPrice, String itemId) throws DataAccessException {
+		// TODO Auto-generated method stub
+		auctionItemMapper.bidSuccess(bestPrice, itemId);
+		auctionItemMapper.bidFail(bestPrice, itemId);
+	}
+
 }

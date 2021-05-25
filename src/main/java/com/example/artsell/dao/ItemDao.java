@@ -43,4 +43,6 @@ public interface ItemDao {
 	int isAuctioning(String itemId) throws DataAccessException;
 	
 	public int getItemPrice(String itemId) throws DataAccessException;
+	
+	boolean isCloseBid(String itemId, Date curTime) throws DataAccessException;
 }

@@ -41,7 +41,7 @@
 	</select>
 
 	<select id="calcBestPrice" resultType="int">
-		select myPrice
+		select max(myPrice)
 		from auctionItem
 		where itemId = #{itemId}
 	</select>
@@ -112,4 +112,15 @@
 		where userId = #{userId} and itemId = #{itemId}
 	</update>
 
+	<update id="bidSuccess" parameterType="int">
+		UPDATE auctionItem
+		SET state = 1
+		where myPrice = #{bestPrice} and itemId = #{itemId}
+	</update>
+	
+	<update id="bidFail" parameterType="int">
+		UPDATE auctionItem
+		SET state = 3
+		where myPrice != #{bestPrice} and itemId = #{itemId}
+	</update>
 </mapper>

@@ -16,7 +16,6 @@ import com.example.artsell.dao.InterestingItemDao;
 import com.example.artsell.dao.ItemDao;
 import com.example.artsell.dao.OrderDao;
 import com.example.artsell.domain.Account;
-import com.example.artsell.domain.AuctionItem;
 import com.example.artsell.domain.Category;
 import com.example.artsell.domain.Item;
 import com.example.artsell.domain.ItemForm;
@@ -194,7 +193,7 @@ public class ArtSellImpl implements ArtSellFacade {
 	}
 
 	@Override
-	public List<AuctionItem> getBuyersByItemId(String itemId) {
+	public Map<String, Integer> getBuyersByItemId(String itemId) {
 		// TODO Auto-generated method stub
 		return auctionItemDao.getBuyersByItemId(itemId);
 	}
@@ -236,34 +235,27 @@ public class ArtSellImpl implements ArtSellFacade {
 	}
 	
 	@Override
-	public int countAuctionJoinList(String userId) {
-		return auctionItemDao.countAuctionJoinList(userId);
-	}
-	
-	@Override
-	public void deleteAuctionItem(String userId, String itemId) {
-		auctionItemDao.deleteAuctionItem(userId, itemId);;
-	}
-	
-	@Override
-	public void changeState(String userId, String itemId, int state) {
-		auctionItemDao.changeState(userId, itemId, state);
-	}
-	
-	@Override
-	public void auctionScheduler(Date closingTime) {
+	public void auctionScheduler(Date closingTime, String itemId) {
 		// TODO Auto-generated method stub
 		Runnable updateTableRunner = new Runnable() {
 			@Override
 			public void run() {
 				Date curTime = new Date();
-				auctionItemDao.changeState(null, null);
+				
+				if (itemDao.isCloseBid(itemId, curTime)) {
+					if (auctionItemDao.getBuyersByItemId(itemId) == null) {
+						//유찰
+						String sellerId = itemDao.getItem(itemId).getUserId(); 
+						auctionItemDao.changeState(sellerId, itemId, 4);
+					} else {				//해당 옥션 아이템에 낙찰 상태를 바꾸는 것.
+						int bestPrice = auctionItemDao.calcBestPrice(itemId);
+						auctionItemDao.bid(bestPrice, itemId);
+					}
+				}
 			}
 		};
 		
-		
+		scheduler.schedule(updateTableRunner, closingTime);
+		System.out.println("updateTableRunner has been scheduled to execute at " + closingTime);
 	}
-	
-	
-	
 }
