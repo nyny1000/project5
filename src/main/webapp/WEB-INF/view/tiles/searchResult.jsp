@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>searchResult</title>
-</head>
-<body>
+
 <div align="center">
 	<h2>작품 검색</h2>
 	<p>
@@ -84,7 +78,5 @@
 		</tr>
 	</table>
 </div>
-</body>
-</html>
 
 <!-- 추가하면 좋을 것들: 정렬기능, 인기검색어 기능 -->
