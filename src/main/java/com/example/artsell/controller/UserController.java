@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.artsell.domain.Account;
@@ -26,8 +27,8 @@ public class UserController {
    }
 
    @RequestMapping("/loginform")
-   public String home() throws Exception {
-      return "login";
+   public String home(HttpServletRequest request) throws Exception {
+	   return "login";
    }
 
    @RequestMapping("/user/login")
@@ -41,26 +42,28 @@ public class UserController {
       } else {
          UserSession userSession = new UserSession(account);
          model.addAttribute("userSession", userSession);
-         if (forwardAction != null)
+         if (forwardAction != null) {
             return new ModelAndView("redirect:" + forwardAction);
+         }
          else
             // return new ModelAndView("tiles/main"); // use Tiles
-            return new ModelAndView("main");
+            return new ModelAndView("redirect:/user/main"); //ny수정 redirect:/user/main
       }
    }
 
    @RequestMapping("/user/logout")
-   public String logout(HttpSession session) throws Exception {
+   public String logout(HttpSession session, SessionStatus sessionStatus) throws Exception { //ny수정
       session.removeAttribute("userSession");
       session.invalidate();
+      sessionStatus.setComplete();
       // return "tiles/login"; // use Tiles
-      return "login";
+      return "redirect:/loginform"; //ny수정
    }
 
    @RequestMapping("/user/mypage")
    public String myPage(@ModelAttribute("userSession") UserSession userSession) throws Exception {
       // String userId = userSession.getAccount().getUserId();
-      return "/myPage";
+      return "myPage";
    }
 
    // 2차수정

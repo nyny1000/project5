@@ -3,6 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+<!--  -->
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Cache-Control" content="max-age=0">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  <meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+  <meta http-equiv="Pragma" content="no-cache">
 <meta charset="UTF-8">
 	<title>login</title>
 	<style>
@@ -43,7 +51,8 @@
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
-						<td><button type="submit" name="update">로그인</button>&nbsp
+						<td>
+						<button type="submit" name="update">로그인</button>&nbsp
 							<a href="<c:url value='/user/register'/>">
 						<button type="button" name="button">회원가입</button>
 						</a></td>

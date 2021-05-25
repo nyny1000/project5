@@ -1,11 +1,9 @@
 package com.example.artsell.controller;
 
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.support.PagedListHolder;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -88,18 +86,4 @@ public class AccountFormController {
 		session.setAttribute("userSession", userSession);
 		return successViewName;
 	}
-	
-
-	/*
-	 * //2차수정
-	 * 
-	 * @RequestMapping("/user/delete") public String deleteAccount(HttpSession
-	 * session) throws Exception { UserSession userSession = (UserSession)
-	 * session.getAttribute("userSession"); String userId =
-	 * userSession.getAccount().getUserId(); artsell.deleteAccount(userId);
-	 * 
-	 * session.removeAttribute("userSession"); session.invalidate(); return
-	 * successViewName; }
-	 */
-	
 }

@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 .error {
 	color: red;
 	font-weight: bold;
@@ -13,6 +14,7 @@ table.search {
 
 table.top tr td {
 	padding: 5px;
+	background-color: white; /* skdud */
 }
 
 /* 수정 */
@@ -46,128 +48,148 @@ div.itembidding {
 
 /* 추가 */
 table.biddingcheck {
-	text-align:center;
+	text-align: center;
 	margin: 30px;
 	width: 100%;
 }
 
 /*채연이*/
 div.bg {
-	background-color : #FFFFCC;
-	margin-left : 30%;
-	margin-right : 30%;
-	border-radius : 25px;
-	
+	background-color: #FFFFCC;
+	margin-left: 30%;
+	margin-right: 30%;
+	border-radius: 25px;
 }
+
 table.border {
 	border-collapse: collapse;
 	border: 1px solid;
 }
-table.border tr td{
+
+table.border tr td {
 	border: 1px solid;
 }
-table.border tr th{
+
+table.border tr th {
 	border: 1px solid black;
 }
-ul.align { 
-	display: inline-block; 
-	text-align: left; 
+
+ul.align {
+	display: inline-block;
+	text-align: left;
 }
+
 td.bold {
-	font-weight : bold;
+	font-weight: bold;
 }
-table.border tr#c1 td{
-	text-align:right;
+
+table.border tr#c1 td {
+	text-align: right;
 	border-top: hidden;
 	border-left: hidden;
 	border-right: hidden;
 }
 /*채연이*/
-
 table#main-menu {
 	background-color: #008800;
-    border: none;
-    border-spacing: 2px;
+	border: none;
+	border-spacing: 2px;
 }
+
 table#main-menu tr td {
-    padding: 2px; 
-    background-color: #FFFF88;
+	padding: 2px;
+	background-color: #FFFF88;
 }
+
 table#index {
 	background-color: #FFFF88;
 	border: none;
 	width: 170px;
 	border-collapse: collapse;
 }
+
 table#index tr td {
-    padding: 5px; 
+	padding: 5px;
 }
+
 table#item {
-    background-color: #008800;
-    width: 60%;
-    border: none;
-    border-spacing: 2px;    
+	background-color: #008800;
+	width: 60%;
+	border: none;
+	border-spacing: 2px;
 }
+
 table#item tr {
-    background-color: #FFFF88;
+	background-color: #FFFF88;
 }
+
 table#cart {
 	background-color: #008800;
-    border: none;
-    border-spacing: 2px;
+	border: none;
+	border-spacing: 2px;
 }
+
 table#cart tr td {
-    padding: 5px;
+	padding: 5px;
 }
+
 table#account {
 	background-color: #DDDDDD;
-    border: 2px solid;
-    border-spacing: 2px;
+	border: 2px solid;
+	border-spacing: 2px;
 }
+
 table#account tr td {
-    padding: 5px;
+	padding: 5px;
 }
 
 table.top {
-    background-image: url('../images/bkg-topbar.gif');
-    width: 100%;
-    border: none;
-    border-collapse: collapse;
+	background-image: url('../images/bkg-topbar.gif');
+	width: 100%;
+	border: none;
+	border-collapse: collapse;
 }
+
 table.top tr td {
-    padding: 5px;
+	padding: 5px;
 }
+
 table.t1 {
-    width: 100%;
-    border: none;
-    border-collapse: collapse;
+	width: 100%;
+	border: none;
+	border-collapse: collapse;
 }
 
 table.n25 {
 	background-color: #008800;
-    border: none;
-    border-spacing: 2px;
+	border: none;
+	border-spacing: 2px;
 }
+
 table.n25 tr td {
-    padding: 5px;
+	padding: 5px;
 }
+
 table.n23 {
 	background-color: #008800;
-    border: none;
-    border-spacing: 2px;
+	border: none;
+	border-spacing: 2px;
 }
+
 table.n23 tr td {
-    padding: 3px;
+	padding: 3px;
 }
 
 table.n13 {
 	background-color: #008800;
-    border: none;
-    border-spacing: 1px;
+	border: none;
+	border-spacing: 1px;
 }
+
 table.n13 tr {
-    background-color: #FFFF88;
+	background-color: #FFFF88;
 }
+
 table.n13 tr td {
-    padding: 3px;
+	padding: 3px;
 }
