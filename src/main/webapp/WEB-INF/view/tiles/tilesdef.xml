@@ -48,6 +48,7 @@
 			value="/WEB-INF/view/tiles/myPaintingList.jsp" />
 	</definition>
 
+
 	<definition name="searchResult" extends="base_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/view/tiles/searchResult.jsp" />
@@ -62,9 +63,25 @@
 		<put-attribute name="body"
 			value="/WEB-INF/view/tiles/itemList.jsp" />
 	</definition>
-
+	
 	<definition name="paintingRegister" extends="base_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/view/tiles/paintingRegister.jsp" />
 	</definition>
+	
+	<definition name="auctioned_buyer" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/view/tiles/auctioned_buyer.jsp" />
+	</definition>
+
+	<definition name="auctioned_destination" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/view/tiles/auctioned_destination.jsp" />
+	</definition>
+
+	<definition name="auctioned_receipt" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/view/tiles/auctioned_receipt.jsp" />
+	</definition>
+
 </tiles-definitions>
