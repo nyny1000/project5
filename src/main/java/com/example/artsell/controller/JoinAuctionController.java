@@ -86,7 +86,7 @@ public class JoinAuctionController {
    
    //해당 아이템을 낙찰상태로 바꿔주기
    public static void changeState(String userId, String itemId) {
-	   artSell.changeState(userId, itemId);
+	   artSell.changeState(userId, itemId, 1);
    }
       
 
@@ -130,9 +130,10 @@ public class JoinAuctionController {
    
    @RequestMapping("/auction/fail/ok")
     public String Reupload(@ModelAttribute("userSession") UserSession userSession, @RequestParam("itemId") String itemId, 
-          @RequestParam("minPrice") String minPrice, @RequestParam("deadline") String deadline, RedirectAttributes redirectAttributes) {
-
-      artSell.updateReload(itemId, minPrice, deadline);
+          @RequestParam("minPrice") int minPrice, @RequestParam("deadline") Date deadline, RedirectAttributes redirectAttributes) {
+	   String userId = userSession.getAccount().getUserId();
+      artSell.updateReload(itemId, minPrice, deadline, userId);
+      
       redirectAttributes.addAttribute("itemId", itemId);
       
       return "redirect:/shop/viewItem";

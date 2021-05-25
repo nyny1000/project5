@@ -10,6 +10,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.example.artsell.dao.ItemDao;
+import com.example.artsell.dao.mybatis.mapper.AuctionItemMapper;
 import com.example.artsell.dao.mybatis.mapper.InterestingItemMapper;
 import com.example.artsell.dao.mybatis.mapper.ItemMapper;
 import com.example.artsell.domain.Item;
@@ -21,6 +22,8 @@ public class MybatisItemDao implements ItemDao {
 	private ItemMapper itemMapper;
 	@Autowired
 	private InterestingItemMapper interestingItemMapper;
+	@Autowired
+	private AuctionItemMapper auctionItemMapper;
 	
 	public Item getItem(String itemId) throws DataAccessException {
 		return itemMapper.getItem(itemId);
@@ -72,9 +75,11 @@ public class MybatisItemDao implements ItemDao {
 		itemMapper.updateItemPrice(itemId, price);
 	}
 
-	public void updateReload(String itemId, int minPrice, Date deadline) throws DataAccessException {
+	//유찰때
+	public void updateReload(String itemId, int minPrice, Date deadline, String userId) throws DataAccessException {
 		// TODO Auto-generated method stub
-		itemMapper.updateReload(itemId, minPrice, deadline);
+		itemMapper.updateReload(itemId, minPrice, deadline, userId);
+		auctionItemMapper.changeState(userId, itemId, 0);
 	}
 	
 	/* Inner Classes */

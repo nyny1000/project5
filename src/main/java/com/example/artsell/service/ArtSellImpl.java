@@ -194,7 +194,7 @@ public class ArtSellImpl implements ArtSellFacade {
 	}
 	
 	@Override
-	public void updateReload(String itemId, int minPrice, Date deadline) {
-		auctionItemDao.updateReload(itemId, minPrice, deadline);
+	public void updateReload(String itemId, int minPrice, Date deadline, String userId) {
+		itemDao.updateReload(itemId, minPrice, deadline, userId);
 	}
 }

@@ -80,6 +80,8 @@ public interface ArtSellFacade {
 	
 	int getItemPrice(String itemId);
 	
-	void updateReload(String itemId, int minPrice, Date deadline);
+	void updateReload(String itemId, int minPrice, Date deadline, String userId);
+	
+	
 	
 }
