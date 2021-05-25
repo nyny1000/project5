@@ -46,4 +46,6 @@ public interface AuctionItemDao {
 	
 	List<AuctionedItem> getItemListByAuctionedItem(String userId) throws DataAccessException;
 
+	void bid(int bestPrice, String itemId) throws DataAccessException;
+
 }

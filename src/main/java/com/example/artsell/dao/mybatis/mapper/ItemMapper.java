@@ -34,4 +34,6 @@ public interface ItemMapper {
 	int isAuctioning(String itemId) throws DataAccessException;
 	
 	int getItemPrice(String itemId) throws DataAccessException;
+	
+	boolean isCloseBid(String itemId, Date curTime) throws DataAccessException;
 }

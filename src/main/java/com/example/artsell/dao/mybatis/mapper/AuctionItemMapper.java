@@ -45,4 +45,7 @@ public interface AuctionItemMapper {
 	
 	List<AuctionedItem> getItemListByAuctionedItem(String userId);
 
+	void bidSuccess(int bestPrice, String itemId);
+	
+	void bidFail(int bestPrice, String itemId);
 }

@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,7 +28,7 @@ import com.example.artsell.service.ArtSellFacade;
 @SessionAttributes("userSession")
 public class JoinAuctionController {
    @Autowired
-   private ArtSellFacade artSell;
+   private static ArtSellFacade artSell;
    
    //입찰, 재입찰
    @RequestMapping("/auction/bid")
@@ -50,9 +52,7 @@ public class JoinAuctionController {
 
    }
    
-   
    //낙찰포기 //if 후순위자있을경우->후순위자상태바꿈   else 
-   @RequestMapping("/auction/cancel")
    public String giveup(@ModelAttribute("userSession") UserSession userSession, 
             @RequestParam("itemId") String itemId, ModelMap model) {
 
@@ -69,7 +69,7 @@ public class JoinAuctionController {
    
       if (artSell.countAuctionJoinList(userId) != 0) // 후순위자가 있다면
       {//후순위자에게 낙찰
-         AuctionItem secondAuctionitem = auctionBuyerList.get(0);
+         AuctionItem secondAuctionitem = auctionBuyerList.get(0); //후순위자
          String secondUser = secondAuctionitem.getUserId();
          int secondPrice = secondAuctionitem.getMyPrice();
          
@@ -88,6 +88,7 @@ public class JoinAuctionController {
    }
    
    //해당 아이템을 낙찰상태로 바꿔주기
+
    public void changeState(String userId, String itemId, int state) {
 	   artSell.changeState(userId, itemId, state);
    }
@@ -150,4 +151,13 @@ public class JoinAuctionController {
       return "redirect:/home";
    }
 
+   @RequestMapping("/auction/scheduler")
+   public String handleRequest(HttpServletRequest request) {
+	  Item item = (Item) request.getSession().getAttribute("item");
+	  Date deadline = item.getDeadline();
+	  
+	  artSell.auctionScheduler(deadline, item.getItemId());
+	  
+	  return "redirect:/myitem/list";
+   }
 }

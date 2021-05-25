@@ -111,4 +111,12 @@ public class MybatisItemDao implements ItemDao {
 	public int getItemPrice(String itemId) throws DataAccessException {
 		return itemMapper.getItemPrice(itemId);
 	}
+	
+	public boolean isCloseBid(String itemId, Date curTime) throws DataAccessException {
+		if (itemMapper.isCloseBid(itemId, curTime)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

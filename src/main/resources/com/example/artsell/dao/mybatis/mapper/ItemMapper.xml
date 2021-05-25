@@ -134,4 +134,12 @@
   	from ITEM
   	where itemId = #{itemId}
   </select>
+  
+  <select id="isCloseBid" resultType="auctionItem">
+  		<![CDATA[
+			SELECT ITEMID
+			FROM ITEM
+			WHERE DEADLINE <= #{curTime} and ITEMID = #{ITEMID}
+		]]>
+  </select>
 </mapper>
