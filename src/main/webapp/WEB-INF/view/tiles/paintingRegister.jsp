@@ -5,15 +5,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<!DOCTYPE html>
-<html>
-
-<head>
-	<meta charset="UTF-8">
-	<title>paintingRegister</title>
-</head>
-<body>
-
 <div align="center">
 	<h2>그림 등록</h2>
 	<form:form modelAttribute="item" method="post" action="/myitem/add" enctype="multipart/form-data">
