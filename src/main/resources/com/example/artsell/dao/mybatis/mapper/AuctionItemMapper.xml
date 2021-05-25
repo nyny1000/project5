@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<!-- <mapper namespace="com.example.artsell.dao.mybatis.mapper.AuctionItemMapper">
+  <cache />
+  <select id="getAuctionItemByItemIdAndUserId" resultType="AuctionItem">
+  	SELECT *
+  	FROM AUCTIONITEM
+  	WHERE USERID = #{userId}
+  	AND ITEMID = #{itemId}
+  </select>
+  
+  <select id="getBuyersByItemId" resultType="AuctionItem">
+  	SELECT USERID, MYPRICE
+  	FROM AUCTIONITEM
+  	WHERE ITEMID = #{itemId} AND STATE = 0
+  </select> -->
 <mapper
 	namespace="com.example.artsell.dao.mybatis.mapper.AuctionItemMapper">
 	<cache />
@@ -19,14 +33,14 @@
 		WHERE userId = #{userId} and state = 0
 	</select>
 
-	<select id="getBuyersByItemId" resultType="map">
+	<select id="getBuyersByItemId" resultType="AuctionItem">
 		SELECT USERID, MYPRICE
 		FROM AUCTIONITEM
 		WHERE ITEMID = #{itemId} AND STATE = 0
 	</select>
 
 	<select id="calcBestPrice" resultType="int">
-		select myprice
+		select price
 		from auctionItem
 		where itemId = #{itemId}
 	</select>
@@ -39,7 +53,7 @@
 	<update id="updatePrice" parameterType="String">
 		update auctionItem
 		set
-		myPrice = {#myPrice}
+		myPrice = {#price}
 		where userId={#userId} and
 		itemId={#itemId}
 	</update>

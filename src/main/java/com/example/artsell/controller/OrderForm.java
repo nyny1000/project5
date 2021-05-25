@@ -2,7 +2,8 @@ package com.example.artsell.controller;
 
 import java.io.Serializable;
 
-import com.example.jpetstore.domain.Order;
+import com.example.artsell.domain.Order;
+
 
 @SuppressWarnings("serial")
 public class OrderForm implements Serializable {

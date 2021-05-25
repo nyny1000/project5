@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,11 +14,12 @@ import com.example.artsell.dao.AuctionItemDao;
 import com.example.artsell.dao.CategoryDao;
 import com.example.artsell.dao.InterestingItemDao;
 import com.example.artsell.dao.ItemDao;
+import com.example.artsell.dao.OrderDao;
 import com.example.artsell.domain.Account;
 import com.example.artsell.domain.Category;
 import com.example.artsell.domain.Item;
 import com.example.artsell.domain.ItemForm;
-import com.example.jpetstore.domain.Order;
+import com.example.artsell.domain.Order;
 
 @Service
 @Transactional
@@ -33,7 +35,10 @@ public class ArtSellImpl implements ArtSellFacade {
 	private InterestingItemDao interestingItemDao;
 	@Autowired
 	private AuctionItemDao auctionItemDao;
-	
+	@Autowired
+	private OrderDao orderDao;
+	@Autowired
+	private ThreadPoolTaskScheduler scheduler;
 
 	//ny수정
 	@Override
@@ -128,9 +133,14 @@ public class ArtSellImpl implements ArtSellFacade {
 	}
 
 	@Override
-	public Order getOrder(int orderId) {
+	public Order getOrder(String itemId, String userId) {
 		// TODO Auto-generated method stub
-		return null;
+		return orderDao.getOrder(itemId, userId);
+	}
+	
+	@Override
+	public void SaveAuctionedItem(Order order) {
+		orderDao.SaveAuctionedItem(order);
 	}
 
 	@Override
@@ -188,6 +198,7 @@ public class ArtSellImpl implements ArtSellFacade {
 		return auctionItemDao.getBuyersByItemId(itemId);
 	}
 	
+
 	@Override
 	public int getItemPrice(String itemId) {
 		return itemDao.getItemPrice(itemId);
@@ -196,5 +207,22 @@ public class ArtSellImpl implements ArtSellFacade {
 	@Override
 	public void updateReload(String itemId, int minPrice, Date deadline, String userId) {
 		itemDao.updateReload(itemId, minPrice, deadline, userId);
+	}
+
+	public void updatePrice(String userId, String itemId, int price) {
+		auctionItemDao.updatePrice(userId, itemId, price);
+	}
+
+	@Override
+	public void auctionScheduler(Date closingTime) {
+		// TODO Auto-generated method stub
+		Runnable updateTableRunner = new Runnable() {
+			@Override
+			public void run() {
+				
+			}
+		};
+		
+		
 	}
 }

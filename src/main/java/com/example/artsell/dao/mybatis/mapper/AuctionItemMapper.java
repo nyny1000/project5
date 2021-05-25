@@ -13,7 +13,7 @@ import com.example.artsell.domain.AuctionItem;
 public interface AuctionItemMapper {
 	AuctionItem getAuctionItemByItemIdAndUserId(String itemId, String userId);
 
-	Map<String, Integer> getBuyersByItemId(String itemId);
+	List<AuctionItem> getBuyersByItemId(String itemId);
 
 	List<AuctionItem> getAllAuctionItemByUserId(String userId);
 
