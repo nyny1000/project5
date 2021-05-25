@@ -91,10 +91,10 @@ public class JoinAuctionController {
 
    // 아이템아이디에 해당하는 경매참여자들
    @RequestMapping("/auction/info")
-   public String viewAutionJoinerList(@RequestParam("ItemId") String itemId, ModelMap model) {   
+   public String viewAutionJoinerList(@RequestParam("itemId") String itemId, ModelMap model) {   
       Map<String, Integer> buyers = this.artSell.getBuyersByItemId(itemId);
       model.put("buyers", buyers);
-      return "auction/myAuctionList";
+      return "auction/auction_buyer";
    }
 
    
