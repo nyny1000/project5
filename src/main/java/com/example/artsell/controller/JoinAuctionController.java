@@ -32,17 +32,16 @@ public class JoinAuctionController {
    public void addAuctionItem(@ModelAttribute("userSession") UserSession userSession, 
          @RequestParam("itemId") String itemId, 
          @RequestParam("price") int price) throws Exception {
-	  AuctionItem auctionItem;
 	  String userId = userSession.getAccount().getUserId();
-      if (auctionItem.isNewUserPrice(userId, itemId)) { //헌값 수정!
+      if (artSell.isNewUserPrice(userId, itemId) > 0) { //헌값 수정!
             artSell.updatePrice(userId, itemId, price);
       }
       else {   //새로운 값
          artSell.addPrice(userId, itemId, price);
       }
       
-      if (artSell.getBestPrice() < price) { //최고값이면
-         artSell.updateItemBestPrice(price);
+      if (artSell.calcBestPrice(itemId) < price) { //최고값이면
+         artSell.updateItemBestPrice(itemId, price);
       }
       else {
          throw new Exception("error");
