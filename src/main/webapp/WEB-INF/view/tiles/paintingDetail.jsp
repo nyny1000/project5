@@ -32,7 +32,8 @@
          <td colspan="2" width="40" height="8"><c:out value="${item.description}" /></td>
       </tr>
    </table>
-   <a href="<c:url value="/auction/info" />">경매 참여</a>
+   <a href="<c:url value="/auction/info">
+   		<c:param name="itemId" value="${item.itemId}" /></c:url>">경매 참여</a>
 
    <c:if test="${isInterested == 0}">
       <a href="<c:url value="/interesting/add">

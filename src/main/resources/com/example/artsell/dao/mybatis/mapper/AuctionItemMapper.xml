@@ -10,4 +10,9 @@
   	AND ITEMID = #{itemId}
   </select>
   
+  <select id="getBuyersByItemId" resultType="map">
+  	SELECT USERID, MYPRICE
+  	FROM AUCTIONITEM
+  	WHERE ITEMID = #{itemId} AND STATE = 0
+  </select>
 </mapper>

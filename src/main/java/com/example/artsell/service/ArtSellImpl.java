@@ -1,12 +1,14 @@
 package com.example.artsell.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.artsell.dao.AccountDao;
+import com.example.artsell.dao.AuctionItemDao;
 import com.example.artsell.dao.CategoryDao;
 import com.example.artsell.dao.InterestingItemDao;
 import com.example.artsell.dao.ItemDao;
@@ -28,6 +30,8 @@ public class ArtSellImpl implements ArtSellFacade {
 	private CategoryDao categoryDao;
 	@Autowired
 	private InterestingItemDao interestingItemDao;
+	@Autowired
+	private AuctionItemDao auctionItemDao;
 	
 
 	//ny수정
@@ -83,21 +87,6 @@ public class ArtSellImpl implements ArtSellFacade {
 		// TODO Auto-generated method stub
 		return categoryDao.getCategory(categoryId);
 	}
-
-	/*
-	 * @Override public List<Item> searchItemList(String keywords, String
-	 * categoryId) { if (categoryId != null) {
-	 * itemDao.searchItemListByKewordInCate(keywords, categoryId); } else {
-	 * itemDao.searchItemListByKeword(keywords); } }
-	 * 
-	 * @Override public List<Item> searchItemListByArtist(String keywords, String
-	 * artist, String categoryId) { // TODO Auto-generated method stub if
-	 * (categoryId != null) { if (keywords != null) {
-	 * itemDao.searchItemListByAllInCate(keywords, artist, categoryId); } else {
-	 * itemDao.searchItemListByArtistInCate(artist, categoryId); } } else { if
-	 * (keywords != null) { itemDao.searchItemListByArtist(artist); } else {
-	 * itemDao.searchItemListByAll(keywords, artist); } } }
-	 */
 
 	@Override
 	public List<Item> getItemListByProduct(String productId) {
@@ -190,6 +179,12 @@ public class ArtSellImpl implements ArtSellFacade {
 	@Override
 	public int isAuctioning(String itemId) {
 		return itemDao.isAuctioning(itemId);
+	}
+
+	@Override
+	public Map<String, Integer> getBuyersByItemId(String itemId) {
+		// TODO Auto-generated method stub
+		return auctionItemDao.getBuyersByItemId(itemId);
 	}
 
 }
