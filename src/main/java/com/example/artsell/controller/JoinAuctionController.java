@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.artsell.domain.AuctionItem;
 import com.example.artsell.service.ArtSellFacade;
 
 @Controller
@@ -29,7 +30,7 @@ public class JoinAuctionController {
    public void addAuctionItem(@ModelAttribute("userSession") UserSession userSession, 
          @RequestParam("itemId") String itemId, 
          @RequestParam("price") int price) throws Exception {
-	  
+	  AuctionItem auctionItem;
 	  String userId = userSession.getAccount().getUserId();
       if (auctionItem.isNewUserPrice(userId, itemId)) { //헌값 수정!
             artSell.updatePrice(userId, itemId, price);
