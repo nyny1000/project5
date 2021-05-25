@@ -2,6 +2,7 @@ package com.example.artsell.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
@@ -33,17 +34,16 @@ public class JoinAuctionController {
    public void addAuctionItem(@ModelAttribute("userSession") UserSession userSession, 
          @RequestParam("itemId") String itemId, 
          @RequestParam("price") int price) throws Exception {
-	  AuctionItem auctionItem;
 	  String userId = userSession.getAccount().getUserId();
-      if (auctionItem.isNewUserPrice(userId, itemId)) { //헌값 수정!
+      if (artSell.isNewUserPrice(userId, itemId) > 0) { //헌값 수정!
             artSell.updatePrice(userId, itemId, price);
       }
       else {   //새로운 값
          artSell.addPrice(userId, itemId, price);
       }
       
-      if (artSell.getBestPrice() < price) { //최고값이면
-         artSell.updateItemBestPrice(price);
+      if (artSell.calcBestPrice(itemId) < price) { //최고값이면
+         artSell.updateItemBestPrice(itemId, price);
       }
       else {
          throw new Exception("error");
@@ -88,7 +88,7 @@ public class JoinAuctionController {
    
    //해당 아이템을 낙찰상태로 바꿔주기
    public static void changeState(String userId, String itemId) {
-	   artSell.changeState(userId, itemId);
+	   artSell.changeState(userId, itemId, 1);
    }
       
 
@@ -103,12 +103,12 @@ public class JoinAuctionController {
    
 
    
-   //유찰
+   //유찰 //기간은 현재 날짜에서 7일후
    @RequestMapping("/auction/fail")
     public ModelAndView miscarry(@ModelAttribute("userSession") UserSession userSession, 
    @RequestParam("itemId") String itemId) {
       String userId = userSession.getAccount().getUserId();
-      int minPrice= artSell.getItemPrice(minPrice);
+      int minPrice= artSell.getItemPrice(itemId);
       minPrice = (int) (minPrice * 0.7);
 
       Calendar cal = Calendar.getInstance();
@@ -116,7 +116,13 @@ public class JoinAuctionController {
       DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
       cal.add(Calendar.DATE, 7);
-      Date deadline = df.parse(df.format(cal.getTime()));
+      Date deadline = null;
+      try {
+    	  deadline = df.parse(df.format(cal.getTime()));
+      } catch (ParseException e) {
+          e.printStackTrace();
+      }
+      
       ModelAndView model = new ModelAndView("myPainting_bidding");
       model.addObject("minPrice", minPrice);
       model.addObject("deadline", deadline);
@@ -126,9 +132,10 @@ public class JoinAuctionController {
    
    @RequestMapping("/auction/fail/ok")
     public String Reupload(@ModelAttribute("userSession") UserSession userSession, @RequestParam("itemId") String itemId, 
-          @RequestParam("minPrice") String minPrice, @RequestParam("deadline") String deadline, RedirectAttributes redirectAttributes) {
-
-      artSell.updateReload(itemId, minPrice, deadline);
+          @RequestParam("minPrice") int minPrice, @RequestParam("deadline") Date deadline, RedirectAttributes redirectAttributes) {
+	   String userId = userSession.getAccount().getUserId();
+      artSell.updateReload(itemId, minPrice, deadline, userId);
+      
       redirectAttributes.addAttribute("itemId", itemId);
       
       return "redirect:/shop/viewItem";
@@ -137,8 +144,9 @@ public class JoinAuctionController {
    //유찰 안하겠다고 했을때
    @RequestMapping("/auction/fail/no")
     public String Reupload(@ModelAttribute("userSession") UserSession userSession, @RequestParam("itemId") String itemId) {
-      artSell.deleteItem(itemId);
-      return "/home";
+	   String userId = userSession.getAccount().getUserId(); 
+      artSell.deleteItem(userId, itemId);
+      return "redirect:/home";
    }
 
    @RequestMapping("/auction/scheduler")

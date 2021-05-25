@@ -1,5 +1,7 @@
 package com.example.artsell.dao.mybatis;
 
+
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +22,7 @@ public class MybatisAuctionItemDao implements AuctionItemDao {
 	@Override
 	public Map<String, Integer> getBuyersByItemId(String itemId) throws DataAccessException {
 		// TODO Auto-generated method stub
+
 		List<AuctionItem> list = auctionItemMapper.getBuyersByItemId(itemId);
 		Map<String, Integer> buyer = new HashMap<String, Integer>();
 		for (int i = 0; i < list.size(); i++) {
@@ -59,17 +62,32 @@ public class MybatisAuctionItemDao implements AuctionItemDao {
 	}
 
 	@Override
-	public void updatePrice(String userId) throws DataAccessException {
+	public void updatePrice(String userId, String itemId, int price) throws DataAccessException {
 		// TODO Auto-generated method stub
-		auctionItemMapper.updatePrice(userId);
+		auctionItemMapper.updatePrice(userId, itemId, price);
 	}
 
+	@Override
+	public void updateItemBestPrice(String itemId, int price) throws DataAccessException {
+		auctionItemMapper.updateItemBestPrice(itemId, price);
+	}
+	
 	@Override
 	public void deleteAuctionItem(String itemId) throws DataAccessException {
 		// TODO Auto-generated method stub
 		auctionItemMapper.deleteAuctionItem(itemId);
 	}
+	
+	@Override
+	public void addPrice(String userId, String itemId, int price) throws DataAccessException {
+		auctionItemMapper.addPrice(userId, itemId, price);
+	}
 
+	@Override
+	public int isNewUserPrice(String userId, String itemId) throws DataAccessException {
+		return auctionItemMapper.isNewUserPrice(userId, itemId);
+	}
+	
 	@Override
 	public List<AuctionItem> getAuctionedItem(String userId) throws DataAccessException {
 		// TODO Auto-generated method stub
@@ -89,8 +107,9 @@ public class MybatisAuctionItemDao implements AuctionItemDao {
 	}
 
 	@Override
-	public void changeState(String userId, String itemId) throws DataAccessException {
+	public void changeState(String userId, String itemId, int state) throws DataAccessException {
 		// TODO Auto-generated method stub
-		auctionItemMapper.changeState(userId, itemId);
+		auctionItemMapper.changeState(userId, itemId, state);
 	}
+
 }
