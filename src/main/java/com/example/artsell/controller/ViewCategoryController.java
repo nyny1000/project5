@@ -38,8 +38,8 @@ public class ViewCategoryController {
 	{
 		Category category = this.artSell.getCategory(categoryId);
 		PagedListHolder<Item> itemList = new PagedListHolder<Item>(this.artSell.getItemListByCategory(categoryId));
-		//itemList.setPageSize(10);
-		itemList.setPageSize(1);
+		itemList.setPageSize(6);
+		//itemList.setPageSize(1);
 		model.put("category", category);
 		model.put("itemList", itemList);
 		List<String> artistList = new ArrayList<String>(this.artSell.getArtistList());

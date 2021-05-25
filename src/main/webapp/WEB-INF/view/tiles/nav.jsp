@@ -3,17 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	
 	<div align="center">
-		<a href="<c:url value="/shop/viewCategory"/>">풍경화</a> <img border="0"
+		<a href="<c:url value="/shop/viewCategory?categoryId=landscape"/>">풍경화</a> <img border="0"
 			src="../images/separator.gif" /> <a
-			href="<c:url value="/shop/viewCategory"/>">인물화</a> <img border="0"
+			href="<c:url value="/shop/viewCategory?categoryId=figure-painting"/>">인물화</a> <img border="0"
 			src="../images/separator.gif" /> <a
-			href="<c:url value="/shop/viewCategory"/>">수묵화</a> <img border="0"
+			href="<c:url value="/shop/viewCategory?categoryId=ink-and-wash"/>">수묵화</a> <img border="0"
 			src="../images/separator.gif" /> <a
-			href="<c:url value="/shop/viewCategory"/>">추상화</a> <img border="0"
+			href="<c:url value="/shop/viewCategory?categoryId=abstract"/>">추상화</a> <img border="0"
 			src="../images/separator.gif" /> <a
-			href="<c:url value="/shop/viewCategory"/>">정물화</a> <img border="0"
+			href="<c:url value="/shop/viewCategory?categoryId=stillLife"/>">정물화</a> <img border="0"
 			src="../images/separator.gif" /> <a
-			href="<c:url value="/shop/viewCategory"/>">동물화</a>
+			href="<c:url value="/shop/viewCategory?categoryId=animalization"/>">동물화</a>
 	</div>
 	<table class="search">
 		<tr>
