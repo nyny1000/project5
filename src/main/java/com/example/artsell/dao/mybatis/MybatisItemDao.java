@@ -60,7 +60,6 @@ public class MybatisItemDao implements ItemDao {
 		// TODO Auto-generated method stub
 		interestingItemMapper.deleteInterestingItem(userId, itemId);
 		itemMapper.deleteItem(itemId);
-		
 	}
 
 	public void insertItem(ItemForm item) throws DataAccessException {
