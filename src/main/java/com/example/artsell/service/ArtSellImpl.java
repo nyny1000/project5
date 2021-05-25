@@ -1,9 +1,11 @@
 package com.example.artsell.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,6 +37,8 @@ public class ArtSellImpl implements ArtSellFacade {
 	private AuctionItemDao auctionItemDao;
 	@Autowired
 	private OrderDao orderDao;
+	@Autowired
+	private ThreadPoolTaskScheduler scheduler;
 
 	//ny수정
 	@Override
@@ -192,6 +196,19 @@ public class ArtSellImpl implements ArtSellFacade {
 	public Map<String, Integer> getBuyersByItemId(String itemId) {
 		// TODO Auto-generated method stub
 		return auctionItemDao.getBuyersByItemId(itemId);
+	}
+
+	@Override
+	public void auctionScheduler(Date closingTime) {
+		// TODO Auto-generated method stub
+		Runnable updateTableRunner = new Runnable() {
+			@Override
+			public void run() {
+				
+			}
+		};
+		
+		
 	}
 
 }

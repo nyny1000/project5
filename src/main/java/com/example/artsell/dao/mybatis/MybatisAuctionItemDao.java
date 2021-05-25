@@ -1,5 +1,6 @@
 package com.example.artsell.dao.mybatis;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +20,12 @@ public class MybatisAuctionItemDao implements AuctionItemDao {
 	@Override
 	public Map<String, Integer> getBuyersByItemId(String itemId) throws DataAccessException {
 		// TODO Auto-generated method stub
-		return auctionItemMapper.getBuyersByItemId(itemId);
+		List<AuctionItem> list = auctionItemMapper.getBuyersByItemId(itemId);
+		Map<String, Integer> buyer = new HashMap<String, Integer>();
+		for (int i = 0; i < list.size(); i++) {
+			buyer.put(list.get(i).getUserId(), list.get(i).getMyPrice());
+		}
+		return buyer;
 	}
 
 	@Override
@@ -87,5 +93,4 @@ public class MybatisAuctionItemDao implements AuctionItemDao {
 		// TODO Auto-generated method stub
 		auctionItemMapper.changeState(userId, itemId);
 	}
-
 }
