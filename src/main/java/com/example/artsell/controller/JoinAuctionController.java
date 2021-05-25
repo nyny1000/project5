@@ -2,6 +2,7 @@ package com.example.artsell.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
@@ -113,7 +114,13 @@ public class JoinAuctionController {
       DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
       cal.add(Calendar.DATE, 7);
-      Date deadline = df.parse(df.format(cal.getTime()));
+      Date deadline = null;
+      try {
+    	  deadline = df.parse(df.format(cal.getTime()));
+      } catch (ParseException e) {
+          e.printStackTrace();
+      }
+      
       ModelAndView model = new ModelAndView("myPainting_bidding");
       model.addObject("minPrice", minPrice);
       model.addObject("deadline", deadline);
@@ -134,8 +141,9 @@ public class JoinAuctionController {
    //유찰 안하겠다고 했을때
    @RequestMapping("/auction/fail/no")
     public String Reupload(@ModelAttribute("userSession") UserSession userSession, @RequestParam("itemId") String itemId) {
-      artSell.deleteItem(itemId);
-      return "/home";
+	   String userId = userSession.getAccount().getUserId(); 
+      artSell.deleteItem(userId, itemId);
+      return "redirect:/home";
    }
 
 }

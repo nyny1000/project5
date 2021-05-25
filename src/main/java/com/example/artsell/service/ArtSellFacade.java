@@ -1,5 +1,6 @@
 package com.example.artsell.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -78,5 +79,7 @@ public interface ArtSellFacade {
 	Map<String, Integer> getBuyersByItemId(String itemId);
 	
 	int getItemPrice(String itemId);
+	
+	void updateReload(String itemId, int minPrice, Date deadline);
 	
 }

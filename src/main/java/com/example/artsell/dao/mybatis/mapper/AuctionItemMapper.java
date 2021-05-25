@@ -1,5 +1,6 @@
 package com.example.artsell.dao.mybatis.mapper;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -33,4 +34,7 @@ public interface AuctionItemMapper {
 	int countAuctionJoinList(String userId) throws DataAccessException;
 
 	void changeState(String userId, String itemId) throws DataAccessException;
+	
+	void updateReload(String itemId, int minPrice, Date deadline) throws DataAccessException;
+	
 }

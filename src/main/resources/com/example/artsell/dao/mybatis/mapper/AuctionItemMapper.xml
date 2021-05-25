@@ -15,4 +15,8 @@
   	FROM AUCTIONITEM
   	WHERE ITEMID = #{itemId} AND STATE = 0
   </select>
+  
+  <update id="updateReload">
+  	UPDATE 
+  </update>
 </mapper>

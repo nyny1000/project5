@@ -1,5 +1,6 @@
 package com.example.artsell.dao.mybatis;
 
+import java.util.Date;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,10 @@ public class MybatisAuctionItemDao implements AuctionItemDao {
 	@Override
 	public Map<String, Integer> getBuyersByItemId(String itemId) throws DataAccessException {
 		// TODO Auto-generated method stub
-		return AuctionItemMapper.;
+		return auctionItemMapper.getBuyersByItemId(itemId);
+	}
+	
+	public void updateReload(String itemId, int minPrice, Date deadline) throws DataAccessException {
+		auctionItemMapper.updateReload(itemId, minPrice, deadline);
 	}
 }

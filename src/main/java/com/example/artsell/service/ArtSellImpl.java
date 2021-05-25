@@ -1,5 +1,6 @@
 package com.example.artsell.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -191,5 +192,9 @@ public class ArtSellImpl implements ArtSellFacade {
 	public int getItemPrice(String itemId) {
 		return itemDao.getItemPrice(itemId);
 	}
-
+	
+	@Override
+	public void updateReload(String itemId, int minPrice, Date deadline) {
+		auctionItemDao.updateReload(itemId, minPrice, deadline);
+	}
 }
