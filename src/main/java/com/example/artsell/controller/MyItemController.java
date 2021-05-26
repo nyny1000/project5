@@ -3,11 +3,7 @@ package com.example.artsell.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -102,8 +98,11 @@ public class MyItemController {
 		artSell.insertItem(item);
 		
 		//request.getSession().setAttribute("itemSession", this.artSell.getItem(item.getItemId()));
-		redirect.addAttribute("item", item);
-		return "/auction/scheduler";
+		System.out.println("redirection attribute 전");
+		//redirect.addAttribute("AuctionItem", this.artSell.getItem(item.getItemId()));
+		redirect.addAttribute("itemId", item.getItemId());
+		System.out.println("redirection 전");
+		return "redirect:/auction/scheduler";
 		//return "redirect:/myitem/list";
 	}
 	
