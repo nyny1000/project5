@@ -239,8 +239,8 @@ public class ArtSellImpl implements ArtSellFacade {
 	}
 	
 	@Override
-	public int countAuctionJoinList(String userId) {
-		return auctionItemDao.countAuctionJoinList(userId);
+	public List<AuctionItem> countAuctionJoinList(String itemId) {
+		return auctionItemDao.countAuctionJoinList(itemId);
 	}
 	
 	@Override

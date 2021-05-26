@@ -67,7 +67,7 @@ public class JoinAuctionController {
       List<AuctionItem> auctionBuyerList = artSell.getBuyersByItemId(itemId);
    
    
-      if (artSell.countAuctionJoinList(userId) != 0) // 후순위자가 있다면
+      if (artSell.countAuctionJoinList(itemId) != null) // 후순위자가 있다면
       {//후순위자에게 낙찰
          AuctionItem secondAuctionitem = auctionBuyerList.get(0); //후순위자
          String secondUser = secondAuctionitem.getUserId();
@@ -78,7 +78,7 @@ public class JoinAuctionController {
          
          changeState(secondUser, itemId, 1);
          
-         return "/auction/list";
+         return "redirect:/auction/list";
    
       }
       else{

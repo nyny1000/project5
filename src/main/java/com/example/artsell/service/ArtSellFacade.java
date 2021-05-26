@@ -107,7 +107,7 @@ public interface ArtSellFacade {
 	
 	void deleteAuctionItem(String userId, String itemId);
 	
-	int countAuctionJoinList(String userId);
+	List<AuctionItem> countAuctionJoinList(String itemId);
 	
 	void changeState(String userId, String itemId, int state);
 	

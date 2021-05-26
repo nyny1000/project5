@@ -100,9 +100,9 @@
 	</select>
 
 
-	<select id="countAuctionJoinList" resultType="int">
-		select count(*)
-		from auctionItem where userId = #{userId}
+	<select id="countAuctionJoinList" resultType="AuctionItem">
+		select *
+		from auctionItem where itemId = #{itemId} and state != 5
 	</select>
 
 	<update id="changeState" parameterType="String">
