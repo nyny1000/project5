@@ -151,12 +151,13 @@ public class JoinAuctionController {
    }
 
    @RequestMapping("/auction/scheduler")
-   public String handleRequest(HttpServletRequest request) {
-	  Item item = (Item) request.getSession().getAttribute("item");
+   public String handleRequest(@RequestParam("item") Item item) {
+	  //Item item = (Item) request.getSession().getAttribute("item");
 	  Date deadline = item.getDeadline();
 	  
 	  artSell.auctionScheduler(deadline, item.getItemId());
-	  
+	  System.out.println("부르기전");
 	  return "redirect:/myitem/list";
+	  //return "main";
    }
 }

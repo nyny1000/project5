@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.artsell.domain.Category;
 import com.example.artsell.domain.Item;
@@ -72,7 +73,8 @@ public class MyItemController {
 	
 	@PostMapping("/myitem/add")
 	public String addMyItem(@Valid @ModelAttribute("item") ItemForm item, Errors result,
-			@ModelAttribute("userSession") UserSession userSession, @RequestParam("picture") MultipartFile picture, HttpServletRequest request) {
+			@ModelAttribute("userSession") UserSession userSession, @RequestParam("picture") MultipartFile picture, HttpServletRequest request,
+			RedirectAttributes redirect) {
 //		System.out.println(item.getBestPrice());
 		
 		try {
@@ -99,7 +101,8 @@ public class MyItemController {
 		item.setUserId(userSession.getAccount().getUserId());
 		artSell.insertItem(item);
 		
-		request.getSession().setAttribute("itemSession", this.artSell.getItem(item.getItemId()));
+		//request.getSession().setAttribute("itemSession", this.artSell.getItem(item.getItemId()));
+		redirect.addAttribute("item", item);
 		return "/auction/scheduler";
 		//return "redirect:/myitem/list";
 	}

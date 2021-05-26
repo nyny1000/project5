@@ -255,6 +255,7 @@ public class ArtSellImpl implements ArtSellFacade {
 			}
 		};
 		
+		System.out.println("scheduler");
 		scheduler.schedule(updateTableRunner, closingTime);
 		System.out.println("updateTableRunner has been scheduled to execute at " + closingTime);
 	}
