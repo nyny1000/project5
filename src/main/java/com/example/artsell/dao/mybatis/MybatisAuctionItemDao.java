@@ -96,9 +96,9 @@ public class MybatisAuctionItemDao implements AuctionItemDao {
 	}
 
 	@Override
-	public int countAuctionJoinList(String userId) throws DataAccessException {
+	public List<AuctionItem> countAuctionJoinList(String itemId) throws DataAccessException {
 		// TODO Auto-generated method stub
-		return auctionItemMapper.countAuctionJoinList(userId);
+		return auctionItemMapper.countAuctionJoinList(itemId);
 	}
 
 	@Override

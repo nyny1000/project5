@@ -1,5 +1,7 @@
 package com.example.artsell.service;
 
+import java.util.Date;
+
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -24,6 +26,11 @@ public class PaintRegiValidator implements Validator {
 		if(file.isEmpty()){
             errors.rejectValue("picturefile", "upload.file.required");
         }
+		
+		Date deadline =  model.getDeadline();
+		if(deadline == null) {
+			errors.rejectValue("deadline", "NotBlank");
+		}
 //		if (file == null) {
 //			errors.rejectValue("picture", "upload.file.required");
 //		}

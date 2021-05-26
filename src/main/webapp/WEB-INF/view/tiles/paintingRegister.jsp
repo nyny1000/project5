@@ -29,8 +29,10 @@
 			</tr>
 			<tr>
 				<td>경매 마감 기한&nbsp;&nbsp;</td>
-				<td><input type="date" name="deadline" />
+				<td>
+				<input type="text" name = "deadline" id="deadline"><!-- <input type="date" name="deadline"  />-->
 				<form:errors path="deadline"/>
+				
 				</td>
 			</tr>
 			<tr>

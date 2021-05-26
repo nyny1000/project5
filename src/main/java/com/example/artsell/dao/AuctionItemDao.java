@@ -36,7 +36,7 @@ public interface AuctionItemDao {
 
 	List<AuctionItem> getOrderedItem(String userId) throws DataAccessException;
 
-	int countAuctionJoinList(String userId) throws DataAccessException;
+	List<AuctionItem> countAuctionJoinList(String userId) throws DataAccessException;
 
 	void changeState(String userId, String itemId, int state) throws DataAccessException;
 
