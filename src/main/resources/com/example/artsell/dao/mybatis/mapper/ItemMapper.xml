@@ -116,6 +116,7 @@
   	INSERT INTO ITEM(itemId, itemName, minPrice, bestPrice, deadline, description, picture, artist, categoryId, userId)
   		VALUES (#{itemId}, #{itemName}, #{minPrice}, #{bestPrice}, #{deadline}, #{description}, #{picture}, #{artist}, #{categoryId}, #{userId})
   </insert>
+	<!-- 테스트하려면 to_date('20210527015400', 'YYYYMMDDHH24MISS') -->
 
   <update id="updateItemPrice" parameterType="Item">
     UPDATE ITEM 
