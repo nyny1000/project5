@@ -14,7 +14,7 @@
   		   PICTURE,
   		   ARTIST,
   		   CATEGORYID,
-  		   USERID AS sellerId
+  		   USERID
   	FROM ITEM
   	<where>
   		<if test="keywords != null">
@@ -39,7 +39,7 @@
   		   PICTURE,
   		   ARTIST,
   		   CATEGORYID,
-  		   USERID AS sellerId
+  		   USERID
   	FROM ITEM
   	WHERE CATEGORYID = #{categoryId}
   	  AND ITEMID NOT IN (SELECT ITEMID
@@ -56,7 +56,7 @@
   		   PICTURE,
   		   ARTIST,
   		   CATEGORYID,
-  		   USERID AS sellerId
+  		   USERID
   	FROM ITEM
   	WHERE ITEMID = #{itemId}
   </select>
@@ -71,7 +71,7 @@
   		   PICTURE,
   		   ARTIST,
   		   CATEGORYID,
-  		   USERID AS sellerId
+  		   USERID
   	FROM ITEM
   	WHERE USERID = #{userId}
   	  AND ITEMID NOT IN (SELECT ITEMID
@@ -101,7 +101,7 @@
   <select id="isAuctioning" parameterType="String" resultType="int">
   	SELECT count(*)
   	FROM AUCTIONITEM
-  	WHERE ITEMID = #{itemId}
+  	WHERE ITEMID = #{itemId} and state != 5
   </select>
   
   <delete id="deleteItem" parameterType="String">

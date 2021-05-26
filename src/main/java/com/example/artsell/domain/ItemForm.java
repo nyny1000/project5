@@ -38,6 +38,12 @@ public class ItemForm {
 	
 	
 	
+//	public String getDd() {
+//		return dd;
+//	}
+//	public void setDd(String dd) {
+//		this.dd = dd;
+//	}
 	public MultipartFile getPicturefile() {
 		return picturefile;
 	}

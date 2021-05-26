@@ -75,17 +75,19 @@ public class MyItemController {
 			@ModelAttribute("userSession") UserSession userSession, HttpServletRequest request) {
 //		System.out.println(item.getBestPrice());
 		
-		
+		System.out.println(item.getDeadline());
 		  new PaintRegiValidator().validate(item, result); if (result.hasErrors()) { 
 		  System.out.println("a"); return "paintingRegister"; }
 		 
 		
 		try {
 			String fileName = item.getPicturefile().getOriginalFilename();
+			UUID uuid = UUID.randomUUID();
+			String newFileName = uuid.toString() + "_" + fileName;
 			String savePath = request.getSession().getServletContext().getRealPath("/files/");
-			item.getPicturefile().transferTo(new File(savePath + fileName));
+			item.getPicturefile().transferTo(new File(savePath + newFileName));
 			
-			item.setPicture("/files/" + fileName);
+			item.setPicture("/files/" + newFileName);
 		} catch (IllegalStateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -104,9 +106,9 @@ public class MyItemController {
 		item.setUserId(userSession.getAccount().getUserId());
 		artSell.insertItem(item);
 		
-		request.getSession().setAttribute("itemSession", this.artSell.getItem(item.getItemId()));
-		return "/auction/scheduler";
-		//return "redirect:/myitem/list";
+		//request.getSession().setAttribute("itemSession", this.artSell.getItem(item.getItemId()));
+		//return "/auction/scheduler";
+		return "redirect:/myitem/list";
 	}
 	
 	@GetMapping("/myitem/add")
