@@ -288,4 +288,10 @@ public class ArtSellImpl implements ArtSellFacade {
 		scheduler.schedule(updateTableRunner, closingTime);
 		System.out.println("updateTableRunner has been scheduled to execute at " + closingTime);
 	}
+
+	@Override
+	public void insertAuctionItem(AuctionItem auctionItem) {
+		// TODO Auto-generated method stub
+		auctionItemDao.insertAuctionItem(auctionItem);
+	}
 }
