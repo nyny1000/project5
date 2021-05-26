@@ -62,9 +62,8 @@ public class JoinAuctionController {
       artSell.deleteAuctionItem(userId, itemId);
    
    
-      //AuctionedItem auctionedItem = artSell.getOrder(itemid); //해당 아이템가져와
    
-      List<AuctionItem> auctionBuyerList = artSell.countAuctionJoinList(itemId);
+      List<AuctionItem> auctionBuyerList = artSell.getBuyersByItemId(itemId);
    
    
       if (auctionBuyerList != null) // 후순위자가 있다면

@@ -103,6 +103,8 @@
 	<select id="countAuctionJoinList" resultType="AuctionItem">
 		select *
 		from auctionItem where itemId = #{itemId} and state != 4
+		and ORDER BY myPrice DESC
+		
 	</select>
 
 	<update id="changeState" parameterType="String">
