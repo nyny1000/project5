@@ -159,7 +159,7 @@ public class JoinAuctionController {
 	  
 	  AuctionItem auctionItem = new AuctionItem();
 	  auctionItem.setItemId(itemId);
-	  auctionItem.setState(5);
+	  auctionItem.setState(4);
 	  auctionItem.setUserId(userSession.getAccount().getUserId());
 	  artSell.insertAuctionItem(auctionItem);
 	  

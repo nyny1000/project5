@@ -273,9 +273,8 @@ public class ArtSellImpl implements ArtSellFacade {
 				if (itemDao.isCloseBid(itemId, curTime)) {
 					if (auctionItemDao.getBuyersByItemId(itemId) == null) {
 						//유찰
-						//바꿔야함!~!~!
 						String sellerId = itemDao.getItem(itemId).getUserId(); 
-						auctionItemDao.changeState(sellerId, itemId, 4);
+						auctionItemDao.changeState(sellerId, itemId, 5);
 					} else {				//해당 옥션 아이템에 낙찰 상태를 바꾸는 것.
 						int bestPrice = auctionItemDao.calcBestPrice(itemId);
 						auctionItemDao.bid(bestPrice, itemId);
