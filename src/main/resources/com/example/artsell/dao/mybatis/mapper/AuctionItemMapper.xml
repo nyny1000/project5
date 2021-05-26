@@ -102,7 +102,7 @@
 
 	<select id="countAuctionJoinList" resultType="AuctionItem">
 		select *
-		from auctionItem where itemId = #{itemId} and state != 5
+		from auctionItem where itemId = #{itemId} and state != 4
 	</select>
 
 	<update id="changeState" parameterType="String">

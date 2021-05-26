@@ -64,10 +64,10 @@ public class JoinAuctionController {
    
       //AuctionedItem auctionedItem = artSell.getOrder(itemid); //해당 아이템가져와
    
-      List<AuctionItem> auctionBuyerList = artSell.getBuyersByItemId(itemId);
+      List<AuctionItem> auctionBuyerList = artSell.countAuctionJoinList(itemId);
    
    
-      if (artSell.countAuctionJoinList(itemId) != null) // 후순위자가 있다면
+      if (auctionBuyerList != null) // 후순위자가 있다면
       {//후순위자에게 낙찰
          AuctionItem secondAuctionitem = auctionBuyerList.get(0); //후순위자
          String secondUser = secondAuctionitem.getUserId();
