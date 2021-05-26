@@ -135,11 +135,11 @@
   	where itemId = #{itemId}
   </select>
   
-  <select id="isCloseBid" resultType="auctionItem">
+  <select id="isCloseBid" resultType="int">
   		<![CDATA[
-			SELECT ITEMID
+			SELECT COUNT(ITEMID)
 			FROM ITEM
-			WHERE DEADLINE <= #{curTime} and ITEMID = #{ITEMID}
+			WHERE DEADLINE <= #{curTime} and ITEMID = #{itemId}
 		]]>
   </select>
 </mapper>

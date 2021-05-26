@@ -28,7 +28,7 @@ import com.example.artsell.service.ArtSellFacade;
 @SessionAttributes("userSession")
 public class JoinAuctionController {
    @Autowired
-   private static ArtSellFacade artSell;
+   private ArtSellFacade artSell;
    
    //입찰, 재입찰
    @RequestMapping("/auction/bid")
@@ -152,12 +152,14 @@ public class JoinAuctionController {
    }
 
    @RequestMapping("/auction/scheduler")
-   public String handleRequest(HttpServletRequest request) {
-	  Item item = (Item) request.getSession().getAttribute("item");
+   public String handleRequest(@RequestParam("itemId") String itemId) {
+	  System.out.println(itemId);
+	  Item item = this.artSell.getItem(itemId);
 	  Date deadline = item.getDeadline();
 	  
 	  artSell.auctionScheduler(deadline, item.getItemId());
-	  
+	  System.out.println("부르기전");
 	  return "redirect:/myitem/list";
+	  //return "main";
    }
 }

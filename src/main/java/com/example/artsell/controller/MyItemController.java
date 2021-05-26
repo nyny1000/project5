@@ -3,9 +3,6 @@ package com.example.artsell.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.artsell.domain.Category;
 import com.example.artsell.domain.Item;
@@ -72,7 +70,8 @@ public class MyItemController {
 	
 	@PostMapping("/myitem/add")
 	public String addMyItem(@Valid @ModelAttribute("item") ItemForm item, Errors result,
-			@ModelAttribute("userSession") UserSession userSession, HttpServletRequest request) {
+			@ModelAttribute("userSession") UserSession userSession, HttpServletRequest request,
+			RedirectAttributes redirect) {
 //		System.out.println(item.getBestPrice());
 		
 		System.out.println(item.getDeadline());
@@ -107,8 +106,13 @@ public class MyItemController {
 		artSell.insertItem(item);
 		
 		//request.getSession().setAttribute("itemSession", this.artSell.getItem(item.getItemId()));
-		//return "/auction/scheduler";
-		return "redirect:/myitem/list";
+
+		System.out.println("redirection attribute 전");
+		//redirect.addAttribute("AuctionItem", this.artSell.getItem(item.getItemId()));
+		redirect.addAttribute("itemId", item.getItemId());
+		System.out.println("redirection 전");
+		return "redirect:/auction/scheduler";
+		//return "redirect:/myitem/list";
 	}
 	
 	@GetMapping("/myitem/add")
