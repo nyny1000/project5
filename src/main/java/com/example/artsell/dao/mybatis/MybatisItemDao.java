@@ -113,10 +113,11 @@ public class MybatisItemDao implements ItemDao {
 	}
 	
 	public boolean isCloseBid(String itemId, Date curTime) throws DataAccessException {
-		if (itemMapper.isCloseBid(itemId, curTime)) {
-			return true;
-		} else {
+		System.out.println("isCloseBid: " + itemMapper.isCloseBid(itemId, curTime));
+		if (itemMapper.isCloseBid(itemId, curTime) == 0) {
 			return false;
+		} else {
+			return true;
 		}
 	}
 }

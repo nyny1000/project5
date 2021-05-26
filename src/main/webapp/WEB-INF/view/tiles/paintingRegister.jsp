@@ -43,8 +43,8 @@
 				</td>
 			</tr> 
 			<tr>
-				<td colspan="2">작품 사진 첨부&nbsp;&nbsp;<input type="file" name="picture">
-				<form:errors path="picture"/></td>
+				<td colspan="2">작품 사진 첨부&nbsp;&nbsp;<input type="file" name="picturefile">
+				<form:errors path="picturefile"/></td>
 			</tr>
 			<tr><td colspan="2">그림설명</td>
 			</tr>

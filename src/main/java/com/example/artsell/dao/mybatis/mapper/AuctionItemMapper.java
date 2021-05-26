@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.artsell.domain.AuctionItem;
+import com.example.artsell.domain.AuctionedItem;
 
 @Mapper
 public interface AuctionItemMapper {
@@ -39,6 +40,10 @@ public interface AuctionItemMapper {
 	int countAuctionJoinList(String userId);
 
 	void changeState(String userId, String itemId, int state);
+	
+	List<AuctionItem> getItemListByAuctionItem(String userId);
+	
+	List<AuctionedItem> getItemListByAuctionedItem(String userId);
 
 	void bidSuccess(int bestPrice, String itemId);
 	

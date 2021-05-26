@@ -24,14 +24,26 @@ public class ItemForm {
 	@NotBlank
 	private String description;
 	
-	@NotNull
+	private MultipartFile picturefile;
+	//@NotNull
 	private String picture;
+//	@NotNull
+//	private MultipartFile picture;
 	
 	@NotBlank
 	private String artist;
 	@NotBlank
 	private String categoryId;
 	private String userId;
+	
+	
+	
+	public MultipartFile getPicturefile() {
+		return picturefile;
+	}
+	public void setPicturefile(MultipartFile picturefile) {
+		this.picturefile = picturefile;
+	}
 	
 	public String getItemId() {
 		return itemId;
@@ -72,6 +84,10 @@ public class ItemForm {
 
 //	public MultipartFile getPicture() {
 //		return picture;
+//	}
+//	
+//	public void setPicture(MultipartFile picture) {
+//		this.picture = picture;
 //	}
 	public String getPicture() {
 		return picture;

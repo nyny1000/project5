@@ -69,14 +69,19 @@ public class MyItemController {
 	
 	@PostMapping("/myitem/add")
 	public String addMyItem(@Valid @ModelAttribute("item") ItemForm item, Errors result,
-			@ModelAttribute("userSession") UserSession userSession, @RequestParam("picture") MultipartFile picture, HttpServletRequest request,
+			@ModelAttribute("userSession") UserSession userSession, HttpServletRequest request,
 			RedirectAttributes redirect) {
 //		System.out.println(item.getBestPrice());
 		
+		
+		  new PaintRegiValidator().validate(item, result); if (result.hasErrors()) { 
+		  System.out.println("a"); return "paintingRegister"; }
+		 
+		
 		try {
-			String fileName = picture.getOriginalFilename();
+			String fileName = item.getPicturefile().getOriginalFilename();
 			String savePath = request.getSession().getServletContext().getRealPath("/files/");
-			picture.transferTo(new File(savePath + fileName));
+			item.getPicturefile().transferTo(new File(savePath + fileName));
 			
 			item.setPicture("/files/" + fileName);
 		} catch (IllegalStateException e) {

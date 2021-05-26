@@ -64,7 +64,7 @@ public class JoinAuctionController {
    
       //AuctionedItem auctionedItem = artSell.getOrder(itemid); //해당 아이템가져와
    
-      List<AuctionItem> auctionBuyerList = artSell.getBuyersByItemId(itemid);
+      List<AuctionItem> auctionBuyerList = artSell.getBuyersByItemId(itemId);
    
    
       if (artSell.countAuctionJoinList(userId) != 0) // 후순위자가 있다면
@@ -88,7 +88,8 @@ public class JoinAuctionController {
    }
    
    //해당 아이템을 낙찰상태로 바꿔주기
-   public static void changeState(String userId, String itemId, int state) {
+
+   public void changeState(String userId, String itemId, int state) {
 	   artSell.changeState(userId, itemId, state);
    }
       

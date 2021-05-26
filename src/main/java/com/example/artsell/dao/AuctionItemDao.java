@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 
 import com.example.artsell.domain.AuctionItem;
+import com.example.artsell.domain.AuctionedItem;
 
 public interface AuctionItemDao {
 	AuctionItem getAuctionItemByItemIdAndUserId(String itemId, String userId) throws DataAccessException;
@@ -41,6 +42,10 @@ public interface AuctionItemDao {
 
 	int isNewUserPrice(String userId, String itemId) throws DataAccessException;
 	
+	List<AuctionItem> getItemListByAuctionItem(String userId) throws DataAccessException;
+	
+	List<AuctionedItem> getItemListByAuctionedItem(String userId) throws DataAccessException;
+
 	void bid(int bestPrice, String itemId) throws DataAccessException;
 
 }
