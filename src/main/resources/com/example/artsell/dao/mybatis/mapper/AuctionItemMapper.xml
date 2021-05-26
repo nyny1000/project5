@@ -48,7 +48,7 @@
 
 	<insert id="insertAuctionItem" parameterType="AuctionItem">
 		insert into
-		AuctionItem values (#{userId}, #{itemId}, #{myPrice}, 0)
+		AuctionItem values (#{userId}, #{itemId}, #{myPrice}, #{state})
 	</insert>
 
 	<update id="updatePrice" parameterType="String">
@@ -107,7 +107,7 @@
 		
 	</select>
 
-	<update id="changeState" parameterType="String">
+	<update id="changeState" parameterType="AuctionItem">
 		UPDATE auctionItem
 		SET
 		state = #{state}
@@ -126,13 +126,13 @@
 		where userId = #{userId} and state = 2
 	</select>
 
-	<update id="bidSuccess" parameterType="int">
+	<update id="bidSuccess" parameterType="AuctionItem">
 		UPDATE auctionItem
 		SET state = 1
 		where myPrice = #{bestPrice} and itemId = #{itemId}
 	</update>
 	
-	<update id="bidFail" parameterType="int">
+	<update id="bidFail" parameterType="AuctionItem">
 		UPDATE auctionItem
 		SET state = 3
 		where myPrice != #{bestPrice} and itemId = #{itemId}

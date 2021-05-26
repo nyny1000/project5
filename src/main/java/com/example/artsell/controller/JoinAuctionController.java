@@ -148,10 +148,16 @@ public class JoinAuctionController {
    }
 
    @RequestMapping("/auction/scheduler")
-   public String handleRequest(@RequestParam("itemId") String itemId) {
+   public String handleRequest(@RequestParam("itemId") String itemId, @ModelAttribute("userSession") UserSession userSession) {
 	  System.out.println(itemId);
 	  Item item = this.artSell.getItem(itemId);
 	  Date deadline = item.getDeadline();
+	  
+	  AuctionItem auctionItem = new AuctionItem();
+	  auctionItem.setItemId(itemId);
+	  auctionItem.setState(4);
+	  auctionItem.setUserId(userSession.getAccount().getUserId());
+	  artSell.insertAuctionItem(auctionItem);
 	  
 	  artSell.auctionScheduler(deadline, item.getItemId());
 	  System.out.println("부르기전");
