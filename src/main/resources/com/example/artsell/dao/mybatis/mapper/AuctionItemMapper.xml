@@ -135,6 +135,6 @@
 	<update id="bidFail" parameterType="AuctionItem">
 		UPDATE auctionItem
 		SET state = 3
-		where myPrice != #{bestPrice} and itemId = #{itemId}
+		where myPrice != #{bestPrice} and itemId = #{itemId} and state != 4
 	</update>
 </mapper>

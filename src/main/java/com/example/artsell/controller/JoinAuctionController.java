@@ -153,6 +153,18 @@ public class JoinAuctionController {
 	  Item item = this.artSell.getItem(itemId);
 	  Date deadline = item.getDeadline();
 	  
+	  //테스트
+//	  SimpleDateFormat d = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+//	  String date = "2021-05-27 01:54";
+//	  Date deadline = null;
+//	  try {
+//		  deadline = d.parse(date);
+//	  } catch (ParseException e) {
+//		// TODO Auto-generated catch block
+//		  e.printStackTrace();
+//	  }
+//	  System.out.println(deadline);
+	  
 	  AuctionItem auctionItem = new AuctionItem();
 	  auctionItem.setItemId(itemId);
 	  auctionItem.setState(4);
