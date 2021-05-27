@@ -11,10 +11,19 @@
 				<a href="<c:url value="/user/logout"/>">
 					<button>로그아웃</button>
 				</a>
-				<img border="0" src="../images/separator.gif" />&nbsp; <a
-					href="<c:url value="/user/mypage"/>">
-					<button>마이페이지</button>
-				</a>
+				<c:if test="${userSession.account.userId eq 'admin'}">
+					<img border="0" src="../images/separator.gif" />&nbsp; <a
+						href="<c:url value="/admin/manage"/>">
+						<button>회원관리</button>
+					</a>
+				</c:if>
+				<c:if test="${!userSession.account.userId eq 'admin'}">
+
+					<img border="0" src="../images/separator.gif" />&nbsp; <a
+						href="<c:url value="/user/mypage"/>">
+						<button>마이페이지</button>
+					</a>
+				</c:if>
 				<img border="0" src="../images/separator.gif" />&nbsp; <a
 					href="<c:url value="/auction/list"/>">
 					<button>경매현황</button>
