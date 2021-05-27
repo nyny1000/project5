@@ -271,11 +271,10 @@ public class ArtSellImpl implements ArtSellFacade {
 				Date curTime = new Date();
 				
 				if (itemDao.isCloseBid(itemId, curTime)) {
-					if (auctionItemDao.getBuyersByItemId(itemId) == null) {
+					if (auctionItemDao.getBuyersByItemId(itemId).isEmpty()) {
 						//유찰
-						//바꿔야함!~!~!
-						String sellerId = itemDao.getItem(itemId).getUserId(); 
-						auctionItemDao.changeState(sellerId, itemId, 4);
+						String sellerId = itemDao.getItem(itemId).getUserId();
+						auctionItemDao.changeState(sellerId, itemId, 5);
 					} else {				//해당 옥션 아이템에 낙찰 상태를 바꾸는 것.
 						int bestPrice = auctionItemDao.calcBestPrice(itemId);
 						auctionItemDao.bid(bestPrice, itemId);
@@ -287,5 +286,11 @@ public class ArtSellImpl implements ArtSellFacade {
 		System.out.println("scheduler");
 		scheduler.schedule(updateTableRunner, closingTime);
 		System.out.println("updateTableRunner has been scheduled to execute at " + closingTime);
+	}
+
+	@Override
+	public void insertAuctionItem(AuctionItem auctionItem) {
+		// TODO Auto-generated method stub
+		auctionItemDao.insertAuctionItem(auctionItem);
 	}
 }

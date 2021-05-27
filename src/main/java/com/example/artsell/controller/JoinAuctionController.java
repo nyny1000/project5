@@ -151,10 +151,28 @@ public class JoinAuctionController {
    }
 
    @RequestMapping("/auction/scheduler")
-   public String handleRequest(@RequestParam("itemId") String itemId) {
+   public String handleRequest(@RequestParam("itemId") String itemId, @ModelAttribute("userSession") UserSession userSession) {
 	  System.out.println(itemId);
 	  Item item = this.artSell.getItem(itemId);
 	  Date deadline = item.getDeadline();
+	  
+	  //테스트
+//	  SimpleDateFormat d = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+//	  String date = "2021-05-27 01:54";
+//	  Date deadline = null;
+//	  try {
+//		  deadline = d.parse(date);
+//	  } catch (ParseException e) {
+//		// TODO Auto-generated catch block
+//		  e.printStackTrace();
+//	  }
+//	  System.out.println(deadline);
+	  
+	  AuctionItem auctionItem = new AuctionItem();
+	  auctionItem.setItemId(itemId);
+	  auctionItem.setState(4);
+	  auctionItem.setUserId(userSession.getAccount().getUserId());
+	  artSell.insertAuctionItem(auctionItem);
 	  
 	  artSell.auctionScheduler(deadline, item.getItemId());
 	  System.out.println("부르기전");

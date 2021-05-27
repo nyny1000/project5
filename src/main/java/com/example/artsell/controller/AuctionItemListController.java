@@ -17,7 +17,7 @@ public class AuctionItemListController {
 	@Autowired
 	private ArtSellFacade artSell;
 	
-	@RequestMapping("/auction/list/")
+	@RequestMapping("/auction/list")
 	public String viewAuctionItemList(@ModelAttribute("userSession") UserSession userSession, ModelMap model) {
 		
 		PagedListHolder<AuctionItem> itemList1 = new PagedListHolder<AuctionItem>(
