@@ -141,6 +141,8 @@ public class JoinAuctionController {
 			@RequestParam("itemId") String itemId, @RequestParam("minPrice") int minPrice,
 			@RequestParam("deadline") Date deadline, RedirectAttributes redirectAttributes) {
 		String userId = userSession.getAccount().getUserId();
+		
+		artSell.auctionScheduler(deadline, itemId);
 		artSell.updateReload(itemId, minPrice, deadline, userId);
 
 		redirectAttributes.addAttribute("itemId", itemId);
