@@ -76,8 +76,8 @@ public interface ArtSellFacade {
 	
 	int containsInterestingItem(String userId, String itemId);
 	
-	int isAuctioning(String itemId);
-
+	public List<AuctionItem> isAuctioning(String itemId);
+	
 	List<AuctionItem> getBuyersByItemId(String itemId);
 	
 	int getItemPrice(String itemId);
@@ -100,6 +100,8 @@ public interface ArtSellFacade {
 	
 	void deleteAuctionItem(String userId, String itemId);
 	
+	void deleteAutionItemById(String itemId);
+	
 	List<AuctionItem> countAuctionJoinList(String itemId);
 	
 	void changeState(String userId, String itemId, int state);
@@ -109,4 +111,5 @@ public interface ArtSellFacade {
 	List<AuctionedItem> getItemListByAuctionedItem(String userId);
 	
 	void insertAuctionItem(AuctionItem auctionItem);
+	
 }

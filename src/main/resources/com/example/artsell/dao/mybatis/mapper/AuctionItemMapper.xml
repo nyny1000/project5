@@ -73,8 +73,13 @@
 
 	<delete id="deleteAuctionItem" parameterType="String">
 		DELETE
-		FROM ACCOUNT
+		FROM AuctionItem
 		WHERE USERID = #{param1} and itemId = #{param2}
+	</delete>
+	
+	<delete id="deleteAutionItemById"  parameterType="String">
+		delete from AuctionItem
+		where itemId = #{param1}
 	</delete>
 
 	<select id="isNewUserPrice" resultType="int">
@@ -137,4 +142,10 @@
 		SET state = 3
 		where myPrice != #{bestPrice} and itemId = #{itemId} and state != 4
 	</update>
+	
+	<select id="isAuctioning" parameterType="String" resultType="AuctionItem">
+  	SELECT *
+  	FROM AUCTIONITEM
+  	WHERE ITEMID = #{itemId}
+  </select>
 </mapper>

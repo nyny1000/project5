@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -192,8 +193,8 @@ public class ArtSellImpl implements ArtSellFacade {
 	}
 	
 	@Override
-	public int isAuctioning(String itemId) {
-		return itemDao.isAuctioning(itemId);
+	public List<AuctionItem> isAuctioning(String itemId) {
+		return auctionItemDao.isAuctioning(itemId);
 	}
 
 	@Override
@@ -248,6 +249,10 @@ public class ArtSellImpl implements ArtSellFacade {
 		auctionItemDao.deleteAuctionItem(userId, itemId);;
 	}
 	
+	@Override
+	public void deleteAutionItemById(String itemId) {
+		auctionItemDao.deleteAutionItemById(itemId);
+	}
 	@Override
 	public void changeState(String userId, String itemId, int state) {
 		auctionItemDao.changeState(userId, itemId, state);

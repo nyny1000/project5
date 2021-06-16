@@ -27,6 +27,8 @@ public interface AuctionItemMapper {
 
 	void deleteAuctionItem(String userId, String itemId);
 	
+	void deleteAutionItemById(String itemId);
+	
 	void updateItemBestPrice(String itemId, int price);
 	
 	void addPrice(String userId, String itemId, int price);
@@ -48,4 +50,6 @@ public interface AuctionItemMapper {
 	void bidSuccess(int bestPrice, String itemId);
 	
 	void bidFail(int bestPrice, String itemId);
+	
+	List<AuctionItem> isAuctioning(String itemId);
 }

@@ -31,6 +31,8 @@ public interface AuctionItemDao {
 	void updateItemBestPrice(String itemId, int price) throws DataAccessException;
 
 	void deleteAuctionItem(String userId, String itemId) throws DataAccessException;
+	
+	void deleteAutionItemById(String itemId) throws DataAccessException;
 
 	List<AuctionItem> getAuctionedItem(String userId) throws DataAccessException;
 
@@ -47,5 +49,7 @@ public interface AuctionItemDao {
 	List<AuctionedItem> getItemListByAuctionedItem(String userId) throws DataAccessException;
 
 	void bid(int bestPrice, String itemId) throws DataAccessException;
+	
+	List<AuctionItem> isAuctioning(String itemId) throws DataAccessException;
 
 }

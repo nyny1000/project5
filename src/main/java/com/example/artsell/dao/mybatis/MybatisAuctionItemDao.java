@@ -74,6 +74,11 @@ public class MybatisAuctionItemDao implements AuctionItemDao {
 	}
 	
 	@Override
+	public void deleteAutionItemById(String itemId) throws DataAccessException {
+		auctionItemMapper.deleteAutionItemById(itemId);
+	}
+	
+	@Override
 	public void addPrice(String userId, String itemId, int price) throws DataAccessException {
 		auctionItemMapper.addPrice(userId, itemId, price);
 	}
@@ -122,6 +127,11 @@ public class MybatisAuctionItemDao implements AuctionItemDao {
 		// TODO Auto-generated method stub
 		auctionItemMapper.bidSuccess(bestPrice, itemId);
 		auctionItemMapper.bidFail(bestPrice, itemId);
+	}
+	
+	@Override
+	public List<AuctionItem> isAuctioning(String itemId) throws DataAccessException {
+		return auctionItemMapper.isAuctioning(itemId);
 	}
 
 }
