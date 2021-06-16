@@ -35,12 +35,28 @@ public class JoinAuctionController {
 	public void addAuctionItem(@ModelAttribute("userSession") UserSession userSession,
 			@RequestParam("itemId") String itemId, @RequestParam("price") int price) throws Exception {
 		String userId = userSession.getAccount().getUserId();
-		if (artSell.isNewUserPrice(userId, itemId) > 0) { // 헌값 수정!
-			artSell.updatePrice(userId, itemId, price);
-		} else { // 새로운 값
-			artSell.addPrice(userId, itemId, price);
+		Item auctionItem = artSell.getItem(itemId);
+		
+		//첫 입찰자
+		if (artSell.getBuyersByItemId(itemId).size() == 1) {
+			//minPrice보다 커야 함.
+			if (price >auctionItem.getMinPrice()) {
+				artSell.addPrice(userId, itemId, price);
+				artSell.updateItemBestPrice(itemId, price);
+			}
 		}
-
+		else { //그 다음 입찰자는 maxPrice보다 크게 입찰해야 함.
+			if (price > auctionItem.getBestPrice()) {
+				//새로운 입찰자인지 체크
+				if (artSell.isNewUserPrice(userId, itemId) > 0) { // 헌값 수정!
+					artSell.updatePrice(userId, itemId, price);
+				} else { // 새로운 값
+					artSell.addPrice(userId, itemId, price);
+				}
+			}
+		}
+		
+		//price가 최고값인 경우 아이템의 최고가 변경.
 		if (artSell.calcBestPrice(itemId) < price) { // 최고값이면
 			artSell.updateItemBestPrice(itemId, price);
 		} else {
