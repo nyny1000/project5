@@ -8,7 +8,7 @@
 		<table>
 			<tr align="center" bgcolor="#D5D5D5">
 				<th>상품ID</th>
-				<th>그림</th>
+				<th>사진</th>
 				<th>경매 마감일</th>
 				<th>최고가</th>
 				<th>내 금액</th>
@@ -23,16 +23,26 @@
 					<td><c:out value="${itemList1.bestPrice}" /></td>
 					<td><c:out value="${itemList1.myPrice}" /></td>
 					<td><c:out value="${itemList1.state}" /></td>
+				</tr>
 			</c:forEach>
 		</table>
 		<h1>내 경매 낙찰 목록</h1>
 		<table>
 			<tr align="center" bgcolor="#D5D5D5">
 				<th>상품ID</th>
+				<th>사진</th>
 				<th>경매 마감일</th>
 				<th>낙찰가격</th>
 				<th>&nbsp;</th>
 			</tr>
+			<c:forEach var="itemList1" items="${itemList2.pageList}">
+				<tr align="center">
+					<td><c:out value="${itemList2.itemId}" /></td>
+					<td><img src="<c:out value="${itemList2.picture}" />"  width="200" height="150" /></td>
+					<td><fmt:formatDate value="${itemList2.deadline}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+					<td><c:out value="${itemList1.auctionedPrice}" /></td>
+				</tr>
+			</c:forEach>
 			<tr align="center">
 				<td>01</td>
 				<td>2021-05-12</td>
