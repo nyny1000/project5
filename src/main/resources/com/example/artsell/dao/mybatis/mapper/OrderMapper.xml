@@ -19,7 +19,7 @@
 
   <update id="updateAuctionedState" parameterType="String">
   	UPDATE AUCTIONITEM
-	SET STATE = CASE WHEN STATE = 0 THEN 3 WHEN STATE = 1 THEN 2
+	SET STATE = CASE WHEN STATE = 0 THEN 3 WHEN STATE = 1 THEN 2 END
 	WHERE ITEMID = #{itemId} AND (STATE = 0 OR STATE = 1)
   </update>
   
