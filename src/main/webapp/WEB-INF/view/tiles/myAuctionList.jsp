@@ -26,7 +26,7 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<h1>내 경매 낙찰 목록</h1>
+		<h1>내 경매 낙찰 목록입니다</h1>
 		<table>
 			<tr align="center" bgcolor="#D5D5D5">
 				<th>상품ID</th>
