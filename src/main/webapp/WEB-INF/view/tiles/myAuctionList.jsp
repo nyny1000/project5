@@ -43,18 +43,6 @@
 					<td><c:out value="${itemList1.auctionedPrice}" /></td>
 				</tr>
 			</c:forEach>
-			<tr align="center">
-				<td>01</td>
-				<td>2021-05-12</td>
-				<td>20000</td>
-				<td>영수증 확인하기</td>
-			</tr>
-			<tr align="center">
-				<td>01</td>
-				<td>2021-05-12</td>
-				<td>20000</td>
-				<td>영수증 확인하기</td>
-			</tr>
 		</table>
 	</form>
 </div>
