@@ -10,6 +10,7 @@ public class AuctionItem implements Serializable {
 	private int myPrice;
 	private int state;
 	private Date deadline;
+	private String picture;
 	
 	public String getUserId() {
 		return userId;
@@ -40,6 +41,12 @@ public class AuctionItem implements Serializable {
 	}
 	public void setDeadline(Date deadline) {
 		this.deadline = deadline;
+	}
+	public String getPicture() {
+		return picture;
+	}
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 	
 }
