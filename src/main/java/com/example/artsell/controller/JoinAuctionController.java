@@ -63,8 +63,6 @@ public class JoinAuctionController {
 					System.out.println("애드로 왔음");
 					artSell.addPrice(userId, itemId, myPrice);
 					artSell.updateItemBestPrice(itemId, myPrice);
-
-
 				}
 			}
 		}
