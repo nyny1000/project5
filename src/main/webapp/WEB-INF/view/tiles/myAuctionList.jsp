@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div align="center">
 	<form action="center">
-		<h1>내 경매 참여 목록</h1>
+		<h1>내 경매 참여 목록입니다</h1>
 		<table>
 			<tr align="center" bgcolor="#D5D5D5">
 				<th>상품ID</th>
