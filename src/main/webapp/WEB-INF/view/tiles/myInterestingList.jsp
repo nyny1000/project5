@@ -33,7 +33,7 @@
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					<td><c:out value="${interestItem.bestPrice}" /></td>
 					<td><a
-						href='<c:url value="/aution/info">
+						href='<c:url value="/auction/info">
             		<c:param name="itemId" value="${interestItem.itemId}"/></c:url>'>
 							<c:out value="경매참여" />
 					</a></td>
