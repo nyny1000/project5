@@ -3,6 +3,8 @@ package com.example.artsell.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -103,6 +105,19 @@ public class MyItemController {
 		
 //		System.out.println("b");
 		item.setUserId(userSession.getAccount().getUserId());
+		
+		//해당 날짜의 11시 59분59초로 바꿔줌
+		Date date = item.getDeadline();
+		//System.out.println(date);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.set(Calendar.HOUR_OF_DAY, 23);
+		calendar.set(Calendar.MINUTE, 59);
+		calendar.set(Calendar.SECOND, 59);
+		
+		Date deadline = new Date(calendar.getTimeInMillis());
+		item.setDeadline(deadline);
+		
 		artSell.insertItem(item);
 		
 		//request.getSession().setAttribute("itemSession", this.artSell.getItem(item.getItemId()));

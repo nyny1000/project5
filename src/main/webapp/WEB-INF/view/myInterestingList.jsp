@@ -28,7 +28,7 @@
         <tr align="center" bgcolor="#D5D5D5">
           <th>상품ID</th>
           <th>상품이름</th>
-          <th>경매 마감일</th>
+          <th>경매 마감</th>
           <th>최고가</th>
           <th>&nbsp;</th>
 					<th>삭제</th>
@@ -42,12 +42,12 @@
 						<c:out value="${interestItem.itemName}" />
 				  </a>
 			  </td>
-	          <td><fmt:formatDate value="${interestItem.deadline}" pattern="yyyy-MM-dd" /></td>
+	          <td><fmt:formatDate value="${interestItem.deadline}" pattern="yyyy-MM-dd hh:mm" /></td>
 	          <td><c:out value="${interestItem.bestPrice}" /></td>
 	          <td>
 	          	<a href='<c:url value="/aution/info">
             		<c:param name="itemId" value="${interestItem.itemId}"/></c:url>'>
-             		<c:out value="경매참여" />
+             		<c:out value="경매참" />
          		</a>
 	          </td>
 	          	
