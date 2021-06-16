@@ -15,14 +15,14 @@
 				<th>state</th>
 			</tr>
 			
-			<c:forEach var="AuctionItem" items="${AuctionList.pageList}">
+			<c:forEach var="itemList1" items="${itemList1.pageList}">
 				<tr align="center">
-					<td><c:out value="${AuctionItem.itemId}" /></td>
-					<td><img src="<c:out value="${AuctionItem.picture}" />"  width="200" height="150" /></td>
-					<td><fmt:formatDate value="${AuctionItem.deadline}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-					<td><c:out value="${AuctionItem.bestPrice}" /></td>
-					<td><c:out value="${AuctionItem.myPrice}" /></td>
-					<td><c:out value="${AuctionItem.state}" /></td>
+					<td><c:out value="${itemList1.itemId}" /></td>
+					<td><img src="<c:out value="${itemList1.picture}" />"  width="200" height="150" /></td>
+					<td><fmt:formatDate value="${itemList1.deadline}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+					<td><c:out value="${itemList1.bestPrice}" /></td>
+					<td><c:out value="${itemList1.myPrice}" /></td>
+					<td><c:out value="${itemList1.state}" /></td>
 			</c:forEach>
 		</table>
 		<h1>내 경매 낙찰 목록</h1>
