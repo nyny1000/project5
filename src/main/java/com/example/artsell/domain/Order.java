@@ -16,15 +16,16 @@ import com.example.jpetstore.domain.LineItem;
 public class Order implements Serializable {
 
 	private String userId;
+	private String name;
 	private String itemName;
 	private String itemId;
 	private String phone;
-	private String destination;
-	private int auctionedPrice;
+	private String address;
+	private int myPrice;
 	private String credit;
-	private Date orderDate;
+	private String picture;
+	private Date deadline;
 	//private List<LineItem> lineItems = new ArrayList<LineItem>();
-	private AuctionItem auctionItem;
 	
 	public String getUserId() {
 		return userId;
@@ -50,17 +51,11 @@ public class Order implements Serializable {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getDestination() {
-		return destination;
+	public int getMyPrice() {
+		return myPrice;
 	}
-	public void setDestination(String destination) {
-		this.destination = destination;
-	}
-	public int getAuctionedPrice() {
-		return auctionedPrice;
-	}
-	public void setAuctionedPrice(int auctionedPrice) {
-		this.auctionedPrice = auctionedPrice;
+	public void setMyPrice(int myPrice) {
+		this.myPrice = myPrice;
 	}
 	public String getCredit() {
 		return credit;
@@ -68,28 +63,38 @@ public class Order implements Serializable {
 	public void setCredit(String credit) {
 		this.credit = credit;
 	}
-	public Date getOrderDate() {
-		return orderDate;
+	public String getName() {
+		return name;
 	}
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public AuctionItem getAuctionItem() {
-		return auctionItem;
+	public String getAddress() {
+		return address;
 	}
-	public void setAuctionItem(AuctionItem auctionItem) {
-		this.auctionItem = auctionItem;
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getPicture() {
+		return picture;
+	}
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+	public Date getDeadline() {
+		return deadline;
+	}
+	public void setDeadline(Date deadline) {
+		this.deadline = deadline;
 	}
 	
-	  /* Public Methods */
-
 	public void initOrder(Account account, Item item) {
 		userId = account.getUserId();
-		orderDate = new Date();
+		//orderDate = new Date();
 		phone = account.getPhone();
-		destination = account.getAddress();
+		//destination = account.getAddress();
 		credit = account.getCredit();
 		itemName = item.getItemName();
-		auctionedPrice = item.getBestPrice();
+		myPrice = item.getBestPrice();
 	}
 }

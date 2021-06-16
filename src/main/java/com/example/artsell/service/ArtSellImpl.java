@@ -144,8 +144,13 @@ public class ArtSellImpl implements ArtSellFacade {
 	}
 	
 	@Override
-	public void SaveAuctionedItem(Order order) {
-		orderDao.SaveAuctionedItem(order);
+	public void SaveAuctionedItem(String itemId, int myPrice, String userId, String address) {
+		orderDao.SaveAuctionedItem(itemId, myPrice, userId, address);
+	}
+	
+	@Override
+	public void updateAuctionedState(String itemId, String userId) {
+		orderDao.updateAuctionedState(itemId, userId);
 	}
 
 	@Override
