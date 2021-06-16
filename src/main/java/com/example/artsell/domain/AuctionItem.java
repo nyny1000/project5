@@ -11,6 +11,7 @@ public class AuctionItem implements Serializable {
 	private int state;
 	private Date deadline;
 	private String picture;
+	private int bestPrice;
 	
 	public String getUserId() {
 		return userId;
@@ -47,6 +48,12 @@ public class AuctionItem implements Serializable {
 	}
 	public void setPicture(String picture) {
 		this.picture = picture;
+	}
+	public int getBestPrice() {
+		return bestPrice;
+	}
+	public void setBestPrice(int bestPrice) {
+		this.bestPrice = bestPrice;
 	}
 	
 }
