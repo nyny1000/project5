@@ -114,7 +114,7 @@
   		SELECT 'I'||TO_CHAR(ITEM_SEQ.NEXTVAL) AS ITEMID FROM DUAL
   	</selectKey>
   	INSERT INTO ITEM(itemId, itemName, minPrice, bestPrice, deadline, description, picture, artist, categoryId, userId)
-  		VALUES (#{itemId}, #{itemName}, #{minPrice}, #{bestPrice}, to_date('20210528010600', 'YYYYMMDDHH24MISS'), #{description}, #{picture}, #{artist}, #{categoryId}, #{userId})
+  		VALUES (#{itemId}, #{itemName}, #{minPrice}, #{bestPrice}, #{deadline}, #{description}, #{picture}, #{artist}, #{categoryId}, #{userId})
   </insert>
 	<!-- 테스트하려면 to_date('20210527015400', 'YYYYMMDDHH24MISS') -->
 
