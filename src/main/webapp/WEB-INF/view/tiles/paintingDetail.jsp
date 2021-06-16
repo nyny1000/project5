@@ -44,7 +44,7 @@
 
    <c:if test="${isInterested == 1}">
       <a href="<c:url value="/interesting/delete2">
-         <c:param name="item" value="${item}" /></c:url>"> <!-- 고치기 -->
+         <c:param name="itemId" value="${item.itemId}" /></c:url>"> <!-- 고치기 -->
          <img src="/images/iconmonstr-favorite-3-32.png" />
       </a>
    </c:if>

@@ -14,7 +14,7 @@
   		   PICTURE,
   		   ARTIST,
   		   CATEGORYID,
-  		   USERID AS sellerId
+  		   USERID
   	FROM ITEM
   	<where>
   		<if test="keywords != null">
@@ -39,7 +39,7 @@
   		   PICTURE,
   		   ARTIST,
   		   CATEGORYID,
-  		   USERID AS sellerId
+  		   USERID
   	FROM ITEM
   	WHERE CATEGORYID = #{categoryId}
   	  AND ITEMID NOT IN (SELECT ITEMID
@@ -56,7 +56,7 @@
   		   PICTURE,
   		   ARTIST,
   		   CATEGORYID,
-  		   USERID AS sellerId
+  		   USERID
   	FROM ITEM
   	WHERE ITEMID = #{itemId}
   </select>
@@ -71,7 +71,7 @@
   		   PICTURE,
   		   ARTIST,
   		   CATEGORYID,
-  		   USERID AS sellerId
+  		   USERID
   	FROM ITEM
   	WHERE USERID = #{userId}
   	  AND ITEMID NOT IN (SELECT ITEMID
@@ -101,7 +101,7 @@
   <select id="isAuctioning" parameterType="String" resultType="int">
   	SELECT count(*)
   	FROM AUCTIONITEM
-  	WHERE ITEMID = #{itemId}
+  	WHERE ITEMID = #{itemId} and state != 5
   </select>
   
   <delete id="deleteItem" parameterType="String">
@@ -116,6 +116,7 @@
   	INSERT INTO ITEM(itemId, itemName, minPrice, bestPrice, deadline, description, picture, artist, categoryId, userId)
   		VALUES (#{itemId}, #{itemName}, #{minPrice}, #{bestPrice}, #{deadline}, #{description}, #{picture}, #{artist}, #{categoryId}, #{userId})
   </insert>
+	<!-- 테스트하려면 to_date('20210527015400', 'YYYYMMDDHH24MISS') -->
 
   <update id="updateItemPrice" parameterType="Item">
     UPDATE ITEM 
@@ -135,11 +136,11 @@
   	where itemId = #{itemId}
   </select>
   
-  <select id="isCloseBid" resultType="auctionItem">
+  <select id="isCloseBid" resultType="int">
   		<![CDATA[
-			SELECT ITEMID
+			SELECT COUNT(ITEMID)
 			FROM ITEM
-			WHERE DEADLINE <= #{curTime} and ITEMID = #{ITEMID}
+			WHERE DEADLINE <= #{curTime} and ITEMID = #{itemId}
 		]]>
   </select>
 </mapper>

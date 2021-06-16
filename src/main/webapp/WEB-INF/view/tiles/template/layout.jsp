@@ -12,6 +12,18 @@
 <meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
 <meta http-equiv="Pragma" content="no-cache">
 <link rel="stylesheet" href="../style/petstore.css" type="text/css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    
+<script>
+$(function() {
+  $( "#deadline" ).datepicker({
+    dateFormat: 'yy-mm-dd',
+    minDate: 0
+  });
+});
+</script>
 
 </head>
 <body>

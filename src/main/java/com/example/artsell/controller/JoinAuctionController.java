@@ -28,7 +28,7 @@ import com.example.artsell.service.ArtSellFacade;
 @SessionAttributes("userSession")
 public class JoinAuctionController {
    @Autowired
-   private static ArtSellFacade artSell;
+   private ArtSellFacade artSell;
    
    //입찰, 재입찰
    @RequestMapping("/auction/bid")
@@ -62,12 +62,11 @@ public class JoinAuctionController {
       artSell.deleteAuctionItem(userId, itemId);
    
    
-      //AuctionedItem auctionedItem = artSell.getOrder(itemid); //해당 아이템가져와
    
       List<AuctionItem> auctionBuyerList = artSell.getBuyersByItemId(itemId);
    
    
-      if (artSell.countAuctionJoinList(userId) != 0) // 후순위자가 있다면
+      if (auctionBuyerList != null) // 후순위자가 있다면
       {//후순위자에게 낙찰
          AuctionItem secondAuctionitem = auctionBuyerList.get(0); //후순위자
          String secondUser = secondAuctionitem.getUserId();
@@ -78,7 +77,7 @@ public class JoinAuctionController {
          
          changeState(secondUser, itemId, 1);
          
-         return "/auction/list";
+         return "redirect:/auction/list";
    
       }
       else{
@@ -152,12 +151,32 @@ public class JoinAuctionController {
    }
 
    @RequestMapping("/auction/scheduler")
-   public String handleRequest(HttpServletRequest request) {
-	  Item item = (Item) request.getSession().getAttribute("item");
+   public String handleRequest(@RequestParam("itemId") String itemId, @ModelAttribute("userSession") UserSession userSession) {
+	  System.out.println(itemId);
+	  Item item = this.artSell.getItem(itemId);
 	  Date deadline = item.getDeadline();
 	  
-	  artSell.auctionScheduler(deadline, item.getItemId());
+	  //테스트
+//	  SimpleDateFormat d = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+//	  String date = "2021-05-27 01:54";
+//	  Date deadline = null;
+//	  try {
+//		  deadline = d.parse(date);
+//	  } catch (ParseException e) {
+//		// TODO Auto-generated catch block
+//		  e.printStackTrace();
+//	  }
+//	  System.out.println(deadline);
 	  
+	  AuctionItem auctionItem = new AuctionItem();
+	  auctionItem.setItemId(itemId);
+	  auctionItem.setState(4);
+	  auctionItem.setUserId(userSession.getAccount().getUserId());
+	  artSell.insertAuctionItem(auctionItem);
+	  
+	  artSell.auctionScheduler(deadline, item.getItemId());
+	  System.out.println("부르기전");
 	  return "redirect:/myitem/list";
+	  //return "main";
    }
 }

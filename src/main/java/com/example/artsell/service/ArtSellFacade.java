@@ -41,13 +41,6 @@ public interface ArtSellFacade {
 
 	Category getCategory(String categoryId);
 
-	/*
-	 * List<Item> searchItemList(String keywords, String categoryId);
-	 * 
-	 * List<Item> searchItemListByArtist(String keywords, String artist, String
-	 * categoryId);
-	 */
-
 	List<Item> searchItemList(String keywords, String artist, String categoryId);
 	
 	List<Item> getItemListByProduct(String productId);
@@ -107,11 +100,13 @@ public interface ArtSellFacade {
 	
 	void deleteAuctionItem(String userId, String itemId);
 	
-	int countAuctionJoinList(String userId);
+	List<AuctionItem> countAuctionJoinList(String itemId);
 	
 	void changeState(String userId, String itemId, int state);
 	
 	List<AuctionItem> getItemListByAuctionItem(String userId);
 	
 	List<AuctionedItem> getItemListByAuctionedItem(String userId);
+	
+	void insertAuctionItem(AuctionItem auctionItem);
 }
