@@ -171,4 +171,12 @@ public class JoinAuctionController {
 		return "redirect:/myitem/list";
 		// return "main";
 	}
+	
+	@RequestMapping("/auction/success")
+	public String success(@RequestParam("itemId") String itemId, @ModelAttribute("userSession") UserSession userSession) {
+		
+		artSell.bidSuccess(itemId);
+		return 
+	}
+	
 }
