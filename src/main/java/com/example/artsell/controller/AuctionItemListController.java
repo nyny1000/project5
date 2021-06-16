@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.example.artsell.domain.AuctionItem;
 import com.example.artsell.domain.AuctionedItem;
@@ -15,6 +16,7 @@ import com.example.artsell.domain.Item;
 import com.example.artsell.service.ArtSellFacade;
 
 @Controller
+@SessionAttributes("userSession")
 public class AuctionItemListController {
 	@Autowired
 	private ArtSellFacade artSell;
