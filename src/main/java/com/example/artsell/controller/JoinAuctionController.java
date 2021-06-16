@@ -33,42 +33,44 @@ public class JoinAuctionController {
 	// 입찰, 재입찰
 	@RequestMapping("/auction/bid")
 	public void addAuctionItem(@ModelAttribute("userSession") UserSession userSession,
-			@RequestParam("itemId") String itemId, @RequestParam("price") int myPrice) throws Exception {
+			@RequestParam("itemId") String itemId, @RequestParam("myAuctionPrice") int myPrice) throws Exception {
 
 		System.out.println("넘어옴. 가격은" + myPrice);
 		String userId = userSession.getAccount().getUserId();
 		Item auctionItem = artSell.getItem(itemId);
 		System.out.println(auctionItem);
 		
-		artSell.addPrice(userId, itemId, myPrice);
-
-		/*
+		
 		// 첫 입찰자
-		if (artSell.getBuyersByItemId(itemId).size() == 1) { // minPrice보다 커야함.
+		if (artSell.getBuyersByItemId(itemId).size() == 0) { // minPrice보다 커야함.
+			
+			System.out.println("첫입찰자로 왔음");
 			if (myPrice > auctionItem.getMinPrice()) {
 				artSell.addPrice(userId, itemId, myPrice);
 				artSell.updateItemBestPrice(itemId, myPrice);
+				System.out.println("업데이트 됐음");
 			}
 		} else {
 			// 그 다음 입찰자는 maxPrice보다 크게 입찰해야 함.
 			if (myPrice > auctionItem.getBestPrice()) {
 				// 새로운 입찰자인지 체크
 				if (artSell.isNewUserPrice(userId, itemId) > 0) { // 헌값 수정!
+					System.out.println("여기로 왔음");
 					artSell.updatePrice(userId, itemId, myPrice);
+					artSell.updateItemBestPrice(itemId, myPrice);
+
 				} else { // 새로운 값
+					System.out.println("애드로 왔음");
 					artSell.addPrice(userId, itemId, myPrice);
+					artSell.updateItemBestPrice(itemId, myPrice);
+
+
 				}
 			}
 		}
 
-		// price가 최고값인 경우 아이템의 최고가 변경.
-		if (artSell.calcBestPrice(itemId) < myPrice) {
-			// 최고값이면
-			artSell.updateItemBestPrice(itemId, myPrice);
-		} else {
-			throw new Exception("error");
-		}
-*/
+
+
 	}
 
 	// 낙찰포기 //if 후순위자있을경우->후순위자상태바꿈 else

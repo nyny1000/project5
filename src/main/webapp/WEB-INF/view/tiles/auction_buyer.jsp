@@ -22,6 +22,12 @@
 	</table>
 	<p>
 
+
+<form action="/auction/bid" method="POST">
+    <input type="text" name="myAuctionPrice"  />
+    <input type="hidden" name="itemId" value="${item.itemId}"  />
+    <input type="submit" value="입찰"/>
+</form>
 		<%-- <form:form modelAttribute="bidderItem" method="post">
 		희망가격 : <form:input type="text" path="bidderItem.price" />
 			<a
@@ -30,9 +36,9 @@
 				type="button" value="입찰" /></a>
 		</form:form> --%>
 
-		희망가격 : <input type="text" name="myAuctionPrice" /> <a
+	<%-- 	희망가격 : <input type="text" name="myAuctionPrice" /> <a
 			href="<c:url value="/auction/bid">
          <c:param name="itemId" value="${item.itemId}" />         
          <c:param name="price" value="2000" /></c:url>"><input
-			type="button" value="입찰" /></a>
+			type="button" value="입찰" /></a> --%>
 </div>
