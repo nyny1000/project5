@@ -2,24 +2,28 @@ package com.example.artsell.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.example.artsell.domain.AuctionItem;
 import com.example.artsell.domain.AuctionedItem;
 import com.example.artsell.domain.Item;
 import com.example.artsell.service.ArtSellFacade;
 
+@Controller
+@SessionAttributes("userSession")
 public class AuctionItemListController {
 	@Autowired
 	private ArtSellFacade artSell;
 	
 	@RequestMapping("/auction/list")
 	public String viewAuctionItemList(@ModelAttribute("userSession") UserSession userSession, ModelMap model) {
-		
+		System.out.println("auctionlist");
 		PagedListHolder<AuctionItem> itemList1 = new PagedListHolder<AuctionItem>(
 				this.artSell.getItemListByAuctionItem(userSession.getAccount().getUserId()));
 		itemList1.setPageSize(4);
@@ -31,6 +35,7 @@ public class AuctionItemListController {
 		itemList2.setPageSize(4);
 		model.put("itemList2", itemList2);
 
+		System.out.println("auctionlist");
 		return "myAuctionList";
 	
 	}

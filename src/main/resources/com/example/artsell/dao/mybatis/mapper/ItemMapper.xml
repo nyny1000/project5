@@ -5,7 +5,7 @@
   <cache />
 
   <select id="searchItemList" resultType="Item">
-  	SELECT ITEMID,
+  	SELECT i.ITEMID,
   		   ITEMNAME,
   		   MINPRICE,
   		   BESTPRICE,
@@ -14,9 +14,11 @@
   		   PICTURE,
   		   ARTIST,
   		   CATEGORYID,
-  		   USERID
-  	FROM ITEM
+  		   i.USERID
+  	FROM ITEM i, AUCTIONITEM a
   	<where>
+  		i.ITEMID = a.ITEMID
+  	 	AND (STATE = 0 or STATE = 4)
   		<if test="keywords != null">
   			LOWER(ITEMNAME) LIKE #{keywords}
   		</if>
@@ -30,7 +32,7 @@
   </select>
 
   <select id="getItemListByCategory" resultType="Item">
-  	SELECT ITEMID,
+  	SELECT i.ITEMID,
   		   ITEMNAME,
   		   MINPRICE,
   		   BESTPRICE,
@@ -39,15 +41,17 @@
   		   PICTURE,
   		   ARTIST,
   		   CATEGORYID,
-  		   USERID
-  	FROM ITEM
+  		   i.USERID
+  	FROM ITEM i, AUCTIONITEM a
   	WHERE CATEGORYID = #{categoryId}
-  	  AND ITEMID NOT IN (SELECT ITEMID
+  	  AND i.ITEMID NOT IN (SELECT ITEMID
   					     FROM AUCTIONEDITEM)
+  	  AND i.ITEMID = a.ITEMID
+  	  AND (STATE = 0 or STATE = 4)
   </select>
 
   <select id="getItem" resultType="Item">
-  	SELECT ITEMID,
+  	SELECT i.ITEMID,
   		   ITEMNAME,
   		   MINPRICE,
   		   BESTPRICE,
@@ -56,9 +60,11 @@
   		   PICTURE,
   		   ARTIST,
   		   CATEGORYID,
-  		   USERID
-  	FROM ITEM
-  	WHERE ITEMID = #{itemId}
+  		   i.USERID
+  	FROM ITEM i, AUCTIONITEM a
+  	WHERE i.ITEMID = #{itemId}
+  		AND i.ITEMID = a.ITEMID
+  	  	AND (STATE = 0 or STATE = 4)
   </select>
 
   <select id="getItemListByUserId" resultType="Item">
