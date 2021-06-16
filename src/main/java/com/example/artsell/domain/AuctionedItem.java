@@ -8,7 +8,7 @@ public class AuctionedItem implements Serializable {
 	private String userId;
 	private String itemId;
 	private int auctionedPrice;
-	private String address;
+	private String desination;
 	
 	public String getUserId() {
 		return userId;
@@ -28,10 +28,11 @@ public class AuctionedItem implements Serializable {
 	public void setAuctionedPrice(int auctionedPrice) {
 		this.auctionedPrice = auctionedPrice;
 	}
-	public String getAddress() {
-		return address;
+	public String getDesination() {
+		return desination;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setDesination(String desination) {
+		this.desination = desination;
 	}
+	
 }

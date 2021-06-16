@@ -36,5 +36,5 @@
 		</tr>	
 	</table>
 	
-	<p><a href="<c:url value='/main' />"><input type="button" value="확인"/></a></p>
+	<p><a href="<c:url value='/home' />"><input type="button" value="확인"/></a></p>
 </div>

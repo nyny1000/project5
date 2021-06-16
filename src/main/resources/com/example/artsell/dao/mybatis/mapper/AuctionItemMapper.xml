@@ -122,13 +122,13 @@
 	<select id="getItemListByAuctionItem" parameterType="String" resultType="AuctionItem">
 		select *
 		from auctionItem a, item i
-		where a.userId = i.userId and a.userId = #{userId} and state in (0,1,3)
+		where a.itemId = i.itemId and a.userId = #{userId} and state in (0,1,3)
 	</select>
 	
 	<select id="getItemListByAuctionedItem" parameterType="String" resultType="AuctionedItem">
 		select *
 		from auctionedItem a, item i
-		where  a.userId = i.userId and a.userId = #{userId} 
+		where  a.itemId = i.itemId and a.userId = #{userId} 
 	</select>
 
 	<update id="bidSuccess" parameterType="AuctionItem">
