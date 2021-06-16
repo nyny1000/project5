@@ -48,7 +48,7 @@
 
 	<insert id="insertAuctionItem" parameterType="AuctionItem">
 		insert into
-		AuctionItem values (#{userId}, #{itemId}, #{myPrice}, #{state} )
+		AuctionItem values (#{userId}, #{itemId}, #{myPrice}, #{state})
 	</insert>
 
 	<update id="updatePrice" parameterType="String">
@@ -116,14 +116,14 @@
 	
 	<select id="getItemListByAuctionItem" parameterType="String" resultType="AuctionItem">
 		select *
-		from auctionItem, item
-		where userId = #{userId} and state in (0,1,3)
+		from auctionItem a, item i
+		where a.userId = i.userId and a.userId = #{userId} and state in (0,1,3)
 	</select>
 	
 	<select id="getItemListByAuctionedItem" parameterType="String" resultType="AuctionedItem">
 		select *
-		from auctionedItem
-		where userId = #{userId}
+		from auctionedItem a, item i
+		where  a.userId = i.userId and a.userId = #{userId} 
 	</select>
 
 	<update id="bidSuccess" parameterType="AuctionItem">
