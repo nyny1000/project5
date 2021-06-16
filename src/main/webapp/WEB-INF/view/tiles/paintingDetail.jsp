@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <div align="center">
    <h2>작품 정보</h2>
@@ -23,7 +24,8 @@
       </tr>
       <tr>
          <td>마감 기한</td>
-         <td>~<c:out value="${item.deadline}" /></td>
+         <td><fmt:formatDate value="${item.deadline}"
+							pattern="yyyy-MM-dd HH:mm:ss" /></td>
       </tr>
       <tr>
          <td colspan="2"><img src="${item.picture}" /></td>

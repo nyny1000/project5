@@ -9,6 +9,7 @@
 			<tr align="center" bgcolor="#D5D5D5">
 				<th>상품ID</th>
 				<th>상품이름</th>
+				<th>그림</th>
 				<th>경매 마감일</th>
 				<th>최고가</th>
 				<th>&nbsp;</th>
@@ -23,8 +24,13 @@
 						<c:param name="itemId" value="${interestItem.itemId}" /></c:url>">
 							<c:out value="${interestItem.itemName}" />
 					</a></td>
+					<td><a
+						href="<c:url value="/shop/viewItem">
+						<c:param name="itemId" value="${interestItem.itemId}" /></c:url>">
+							<img src="<c:out value="${interestItem.picture}" />"  width="200" height="150" />
+					</a></td>
 					<td><fmt:formatDate value="${interestItem.deadline}"
-							pattern="yyyy-MM-dd" /></td>
+							pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					<td><c:out value="${interestItem.bestPrice}" /></td>
 					<td><a
 						href='<c:url value="/aution/info">

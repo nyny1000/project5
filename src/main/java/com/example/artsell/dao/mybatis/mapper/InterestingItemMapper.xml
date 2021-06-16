@@ -4,7 +4,7 @@
 <mapper namespace="com.example.artsell.dao.mybatis.mapper.InterestingItemMapper">
 	<select id="getInterestingItemList" parameterType="String" resultType="Item" >
 		SELECT
-      		 itemId, itemName, deadline, bestPrice
+      		 itemId, itemName, picture, deadline, bestPrice
     	FROM ITEM
     	WHERE itemId in (
     		SELECT itemId

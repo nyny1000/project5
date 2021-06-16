@@ -25,7 +25,7 @@
 					<td><a
 						href="<c:url value="/shop/viewItem">
 						<c:param name="itemId" value="${myItem.itemId}" /></c:url>">
-							<img src="<c:out value="${myItem.picture}" />" />
+							<img src="<c:out value="${myItem.picture}" />" width="200" height="150" />
 					</a></td>
 					<td><c:out value="경매중" /></td>
 					<td><a
