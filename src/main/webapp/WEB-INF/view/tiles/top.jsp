@@ -17,8 +17,7 @@
 						<button>회원관리</button>
 					</a>
 				</c:if>
-				<c:if test="${!userSession.account.userId eq 'admin'}">
-
+				<c:if test="${userSession.account.userId ne 'admin'}">
 					<img border="0" src="../images/separator.gif" />&nbsp; <a
 						href="<c:url value="/user/mypage"/>">
 						<button>마이페이지</button>

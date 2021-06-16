@@ -83,8 +83,7 @@ public class JoinAuctionController {
       }
    }
    
-   //해당 아이템을 낙찰상태로 바꿔주기
-
+   //해당 아이템의 state 바꿔주기
    public void changeState(String userId, String itemId, int state) {
 	   artSell.changeState(userId, itemId, state);
    }
@@ -151,19 +150,19 @@ public class JoinAuctionController {
    public String handleRequest(@RequestParam("itemId") String itemId, @ModelAttribute("userSession") UserSession userSession) {
 	  System.out.println(itemId);
 	  Item item = this.artSell.getItem(itemId);
-	  Date deadline = item.getDeadline();
+	  //Date deadline = item.getDeadline();
 	  
 	  //테스트
-//	  SimpleDateFormat d = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-//	  String date = "2021-05-27 01:54";
-//	  Date deadline = null;
-//	  try {
-//		  deadline = d.parse(date);
-//	  } catch (ParseException e) {
-//		// TODO Auto-generated catch block
-//		  e.printStackTrace();
-//	  }
-//	  System.out.println(deadline);
+	  SimpleDateFormat d = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	  String date = "2021-05-28 01:06";
+	  Date deadline = null;
+	  try {
+		  deadline = d.parse(date);
+	  } catch (ParseException e) {
+		// TODO Auto-generated catch block
+		  e.printStackTrace();
+	  }
+	  System.out.println(deadline);
 	  
 	  AuctionItem auctionItem = new AuctionItem();
 	  auctionItem.setItemId(itemId);
