@@ -48,7 +48,7 @@
 
 	<insert id="insertAuctionItem" parameterType="AuctionItem">
 		insert into
-		AuctionItem values (#{userId}, #{itemId}, #{myPrice}, #{state})
+		AuctionItem values (#{userId}, #{itemId}, #{myPrice}, #{state} )
 	</insert>
 
 	<update id="updatePrice" parameterType="String">

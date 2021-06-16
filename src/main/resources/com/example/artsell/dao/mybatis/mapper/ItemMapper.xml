@@ -61,10 +61,8 @@
   		   ARTIST,
   		   CATEGORYID,
   		   i.USERID
-  	FROM ITEM i, AUCTIONITEM a
+  	FROM ITEM i
   	WHERE i.ITEMID = #{itemId}
-  		AND i.ITEMID = a.ITEMID
-  	  	AND (STATE = 0 or STATE = 4)
   </select>
 
   <select id="getItemListByUserId" resultType="Item">

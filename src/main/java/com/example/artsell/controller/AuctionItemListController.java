@@ -23,7 +23,6 @@ public class AuctionItemListController {
 	
 	@RequestMapping("/auction/list")
 	public String viewAuctionItemList(@ModelAttribute("userSession") UserSession userSession, ModelMap model) {
-		System.out.println("auctionlist");
 		PagedListHolder<AuctionItem> itemList1 = new PagedListHolder<AuctionItem>(
 				this.artSell.getItemListByAuctionItem(userSession.getAccount().getUserId()));
 		itemList1.setPageSize(4);
@@ -35,7 +34,6 @@ public class AuctionItemListController {
 		itemList2.setPageSize(4);
 		model.put("itemList2", itemList2);
 
-		System.out.println("auctionlist");
 		return "myAuctionList";
 	
 	}
