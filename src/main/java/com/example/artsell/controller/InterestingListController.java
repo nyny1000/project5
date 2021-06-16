@@ -1,5 +1,7 @@
 package com.example.artsell.controller;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,6 +38,7 @@ public class InterestingListController {
 		itemList.setPageSize(1);
 		model.put("interestList", itemList);	//handleRequest(page, itemList);
 		
+		//System.out.println(date1);
 		return "myInterestingList";
 //		System.out.println(userSession.getAccount().getUserId());
 //		List<Item> itemList = artSell.getInterestingItemList(userSession.getAccount().getUserId());

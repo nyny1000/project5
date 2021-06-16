@@ -101,7 +101,7 @@
 
 
 	<select id="countAuctionJoinList" resultType="AuctionItem">
-		select *
+		select count(*)
 		from auctionItem where itemId = #{itemId} and state != 4
 		and ORDER BY myPrice DESC
 		
