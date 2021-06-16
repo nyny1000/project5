@@ -2,7 +2,6 @@
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<p>타일즈로 변환시킨거임.</p>
 <table class="mypage" border="0" align="center">
 	<tr height="100px">
 		<td><a href="<c:url value="/auction/list"/>"><button>경매참여목록</button></a></td>
