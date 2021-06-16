@@ -22,6 +22,5 @@
 		</c:forEach>
 	</table>
 	<p>
-	희망가격 : <input type="text" /> 
-	<a href="<c:url value='/auction/bid' />"><input type="button" value="확인"/></a>
+	<a href="<c:url value='/auction/success' />"><input type="button" value="낙찰하기"/></a>
 </div>
