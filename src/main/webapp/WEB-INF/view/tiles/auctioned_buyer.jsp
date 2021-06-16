@@ -8,7 +8,7 @@
 	<div class="bg">
 		<ul class="align">
 			<li><b>낙찰품목</b> : <c:out value="${order.itemName}" /></li>
-			<li><b>가격</b> :<c:out value="${order.auctionedPrice}" />원</li>
+			<li><b>가격</b> :<c:out value="${order.myPrice}" />원</li>
 		</ul>
 </div>
 	<p>
@@ -31,8 +31,8 @@
 	</tr>
 	<tr>
 		<td class="bold">주소</td>
-		<td><form:input path="order.destination" /> <form:errors
-						path="order.destination" cssClass="error" /></td>
+		<td><form:input path="order.address" /> <form:errors
+						path="order.address" cssClass="error" /></td>
 	</tr>
 	<tr>
 		<td class="bold">카드번호</td>
@@ -40,5 +40,5 @@
 	</tr>	
 </table>
 	<p />
-	<a href="<c:url value="/auction/auctioned_destination"/>"><input type="submit" value="다음"/> <input type="button" value="낙찰포기"/>
+	<a href="<c:url value="/auction/destination"/>"><input type="submit" value="다음"/> <input type="button" value="낙찰포기"/></a>
 </div>

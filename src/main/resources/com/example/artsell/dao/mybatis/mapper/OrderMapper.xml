@@ -5,11 +5,9 @@
   <cache />
   
   <select id="getOrder" resultType="Order">
-  	SELECT ADDRESS,
-  		   PHONE, 
-  		   CREDIT
-  	FROM ACCOUNT
-  	WHERE USERID = #{userId}
+  	SELECT a.userId, name, itemName, i.itemId, phone, address, myPrice, credit, picture, deadline
+  	FROM ACCOUNT a, item i, AuctionItem u
+  	WHERE a.userId = u.userId and i.itemId = u. itemId and a.USERID = #{userId} and i.itemId = #{itemId}
   </select>
   
   <update id="editDestination" parameterType="String">
@@ -19,12 +17,14 @@
 	AND ITEMID = #{itemId}
   </update>
 
-  <update id="SaveAuctionedItem" parameterType="AuctionItem">
-  	UPDATE AUCTIONEDITEM
-	SET ITEMID = #{itemId},
-	USERID  = #{userId},
-	AUCTIONEDPRICE = #{auctionedPrice},
-	DESTINATION = #{destination}
+  <update id="updateAuctionedState" parameterType="String">
+  	UPDATE AUCTIONITEM
+	SET STATE = CASE WHEN STATE = 0 THEN 3 WHEN STATE = 1 THEN 2
+	WHERE ITEMID = #{itemId} AND (STATE = 0 OR STATE = 1)
   </update>
   
+  <insert id="SaveAuctionedItem">
+		insert into
+		AuctionedItem(itemId, auctionedPrice, userId, destination) values (#{itemId}, #{myPrice}, #{userId}, #{address})
+  </insert>
 </mapper>

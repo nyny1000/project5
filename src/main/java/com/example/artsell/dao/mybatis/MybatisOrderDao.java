@@ -30,9 +30,12 @@ public class MybatisOrderDao implements OrderDao {
 		orderMapper.editDestination(order, des);
 	}
 	@Transactional
-	public void SaveAuctionedItem (Order order) throws DataAccessException {
-		if (order != null) {
-			orderMapper.SaveAuctionedItem(order);
-		}
+	public void SaveAuctionedItem (String itemId, int myPrice, String userId, String address) throws DataAccessException {
+		orderMapper.SaveAuctionedItem(itemId, myPrice, userId, address);
+	}
+	@Transactional
+	public void updateAuctionedState(String itemId, String userId) throws DataAccessException {
+		 
+			orderMapper.updateAuctionedState(itemId, userId);
 	}
 }
