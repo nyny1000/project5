@@ -37,7 +37,7 @@ public interface AuctionItemMapper {
 
 	List<AuctionItem> getOrderedItem(String userId);
 	
-	int isNewUserPrice(String userId, String itemId);
+	int isNewUserPrice(String userId, String itemId);  
 
 	List<AuctionItem> countAuctionJoinList(String userId);
 
