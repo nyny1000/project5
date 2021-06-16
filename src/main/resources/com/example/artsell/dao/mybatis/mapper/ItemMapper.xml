@@ -130,6 +130,12 @@
   	WHERE ITEMID = #{itemId}
   </update>
   
+  <update id="changeDeadline">
+  	UPDATE ITEM
+  	set deadline = #{param1}
+  	where itemId = #{param2}
+  </update>
+  
   <select id="getItemPrice" parameterType="String" resultType="int" >
   	Select minPrice
   	from ITEM
