@@ -22,10 +22,6 @@ public class MybatisOrderDao implements OrderDao {
 	public Order getOrder(String itemId, String userId) throws DataAccessException {
 		//AuctionItem auctionItem = orderMapper.getAuctionItem(itemId, userId);
 		Order order = orderMapper.getOrder(itemId, userId);
-		if (order != null) {
-			//order.setLineItems(lineItemMapper.getLineItemsByOrderId(itemId));
-			order.setAuctionItem(auctionItemMapper.getAuctionItemByItemIdAndUserId(itemId, userId));
-		}
 	    return order;
 	}
 	@Transactional
