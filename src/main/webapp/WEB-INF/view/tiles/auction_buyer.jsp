@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div align="center">
 	<h2>
@@ -20,9 +21,18 @@
 		</c:forEach>
 	</table>
 	<p>
-		희망가격 : <input type="text" id="myAuctionPrice" value=""/> 
-		<a href="<c:url value="/auction/bid">
-         <c:param name="itemId" value="${item.itemId}" />
-         <c:param name="price" value=myAuctionPrice.value /></c:url>"><input
+
+		<%-- <form:form modelAttribute="bidderItem" method="post">
+		희망가격 : <form:input type="text" path="bidderItem.price" />
+			<a
+				href="<c:url value="/auction/bid">
+         <c:param name="itemId" value="${item.itemId}" /></c:url>"><input
+				type="button" value="입찰" /></a>
+		</form:form> --%>
+
+		희망가격 : <input type="text" name="myAuctionPrice" /> <a
+			href="<c:url value="/auction/bid">
+         <c:param name="itemId" value="${item.itemId}" />         
+         <c:param name="price" value="2000" /></c:url>"><input
 			type="button" value="입찰" /></a>
 </div>

@@ -54,21 +54,21 @@
 	<update id="updatePrice" parameterType="String">
 		update auctionItem
 		set
-		myPrice = {#price}
-		where userId={#userId} and
-		itemId={#itemId}
+		myPrice = #{price}
+		where userId=#{userId} and
+		itemId=#{itemId}
 	</update>
 	
 	<update id="updateItemBestPrice" parameterType="String">
-		update Item
+		update item
 		set
-		bestPrice = {#price}
-		itemId={#itemId}
+		bestPrice = #{price} 
+		where itemId = #{itemId}
 	</update>
 	
 	<insert id="addPrice" parameterType="String">
 		insert into
-		AuctionItem values (#{userId}, #{itemId}, #{myPrice}, 0)
+		AuctionItem values (#{userId}, #{itemId}, #{price}, 0)
 	</insert>
 
 	<delete id="deleteAuctionItem" parameterType="String">
@@ -83,7 +83,7 @@
 	</delete>
 
 	<select id="isNewUserPrice" resultType="int">
-		select count*
+		select count(*)
 		from AuctionItem
 		where userId = #{userId} and
 		itemId = #{itemId}
