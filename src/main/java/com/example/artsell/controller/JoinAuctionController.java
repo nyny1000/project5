@@ -91,6 +91,10 @@ public class JoinAuctionController {
 
 		} else {
 			// 사는 사람은 포기하고 경매목록 리다이렉트
+			//판매자아이디 5로 바꿔주기
+			String sellerId = artSell.getItem(itemId).getUserId();
+			changeState(sellerId, itemId, 5);
+			
 			return "redirect:/auction/list";
 		}
 	}
@@ -141,6 +145,8 @@ public class JoinAuctionController {
 			@RequestParam("itemId") String itemId, @RequestParam("minPrice") int minPrice,
 			@RequestParam("deadline") Date deadline, RedirectAttributes redirectAttributes) {
 		String userId = userSession.getAccount().getUserId();
+		
+		
 		artSell.updateReload(itemId, minPrice, deadline, userId);
 
 		redirectAttributes.addAttribute("itemId", itemId);
@@ -190,8 +196,11 @@ public class JoinAuctionController {
 	
 	@RequestMapping("/auction/success")
 	public String success(@RequestParam("itemId") String itemId, @ModelAttribute("userSession") UserSession userSession) {
+		Date now = new Date(System.currentTimeMillis());
 		
+		artSell.changeDeadline(now, itemId);
 		artSell.bidSuccess(itemId);
+		
 		return 
 	}
 	

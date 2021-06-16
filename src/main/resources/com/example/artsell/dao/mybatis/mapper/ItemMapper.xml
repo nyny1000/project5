@@ -126,7 +126,7 @@
   
   <update id="updateReload" parameterType="Item">
   	UPDATE ITEM
-  	SET MINPRICE = #{minPrice} AND DEADLINE = #{deadline}
+  	SET MINPRICE = #{minPrice} AND DEADLINE = #{deadline} 
   	WHERE ITEMID = #{itemId}
   </update>
   

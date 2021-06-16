@@ -79,8 +79,8 @@ public class MybatisItemDao implements ItemDao {
 	//유찰때
 	public void updateReload(String itemId, int minPrice, Date deadline, String userId) throws DataAccessException {
 		// TODO Auto-generated method stub
+		auctionItemMapper.changeState(userId, itemId, 4);
 		itemMapper.updateReload(itemId, minPrice, deadline, userId);
-		auctionItemMapper.changeState(userId, itemId, 0);
 	}
 	
 	/* Inner Classes */
