@@ -102,11 +102,7 @@
   	FROM ITEM
   </select>
   
-  <select id="isAuctioning" parameterType="String" resultType="int">
-  	SELECT count(*)
-  	FROM AUCTIONITEM
-  	WHERE ITEMID = #{itemId} and state != 4 and state != 5
-  </select>
+  
   
   <delete id="deleteItem" parameterType="String">
   	DELETE FROM ITEM

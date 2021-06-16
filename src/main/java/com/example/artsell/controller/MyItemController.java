@@ -29,6 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.artsell.domain.AuctionItem;
 import com.example.artsell.domain.Category;
 import com.example.artsell.domain.Item;
 import com.example.artsell.domain.ItemForm;
@@ -140,7 +141,9 @@ public class MyItemController {
 	public String deleteMyItem(@ModelAttribute("userSession") UserSession userSession, 
 			@RequestParam("itemId") String itemId, ModelMap model, HttpServletResponse response) throws Exception {
 		String userId = userSession.getAccount().getUserId();
-		if(artSell.isAuctioning(itemId) == 0)
+		
+		List<AuctionItem> list = artSell.isAuctioning(itemId);
+		if(list.size() == 1 && list.get(0).getState() == 4)
 			artSell.deleteItem(userId, itemId);
 		else {
 			response.setContentType("text/html; charset=UTF-8");

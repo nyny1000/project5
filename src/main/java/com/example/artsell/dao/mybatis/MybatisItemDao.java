@@ -61,6 +61,7 @@ public class MybatisItemDao implements ItemDao {
 	//경매참여자가 한명도 없을때만 취소 가능
 	public void deleteItem(String userId, String itemId) throws DataAccessException {
 		// TODO Auto-generated method stub
+		auctionItemMapper.deleteAutionItemById(itemId);
 		interestingItemMapper.deleteInterestingItem(userId, itemId);
 		itemMapper.deleteItem(itemId);
 	}
