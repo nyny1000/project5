@@ -22,7 +22,16 @@
 					<td><fmt:formatDate value="${itemList1.deadline}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					<td><c:out value="${itemList1.bestPrice}" /></td>
 					<td><c:out value="${itemList1.myPrice}" /></td>
-					<td><c:out value="${itemList1.state}" /></td>
+					<td><c:if test="${itemList1.state == 0}">
+					<a href="<c:url value="/auction/info">
+						<c:param name="itemId" value="${itemList1.itemId}" /></c:url>">
+						경매참여중</a></c:if>
+					<c:if test="${itemList1.state == 1}">
+					<a href="<c:url value="/auction/auctioned_buyer">
+						<c:param name="itemId" value="${itemList1.itemId}" /></c:url>">
+						결제대기중</a></c:if>
+					<c:if test="${itemList1.state == 3}">경매실패</c:if></td>
+					
 				</tr>
 			</c:forEach>
 		</table>
