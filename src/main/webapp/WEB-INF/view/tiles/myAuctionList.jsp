@@ -30,7 +30,7 @@
 					<a href="<c:url value="/auction/auctioned_buyer">
 						<c:param name="itemId" value="${itemList1.itemId}" /></c:url>">
 						결제대기중</a></c:if>
-					<c:if test="${itemList1.state == 3}">경매 실패</c:if></td>
+					<c:if test="${itemList1.state == 3}">경매실패</c:if></td>
 					
 				</tr>
 			</c:forEach>
