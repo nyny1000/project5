@@ -217,7 +217,7 @@ public class JoinAuctionController {
 		artSell.changeDeadline(now, itemId);
 		artSell.bidSuccess(itemId);
 		
-		return "redirect:/myitem/list";
+		return "redirect:/myitem/list";  
 	}
 	
 }
