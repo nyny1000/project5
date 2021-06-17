@@ -83,6 +83,10 @@ public class MybatisItemDao implements ItemDao {
 		itemMapper.updateReload(itemId, minPrice, deadline, userId);
 	}
 	
+	public void changeDeadline(Date deadline, String itemId) {
+		itemMapper.changeDeadline(deadline, itemId);
+	}
+	
 	/* Inner Classes */
 	public static class ItemSearch {
 

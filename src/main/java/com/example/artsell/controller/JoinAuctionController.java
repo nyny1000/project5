@@ -103,14 +103,27 @@ public class JoinAuctionController {
 	public void changeState(String userId, String itemId, int state) {
 		artSell.changeState(userId, itemId, state);
 	}
-
+	
 	// 아이템아이디에 해당하는 경매참여자들
+	public List<AuctionItem> AuctionJoinerList(String itemId) {
+		return this.artSell.getBuyersByItemId(itemId);
+	}
+
+	// 아이템아이디에 해당하는 경매참여자들 buyer
 	@RequestMapping("/auction/info")
-	public String viewAutionJoinerList(@ModelAttribute("item") Item item, ModelMap model) {
+	public String viewAutionJoinerList(@RequestParam("itemId") String itemId, ModelMap model) {
 		System.out.print("넘어오긴 하냐");
-		List<AuctionItem> buyers = this.artSell.getBuyersByItemId(item.getItemId());
+		List<AuctionItem> buyers = AuctionJoinerList(itemId);
 		model.put("buyers", buyers);
 		return "auction_buyer";
+	}
+	
+	// 아이템아이디에 해당하는 경매참여자들 seller
+	@RequestMapping("/auction/joniner")
+	public String AutionJoinerList(@RequestParam("itemId") String itemId, ModelMap model) {
+		List<AuctionItem> buyers = AuctionJoinerList(itemId);
+		model.put("buyers", buyers);
+		return "auction_seller";
 	}
 
 	// 유찰 //기간은 현재 날짜에서 7일후
@@ -119,7 +132,8 @@ public class JoinAuctionController {
 			@RequestParam("itemId") String itemId) {
 		String userId = userSession.getAccount().getUserId();
 		int minPrice = artSell.getItemPrice(itemId);
-		minPrice = (int) (minPrice * 0.7);
+		int newPrice = (int) (minPrice * 0.7);
+		newPrice = (int) (minPrice * 0.7);
 
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
@@ -135,6 +149,7 @@ public class JoinAuctionController {
 
 		ModelAndView model = new ModelAndView("myPainting_bidding");
 		model.addObject("minPrice", minPrice);
+		model.addObject("newPrice", newPrice);
 		model.addObject("deadline", deadline);
 		return model;
 
@@ -169,10 +184,10 @@ public class JoinAuctionController {
 			@ModelAttribute("userSession") UserSession userSession) {
 		System.out.println(itemId);
 		Item item = this.artSell.getItem(itemId);
-		// Date deadline = item.getDeadline();
+		Date deadline = item.getDeadline();
 
 		// 테스트
-		SimpleDateFormat d = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		/*SimpleDateFormat d = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		String date = "2021-05-28 01:06";
 		Date deadline = null;
 		try {
@@ -180,7 +195,7 @@ public class JoinAuctionController {
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		System.out.println(deadline);
 
 		AuctionItem auctionItem = new AuctionItem();

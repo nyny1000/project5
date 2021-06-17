@@ -140,7 +140,7 @@
 	<update id="bidFail" parameterType="AuctionItem">
 		UPDATE auctionItem
 		SET state = 3
-		where myPrice != #{bestPrice} and itemId = #{itemId} and state != 4
+		where myPrice != #{bestPrice} and itemId = #{itemId} and state != 4 and state != 5
 	</update>
 	
 	<select id="isAuctioning" parameterType="String" resultType="AuctionItem">
