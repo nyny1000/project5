@@ -30,8 +30,7 @@
 					<a href="<c:url value="/auction/auctioned_buyer">
 						<c:param name="itemId" value="${itemList1.itemId}" /></c:url>">
 						결제대기중</a></c:if>
-					<c:if test="${itemList1.state == 3}">경매실패</c:if></td>
-					
+					<c:if test="${itemList1.state == 3}">경매실패</c:if></td>	
 				</tr>
 			</c:forEach>
 		</table>
@@ -44,7 +43,7 @@
 				<th>낙찰가격</th>
 				<th>&nbsp;</th>
 			</tr>
-			<c:forEach var="itemList1" items="${itemList2.pageList}">
+			<c:forEach var="itemList2" items="${itemList2.pageList}">
 				<tr align="center">
 					<td><c:out value="${itemList2.itemId}" /></td>
 					<td><img src="<c:out value="${itemList2.picture}" />"  width="200" height="150" /></td>
