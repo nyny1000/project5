@@ -146,7 +146,7 @@ public class JoinAuctionController {
 		{// 후순위자에게 낙찰
 			AuctionItem secondAuctionitem = auctionBuyerList.get(0); // 후순위자
 			String secondUser = secondAuctionitem.getUserId();
-			int secondPrice = secondAuctionitem.getMyPrice();
+			int secondPrice = secondAuctionitem.getMyPrice();  
 
 			// 해당 아이템 최고가 변경.
 			artSell.updateItemBestPrice(itemId, secondPrice);
