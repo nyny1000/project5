@@ -15,6 +15,8 @@ public interface AuctionItemDao {
 
 
 	List<AuctionItem> getBuyersByItemId(String itemId) throws DataAccessException;
+	
+	List<AuctionItem> getBuyers(String itemId) throws DataAccessException;
 
 	List<AuctionItem> getAllAuctionItemByUserId(String userId) throws DataAccessException;
 
