@@ -45,4 +45,6 @@ public interface ItemDao {
 	public int getItemPrice(String itemId) throws DataAccessException;
 	
 	boolean isCloseBid(String itemId, Date curTime) throws DataAccessException;
+	
+	void changeDeadline(Date deadline, String itemId) throws DataAccessException;
 }

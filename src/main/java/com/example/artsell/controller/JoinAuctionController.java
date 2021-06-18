@@ -91,6 +91,10 @@ public class JoinAuctionController {
 
 		} else {
 			// 사는 사람은 포기하고 경매목록 리다이렉트
+			//판매자아이디 5로 바꿔주기
+			String sellerId = artSell.getItem(itemId).getUserId();
+			changeState(sellerId, itemId, 5);
+			
 			return "redirect:/auction/list";
 		}
 	}
@@ -99,14 +103,27 @@ public class JoinAuctionController {
 	public void changeState(String userId, String itemId, int state) {
 		artSell.changeState(userId, itemId, state);
 	}
-
+	
 	// 아이템아이디에 해당하는 경매참여자들
+	public List<AuctionItem> AuctionJoinerList(String itemId) {
+		return this.artSell.getBuyersByItemId(itemId);
+	}
+
+	// 아이템아이디에 해당하는 경매참여자들 buyer
 	@RequestMapping("/auction/info")
-	public String viewAutionJoinerList(@ModelAttribute("item") Item item, ModelMap model) {
+	public String viewAutionJoinerList(@RequestParam("itemId") String itemId, ModelMap model) {
 		System.out.print("넘어오긴 하냐");
-		List<AuctionItem> buyers = this.artSell.getBuyersByItemId(item.getItemId());
+		List<AuctionItem> buyers = AuctionJoinerList(itemId);
 		model.put("buyers", buyers);
 		return "auction_buyer";
+	}
+	
+	// 아이템아이디에 해당하는 경매참여자들 seller
+	@RequestMapping("/auction/joniner")
+	public String AutionJoinerList(@RequestParam("itemId") String itemId, ModelMap model) {
+		List<AuctionItem> buyers = AuctionJoinerList(itemId);
+		model.put("buyers", buyers);
+		return "auction_seller";
 	}
 
 	//판매자용 페이지로
@@ -124,7 +141,8 @@ public class JoinAuctionController {
 			@RequestParam("itemId") String itemId) {
 		String userId = userSession.getAccount().getUserId();
 		int minPrice = artSell.getItemPrice(itemId);
-		minPrice = (int) (minPrice * 0.7);
+		int newPrice = (int) (minPrice * 0.7);
+		newPrice = (int) (minPrice * 0.7);
 
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
@@ -140,6 +158,7 @@ public class JoinAuctionController {
 
 		ModelAndView model = new ModelAndView("myPainting_bidding");
 		model.addObject("minPrice", minPrice);
+		model.addObject("newPrice", newPrice);
 		model.addObject("deadline", deadline);
 		return model;
 
@@ -150,8 +169,9 @@ public class JoinAuctionController {
 			@RequestParam("itemId") String itemId, @RequestParam("minPrice") int minPrice,
 			@RequestParam("deadline") Date deadline, RedirectAttributes redirectAttributes) {
 		String userId = userSession.getAccount().getUserId();
-		
+
 		artSell.auctionScheduler(deadline, itemId);
+
 		artSell.updateReload(itemId, minPrice, deadline, userId);
 
 		redirectAttributes.addAttribute("itemId", itemId);
@@ -173,10 +193,10 @@ public class JoinAuctionController {
 			@ModelAttribute("userSession") UserSession userSession) {
 		System.out.println(itemId);
 		Item item = this.artSell.getItem(itemId);
-		// Date deadline = item.getDeadline();
+		Date deadline = item.getDeadline();
 
 		// 테스트
-		SimpleDateFormat d = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		/*SimpleDateFormat d = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		String date = "2021-05-28 01:06";
 		Date deadline = null;
 		try {
@@ -184,7 +204,7 @@ public class JoinAuctionController {
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		System.out.println(deadline);
 
 		AuctionItem auctionItem = new AuctionItem();
@@ -201,9 +221,12 @@ public class JoinAuctionController {
 	
 	@RequestMapping("/auction/success")
 	public String success(@RequestParam("itemId") String itemId, @ModelAttribute("userSession") UserSession userSession) {
+		Date now = new Date(System.currentTimeMillis());
 		
+		artSell.changeDeadline(now, itemId);
 		artSell.bidSuccess(itemId);
-		return 
+		
+		return "redirect:/myitem/list";  
 	}
 	
 }

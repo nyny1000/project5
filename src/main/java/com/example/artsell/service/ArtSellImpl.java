@@ -160,8 +160,13 @@ public class ArtSellImpl implements ArtSellFacade {
 	}
 	
 	@Override
-	public void SaveAuctionedItem(Order order) {
-		orderDao.SaveAuctionedItem(order);
+	public void SaveAuctionedItem(String itemId, int myPrice, String userId, String address) {
+		orderDao.SaveAuctionedItem(itemId, myPrice, userId, address);
+	}
+	
+	@Override
+	public void updateAuctionedState(String itemId, String userId) {
+		orderDao.updateAuctionedState(itemId, userId);
 	}
 
 	@Override
@@ -282,6 +287,11 @@ public class ArtSellImpl implements ArtSellFacade {
 	@Override
 	public List<AuctionedItem> getItemListByAuctionedItem(String userId) {
 		return auctionItemDao.getItemListByAuctionedItem(userId);
+	}
+	
+	@Override
+	public void changeDeadline(Date deadline, String itemId) {
+		itemDao.changeDeadline(deadline, itemId);
 	}
 	
 	public void auctionScheduler(Date closingTime, String itemId) {

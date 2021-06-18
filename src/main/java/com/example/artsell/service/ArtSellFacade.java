@@ -60,7 +60,9 @@ public interface ArtSellFacade {
 
 	Order getOrder(String itemId, String userId);
 	
-	void SaveAuctionedItem(Order order);
+	void SaveAuctionedItem(String itemId, int myPrice, String userId, String address);
+	
+	void updateAuctionedState(String itemId, String userId);
 
 	List<Order> getOrdersByUsername(String username);
 	
@@ -84,7 +86,7 @@ public interface ArtSellFacade {
 	
 	void updateReload(String itemId, int minPrice, Date deadline, String userId);
 	
-	
+	void changeDeadline(Date deadline, String itemId);
 
 	void updatePrice(String userId, String itemId, int price);
 

@@ -193,3 +193,28 @@ table.n13 tr {
 table.n13 tr td {
 	padding: 3px;
 }
+/*명진*/
+		#leftD {
+			margin-left: 30px;
+			margin-right: 100px;
+			float: left;
+		}
+		#rightD {
+			margin-top: 100px;
+			margin-right: 100px;
+			float: left;
+		}
+		table.table1{
+			width: 60%;
+			margin: 20px 0px;
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+		table.table1 th {
+			border: 1px solid black;
+			padding: 5px;
+		}
+		table.table1 td {
+			border: 1px solid black;
+			padding: 5px;
+		}
