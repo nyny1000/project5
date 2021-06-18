@@ -78,7 +78,8 @@ public class MyItemController {
 //		System.out.println(item.getBestPrice());
 		
 		System.out.println(item.getDeadline());
-		  new PaintRegiValidator().validate(item, result); if (result.hasErrors()) { 
+		  new PaintRegiValidator().validate(item, result); 
+		  if (result.hasErrors()) { 
 		  System.out.println("a"); return "paintingRegister"; }
 		 
 		

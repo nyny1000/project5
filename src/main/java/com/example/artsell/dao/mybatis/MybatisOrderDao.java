@@ -26,7 +26,7 @@ public class MybatisOrderDao implements OrderDao {
 	}
 	@Transactional
 	public void editDestination(Order order, String des) throws DataAccessException {
-		order.setDestination(des);
+		//order.setDestination(des);
 		orderMapper.editDestination(order, des);
 	}
 	@Transactional
