@@ -5,32 +5,32 @@
 
 <div align="center">
    <h2>작품 정보</h2>
-   <table>
-      <tr>
+   <table class="table1" width = "70%">
+      <tr align="center">
          <td>작품명</td>
          <td><c:out value="${item.itemName}" /></td>
       </tr>
-      <tr>
+      <tr align="center">
          <td>카테고리</td>
          <td><c:out value="${item.categoryId}" /></td> <!-- 카테고리 이름으로 바꾸기 -->
       </tr>
-      <tr>
+      <tr align="center">
          <td>현재 최고가</td>
          <td><c:out value="${item.bestPrice}" /></td>
       </tr>
-      <tr>
+      <tr align="center">
          <td>화가</td>
          <td><c:out value="${item.artist}" /></td>
       </tr>
-      <tr>
+      <tr align="center">
          <td>마감 기한</td>
          <td><fmt:formatDate value="${item.deadline}"
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
       </tr>
-      <tr>
-         <td colspan="2"><img src="${item.picture}" /></td>
+      <tr align="center">
+         <td colspan="2"><img src="${item.picture}" width="50%"  /></td>
       </tr>
-      <tr>
+      <tr align="center">
          <td colspan="2" width="40" height="8"><c:out value="${item.description}" /></td>
       </tr>
    </table>

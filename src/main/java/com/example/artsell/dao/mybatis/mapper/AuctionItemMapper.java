@@ -14,6 +14,8 @@ public interface AuctionItemMapper {
 	AuctionItem getAuctionItemByItemIdAndUserId(String itemId, String userId);
 
 	List<AuctionItem> getBuyersByItemId(String itemId);
+	
+	List<AuctionItem> getBuyers(String itemId);
 
 	List<AuctionItem> getAllAuctionItemByUserId(String userId);
 

@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,7 +41,7 @@ import com.example.artsell.service.ArtSellFacade;
 import java.util.Date;
 
 @Controller
-@SessionAttributes({"userSession", "itemId"})
+@SessionAttributes({ "userSession", "itemId" })
 public class JoinAuctionController {
 
 	@Autowired
@@ -110,7 +111,10 @@ public class JoinAuctionController {
 	
 		if (result.hasErrors()) {
 			System.out.println("입찰가 validation 에러");
+<<<<<<< HEAD
 			model.put("itemId", itemId);
+=======
+>>>>>>> branch 'master' of https://github.com/Myung518/project5.git
 			return "auction_buyer";
 		}
 		
@@ -129,6 +133,7 @@ public class JoinAuctionController {
 				artSell.updateItemBestPrice(itemId, myPrice);
 				System.out.println("업데이트 됐음");
 
+				artSell.deleteInterestingItem(userId, itemId);
 				return "auction_buyer";
 			}
 		} else {
@@ -139,14 +144,14 @@ public class JoinAuctionController {
 					System.out.println("여기로 왔음");
 					artSell.updatePrice(userId, itemId, myPrice);
 					artSell.updateItemBestPrice(itemId, myPrice);
-					
-		
+					artSell.deleteInterestingItem(userId, itemId);
 					return "auction_buyer";
 
 				} else { // 새로운 값
 					System.out.println("애드로 왔음");
 					artSell.addPrice(userId, itemId, myPrice);
 					artSell.updateItemBestPrice(itemId, myPrice);
+					artSell.deleteInterestingItem(userId, itemId);
 
 					return "auction_buyer";
 
@@ -167,7 +172,7 @@ public class JoinAuctionController {
 		// auctionitem table에서 해당 아이디 / 아이템아이디의 행 삭제
 		artSell.deleteAuctionItem(userId, itemId);
 
-		List<AuctionItem> auctionBuyerList = artSell.getBuyersByItemId(itemId);
+		List<AuctionItem> auctionBuyerList = artSell.getBuyers(itemId);
 
 		if (auctionBuyerList.size() != 0) // 후순위자가 있다면
 		{// 후순위자에게 낙찰
@@ -204,36 +209,29 @@ public class JoinAuctionController {
 
 	// 아이템아이디에 해당하는 경매참여자들 buyer
 	@RequestMapping("/auction/info")
-	public String viewAutionJoinerList(@RequestParam(value = "itemId") String itemId,  HttpSession session, ModelMap model) {
-		  
-		  if (session.getAttribute("itemId") == null) {
-		 			Item item = artSell.getItem(itemId);
-			System.out.print("참여자들 출력 아이템 아이디는" + itemId);
-			session.setAttribute("itemId", itemId);
-			System.out.println("세션에 저장 아이템아이디값 " + (String)session.getAttribute("itemId"));
-			List<AuctionItem> buyers = this.artSell.getBuyersByItemId(item.getItemId());
-			model.put("buyers", buyers);
-			model.put("item", item); // 나영추가
-		}
-		else {
-			itemId = (String)session.getAttribute("itemId");
-			Item item = artSell.getItem(itemId);
-			System.out.print("참여자들 출력 아이템 아이디는" + itemId);
-			List<AuctionItem> buyers = this.artSell.getBuyersByItemId(item.getItemId());
-			model.put("buyers", buyers);
-			model.put("item", item); // 나영추가
-			
-		}
-		
+	public String viewAutionJoinerList(@RequestParam(value = "itemId") String itemId, HttpSession session,
+			ModelMap model) {
+
+		itemId = (String) session.getAttribute("itemId");
+		Item item = artSell.getItem(itemId);
+		System.out.print("참여자들 출력 아이템 아이디는" + itemId);
+		List<AuctionItem> buyers = this.artSell.getBuyersByItemId(item.getItemId());
+		model.put("buyers", buyers);
+		model.put("item", item); // 나영추가
 
 		return "auction_buyer";
 	}
 
 	// 판매자용 페이지로
 	@RequestMapping("/auction/info_seller")
-	public String viewAutionJoinerList2(@ModelAttribute("item") Item item, ModelMap model) {
-		System.out.print("넘어오긴 하냐");
-		List<AuctionItem> buyers = this.artSell.getBuyersByItemId(item.getItemId());
+	public String viewAutionJoinerList2(@RequestParam("itemId") String itemId, @ModelAttribute("item") Item item,
+			ModelMap model) {
+		System.out.println(item.getItemId());
+		List<AuctionItem> buyers = null;
+		if (item == null)
+			buyers = this.artSell.getBuyersByItemId(itemId);
+		else
+			buyers = this.artSell.getBuyersByItemId(item.getItemId());
 		model.put("buyers", buyers);
 
 		return "auction_seller";
@@ -266,7 +264,7 @@ public class JoinAuctionController {
 
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 		cal.add(Calendar.DATE, 7);
 		Date deadline = null;
@@ -280,6 +278,7 @@ public class JoinAuctionController {
 		model.addObject("minPrice", minPrice);
 		model.addObject("newPrice", newPrice);
 		model.addObject("deadline", deadline);
+		model.addObject("itemId", itemId);
 		return model;
 
 	}
@@ -287,16 +286,28 @@ public class JoinAuctionController {
 	@RequestMapping("/auction/fail/ok")
 	public String Reupload(@ModelAttribute("userSession") UserSession userSession,
 			@RequestParam("itemId") String itemId, @RequestParam("minPrice") int minPrice,
-			@RequestParam("deadline") Date deadline, RedirectAttributes redirectAttributes) {
+			@RequestParam("deadline") String deadline, RedirectAttributes redirectAttributes) {
+		System.out.println(deadline);
+
 		String userId = userSession.getAccount().getUserId();
+		DateFormat parser2 = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+		DateFormat parser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
 
-		artSell.auctionScheduler(deadline, itemId);
+		Date dl = null;
+		try {
+			dl = parser.parse(parser.format(parser2.parse(deadline)));
+			// dl = parser.parse(deadline);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		artSell.updateReload(itemId, minPrice, deadline, userId);
+		artSell.auctionScheduler(dl, itemId);
 
-		redirectAttributes.addAttribute("itemId", itemId);
+		System.out.println("itemId1: " + itemId);
+		artSell.updateReload(itemId, minPrice, dl, userId);
 
-		return "redirect:/shop/viewItem";
+		return "redirect:/myitem/list";
 	}
 
 	// 유찰 안하겠다고 했을때

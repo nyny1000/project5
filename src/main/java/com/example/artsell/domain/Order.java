@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+
 import com.example.artsell.domain.Account;
 import com.example.artsell.domain.Item;
 import com.example.jpetstore.domain.Cart;
@@ -20,6 +22,7 @@ public class Order implements Serializable {
 	private String itemName;
 	private String itemId;
 	private String phone;
+	@NotBlank
 	private String address;
 	private int myPrice;
 	private String credit;

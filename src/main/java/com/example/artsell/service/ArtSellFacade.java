@@ -82,6 +82,8 @@ public interface ArtSellFacade {
 	
 	List<AuctionItem> getBuyersByItemId(String itemId);
 	
+	List<AuctionItem> getBuyers(String itemId);
+	
 	int getItemPrice(String itemId);
 	
 	void updateReload(String itemId, int minPrice, Date deadline, String userId);

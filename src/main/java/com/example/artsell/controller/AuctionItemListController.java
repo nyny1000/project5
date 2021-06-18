@@ -16,7 +16,7 @@ import com.example.artsell.domain.Item;
 import com.example.artsell.service.ArtSellFacade;
 
 @Controller
-@SessionAttributes("userSession")
+@SessionAttributes({"userSession","itemList1","itemList2"})
 public class AuctionItemListController {
 	@Autowired
 	private ArtSellFacade artSell;
@@ -25,24 +25,25 @@ public class AuctionItemListController {
 	public String viewAuctionItemList(@ModelAttribute("userSession") UserSession userSession, ModelMap model) {
 		PagedListHolder<AuctionItem> itemList1 = new PagedListHolder<AuctionItem>(
 				this.artSell.getItemListByAuctionItem(userSession.getAccount().getUserId()));
-		itemList1.setPageSize(4);
+
+		itemList1.setPageSize(2);
+
 		model.put("itemList1", itemList1);
 		
 		//낙찰된(결제까지 다 한) 목록
 		PagedListHolder<AuctionedItem> itemList2 = new PagedListHolder<AuctionedItem>(
 				this.artSell.getItemListByAuctionedItem(userSession.getAccount().getUserId()));
-		itemList2.setPageSize(4);
+		itemList2.setPageSize(1);
 		model.put("itemList2", itemList2);
 
 		return "myAuctionList";
 	
 	}
 	
-	@RequestMapping("/auction/list/auction")
+	@RequestMapping("/auction/listauction")
 	public String viewAuctionItemList2(
 			@RequestParam("page") String page, 
-			@ModelAttribute("auctionList") PagedListHolder<Item> itemList,
-			BindingResult result) throws Exception {
+			@ModelAttribute("itemList1") PagedListHolder<Item> itemList,BindingResult result) throws Exception {
 
 		if ("next".equals(page)) {
 			itemList.nextPage();
@@ -53,10 +54,10 @@ public class AuctionItemListController {
 		return "myAuctionList";
 	} 
 	
-	@RequestMapping("/auction/list/auctioned")
+	@RequestMapping("/auction/listauctioned")
 	public String viewAuctionItemList3(
 			@RequestParam("page") String page, 
-			@ModelAttribute("auctionedList") PagedListHolder<Item> itemList,
+			@ModelAttribute("itemList2") PagedListHolder<Item> itemList,
 			BindingResult result) throws Exception {
 
 		if ("next".equals(page)) {
