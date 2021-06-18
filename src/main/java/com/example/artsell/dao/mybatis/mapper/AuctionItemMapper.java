@@ -52,4 +52,6 @@ public interface AuctionItemMapper {
 	void bidFail(int bestPrice, String itemId);
 	
 	List<AuctionItem> isAuctioning(String itemId);
+	
+	List<Integer> getItemState(String itemId);
 }

@@ -51,5 +51,7 @@ public interface AuctionItemDao {
 	void bid(int bestPrice, String itemId) throws DataAccessException;
 	
 	List<AuctionItem> isAuctioning(String itemId) throws DataAccessException;
+	
+	List<Integer> getItemState(String itemId) throws DataAccessException;
 
 }

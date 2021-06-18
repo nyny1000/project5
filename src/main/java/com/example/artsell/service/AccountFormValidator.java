@@ -25,7 +25,7 @@ public class AccountFormValidator implements Validator {
 
 		//에러 코드 수정완료.
 		
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.name", "UER_NAME_REQUIRED", "User name is required.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.name", "USER_NAME_REQUIRED", "User name is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.email", "EMAIL_REQUIRED", "Email address is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.phone", "PHONE_REQUIRED", "Phone number is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.address", "ADDRESS_REQUIRED", "Address is required.");

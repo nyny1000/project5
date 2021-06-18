@@ -34,6 +34,8 @@ public class Item implements Serializable {
 	private String categoryId;
 	private String userId;
 	
+	private int state;
+	
 	
 	public String getItemId() {
 		return itemId;
@@ -94,6 +96,12 @@ public class Item implements Serializable {
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
 	}
 	
   

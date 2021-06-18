@@ -40,18 +40,18 @@
 		ORDER BY myPrice DESC
 	</select>
 
-	<select id="calcBestPrice" resultType="int">
-		select max(myPrice)
-		from auctionItem
+	<!--<select id="calcBestPrice" resultType="int">
+		select bestPrice
+		from item
 		where itemId = #{itemId}
-	</select>
+	</select>  -->
 
 	<insert id="insertAuctionItem" parameterType="AuctionItem">
 		insert into
 		AuctionItem values (#{userId}, #{itemId}, #{myPrice}, #{state})
 	</insert>
 
-	<update id="updatePrice" parameterType="String">
+	<update id="updatePrice" >
 		update auctionItem
 		set
 		myPrice = #{price}
@@ -65,9 +65,9 @@
 		where itemId=#{param1}
 	</update>
 	
-	<insert id="addPrice" parameterType="String">
+	<insert id="addPrice" >
 		insert into
-		AuctionItem values (#{userId}, #{itemId}, #{myPrice}, 0)
+		AuctionItem values (#{param1}, #{param2}, #{param3}, 0)
 	</insert>
 
 	<delete id="deleteAuctionItem" parameterType="String">
@@ -82,7 +82,7 @@
 	</delete>
 
 	<select id="isNewUserPrice" resultType="int">
-		select count*
+		select count(*)
 		from AuctionItem
 		where userId = #{userId} and
 		itemId = #{itemId}
@@ -147,4 +147,11 @@
   	FROM AUCTIONITEM
   	WHERE ITEMID = #{itemId}
   </select>
+  
+  <select id="getItemState" parameterType="String" resultType = "Integer">
+   SELECT state
+   FROM AUCTIONITEM
+   WHERE ITEMID = #{itemId}
+  </select>
+  
 </mapper>

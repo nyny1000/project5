@@ -5,7 +5,7 @@
 <div align="center">
 	<form action="center">
 		<h1>내 경매 참여 목록입니다</h1>
-		<table>
+		<table class="table1">
 			<tr align="center" bgcolor="#D5D5D5">
 				<th>상품ID</th>
 				<th>사진</th>

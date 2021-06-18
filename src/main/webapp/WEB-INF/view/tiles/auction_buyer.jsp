@@ -29,14 +29,12 @@
       <input type="hidden" name="itemId" value="${item.itemId}" /> <input
          type="submit" value="입찰" />
    </form>-->
-         <form:form action="<c:url value='/auction/bid'/>"
+         <form:form action="/auction/bid"
          modelAttribute="auctionItem" method="POST">
          <form:errors cssClass="error" />
          <form:input type="text" path="myPrice" />
          <form:errors path="myPrice" cssClass="error" />
          <form:input type="hidden" path="itemId" value="${item.itemId}" />
-
-
          <input type="submit" value="입찰" />
 
       </form:form>

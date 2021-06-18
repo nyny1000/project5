@@ -25,13 +25,15 @@
 <p>
 
 <div align="center">
-	<table>
-		<th>작품</th>
-		<th>제목</th>
-		<th>화가</th>
+	<table class="table1">
+		<tr>
+			<th>작품</th>
+			<th>제목</th>
+			<th>화가</th>
+		</tr>
 		<c:forEach var="item" items="${itemList.pageList}">
 		<tr>
-			<td>
+			<td align="center">
 				<a href="<c:url value="/shop/viewItem">
 					<c:param name="itemId" value="${item.itemId}" /></c:url>">
 					<img src="${item.picture}" width="300" height="200" />
