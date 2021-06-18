@@ -15,7 +15,7 @@
 	
 	<table class="border">
 	<tr id="c1">
-		<td colspan="2" ><a href="<c:url value='/index' />">회원정보와 동일</a></td>
+		<td colspan="2" ><a href="<c:url value="/auction/auctioned_buyer_addressCheck" />">회원정보와 동일</a></td>
 	</tr>
 		
 	<tr bgcolor="#FFD700">

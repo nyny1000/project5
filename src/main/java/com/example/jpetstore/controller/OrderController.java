@@ -34,6 +34,10 @@ public class OrderController {
 	@Autowired
 	private OrderValidator orderValidator;
 	
+	public void setValidator(OrderValidator validator) {
+		this.validator = validator;
+	}
+	
 	@ModelAttribute("orderForm")
 	public OrderForm createOrderForm() {
 		return new OrderForm();

@@ -78,7 +78,8 @@ public class MyItemController {
 //		System.out.println(item.getBestPrice());
 		
 		System.out.println(item.getDeadline());
-		  new PaintRegiValidator().validate(item, result); if (result.hasErrors()) { 
+		  new PaintRegiValidator().validate(item, result); 
+		  if (result.hasErrors()) { 
 		  System.out.println("a"); return "paintingRegister"; }
 		 
 		
@@ -112,8 +113,8 @@ public class MyItemController {
 		//System.out.println(date);
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
-		calendar.set(Calendar.HOUR_OF_DAY, 23);
-		calendar.set(Calendar.MINUTE, 59);
+		calendar.set(Calendar.HOUR_OF_DAY, 19);
+		calendar.set(Calendar.MINUTE, 01);
 		calendar.set(Calendar.SECOND, 59);
 		
 		Date deadline = new Date(calendar.getTimeInMillis());

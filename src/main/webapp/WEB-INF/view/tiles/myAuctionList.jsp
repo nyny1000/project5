@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div align="center">
-	<form action="center">
+	<form>
 		<h1>내 경매 참여 목록입니다</h1>
 		<table class="table1">
 			<tr align="center" bgcolor="#D5D5D5">
@@ -33,19 +33,23 @@
 					<c:if test="${itemList1.state == 3}">경매실패</c:if></td>	
 				</tr>
 			</c:forEach>
-				<c:if test="${!itemList1.firstPage}">
-					<a href="<c:url value="/auction/list/auction">
+				
+		</table>
+		<c:if test="${!itemList1.firstPage}">
+					<a href="<c:url value="/auction/listauction">
 						<c:param name="page" value="previous" /></c:url>">
 				   			<B>&lt;&lt; Prev</B></a>
-				</c:if>
-				<c:if test="${!itemList1.lastPage}">
-					<a href="<c:url value="/auction/list/auction">
-						<c:param name="page" value="next" /></c:url>">
+		</c:if>
+		<c:if test="${!itemList1.lastPage}">
+			<a href="<c:url value="/auction/listauction">
+					<c:param name="page" value="next" /></c:url>">
 				   			<B>Next &gt;&gt;</B></a>
-				</c:if>
-		</table>
+		</c:if>
+		</form>
+		<form>
+		
 		<h1>내 경매 낙찰 목록입니다</h1>
-		<table>
+		<table class="table1">
 			<tr align="center" bgcolor="#D5D5D5">
 				<th>상품ID</th>
 				<th>사진</th>
@@ -62,5 +66,15 @@
 				</tr>
 			</c:forEach>
 		</table>
+		<c:if test="${!itemList2.firstPage}">
+			<a href="<c:url value="/auction/listauctioned">
+				<c:param name="page" value="previous" /></c:url>">
+				   			<B>&lt;&lt; Prev</B></a>
+		</c:if>
+		<c:if test="${!itemList2.lastPage}">
+			<a href="<c:url value="/auction/listauctioned">
+				<c:param name="page" value="next" /></c:url>">
+				   	<B>Next &gt;&gt;</B></a>
+		</c:if>
 	</form>
 </div>
