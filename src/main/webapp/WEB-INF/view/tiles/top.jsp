@@ -31,7 +31,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td></td>
+		<td style="text-align: right"> <c:out value="${userSession.account.userId}" /> ¥‘. æ»≥Á«œººø‰</td>
 		<c:if test="${!empty userSession.account}">
 			<td style="text-align: right"><a
 				href="<c:url value="/myitem/add"/>">
