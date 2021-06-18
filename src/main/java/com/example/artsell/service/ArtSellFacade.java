@@ -86,7 +86,7 @@ public interface ArtSellFacade {
 	
 	void updateReload(String itemId, int minPrice, Date deadline, String userId);
 	
-	
+	void changeDeadline(Date deadline, String itemId);
 
 	void updatePrice(String userId, String itemId, int price);
 

@@ -273,6 +273,11 @@ public class ArtSellImpl implements ArtSellFacade {
 		return auctionItemDao.getItemListByAuctionedItem(userId);
 	}
 	
+	@Override
+	public void changeDeadline(Date deadline, String itemId) {
+		itemDao.changeDeadline(deadline, itemId);
+	}
+	
 	public void auctionScheduler(Date closingTime, String itemId) {
 		// TODO Auto-generated method stub
 		Runnable updateTableRunner = new Runnable() {
