@@ -32,7 +32,7 @@
   </select>
 
   <select id="getItemListByCategory" resultType="Item">
-  	SELECT i.ITEMID,
+  	SELECT distinct i.ITEMID,
   		   ITEMNAME,
   		   MINPRICE,
   		   BESTPRICE,
