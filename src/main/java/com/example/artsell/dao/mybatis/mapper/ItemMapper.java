@@ -38,4 +38,6 @@ public interface ItemMapper {
 	int isCloseBid(String itemId, Date curTime) throws DataAccessException;
 	
 	void changeDeadline(Date deadline, String itemId) throws DataAccessException;
+	
+	int isItemExist(String itemId) throws DataAccessException;
 }

@@ -27,7 +27,10 @@
 						<c:param name="itemId" value="${myItem.itemId}" /></c:url>">
 							<img src="<c:out value="${myItem.picture}" />" width="200" height="150" />
 					</a></td>
-					<td><c:out value="경매중" /></td>
+					<td><a
+						href="<c:url value="/auction/joniner">
+							<c:param name="itemId" value="${myItem.itemId}" /></c:url>">
+								<c:out value="경매창" /></a></td>
 					<td><a
 						href='<c:url value="/myitem/delete">
 	            		<c:param name="itemId" value="${myItem.itemId}"/></c:url>'>

@@ -125,4 +125,8 @@ public class MybatisItemDao implements ItemDao {
 			return true;
 		}
 	}
+	
+	public int isItemExist(String itemId) throws DataAccessException {
+		return itemMapper.isItemExist(itemId);
+	}
 }

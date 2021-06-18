@@ -59,11 +59,10 @@
 		itemId={#itemId}
 	</update>
 	
-	<update id="updateItemBestPrice" parameterType="String">
+	<update id="updateItemBestPrice">
 		update Item
-		set
-		bestPrice = {#price}
-		itemId={#itemId}
+		set bestPrice = {#price}
+		where itemId={#itemId}
 	</update>
 	
 	<insert id="addPrice" parameterType="String">

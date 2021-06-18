@@ -29,6 +29,13 @@ import com.example.artsell.service.ArtSellFacade;
 public class JoinAuctionController {
 	@Autowired
 	private ArtSellFacade artSell;
+	
+	@ModelAttribute("auctionItem")
+	   public AuctionItem formBackingObject() {
+	      System.out.println("폼백킹입니다");
+	      return new AuctionItem();
+
+	   }
 
 	// 입찰, 재입찰
 	@RequestMapping("/auction/bid")
@@ -66,6 +73,7 @@ public class JoinAuctionController {
 	}
 
 	// 낙찰포기 //if 후순위자있을경우->후순위자상태바꿈 else
+	@RequestMapping("/auction/success/cancel")
 	public String giveup(@ModelAttribute("userSession") UserSession userSession, @RequestParam("itemId") String itemId,
 			ModelMap model) {
 
@@ -83,7 +91,7 @@ public class JoinAuctionController {
 			int secondPrice = secondAuctionitem.getMyPrice();
 
 			// 해당 아이템 최고가 변경.
-			artSell.updateItemBestPrice(secondUser, secondPrice);
+			artSell.updateItemBestPrice(itemId, secondPrice);
 
 			changeState(secondUser, itemId, 1);
 
@@ -94,7 +102,7 @@ public class JoinAuctionController {
 			//판매자아이디 5로 바꿔주기
 			String sellerId = artSell.getItem(itemId).getUserId();
 			changeState(sellerId, itemId, 5);
-			
+			artSell.updateItemBestPrice(itemId, 0);
 			return "redirect:/auction/list";
 		}
 	}
@@ -103,26 +111,26 @@ public class JoinAuctionController {
 	public void changeState(String userId, String itemId, int state) {
 		artSell.changeState(userId, itemId, state);
 	}
-	
-	// 아이템아이디에 해당하는 경매참여자들
-	public List<AuctionItem> AuctionJoinerList(String itemId) {
-		return this.artSell.getBuyersByItemId(itemId);
-	}
 
 	// 아이템아이디에 해당하는 경매참여자들 buyer
-	@RequestMapping("/auction/info")
-	public String viewAutionJoinerList(@RequestParam("itemId") String itemId, ModelMap model) {
-		System.out.print("넘어오긴 하냐");
-		List<AuctionItem> buyers = AuctionJoinerList(itemId);
-		model.put("buyers", buyers);
-		return "auction_buyer";
-	}
+	   @RequestMapping("/auction/info")
+	   public String viewAutionJoinerList(@RequestParam("itemId") String itemId, ModelMap model) {
+	      Item item = artSell.getItem(itemId);
+	      System.out.print("참여자들 출력 아이템 아이디는" + itemId );
+	      List<AuctionItem> buyers = this.artSell.getBuyersByItemId(item.getItemId());
+	      model.put("buyers", buyers);
+	      model.put("item", item); //나영추가
+	      return "auction_buyer";
+	   }
 	
 	// 아이템아이디에 해당하는 경매참여자들 seller
 	@RequestMapping("/auction/joniner")
 	public String AutionJoinerList(@RequestParam("itemId") String itemId, ModelMap model) {
-		List<AuctionItem> buyers = AuctionJoinerList(itemId);
-		model.put("buyers", buyers);
+		Item item = artSell.getItem(itemId);
+	      System.out.print("참여자들 출력 아이템 아이디는" + itemId );
+	      List<AuctionItem> buyers = this.artSell.getBuyersByItemId(item.getItemId());
+	      model.put("buyers", buyers);
+	      model.put("item", item); //나영추가
 		return "auction_seller";
 	}
 
@@ -213,7 +221,12 @@ public class JoinAuctionController {
 	@RequestMapping("/auction/success")
 	public String success(@RequestParam("itemId") String itemId, @ModelAttribute("userSession") UserSession userSession) {
 		Date now = new Date(System.currentTimeMillis());
-		
+//		SimpleDateFormat d = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		String date = "2021-05-28 01:06";
+//		Date deadline = null;
+//		try {
+//			deadline = d.parse(now);
+		System.out.println("아이디" + itemId);
 		artSell.changeDeadline(now, itemId);
 		artSell.bidSuccess(itemId);
 		

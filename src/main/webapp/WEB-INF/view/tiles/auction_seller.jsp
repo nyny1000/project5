@@ -22,5 +22,5 @@
 		</c:forEach>
 	</table>
 	<p>
-	<a href="<c:url value='/auction/success' />"><input type="button" value="낙찰하기"/></a>
+	<a href="<c:url value='/auction/success'><c:param name="itemId" value="${item.itemId}" /></c:url>"><input type="button" value="낙찰하기"/></a>
 </div>
