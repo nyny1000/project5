@@ -16,7 +16,7 @@
 
 	<table class="border">
 		<tr bgcolor="#FFD700">
-			<th colspan="2">배송정보</th>
+			<th colspan="2">배송 정보</th>
 		</tr>
 		<tr>
 			<td class="bold">아이디</td>

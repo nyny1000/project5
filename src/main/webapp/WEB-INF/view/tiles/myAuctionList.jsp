@@ -48,7 +48,7 @@
 					<td><c:out value="${itemList2.itemId}" /></td>
 					<td><img src="<c:out value="${itemList2.picture}" />"  width="200" height="150" /></td>
 					<td><fmt:formatDate value="${itemList2.deadline}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-					<td><c:out value="${itemList1.auctionedPrice}" /></td>
+					<td><c:out value="${itemList2.auctionedPrice}" /></td>
 				</tr>
 			</c:forEach>
 		</table>
