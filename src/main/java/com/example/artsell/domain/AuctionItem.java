@@ -84,16 +84,12 @@ public class AuctionItem implements Serializable {
 	public void setBestPrice(int bestPrice) {
 		this.bestPrice = bestPrice;
 	}
-<<<<<<< HEAD
-	
-
-	
-=======
 	public String getItemName() {
 		return itemName;
 	}
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
 	}
->>>>>>> branch 'master' of https://github.com/Myung518/project5.git
+
+	
 }
