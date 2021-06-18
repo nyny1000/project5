@@ -9,7 +9,12 @@
 		<h3>가격: <c:out value="${minPrice } -> ${newPrice }" /></h3>
 		<h3>마감기간:<c:out value="${deadline}"/> </h3>
 	
-		<a href="<c:url value="/auction/fail/ok"/>"><input type="button" value="네"/></a>
+		<a href="<c:url value="/auction/fail/ok" >
+		 <c:param name="itemId" value="${itemId}" />
+		 <c:param name="minPrice" value="${newPrice}" />
+		 <c:param name="deadline" value="${deadline}" /> </c:url>"><input type="button" value="네"/>
+		</a>
+		
 		<a href="<c:url value="/auction/fail/no"/>"><input type="button" value="아니오"/></a>
 		
 	</div>
