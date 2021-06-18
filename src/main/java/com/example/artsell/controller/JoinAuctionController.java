@@ -47,64 +47,73 @@ public class JoinAuctionController {
 		this.validator = validator;
 	}
 
+	@ModelAttribute("auctionItem")
+	   public AuctionItem formBackingObject(HttpServletRequest request) throws Exception {
+	      System.out.println("폼백킹입니다");
+	      return new AuctionItem();
+
+	   }
 	// 입찰, 재입찰
-	@RequestMapping("/auction/bid")
-	public String addAuctionItem(@ModelAttribute("userSession") UserSession userSession,
-			@RequestParam("itemId") String itemId, @RequestParam("bidder.price") int myPrice, BindingResult result,
-			RedirectAttributes redirectAttributes) throws Exception {
-		System.out.println("넘어옴. 아이템아이디는" + itemId);
+		@RequestMapping("/auction/bid")
+		public String addAuctionItem(@ModelAttribute("userSession") UserSession userSession,
+				@ModelAttribute("auctionItem") AuctionItem bidder, BindingResult result,
+				RedirectAttributes redirectAttributes) throws Exception {
+			
+			String itemId = bidder.getItemId();
+			int myPrice = bidder.getMyPrice();
+			
+			System.out.println("넘어옴. 아이템아이디는" + itemId);
+			System.out.println("넘어옴. 가격은" + myPrice);
+			
+			// 확인차
+			String userId = userSession.getAccount().getUserId();
+			Item auctionItem = artSell.getItem(itemId);
+			System.out.println(auctionItem);
 
-		System.out.println("넘어옴. 가격은" + myPrice);
-		// 확인차
-		String userId = userSession.getAccount().getUserId();
-		Item auctionItem = artSell.getItem(itemId);
-		System.out.println(auctionItem);
+			System.out.println("옥션비더출력" + bidder);
+			redirectAttributes.addAttribute("itemId", itemId);
+			
+			validator.validate(bidder, result);
+			if (result.hasErrors()) {
+				System.out.println("입찰가 validation 에러");
+				return "redirect:/auction/info";
+			}
 
-		AuctionItem bidder = new AuctionItem(userId, itemId, myPrice, 8, new Date(), "none",
-				auctionItem.getBestPrice());
-		
-		System.out.println("옥션비더출력" + bidder);
+			// validation 검사 후이기때문에 정상 입찰가만 db에 저장.
+			// 첫 입찰자
+			if (artSell.getBuyersByItemId(itemId).size() == 0) { // minPrice보다 커야함.
+				System.out.println("첫입찰자로 왔음");
+				if (myPrice > auctionItem.getMinPrice()) {
+					artSell.addPrice(userId, itemId, myPrice);
+					System.out.println("add 됐음");
 
-		validator.validate(bidder, result);
-		redirectAttributes.addAttribute("itemId", itemId);
+					artSell.updateItemBestPrice(itemId, myPrice);
+					System.out.println("업데이트 됐음");
+					return "redirect:/auction/info";
+				}
+			} else {
+				// 그 다음 입찰자는 maxPrice보다 크게 입찰해야 함.
+				if (myPrice > auctionItem.getBestPrice()) {
+					// 새로운 입찰자인지 체크
+					if (artSell.isNewUserPrice(userId, itemId) > 0) { // 헌값 수정!
+						System.out.println("여기로 왔음");
+						artSell.updatePrice(userId, itemId, myPrice);
+						artSell.updateItemBestPrice(itemId, myPrice);
+						return "redirect:/auction/info";
 
-		if (result.hasErrors()) {
-			System.out.println("입찰가 validation 에러");
+					} else { // 새로운 값
+						System.out.println("애드로 왔음");
+						artSell.addPrice(userId, itemId, myPrice);
+						artSell.updateItemBestPrice(itemId, myPrice);
+						return "redirect:/auction/info";
+
+					}
+				}
+			}
+
 			return "redirect:/auction/info";
 		}
 
-		// validation 검사 후이기때문에 정상 입찰가만 db에 저장.
-		// 첫 입찰자
-		if (artSell.getBuyersByItemId(itemId).size() == 0) { // minPrice보다 커야함.
-			System.out.println("첫입찰자로 왔음");
-			if (myPrice > auctionItem.getMinPrice()) {
-				artSell.addPrice(userId, itemId, myPrice);
-				artSell.updateItemBestPrice(itemId, myPrice);
-				System.out.println("업데이트 됐음");
-				return "redirect:/auction/info";
-			}
-		} else {
-			// 그 다음 입찰자는 maxPrice보다 크게 입찰해야 함.
-			if (myPrice > auctionItem.getBestPrice()) {
-				// 새로운 입찰자인지 체크
-				if (artSell.isNewUserPrice(userId, itemId) > 0) { // 헌값 수정!
-					System.out.println("여기로 왔음");
-					artSell.updatePrice(userId, itemId, myPrice);
-					artSell.updateItemBestPrice(itemId, myPrice);
-					return "redirect:/auction/info";
-
-				} else { // 새로운 값
-					System.out.println("애드로 왔음");
-					artSell.addPrice(userId, itemId, myPrice);
-					artSell.updateItemBestPrice(itemId, myPrice);
-					return "redirect:/auction/info";
-
-				}
-			}
-		}
-
-		return "redirect:/auction/info";
-	}
 
 	  // 낙찰포기 //if 후순위자있을경우->후순위자상태바꿈 else
 	   public String giveup(@ModelAttribute("userSession") UserSession userSession, @RequestParam("itemId") String itemId,
