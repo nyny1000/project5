@@ -223,7 +223,7 @@ public class JoinAuctionController {
 
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd ");
 
 		cal.add(Calendar.DATE, 7);
 		Date deadline = null;

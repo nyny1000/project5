@@ -47,11 +47,11 @@
 		ORDER BY myPrice DESC
 	</select>
 
-	<!--<select id="calcBestPrice" resultType="int">
+	<select id="calcBestPrice" resultType="int">
 		select bestPrice
 		from item
 		where itemId = #{itemId}
-	</select>  -->
+	</select>
 
 	<insert id="insertAuctionItem" parameterType="AuctionItem">
 		insert into
