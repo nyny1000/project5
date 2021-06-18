@@ -27,7 +27,20 @@
 						<c:param name="itemId" value="${myItem.itemId}" /></c:url>">
 							<img src="<c:out value="${myItem.picture}" />" width="200" height="150" />
 					</a></td>
-					<td><c:out value="경매중" /></td>
+					<td><c:if test="${myItem.state == 0}">
+					<a href="<c:url value="/auction/info_seller">
+						<c:param name="itemId" value="${myItem.itemId}" /></c:url>">
+						경매중</a></c:if>
+					<c:if test="${myItem.state == 1}">낙찰대기중</c:if>
+					<c:if test="${myItem.state == 2}">
+					<a href="<c:url value=""> <!-- 수정 -->
+						<c:param name="itemId" value="${myItem.itemId}" /></c:url>">
+						결제완료</a></c:if>
+					<c:if test="${myItem.state == 5}">
+					<a href="<c:url value="/auction/fail">
+						<c:param name="itemId" value="${myItem.itemId}" /></c:url>">
+						유찰</a></c:if>
+					</td>
 					<td><a
 						href='<c:url value="/myitem/delete">
 	            		<c:param name="itemId" value="${myItem.itemId}"/></c:url>'>
