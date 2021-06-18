@@ -20,7 +20,7 @@
   		i.ITEMID = a.ITEMID
   	 	AND (STATE = 0 or STATE = 4)
   		<if test="keywords != null">
-  			LOWER(ITEMNAME) LIKE #{keywords}
+  			AND LOWER(ITEMNAME) LIKE #{keywords}
   		</if>
   		<if test="artist != null">
   			AND ARTIST = #{artist}
