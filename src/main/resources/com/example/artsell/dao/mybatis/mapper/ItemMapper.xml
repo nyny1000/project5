@@ -149,4 +149,10 @@
 			WHERE DEADLINE <= #{curTime} and ITEMID = #{itemId}
 		]]>
   </select>
+  
+  <select id="isItemExist" parameterType="String" resultType="int">
+  	select count(*)
+  	from item
+  	where itemId = #{itemId}
+  </select>
 </mapper>

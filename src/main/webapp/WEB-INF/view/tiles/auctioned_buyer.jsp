@@ -40,5 +40,7 @@
 	</tr>	
 </table>
 	<p />
-	<a href="<c:url value="/auction/destination"/>"><input type="submit" value="다음"/> <input type="button" value="낙찰포기"/></a>
+	<a href="<c:url value="/auction/destination"/>"><input type="submit" value="다음"/> </a>
+	<a href="<c:url value="/auction/success/cancel"><c:param name="itemId" value="${order.itemId}"/></c:url>">
+		<input type="button" value="낙찰포기"/></a>
 </div>

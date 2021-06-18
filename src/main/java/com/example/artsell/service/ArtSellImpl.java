@@ -318,14 +318,16 @@ public class ArtSellImpl implements ArtSellFacade {
 	public void bidSuccess(String itemId) {
 		Date curTime = new Date();
 		
-		if (itemDao.isCloseBid(itemId, curTime)) {
-			if (auctionItemDao.getBuyersByItemId(itemId).isEmpty()) {
-				//유찰
-				String sellerId = itemDao.getItem(itemId).getUserId();
-				auctionItemDao.changeState(sellerId, itemId, 5);
-			} else {				//해당 옥션 아이템에 낙찰 상태를 바꾸는 것.
-				int bestPrice = auctionItemDao.calcBestPrice(itemId);
-				auctionItemDao.bid(bestPrice, itemId);
+		if(itemDao.isItemExist(itemId) > 0) {
+			if (itemDao.isCloseBid(itemId, curTime)) {
+				if (auctionItemDao.getBuyersByItemId(itemId).isEmpty()) {
+					//유찰
+					String sellerId = itemDao.getItem(itemId).getUserId();
+					auctionItemDao.changeState(sellerId, itemId, 5);
+				} else {				//해당 옥션 아이템에 낙찰 상태를 바꾸는 것.
+					int bestPrice = auctionItemDao.calcBestPrice(itemId);
+					auctionItemDao.bid(bestPrice, itemId);
+				}
 			}
 		}
 	}
