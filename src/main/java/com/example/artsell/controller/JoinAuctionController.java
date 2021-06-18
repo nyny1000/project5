@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.artsell.domain.AuctionItem;
 import com.example.artsell.domain.Item;
+import com.example.artsell.domain.Order;
 import com.example.artsell.service.ArtSellFacade;
 
 @Controller
@@ -36,6 +37,11 @@ public class JoinAuctionController {
 	      return new AuctionItem();
 
 	   }
+	
+	@ModelAttribute("order")
+	public Order returnOrder() {
+		return new Order();
+	}
 
 	// 입찰, 재입찰
 	@RequestMapping("/auction/bid")
@@ -84,7 +90,7 @@ public class JoinAuctionController {
 
 		List<AuctionItem> auctionBuyerList = artSell.getBuyersByItemId(itemId);
 
-		if (auctionBuyerList != null) // 후순위자가 있다면
+		if (auctionBuyerList.size() != 0) // 후순위자가 있다면
 		{// 후순위자에게 낙찰
 			AuctionItem secondAuctionitem = auctionBuyerList.get(0); // 후순위자
 			String secondUser = secondAuctionitem.getUserId();

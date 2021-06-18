@@ -34,9 +34,9 @@
 	</select>
 
 	<select id="getBuyersByItemId" resultType="AuctionItem">
-		SELECT USERID, MYPRICE
+		SELECT *
 		FROM AUCTIONITEM
-		WHERE ITEMID = #{itemId} AND STATE = 0
+		WHERE ITEMID = #{itemId} AND STATE = 3
 		ORDER BY myPrice DESC
 	</select>
 
@@ -54,15 +54,15 @@
 	<update id="updatePrice" parameterType="String">
 		update auctionItem
 		set
-		myPrice = {#price}
-		where userId={#userId} and
-		itemId={#itemId}
+		myPrice = #{price}
+		where userId=#{userId} and
+		itemId=#{itemId}
 	</update>
 	
 	<update id="updateItemBestPrice">
 		update Item
-		set bestPrice = {#price}
-		where itemId={#itemId}
+		set bestPrice = #{param2}
+		where itemId=#{param1}
 	</update>
 	
 	<insert id="addPrice" parameterType="String">
