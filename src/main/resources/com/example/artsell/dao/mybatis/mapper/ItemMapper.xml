@@ -5,7 +5,7 @@
   <cache />
 
   <select id="searchItemList" resultType="Item">
-  	SELECT i.ITEMID,
+  	SELECT distinct i.ITEMID,
   		   ITEMNAME,
   		   MINPRICE,
   		   BESTPRICE,
