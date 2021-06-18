@@ -224,6 +224,11 @@ public class ArtSellImpl implements ArtSellFacade {
 		return auctionItemDao.getBuyersByItemId(itemId);
 	}
 	
+	@Override
+	public List<AuctionItem> getBuyers(String itemId) {
+		// TODO Auto-generated method stub
+		return auctionItemDao.getBuyers(itemId);
+	}
 
 	@Override
 	public int getItemPrice(String itemId) {

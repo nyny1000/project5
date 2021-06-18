@@ -140,7 +140,7 @@ public class JoinAuctionController {
 		// auctionitem table에서 해당 아이디 / 아이템아이디의 행 삭제
 		artSell.deleteAuctionItem(userId, itemId);
 
-		List<AuctionItem> auctionBuyerList = artSell.getBuyersByItemId(itemId);
+		List<AuctionItem> auctionBuyerList = artSell.getBuyers(itemId);
 
 		if (auctionBuyerList.size() != 0) // 후순위자가 있다면
 		{// 후순위자에게 낙찰
