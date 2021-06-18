@@ -23,6 +23,6 @@
 		희망가격 : <input type="text" id="myAuctionPrice" value=""/> 
 		<a href="<c:url value="/auction/bid">
          <c:param name="itemId" value="${item.itemId}" />
-         <c:param name="price" value=myAuctionPrice.value /></c:url>"><input
+         <c:param name="price" value="" /></c:url>"><input
 			type="button" value="입찰" /></a>
 </div>
