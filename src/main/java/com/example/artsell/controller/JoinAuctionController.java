@@ -9,15 +9,18 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -37,7 +40,7 @@ import com.example.artsell.service.ArtSellFacade;
 import java.util.Date;
 
 @Controller
-@SessionAttributes("userSession")
+@SessionAttributes({"userSession", "itemId"})
 public class JoinAuctionController {
 
 	@Autowired
@@ -63,7 +66,12 @@ public class JoinAuctionController {
 	}
 
 	@ModelAttribute("auctionItem")
-	public AuctionItem formBackingObject(HttpServletRequest request) throws Exception {
+	public AuctionItem formBackingObject(HttpServletRequest request, HttpSession session, SessionStatus sessionStatus)
+			throws Exception {
+		/*
+		 * session.removeAttribute("userSession"); session.invalidate();
+		 * sessionStatus.setComplete();
+		 */
 		System.out.println("폼백킹입니다");
 		return new AuctionItem();
 
@@ -71,10 +79,10 @@ public class JoinAuctionController {
 
 	// 입찰, 재입찰
 	@RequestMapping("/auction/bid")
-	public String addAuctionItem(@ModelAttribute("userSession") UserSession userSession,
+	public String addAuctionItem(@ModelAttribute("userSession") UserSession userSession, HttpServletRequest request,
 			@ModelAttribute("auctionItem") AuctionItem bidder, BindingResult result,
-			RedirectAttributes redirectAttributes) throws Exception {
-
+			ModelMap model) throws Exception {
+//RedirectAttributes redirectAttributes
 		String itemId = bidder.getItemId();
 		int myPrice = bidder.getMyPrice();
 
@@ -87,13 +95,27 @@ public class JoinAuctionController {
 		System.out.println(auctionItem);
 
 		System.out.println("옥션비더출력" + bidder);
-		redirectAttributes.addAttribute("itemId", itemId);
+		//redirectAttributes.addAttribute("itemId", itemId);
+		
+		model.put("item", auctionItem);
+		List<AuctionItem> buyers = artSell.getBuyersByItemId(itemId);
+		System.out.println("바이어스 출력" + buyers);
 
+		model.put("buyers", buyers);
+		
+		
+		
 		validator.validate(bidder, result);
+
+	
 		if (result.hasErrors()) {
 			System.out.println("입찰가 validation 에러");
-			return "redirect:/auction/info";
+			model.put("itemId", itemId);
+			return "auction_buyer";
 		}
+		
+		
+		
 
 		// validation 검사 후이기때문에 정상 입찰가만 db에 저장.
 		// 첫 입찰자
@@ -101,11 +123,13 @@ public class JoinAuctionController {
 			System.out.println("첫입찰자로 왔음");
 			if (myPrice > auctionItem.getMinPrice()) {
 				artSell.addPrice(userId, itemId, myPrice);
+				
 				System.out.println("add 됐음");
 
 				artSell.updateItemBestPrice(itemId, myPrice);
 				System.out.println("업데이트 됐음");
-				return "redirect:/auction/info";
+
+				return "auction_buyer";
 			}
 		} else {
 			// 그 다음 입찰자는 maxPrice보다 크게 입찰해야 함.
@@ -115,19 +139,22 @@ public class JoinAuctionController {
 					System.out.println("여기로 왔음");
 					artSell.updatePrice(userId, itemId, myPrice);
 					artSell.updateItemBestPrice(itemId, myPrice);
-					return "redirect:/auction/info";
+					
+		
+					return "auction_buyer";
 
 				} else { // 새로운 값
 					System.out.println("애드로 왔음");
 					artSell.addPrice(userId, itemId, myPrice);
 					artSell.updateItemBestPrice(itemId, myPrice);
-					return "redirect:/auction/info";
+
+					return "auction_buyer";
 
 				}
 			}
 		}
 
-		return "redirect:/auction/info";
+		return "auction_buyer";
 	}
 
 	// 낙찰포기 //if 후순위자있을경우->후순위자상태바꿈 else
@@ -177,12 +204,28 @@ public class JoinAuctionController {
 
 	// 아이템아이디에 해당하는 경매참여자들 buyer
 	@RequestMapping("/auction/info")
-	public String viewAutionJoinerList(@RequestParam("itemId") String itemId, ModelMap model) {
-		Item item = artSell.getItem(itemId);
-		System.out.print("참여자들 출력 아이템 아이디는" + itemId);
-		List<AuctionItem> buyers = this.artSell.getBuyersByItemId(item.getItemId());
-		model.put("buyers", buyers);
-		model.put("item", item); // 나영추가
+	public String viewAutionJoinerList(@RequestParam(value = "itemId") String itemId,  HttpSession session, ModelMap model) {
+		  
+		  if (session.getAttribute("itemId") == null) {
+		 			Item item = artSell.getItem(itemId);
+			System.out.print("참여자들 출력 아이템 아이디는" + itemId);
+			session.setAttribute("itemId", itemId);
+			System.out.println("세션에 저장 아이템아이디값 " + (String)session.getAttribute("itemId"));
+			List<AuctionItem> buyers = this.artSell.getBuyersByItemId(item.getItemId());
+			model.put("buyers", buyers);
+			model.put("item", item); // 나영추가
+		}
+		else {
+			itemId = (String)session.getAttribute("itemId");
+			Item item = artSell.getItem(itemId);
+			System.out.print("참여자들 출력 아이템 아이디는" + itemId);
+			List<AuctionItem> buyers = this.artSell.getBuyersByItemId(item.getItemId());
+			model.put("buyers", buyers);
+			model.put("item", item); // 나영추가
+			
+		}
+		
+
 		return "auction_buyer";
 	}
 
