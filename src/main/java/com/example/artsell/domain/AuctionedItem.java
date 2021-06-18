@@ -9,6 +9,8 @@ public class AuctionedItem implements Serializable {
 	private String itemId;
 	private int auctionedPrice;
 	private String desination;
+	private Date deadline;
+	private String picture;
 	
 	public String getUserId() {
 		return userId;
@@ -34,5 +36,18 @@ public class AuctionedItem implements Serializable {
 	public void setDesination(String desination) {
 		this.desination = desination;
 	}
+	public Date getDeadline() {
+		return deadline;
+	}
+	public void setDeadline(Date deadline) {
+		this.deadline = deadline;
+	}
+	public String getPicture() {
+		return picture;
+	}
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+	
 	
 }

@@ -34,7 +34,7 @@
 			<td>
 				<a href="<c:url value="/shop/viewItem">
 					<c:param name="itemId" value="${item.itemId}" /></c:url>">
-					<img src="${item.picture}" />
+					<img src="${item.picture}" width="300" height="200" />
 				</a>
 			</td>
 			<td>
