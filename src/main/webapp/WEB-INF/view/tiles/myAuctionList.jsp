@@ -33,7 +33,8 @@
 					<c:if test="${itemList1.state == 3}">경매실패</c:if></td>	
 				</tr>
 			</c:forEach>
-				<c:if test="${!itemList1.firstPage}">
+		</table>
+		<c:if test="${!itemList1.firstPage}">
 					<a href="<c:url value="/auction/list/auction">
 						<c:param name="page" value="previous" /></c:url>">
 				   			<B>&lt;&lt; Prev</B></a>
@@ -43,7 +44,6 @@
 						<c:param name="page" value="next" /></c:url>">
 				   			<B>Next &gt;&gt;</B></a>
 				</c:if>
-		</table>
 		<h1>내 경매 낙찰 목록입니다</h1>
 		<table class="table1">
 			<tr align="center" bgcolor="#D5D5D5">

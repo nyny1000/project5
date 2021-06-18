@@ -28,7 +28,7 @@
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
       </tr>
       <tr>
-         <td colspan="2"><img src="${item.picture}" /></td>
+         <td colspan="2"><img src="${item.picture}" width="80%"  /></td>
       </tr>
       <tr>
          <td colspan="2" width="40" height="8"><c:out value="${item.description}" /></td>

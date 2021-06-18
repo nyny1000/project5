@@ -25,7 +25,7 @@ public class AuctionItemListController {
 	public String viewAuctionItemList(@ModelAttribute("userSession") UserSession userSession, ModelMap model) {
 		PagedListHolder<AuctionItem> itemList1 = new PagedListHolder<AuctionItem>(
 				this.artSell.getItemListByAuctionItem(userSession.getAccount().getUserId()));
-		itemList1.setPageSize(4);
+		itemList1.setPageSize(1);
 		model.put("itemList1", itemList1);
 		
 		//낙찰된(결제까지 다 한) 목록

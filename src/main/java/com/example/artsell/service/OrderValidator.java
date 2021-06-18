@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-import com.example.jpetstore.domain.Order;
+import com.example.artsell.domain.Order;
 
 /**
  * @author Juergen Hoeller
@@ -19,9 +19,8 @@ public class OrderValidator implements Validator {
 	}
 
 	public void validate(Object obj, Errors errors) {
-		validateCreditCard((Order) obj, errors);
-		validateBillingAddress((Order) obj, errors);
-		validateShippingAddress((Order) obj, errors);
+		Order order = (Order)obj;
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address", "ORDER_ADDRESS_REQUIRED", "ADDRESS is required.");
 	}
 
 	public void validateCreditCard(Order order, Errors errors) {
