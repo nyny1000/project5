@@ -90,11 +90,11 @@ public class OrderController {
 			@Valid @ModelAttribute("Order") Order order, 
 			BindingResult result, ModelMap model) {	
 		//artsell.SaveAuctionedItem(order);
-		if (result.hasErrors())
-			return "auctioned_buyer";
 		
 		order = (Order) request.getSession().getAttribute("order");
-//		validator.validate(order, result);
+		validator.validate(order, result);
+		if (result.hasErrors())
+			return "auctioned_buyer";
 		
 		model.put("order", order);
 		System.out.println(order.getItemId());	
