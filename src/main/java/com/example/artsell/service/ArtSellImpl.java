@@ -121,8 +121,24 @@ public class ArtSellImpl implements ArtSellFacade {
 		itemDao.deleteItem(userId, itemId);
 	}
 	
+	@Override
 	public List<Item> getMyItemList(String userId) {
-		return itemDao.getMyItemList(userId);
+		List<Item> itemList = itemDao.getMyItemList(userId);
+		for (int i = 0; i < itemList.size(); i++) {
+			String itemId = itemList.get(i).getItemId();
+			List<Integer> state = auctionItemDao.getItemState(itemId);
+			if (state.contains(5)) {
+				itemList.get(i).setState(5);
+			} else if (state.contains(1)) {
+				itemList.get(i).setState(1);
+			} else if (state.contains(2)) {
+				itemList.get(i).setState(2);
+			} else {
+				itemList.get(i).setState(0);
+			}
+		}
+		
+		return itemList;
 	}
 
 	@Override

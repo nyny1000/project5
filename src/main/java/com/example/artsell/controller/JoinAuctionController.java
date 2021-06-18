@@ -169,6 +169,15 @@ public class JoinAuctionController {
 	      return "auction_seller";
 	   }
 
+	//판매자용 페이지로
+	@RequestMapping("/auction/info_seller")
+	public String viewAutionJoinerList2(@ModelAttribute("item") Item item, ModelMap model) {
+		System.out.print("넘어오긴 하냐");
+		List<AuctionItem> buyers = this.artSell.getBuyersByItemId(item.getItemId());
+		model.put("buyers", buyers);
+		return "auction_seller";
+	}
+	
 	   // 유찰 //기간은 현재 날짜에서 7일후
 	   @RequestMapping("/auction/fail")
 	   public ModelAndView miscarry(@ModelAttribute("userSession") UserSession userSession,

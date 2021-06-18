@@ -134,4 +134,8 @@ public class MybatisAuctionItemDao implements AuctionItemDao {
 		return auctionItemMapper.isAuctioning(itemId);
 	}
 
+	@Override
+	public List<Integer> getItemState(String itemId) throws DataAccessException {
+		return auctionItemMapper.getItemState(itemId);
+	}
 }
