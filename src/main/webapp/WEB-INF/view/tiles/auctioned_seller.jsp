@@ -8,7 +8,7 @@
 	<h2>판매되었습니다.</h2>
 	<div class="bg">
 	<ul class="align">
-		<li><b>낙찰품목</b> : <c:out value="${auctionedItem.userId}" /> </li>
+		<li><b>낙찰품목</b> : <c:out value="${auctionedItem.itemName}" /> </li>
 		<li><b>가격</b> : <c:out value="${auctionedItem.auctionedPrice}" />원</li>
 		<li><b>구매자ID</b> : <c:out value="${auctionedItem.userId}" /></li>
 	</ul>

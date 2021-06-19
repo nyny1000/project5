@@ -6,6 +6,7 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class AuctionedItem implements Serializable {
 	private String userId;
+	private String itemName;
 	private String itemId;
 	private int auctionedPrice;
 	private String desination;
@@ -48,6 +49,13 @@ public class AuctionedItem implements Serializable {
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
+	public String getItemName() {
+		return itemName;
+	}
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+	
 	
 	
 }
