@@ -35,14 +35,19 @@ public class MybatisItemDao implements ItemDao {
 		// TODO Auto-generated method stub
 		if ("".equals(keywords)) {
 			keywords = null;
+		} else if (keywords != null) {
+			keywords = "%" + keywords.toLowerCase() + "%";
 		}
 		if (artist.equals("all")) {
 			artist = null;
+		} else if (artist != null) {
+			artist = "%" + artist.toLowerCase() + "%";
 		}
 		if ("".equals(categoryId)) {
 			categoryId = null;
 		}
-		return itemMapper.searchItemList("%" + keywords.toLowerCase() + "%", artist, categoryId);
+		System.out.println("keywords: " + keywords + " artist: " + artist + " categoryId " + categoryId);
+		return itemMapper.searchItemList(keywords, artist, categoryId);
 	}
 
 	public List<Item> getItemListByCategory(String categoryId) throws DataAccessException {
@@ -125,7 +130,7 @@ public class MybatisItemDao implements ItemDao {
 		System.out.println("isCloseBid: " + itemMapper.isCloseBid(itemId, curTime));
 		if (itemMapper.isCloseBid(itemId, curTime) == 0) {
 			return false;
-		} else {
+		} else {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 			return true;
 		}
 	}

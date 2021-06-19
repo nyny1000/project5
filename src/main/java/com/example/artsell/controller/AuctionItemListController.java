@@ -26,20 +26,12 @@ public class AuctionItemListController {
 	@Autowired
 	private ArtSellFacade artSell;
 	
-//	@RequestMapping("/stateType")
-//	public String selectStateType(HttpServletRequest request, ModelMap model) {
-//		request.getParameter("stateT");
-//		
-//		return 
-//	}
 	@RequestMapping("/stateTypeSelect")
 	public String selectStateType(@ModelAttribute("userSession") UserSession userSession,
 			HttpServletRequest request, ModelMap model) {
 		
 		PagedListHolder<AuctionItem> itemList = new PagedListHolder<AuctionItem>(
 				this.artSell.getItemListByAuctionItem(userSession.getAccount().getUserId()));
-		
-		System.out.println("request는"+ request.getParameter("stateT"));
 		
 		int key = Integer.parseInt(request.getParameter("stateT"));
 		List<AuctionItem> list = new ArrayList<AuctionItem>();
@@ -51,9 +43,9 @@ public class AuctionItemListController {
 				System.out.println(item.getState() + item.getItemId());
 				if (item.getState() == key) {
 					list.add(item);
-					itemList.setSource(list);
 				}
 			}
+			itemList.setSource(list);
 			System.out.println("_______");
 			for (AuctionItem item : itemList.getSource()) {
 				System.out.println("앙"+item.getState() + item.getItemId());

@@ -24,7 +24,7 @@
 				AND LOWER(ITEMNAME) LIKE #{keywords}
 			</if>
 			<if test="artist != null">
-				AND ARTIST = #{artist}
+				AND LOWER(ARTIST) LIKE #{artist}
 			</if>
 			<if test="categoryId != null">
 				AND CATEGORYID = #{categoryId}
