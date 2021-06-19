@@ -120,8 +120,7 @@
 
 	<update id="changeState" parameterType="AuctionItem">
 		UPDATE auctionItem
-		SET
-		state = #{state}
+		SET state = #{state}
 		where userId = #{userId} and itemId = #{itemId}
 	</update>
 	

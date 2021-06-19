@@ -125,8 +125,11 @@
   </update>
   
   <update id="updateReload" parameterType="Item">
+    <selectKey keyProperty="newItemId" resultType="String" order="BEFORE">
+  		SELECT 'I'||TO_CHAR(ITEM_SEQ.NEXTVAL) AS ITEMID FROM DUAL
+  	</selectKey>
   	UPDATE ITEM
-  	SET MINPRICE = #{minPrice} AND DEADLINE = #{deadline} 
+  	SET MINPRICE = #{minPrice}, DEADLINE = #{deadline}, itemId = #{newItemId}
   	WHERE ITEMID = #{itemId}
   </update>
   
