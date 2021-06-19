@@ -60,7 +60,7 @@ public interface ArtSellFacade {
 
 	Order getOrder(String itemId, String userId);
 	
-	void SaveAuctionedItem(String itemId, int myPrice, String userId, String address);
+	void SaveAuctionedItem(String itemId, int myPrice, String userId, String address, Date sellDate);
 	
 	void updateAuctionedState(String itemId, String userId);
 
@@ -125,4 +125,6 @@ public interface ArtSellFacade {
 	AuctionedItem getAuctionedItemByItemId_SellerId(String itemId);
 	
 	AuctionedItem getAuctionedItemByItemId_BuyerId (String itemId);
+	
+	List<Account> getUserList();
 }

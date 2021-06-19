@@ -52,5 +52,10 @@
 		FROM ACCOUNT
 		WHERE USERID = #{param1}
 	</delete>
+	
+	<select id="getUserList" resultType="Account">
+		select *
+		from Account
+	</select>
 
 </mapper>

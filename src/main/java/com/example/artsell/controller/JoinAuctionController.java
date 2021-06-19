@@ -92,11 +92,12 @@ public class JoinAuctionController {
 		model.put("item", auctionItem);
 		List<AuctionItem> buyers = artSell.getBuyersByItemId(itemId);
 		System.out.println("바이어스 출력" + buyers);
-		model.put("buyers", buyers);
+		//model.put("buyers", buyers);
 
 		validator.validate(bidder, result);
 
 		if (result.hasErrors()) {
+			model.put("buyers", buyers);
 			System.out.println("입찰가 validation 에러");
 			System.out.println(result.getGlobalError());
 			return "auction_buyer";
@@ -114,7 +115,7 @@ public class JoinAuctionController {
 				artSell.deleteInterestingItem(userId, itemId);
 				bidTry = true;
 				model.put("bidTry", bidTry);
-				return "auction_buyer";
+
 			}
 		} else {
 			// 그 다음 입찰자는 maxPrice보다 크게 입찰해야 함.
@@ -127,7 +128,7 @@ public class JoinAuctionController {
 					artSell.deleteInterestingItem(userId, itemId);
 					bidTry = true;
 					model.put("bidTry", bidTry);
-					return "auction_buyer";
+
 
 				} else { // 새로운 값
 					System.out.println("새로운 입찰자");
@@ -135,12 +136,14 @@ public class JoinAuctionController {
 					artSell.updateItemBestPrice(itemId, myPrice);
 					artSell.deleteInterestingItem(userId, itemId);
 					bidTry = true;
-					model.put("bidTry", bidTry);
-					return "auction_buyer";
+					model.put("bidTry", bidTry); 
 
 				}
 			}
 		}
+		buyers = artSell.getBuyersByItemId(itemId);
+		System.out.println("바이어스 출력" + buyers);
+		model.put("buyers", buyers);
 
 		return "auction_buyer";
 	}

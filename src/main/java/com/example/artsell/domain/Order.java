@@ -22,7 +22,6 @@ public class Order implements Serializable {
 	private String itemName;
 	private String itemId;
 	private String phone;
-	//@NotBlank
 	private String address;
 	private int myPrice;
 	private String credit;

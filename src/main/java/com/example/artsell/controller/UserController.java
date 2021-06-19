@@ -4,8 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,21 +45,21 @@ public class UserController {
 	}
 
 	@ModelAttribute("loginAccount")
-	public Account formBackingObject(HttpServletRequest request)
-			throws Exception {
+	public Account formBackingObject(HttpServletRequest request) throws Exception {
 		System.out.println("로그인 폼백킹.");
 		return new Account();
 
 	}
 
 	@RequestMapping("/user/login")
-	public ModelAndView login(HttpServletRequest request, @ModelAttribute("loginAccount") Account loginAccount, BindingResult result,
+	public ModelAndView login(HttpServletRequest request, @ModelAttribute("loginAccount") Account loginAccount,
+			BindingResult result,
 			@RequestParam(value = "loginForwardAction", required = false) String loginForwardAction, Model model)
 			throws Exception {
-		
+
 		System.out.println("로그인메소드로 넘어옴" + loginAccount);
 		validator.validate(loginAccount, result);
-		
+
 		if (result.hasErrors()) {
 			return new ModelAndView("thyme/login");
 
@@ -99,6 +101,27 @@ public class UserController {
 
 		System.out.println("계정이 삭제되었습니다.");
 		return "main";
+	}
+
+	@RequestMapping("/admin/manage")
+	public String getUserList(ModelMap model) {
+		PagedListHolder<Account> userList = new PagedListHolder<Account>(this.artSell.getUserList());
+		userList.setPageSize(20);
+		model.put("userList", userList);
+		return "userList";
+	}
+
+	@RequestMapping("/admin/page")
+	public String handleRequest(@RequestParam("page") String page,
+			@ModelAttribute("userList") PagedListHolder<Account> userList, BindingResult result) throws Exception {
+
+		if ("next".equals(page)) {  
+			userList.nextPage();
+		} else if ("previous".equals(page)) {
+			userList.previousPage();
+		}
+
+		return "userList";
 	}
 
 }

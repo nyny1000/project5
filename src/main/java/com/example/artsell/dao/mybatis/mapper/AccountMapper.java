@@ -21,4 +21,6 @@ public interface AccountMapper {
 	void deleteAccount(String userId);
 	
 	List<Account> viewAccountList();
+	
+	List<Account> getUserList();
 }

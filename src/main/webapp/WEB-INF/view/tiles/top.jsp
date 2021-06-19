@@ -28,6 +28,10 @@ $(document).ready(function() {
 						href="<c:url value="/admin/manage"/>">
 						<button>회원관리</button>
 					</a>
+					<img border="0" src="../images/separator.gif" />&nbsp; 
+						<a href="<c:url value="/interesting/list"/>">
+						<button>찜목록</button>
+					</a>
 				</c:if>
 				<c:if test="${userSession.account.userId ne 'admin'}">
 					<img border="0" src="../images/separator.gif" />&nbsp; <a

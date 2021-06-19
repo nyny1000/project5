@@ -21,4 +21,6 @@ public interface AccountDao {
 	List<String> getUsernameList() throws DataAccessException;
 	
 	List<Account> viewAccountList() throws DataAccessException;
+	
+	List<Account> getUserList() throws DataAccessException;
 }

@@ -160,8 +160,8 @@ public class ArtSellImpl implements ArtSellFacade {
 	}
 	
 	@Override
-	public void SaveAuctionedItem(String itemId, int myPrice, String userId, String address) {
-		orderDao.SaveAuctionedItem(itemId, myPrice, userId, address);
+	public void SaveAuctionedItem(String itemId, int myPrice, String userId, String address, Date sellDate) {
+		orderDao.SaveAuctionedItem(itemId, myPrice, userId, address, sellDate);
 	}
 	
 	@Override
@@ -365,5 +365,10 @@ public class ArtSellImpl implements ArtSellFacade {
 		} else {
 			return 0;
 		}
+	}
+	
+	@Override
+	public List<Account> getUserList() {
+		return accountDao.getUserList();
 	}
 }

@@ -29,24 +29,29 @@
 			<th>제목</th>
 			<th>화가</th>
 		</tr>
-		<c:forEach var="item" items="${itemList.pageList}">
-		<tr>
-			<td align="center">
-				<a href="<c:url value="/shop/viewItem">
-					<c:param name="itemId" value="${item.itemId}" /></c:url>">
-					<img src="${item.picture}" width="300" height="200" />
-				</a>
-			</td>
-			<td>
-				<a href="<c:url value="/shop/viewItem">
-					<c:param name="itemId" value="${item.itemId}" /></c:url>"><c:out value="${item.itemName}" /></a>
-			</td>
-			<td>
-				<a href="<c:url value="/search/item">
-					<c:param name="artist" value="${item.artist}" /></c:url>"><c:out value="${item.artist}" /></a>
-			</td>
-		</tr>
-		</c:forEach>
+		<c:if test="${itemList.pageList.size() == 0}">
+				<tr align="center"><td colspan="3"><c:out value="목록이 없습니다." /></td></tr>
+		</c:if>
+		<c:if test="${itemList.pageList.size() != 0}">
+			<c:forEach var="item" items="${itemList.pageList}">
+			<tr>
+				<td align="center">
+					<a href="<c:url value="/shop/viewItem">
+						<c:param name="itemId" value="${item.itemId}" /></c:url>">
+						<img src="${item.picture}" width="300" height="200" />
+					</a>
+				</td>
+				<td>
+					<a href="<c:url value="/shop/viewItem">
+						<c:param name="itemId" value="${item.itemId}" /></c:url>"><c:out value="${item.itemName}" /></a>
+				</td>
+				<td>
+					<a href="<c:url value="/search/item">
+						<c:param name="artist" value="${item.artist}" /></c:url>"><c:out value="${item.artist}" /></a>
+				</td>
+			</tr>
+			</c:forEach>
+		</c:if>
 	</table>
 	<p>
 	<c:if test="${!itemList.firstPage}">
