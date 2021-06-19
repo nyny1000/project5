@@ -71,7 +71,6 @@ public class JoinAuctionController {
 	@RequestMapping("/auction/bid")
 	public String addAuctionItem(@ModelAttribute("userSession") UserSession userSession, HttpServletRequest request,
 			@ModelAttribute("auctionItem") AuctionItem bidder, BindingResult result, ModelMap model) throws Exception {
-//RedirectAttributes redirectAttributes
 		String itemId = bidder.getItemId();
 		int myPrice = bidder.getMyPrice();
 
@@ -86,7 +85,6 @@ public class JoinAuctionController {
 		System.out.println("넘어옴. 해당 아이템의 bestPrice는 " + auctionItem.getBestPrice());
 
 		System.out.println("옥션비더출력" + bidder);
-		// redirectAttributes.addAttribute("itemId", itemId);
 
 		boolean bidTry = false;
 
