@@ -12,7 +12,7 @@
       </tr>
       <tr align="center">
          <td>카테고리</td>
-         <td><c:out value="${item.categoryId}" /></td> <!-- 카테고리 이름으로 바꾸기 -->
+         <td><c:out value="${cateName}" /></td> <!-- 카테고리 이름으로 바꾸기 -->
       </tr>
       <tr align="center">
          <td>경매 시작가</td>
@@ -35,7 +35,7 @@
          <td colspan="2"><img src="${item.picture}" width="50%"  /></td>
       </tr>
       <tr align="center">
-         <td colspan="2" width="40" height="8"><c:out value="${item.description}" /></td>
+         <td colspan="2" width="40" height="8"><b>작품설명: </b><c:out value=" ${item.description}" /></td>
       </tr>
    </table>
    <a href="<c:url value="/auction/info">
