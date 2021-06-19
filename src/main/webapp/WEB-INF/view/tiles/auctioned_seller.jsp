@@ -11,6 +11,7 @@
 		<li><b>낙찰품목</b> : <c:out value="${auctionedItem.itemName}" /> </li>
 		<li><b>사진</b> : <img src="<c:out value="${auctionedItem.picture}" />"  width="200" height="150" /></li>
 		<li><b>가격</b> : <c:out value="${auctionedItem.auctionedPrice}" />원</li>
+		<li><b>결제시각</b> : <c:out value="${auctionedItem.sellDate}" /></li>
 		<li><b>구매자ID</b> : <c:out value="${auctionedItem.userId}" /></li>
 		<li><b>판매자ID</b> : <c:out value="${userSession.account.userId}" /></li>
 	</ul>

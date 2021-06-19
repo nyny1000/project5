@@ -1,5 +1,7 @@
 package com.example.artsell.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -108,13 +110,14 @@ public class OrderController {
 	public String viewOrder(HttpServletRequest request, 
 			SessionStatus status) {
 		//artsell.insertOrder(orderForm.getOrder());
+		Date sellDate = new Date();
 		Order order = (Order) request.getSession().getAttribute("order");
 		
 		System.out.println(order.getMyPrice());
-		artsell.SaveAuctionedItem(order.getItemId(), order.getMyPrice(), order.getUserId(), order.getAddress());//db에 저장
-		System.out.println("1");
+		//db에 저장
+		artsell.SaveAuctionedItem(order.getItemId(), order.getMyPrice(), order.getUserId(), order.getAddress(), sellDate);
+		//state변경
 		artsell.updateAuctionedState(order.getItemId(), order.getUserId());
-		System.out.println("2");
 		
 		ModelAndView mav = new ModelAndView("ViewOrder");
 		mav.addObject("order", order);

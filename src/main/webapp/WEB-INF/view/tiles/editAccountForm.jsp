@@ -54,13 +54,15 @@
 
 			<tr>
 				<td>카드번호</td>
-				<td><form:input path="account.credit" /> <form:errors
+				<td><form:input path="account.credit"/> <form:errors
 						path="account.credit" cssClass="error" /></td>
 			</tr>
 
 			<tr>
 				<td>주소</td>
-				<td><form:input path="account.address" /> <form:errors
+				<td><input id="member_addr" type="text" placeholder="Address" readonly onclick="findAddr()"/> <br>
+				<form:input path="account.address" type="text" placeholder="Detailed Address"/>
+				<form:errors
 						path="account.address" cssClass="error" /></td>
 			</tr>
 		</table>

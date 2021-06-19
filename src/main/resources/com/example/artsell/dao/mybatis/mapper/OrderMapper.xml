@@ -25,6 +25,6 @@
   
   <insert id="SaveAuctionedItem">
 		insert into
-		AuctionedItem(itemId, auctionedPrice, userId, destination) values (#{itemId}, #{myPrice}, #{userId}, #{address})
+		AuctionedItem(itemId, auctionedPrice, userId, destination, sellDate) values (#{itemId}, #{myPrice}, #{userId}, #{address}, #{sellDate})
   </insert>
 </mapper>

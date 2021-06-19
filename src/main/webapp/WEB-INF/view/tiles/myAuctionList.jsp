@@ -25,24 +25,29 @@
 				</th>
 			</tr>
 			
-			<c:forEach var="itemList1" items="${itemList1.pageList}">
-				<tr align="center">
-					<td><c:out value="${itemList1.itemId}" /></td>
-					<td><img src="<c:out value="${itemList1.picture}" />"  width="200" height="150" /></td>
-					<td><fmt:formatDate value="${itemList1.deadline}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-					<td><c:out value="${itemList1.bestPrice}" /></td>
-					<td><c:out value="${itemList1.myPrice}" /></td>
-					<td><c:if test="${itemList1.state == 0}">
-					<a href="<c:url value="/auction/info">
-						<c:param name="itemId" value="${itemList1.itemId}" /></c:url>">
-						경매참여중</a></c:if>
-					<c:if test="${itemList1.state == 1}">
-					<a href="<c:url value="/auction/auctioned_buyer">
-						<c:param name="itemId" value="${itemList1.itemId}" /></c:url>">
-						결제대기중</a></c:if>
-					<c:if test="${itemList1.state == 3}">경매실패</c:if></td>	
-				</tr>
-			</c:forEach>
+			<c:if test="${itemList1.pageList.size() == 0}">
+				<tr align="center"><td colspan="6"><c:out value="목록이 없습니다." /></td></tr>
+			</c:if>
+			<c:if test="${itemList1.pageList.size() != 0}">
+				<c:forEach var="itemList1" items="${itemList1.pageList}">
+					<tr align="center">
+						<td><c:out value="${itemList1.itemId}" /></td>
+						<td><img src="<c:out value="${itemList1.picture}" />"  width="200" height="150" /></td>
+						<td><fmt:formatDate value="${itemList1.deadline}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+						<td><c:out value="${itemList1.bestPrice}" /></td>
+						<td><c:out value="${itemList1.myPrice}" /></td>
+						<td><c:if test="${itemList1.state == 0}">
+						<a href="<c:url value="/auction/info">
+							<c:param name="itemId" value="${itemList1.itemId}" /></c:url>">
+							경매참여중</a></c:if>
+						<c:if test="${itemList1.state == 1}">
+						<a href="<c:url value="/auction/auctioned_buyer">
+							<c:param name="itemId" value="${itemList1.itemId}" /></c:url>">
+							결제대기중</a></c:if>
+						<c:if test="${itemList1.state == 3}">경매실패</c:if></td>	
+					</tr>
+				</c:forEach>
+			</c:if>
 				
 		</table>
 		<c:if test="${!itemList1.firstPage}">
@@ -55,6 +60,7 @@
 					<c:param name="page" value="next" /></c:url>">
 				   			<B>Next &gt;&gt;</B></a>
 		</c:if>
+
 	<form>
 		
 		<h1>내 경매 낙찰 목록입니다</h1>
@@ -66,17 +72,23 @@
 				<th>낙찰가격</th>
 				<th>&nbsp;</th>
 			</tr>
-			<c:forEach var="itemList2" items="${itemList2.pageList}">
-				<tr align="center">
-					<td><c:out value="${itemList2.itemId}" /></td>
-					<td><img src="<c:out value="${itemList2.picture}" />"  width="200" height="150" /></td>
-					<td><fmt:formatDate value="${itemList2.deadline}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-					<td><c:out value="${itemList2.auctionedPrice}" /></td>
-					<td><a href="<c:url value="/auction/sell_buyer">
-						<c:param name="itemId" value="${itemList2.itemId}" /></c:url>">
-						결제완료</a></td>
-				</tr>
-			</c:forEach>
+			
+			<c:if test="${itemList2.pageList.size() == 0}">
+				<tr align="center"><td colspan="5"><c:out value="목록이 없습니다." /></td></tr>
+			</c:if>
+			<c:if test="${itemList2.pageList.size() != 0}">
+				<c:forEach var="itemList2" items="${itemList2.pageList}">
+					<tr align="center">
+						<td><c:out value="${itemList2.itemId}" /></td>
+						<td><img src="<c:out value="${itemList2.picture}" />"  width="200" height="150" /></td>
+						<td><fmt:formatDate value="${itemList2.deadline}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+						<td><c:out value="${itemList2.auctionedPrice}" /></td>
+						<td><a href="<c:url value="/auction/sell_buyer">
+							<c:param name="itemId" value="${itemList2.itemId}" /></c:url>">
+							결제완료</a></td>
+					</tr>
+				</c:forEach>
+			</c:if>
 		</table>
 		<c:if test="${!itemList2.firstPage}">
 			<a href="<c:url value="/auction/listauctioned">

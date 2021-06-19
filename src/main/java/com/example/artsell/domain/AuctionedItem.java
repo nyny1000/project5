@@ -12,6 +12,7 @@ public class AuctionedItem implements Serializable {
 	private String desination;
 	private Date deadline;
 	private String picture;
+	private Date sellDate;
 	
 	public String getUserId() {
 		return userId;
@@ -54,6 +55,12 @@ public class AuctionedItem implements Serializable {
 	}
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
+	}
+	public Date getSellDate() {
+		return sellDate;
+	}
+	public void setSellDate(Date sellDate) {
+		this.sellDate = sellDate;
 	}
 	
 	

@@ -47,4 +47,9 @@ public class MybatisAccountDao implements AccountDao {
 		// TODO Auto-generated method stub
 		return accountMapper.viewAccountList();
 	}
+	
+	@Override
+	public List<Account> getUserList() throws DataAccessException {
+		return accountMapper.getUserList();
+	}
 }

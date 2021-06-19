@@ -120,4 +120,9 @@
 		<put-attribute name="body"
 			value="/WEB-INF/view/tiles/myAuctionList.jsp" />
 	</definition>
+	
+	<definition name="userList" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/view/tiles/userList.jsp" />
+	</definition>
 </tiles-definitions>

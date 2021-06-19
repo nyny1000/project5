@@ -1,5 +1,7 @@
 package com.example.artsell.dao.mybatis.mapper;
 
+import java.util.Date;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.dao.DataAccessException;
 
@@ -11,6 +13,6 @@ public interface OrderMapper {
 	Order getOrder (String itemId, String userId) throws DataAccessException;
 	//AuctionItem getAuctionItem(String itemId, String userId);
 	void editDestination (Order order, String des) throws DataAccessException;
-	void SaveAuctionedItem (String itemId, int myPrice, String userId, String address)throws DataAccessException;
+	void SaveAuctionedItem (String itemId, int myPrice, String userId, String address, Date sellDate)throws DataAccessException;
 	void updateAuctionedState(String itemId, String userId) throws DataAccessException;
 }

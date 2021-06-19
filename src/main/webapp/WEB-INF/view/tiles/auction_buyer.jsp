@@ -7,6 +7,7 @@
    <h2>
       <p>상품이름 :
       <c:out value="${item.itemName}" /></p>
+      <img src="<c:out value="${item.picture}" />" width="300" /><br>
       경매 시작가:
       <c:out value="${item.minPrice}" />
       <br>

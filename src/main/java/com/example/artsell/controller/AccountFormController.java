@@ -2,6 +2,8 @@ package com.example.artsell.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -92,7 +94,7 @@ public class AccountFormController {
 
 	@RequestMapping("/user/edit")
 	public String onSubmit(HttpServletRequest request, HttpSession session,
-			@ModelAttribute("accountForm") AccountForm accountForm, BindingResult result) throws Exception {
+			@Valid @ModelAttribute("accountForm") AccountForm accountForm, BindingResult result) throws Exception {
 
 		validator.validate(accountForm, result);
 
