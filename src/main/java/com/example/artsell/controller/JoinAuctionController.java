@@ -136,7 +136,7 @@ public class JoinAuctionController {
 					artSell.updateItemBestPrice(itemId, myPrice);
 					artSell.deleteInterestingItem(userId, itemId);
 					bidTry = true;
-					model.put("bidTry", bidTry);
+					model.put("bidTry", bidTry); 
 
 				}
 			}
