@@ -114,7 +114,7 @@ public class MyItemController {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
 		calendar.set(Calendar.HOUR_OF_DAY, 23);
-		calendar.set(Calendar.MINUTE, 59);
+		calendar.set(Calendar.MINUTE, 59); 
 		calendar.set(Calendar.SECOND, 59);
 		
 		Date deadline = new Date(calendar.getTimeInMillis());
