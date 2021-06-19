@@ -22,11 +22,15 @@
 							<option value="5" <c:if test="${key == 5}">selected</c:if> >유찰</option>
 						</select>
 						<input type="submit" value="선택"/>
-						
+					</form>	
 				</th>
 				<th>&nbsp;</th>
 			</tr>
-			</form>
+			
+			<c:if test="${myPaintList.pageList.size() == 0}">
+				<tr align="center"><td colspan="4"><c:out value="목록이 없습니다." /></td></tr>
+			</c:if>
+			<c:if test="${myPaintList.pageList.size() != 0}">
 			<form>
 			<c:forEach var="myItem" items="${myPaintList.pageList}">
 				<tr align="center">
@@ -67,7 +71,8 @@
 					</a></td>
 				</tr>
 			</c:forEach>
-
+			</form>
+			</c:if>
 		</table>
 		<c:if test="${!myPaintList.firstPage}">
 			<a
@@ -83,5 +88,5 @@
 				<B>Next &gt;&gt;</B>
 			</a>
 		</c:if>
-	</form>
+	
 </div>
