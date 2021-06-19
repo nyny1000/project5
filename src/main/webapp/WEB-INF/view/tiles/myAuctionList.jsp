@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div align="center">
-	<form>
+
 		<h1>내 경매 참여 목록입니다</h1>
 		<table class="table1">
 			<tr align="center" bgcolor="#D5D5D5">
@@ -12,7 +12,17 @@
 				<th>경매 마감일</th>
 				<th>최고가</th>
 				<th>내 금액</th>
-				<th>state</th>
+				<th>
+					<form action='<c:url value="/stateTypeSelect"/>'>
+						<select name="stateT" id="stateSelect"> 
+							<option value="2" <c:if test="${key == 2}">selected</c:if> >state</option>
+							<option value="0" <c:if test="${key == 0}">selected</c:if> >경매참여중</option>
+							<option value="1" <c:if test="${key == 1}">selected</c:if> >결제대기중</option>
+							<option value="3" <c:if test="${key == 3}">selected</c:if> >경매실패</option>
+						</select>
+						<input type="submit" value="선택"/>
+					</form>
+				</th>
 			</tr>
 			
 			<c:forEach var="itemList1" items="${itemList1.pageList}">
@@ -45,8 +55,7 @@
 					<c:param name="page" value="next" /></c:url>">
 				   			<B>Next &gt;&gt;</B></a>
 		</c:if>
-		</form>
-		<form>
+	<form>
 		
 		<h1>내 경매 낙찰 목록입니다</h1>
 		<table class="table1">
@@ -63,6 +72,9 @@
 					<td><img src="<c:out value="${itemList2.picture}" />"  width="200" height="150" /></td>
 					<td><fmt:formatDate value="${itemList2.deadline}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					<td><c:out value="${itemList2.auctionedPrice}" /></td>
+					<td><a href="<c:url value="/auction/sell_buyer">
+						<c:param name="itemId" value="${itemList2.itemId}" /></c:url>">
+						결제완료</a></td>
 				</tr>
 			</c:forEach>
 		</table>

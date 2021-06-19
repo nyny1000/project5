@@ -1,5 +1,10 @@
 package com.example.artsell.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
@@ -16,16 +21,59 @@ import com.example.artsell.domain.Item;
 import com.example.artsell.service.ArtSellFacade;
 
 @Controller
-@SessionAttributes({"userSession","itemList1","itemList2"})
+@SessionAttributes({"userSession","itemList1","itemList2", "key"})
 public class AuctionItemListController {
 	@Autowired
 	private ArtSellFacade artSell;
 	
+//	@RequestMapping("/stateType")
+//	public String selectStateType(HttpServletRequest request, ModelMap model) {
+//		request.getParameter("stateT");
+//		
+//		return 
+//	}
+	@RequestMapping("/stateTypeSelect")
+	public String selectStateType(@ModelAttribute("userSession") UserSession userSession,
+			HttpServletRequest request, ModelMap model) {
+		
+		PagedListHolder<AuctionItem> itemList = new PagedListHolder<AuctionItem>(
+				this.artSell.getItemListByAuctionItem(userSession.getAccount().getUserId()));
+		
+		System.out.println("request는"+ request.getParameter("stateT"));
+		
+		int key = Integer.parseInt(request.getParameter("stateT"));
+		List<AuctionItem> list = new ArrayList<AuctionItem>();
+		
+		System.out.println(key);
+		
+		if (key != 2) {
+			for (AuctionItem item : itemList.getSource()) {
+				System.out.println(item.getState() + item.getItemId());
+				if (item.getState() == key) {
+					list.add(item);
+					itemList.setSource(list);
+				}
+			}
+			System.out.println("_______");
+			for (AuctionItem item : itemList.getSource()) {
+				System.out.println("앙"+item.getState() + item.getItemId());
+			}
+		}
+		
+		itemList.setPageSize(2);
+		model.put("itemList1", itemList);
+		model.put("key", key);
+
+		return "myAuctionList";
+	}
+	
 	@RequestMapping("/auction/list")
-	public String viewAuctionItemList(@ModelAttribute("userSession") UserSession userSession, ModelMap model) {
+	public String viewAuctionItemList(@ModelAttribute("userSession") UserSession userSession, ModelMap model, 
+			HttpServletRequest request) {
+		int key = 2;
 		PagedListHolder<AuctionItem> itemList1 = new PagedListHolder<AuctionItem>(
 				this.artSell.getItemListByAuctionItem(userSession.getAccount().getUserId()));
-
+		
 		itemList1.setPageSize(2);
 
 		model.put("itemList1", itemList1);
@@ -35,7 +83,7 @@ public class AuctionItemListController {
 				this.artSell.getItemListByAuctionedItem(userSession.getAccount().getUserId()));
 		itemList2.setPageSize(1);
 		model.put("itemList2", itemList2);
-
+		model.put("key", key);
 		return "myAuctionList";
 	
 	}

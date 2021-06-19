@@ -8,6 +8,8 @@ import java.util.StringTokenizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.artsell.dao.ItemDao;
 import com.example.artsell.dao.mybatis.mapper.AuctionItemMapper;
@@ -77,6 +79,7 @@ public class MybatisItemDao implements ItemDao {
 	}
 
 	//유찰때
+	@Transactional(propagation=Propagation.REQUIRED)
 	public void updateReload(String itemId, int minPrice, Date deadline, String userId) throws DataAccessException {
 		// TODO Auto-generated method stub
 		System.out.println("itemId: " + itemId);

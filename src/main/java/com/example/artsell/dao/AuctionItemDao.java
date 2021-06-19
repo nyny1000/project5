@@ -56,6 +56,7 @@ public interface AuctionItemDao {
 	
 	List<Integer> getItemState(String itemId) throws DataAccessException;
 	
-	AuctionedItem getAuctionedItemByItemId(String itemId) throws DataAccessException;
+	AuctionedItem getAuctionedItemByItemId_SellerId(String itemId) throws DataAccessException;
 
+	AuctionedItem getAuctionedItemByItemId_BuyerId(String itemId) throws DataAccessException;
 }

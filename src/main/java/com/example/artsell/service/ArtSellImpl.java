@@ -193,6 +193,11 @@ public class ArtSellImpl implements ArtSellFacade {
 	}
 	
 	@Override
+	public List<Item> getPastInterestingItemList(String userId) {
+		return interestingItemDao.getPastInterestingItemList(userId);
+	}
+	
+	@Override
 	public void insertInterestingItem(String userId, String itemId) {
 		interestingItemDao.insertInterestingItem(userId, itemId);
 	}
@@ -338,8 +343,27 @@ public class ArtSellImpl implements ArtSellFacade {
 	}
 	
 	@Override
-	public AuctionedItem getAuctionedItemByItemId(String itemId) {
+	public AuctionedItem getAuctionedItemByItemId_SellerId(String itemId) {
 		
-		return auctionItemDao.getAuctionedItemByItemId(itemId);
+		return auctionItemDao.getAuctionedItemByItemId_SellerId(itemId);
+	}
+	
+	@Override
+	public AuctionedItem getAuctionedItemByItemId_BuyerId(String itemId) {
+		
+		return auctionItemDao.getAuctionedItemByItemId_BuyerId(itemId);
+	}
+	@Override
+	public int getItemState(String itemId) {
+		List<Integer> state = auctionItemDao.getItemState(itemId);
+		if (state.contains(5)) {
+			return 5;
+		} else if (state.contains(1)) {
+			return 1;
+		} else if (state.contains(2)) {
+			return 2;
+		} else {
+			return 0;
+		}
 	}
 }

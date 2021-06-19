@@ -58,5 +58,7 @@ public interface AuctionItemMapper {
 	
 	List<Integer> getItemState(String itemId);
 	
-	AuctionedItem getAuctionedItemByItemId(String itemId);
+	AuctionedItem getAuctionedItemByItemId_SellerId(String itemId);
+	
+	AuctionedItem getAuctionedItemByItemId_BuyerId(String itemId);
 }

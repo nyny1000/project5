@@ -330,9 +330,17 @@ public class JoinAuctionController {
 
 	@RequestMapping("/auction/seller")
 	public String viewSellerOk(@RequestParam("itemId") String itemId, ModelMap model) {
-		AuctionedItem auctionedItem = artSell.getAuctionedItemByItemId(itemId);
+		AuctionedItem auctionedItem = artSell.getAuctionedItemByItemId_BuyerId(itemId);
 		model.put("auctionedItem", auctionedItem);
 		
 		return "auctioned_seller";
+	}
+	
+	@RequestMapping("/auction/sell_buyer")
+	public String viewBuyerOk(@RequestParam("itemId") String itemId, ModelMap model) {
+		AuctionedItem auctionedItem = artSell.getAuctionedItemByItemId_SellerId(itemId);
+		model.put("auctionedItem", auctionedItem);
+		
+		return "auctioned_sell_buyer";
 	}
 }

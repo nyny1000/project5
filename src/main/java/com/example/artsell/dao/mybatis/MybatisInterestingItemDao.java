@@ -20,6 +20,11 @@ public class MybatisInterestingItemDao implements InterestingItemDao {
 		return interestingItemMapper.getInterestingItemList(userId);
 	}
 	
+	public List<Item> getPastInterestingItemList(String userId) throws DataAccessException {
+		return interestingItemMapper.getPastInterestingItemList(userId);
+	}
+	
+	
 	public void insertInterestingItem(String userId, String itemId) throws DataAccessException {
 		interestingItemMapper.insertInterestingItem(userId, itemId);
 	}
