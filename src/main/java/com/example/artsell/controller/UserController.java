@@ -74,7 +74,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping("/user/logout")
+	@RequestMapping("/user/logout") 
 	public String logout(HttpSession session, SessionStatus sessionStatus) throws Exception { // ny수정
 		session.removeAttribute("userSession");
 		session.invalidate();
