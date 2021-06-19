@@ -5,7 +5,7 @@
 <table class="mypage" border="0" align="center">
 	<tr height="100px">
 		<td><a href="<c:url value="/auction/list"/>"><button>경매참여목록</button></a></td>
-		<td><a href="<c:url value="/user/update"/>"><button>회원정보
+		<td><a href="<c:url value="/user/editForm"/>"><button>회원정보
 					수정</button></a></td>
 	</tr>
 

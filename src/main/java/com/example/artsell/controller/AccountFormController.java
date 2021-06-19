@@ -17,17 +17,15 @@ import com.example.artsell.service.ArtSellFacade;
 /**
  * @author Juergen Hoeller
  * @since 01.12.2003
- * @modified by Changsup Park 
- * 나영 수정2
+ * @modified by Changsup Park 나영 수정2
  */
 @Controller
-@RequestMapping({ "/user/register", "/user/update" })
 public class AccountFormController {
 
 	@Value("editAccountForm")
 	private String formViewName;
-	
-	//회원가입 or 회원정보 수정 성공 시 가게 되는 뷰 (원래는 index)
+
+	// 회원가입 or 회원정보 수정 성공 시 가게 되는 뷰 (원래는 index)
 	@Value("main")
 	private String successViewName;
 
@@ -45,22 +43,54 @@ public class AccountFormController {
 		this.validator = validator;
 	}
 
+	@ModelAttribute("userRegisterForm")
+	public AccountForm formBackingObject_register(HttpServletRequest request) throws Exception {
+		return new AccountForm();
+	}
+
+	@RequestMapping("/user/registerForm")
+	public String showRegisterForm() {
+		return "thyme/userRegister";
+	}
+
+	@RequestMapping("/user/register")
+	public String onSubmit_register(HttpServletRequest request, HttpSession session,
+			@ModelAttribute("userRegisterForm") AccountForm registerForm, BindingResult result) {
+		validator.validate(registerForm, result);
+
+		if (result.hasErrors())
+			return "thyme/userRegister";
+
+		try {
+			artsell.insertAccount(registerForm.getAccount());
+
+		} catch (DataIntegrityViolationException ex) {
+			result.rejectValue("account.userId", "USER_ID_ALREADY_EXISTS",
+					"User ID already exists: choose a different ID.");
+			return "thyme/userRegister";
+		}
+
+		UserSession userSession = new UserSession(artsell.getAccount(registerForm.getAccount().getUserId())); // userId로
+																												// 수정.
+		session.setAttribute("userSession", userSession);
+		return "redirect:/user/main";
+	}
+
 	@ModelAttribute("accountForm")
-	public AccountForm formBackingObject(HttpServletRequest request) throws Exception {
+	public AccountForm formBackingObject_edit(HttpServletRequest request) throws Exception {
 		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
 		if (userSession != null) { // edit an existing account
 			return new AccountForm(artsell.getAccount(userSession.getAccount().getUserId())); // 아이디를 이용해서 가져오도록 수정.
-		} else { // create a new account
-			return new AccountForm();
 		}
-	}
+		return new AccountForm();
+		}
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String showForm() {
+	@RequestMapping("/user/editForm")
+	public String showForm_edit() {
 		return formViewName;
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping("/user/edit")
 	public String onSubmit(HttpServletRequest request, HttpSession session,
 			@ModelAttribute("accountForm") AccountForm accountForm, BindingResult result) throws Exception {
 
@@ -70,19 +100,17 @@ public class AccountFormController {
 			return formViewName;
 
 		try {
-			if (accountForm.isNewAccount()) {
-				artsell.insertAccount(accountForm.getAccount());
-			} else {
-				artsell.updateAccount(accountForm.getAccount());
-			}
+
+			artsell.updateAccount(accountForm.getAccount());
 		} catch (DataIntegrityViolationException ex) {
 			result.rejectValue("account.userId", "USER_ID_ALREADY_EXISTS",
-					"User ID already exists: choose a different ID.");  
+					"User ID already exists: choose a different ID.");
 			return formViewName;
 		}
 
-		UserSession userSession = new UserSession(artsell.getAccount(accountForm.getAccount().getUserId())); //userId로 수정.
-	
+		UserSession userSession = new UserSession(artsell.getAccount(accountForm.getAccount().getUserId())); // userId로
+																												// 수정.
+
 		session.setAttribute("userSession", userSession);
 		return "redirect:/user/main";
 	}

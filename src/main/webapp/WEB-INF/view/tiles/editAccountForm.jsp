@@ -5,7 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div align="center">
-	<form:form modelAttribute="accountForm" method="post">
+	<form:form action="/user/edit" modelAttribute="accountForm" method="post">
 		<form:errors cssClass="error" />
 		<br>
 		<br>

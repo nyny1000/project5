@@ -43,8 +43,8 @@
 						<td><span th:each="err : ${#fields.globalErrors()}"
 							th:text="${err}"></span> &nbsp;</td>
 						<td>
-							<button type="submit" name="update">로그인</button>&nbsp <a
-							th:href='@{/user/register}'>
+							<button type="submit" name="update">로그인</button>&nbsp 
+							<a th:href='@{/user/registerForm}'>
 								<button type="button" name="button">회원가입</button>
 						</a>
 						</td>
