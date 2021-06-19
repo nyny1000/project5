@@ -115,7 +115,7 @@ public class UserController {
 	public String handleRequest(@RequestParam("page") String page,
 			@ModelAttribute("userList") PagedListHolder<Account> userList, BindingResult result) throws Exception {
 
-		if ("next".equals(page)) {
+		if ("next".equals(page)) {  
 			userList.nextPage();
 		} else if ("previous".equals(page)) {
 			userList.previousPage();
