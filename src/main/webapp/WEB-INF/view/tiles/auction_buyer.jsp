@@ -5,8 +5,14 @@
 
 <div align="center">
    <h2>
-      상품이름 :
-      <c:out value="${item.itemName}" />
+      <p>상품이름 :
+      <c:out value="${item.itemName}" /></p>
+      경매 시작가:
+      <c:out value="${item.minPrice}" />
+      <br>
+      현재 최고가:
+      <c:out value="${item.bestPrice}" />
+      
    </h2>
    <p>
    <table class="border">
@@ -22,20 +28,17 @@
    </table>
    <p>
    
-   <!--<form action="<c:url value='/auction/bid'/>" method="POST">
-      <form:errors cssClass="error" />
-      <input type="text" name="myAuctionPrice" />
-      <form:errors path="bidder.price" cssClass="error" />
-      <input type="hidden" name="itemId" value="${item.itemId}" /> <input
-         type="submit" value="입찰" />
-   </form>-->
+
          <form:form action="/auction/bid"
          modelAttribute="auctionItem" method="POST">
          <form:errors cssClass="error" />
-         <form:input type="text" path="myPrice" />
+         <form:input path="myPrice" />
          <form:errors path="myPrice" cssClass="error" />
-         <form:input type="hidden" path="itemId" value="${item.itemId}" />
+         <form:hidden path="itemId" value="${item.itemId}" />
          <input type="submit" value="입찰" />
+     		<%-- <c:out value="${userSession.account.userId}" /> --%> <!-- cnrk -->
+			<c:if test="${bidTry==true}">
+			<p>입찰이 성공적으로 완료되었습니다.</p></c:if>
 
       </form:form>
 

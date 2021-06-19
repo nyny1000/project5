@@ -33,7 +33,7 @@
 						경매중</a></c:if>
 					<c:if test="${myItem.state == 1}">낙찰대기중</c:if>
 					<c:if test="${myItem.state == 2}">
-					<a href="<c:url value=""> <!-- 수정 -->
+					<a href="<c:url value="/auction/seller"> <!-- 수정 -->
 						<c:param name="itemId" value="${myItem.itemId}" /></c:url>">
 						결제완료</a></c:if>
 					<c:if test="${myItem.state == 5}">

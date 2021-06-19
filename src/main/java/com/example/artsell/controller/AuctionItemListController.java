@@ -33,17 +33,17 @@ public class AuctionItemListController {
 		//낙찰된(결제까지 다 한) 목록
 		PagedListHolder<AuctionedItem> itemList2 = new PagedListHolder<AuctionedItem>(
 				this.artSell.getItemListByAuctionedItem(userSession.getAccount().getUserId()));
-		itemList2.setPageSize(4);
+		itemList2.setPageSize(1);
 		model.put("itemList2", itemList2);
 
 		return "myAuctionList";
 	
 	}
 	
-	@RequestMapping("/auction/list/auction")
+	@RequestMapping("/auction/listauction")
 	public String viewAuctionItemList2(
 			@RequestParam("page") String page, 
-			@ModelAttribute("auctionList") PagedListHolder<Item> itemList,
+			@ModelAttribute("itemList1") PagedListHolder<Item> itemList,
 			BindingResult result) throws Exception {
 
 		if ("next".equals(page)) {
@@ -55,10 +55,10 @@ public class AuctionItemListController {
 		return "myAuctionList";
 	} 
 	
-	@RequestMapping("/auction/list/auctioned")
+	@RequestMapping("/auction/listauctioned")  
 	public String viewAuctionItemList3(
 			@RequestParam("page") String page, 
-			@ModelAttribute("auctionedList") PagedListHolder<Item> itemList,
+			@ModelAttribute("itemList2") PagedListHolder<Item> itemList,
 			BindingResult result) throws Exception {
 
 		if ("next".equals(page)) {

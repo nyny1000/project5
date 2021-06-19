@@ -18,7 +18,7 @@ public class AuctionItem implements Serializable {
 	public AuctionItem() {}
 
 	public AuctionItem(String userId, String itemId, int myPrice, int state, Date deadline, String picture,
-			int bestPrice) {
+			int bestPrice,  String itemName) {
 		super();
 		this.userId = userId;
 		this.itemId = itemId;
@@ -27,6 +27,7 @@ public class AuctionItem implements Serializable {
 		this.deadline = deadline;
 		this.picture = picture;
 		this.bestPrice = bestPrice;
+		this.itemName = itemName;
 	}
 
 	public String getUserId() {

@@ -120,4 +120,6 @@ public interface ArtSellFacade {
 
 	int getItemState(String itemId);
 	
+	AuctionedItem getAuctionedItemByItemId(String itemId);
+	
 }

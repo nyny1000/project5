@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.artsell.domain.Account;
 import com.example.artsell.domain.Item;
@@ -22,7 +23,7 @@ import com.example.artsell.service.ArtSellFacade;
 //123
 import com.example.artsell.service.OrderValidator;
 @Controller
-@SessionAttributes({"sessionCart", "orderForm", "order"})
+@SessionAttributes({"sessionCart", "order"})
 public class OrderController {
 	@Autowired
 	private ArtSellFacade artsell;
@@ -32,20 +33,16 @@ public class OrderController {
 	public void setValidator(OrderValidator validator) {
 		this.validator = validator;
 	}
-	
-//	@ModelAttribute("orderForm")
-//	public OrderForm createOrderForm() {
-//		return new OrderForm();
-//	}
 
+	//회원정보와동일
 	@RequestMapping("/auction/auctioned_buyer_addressCheck")
 	public String addressCheckbox(HttpServletRequest request,
-			@ModelAttribute("Order") Order order, ModelMap model) {
-		order = (Order) request.getSession().getAttribute("order");
+			@ModelAttribute("order") Order order, ModelMap model) {
+//		order = (Order) request.getSession().getAttribute("order");
 		order = artsell.getOrder(order.getItemId(), order.getUserId());
 		
 		model.put("order", order);
-		request.getSession().setAttribute("order", order);
+//		request.getSession().setAttribute("order", order);
 		
 		return "auctioned_buyer";
 	}
@@ -54,23 +51,24 @@ public class OrderController {
 	@RequestMapping("/auction/auctioned_buyer")
 	public String viewShippingForm(HttpServletRequest request,
 			@RequestParam("itemId") String itemId,
-			@ModelAttribute("orderForm") OrderForm orderForm, ModelMap model,
+			@ModelAttribute("order") Order order, ModelMap model,
 			BindingResult result) throws ModelAndViewDefiningException {
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
 		if (itemId != null) {
 			// Re-read account from DB at team's request.
-			System.out.println("123123");
-			Order order = artsell.getOrder(itemId, userSession.getAccount().getUserId());
+			order = artsell.getOrder(itemId, userSession.getAccount().getUserId());
 			
 			order.setAddress(null);
+			
 			model.put("order", order);
-			request.getSession().setAttribute("order", order);
+			
+//			request.getSession().setAttribute("order", order);
 			//Account account = artsell.getAccount(userSession.getAccount().getUserId());
 			//Item item = artsell.getItem(itemId);
 			//System.out.println(item.getItemName());
 			//orderForm.getOrder().initOrder(account, cart);
 			//artsell.getOrder(itemId,account.getUserId());
-			
+			System.out.println("123123");
 			return "auctioned_buyer";
 		}
 		else {
@@ -81,29 +79,33 @@ public class OrderController {
 	}
 	
 	@ModelAttribute("order")
-	public Order aa() {
+	public Order returnOrder() {
 		return new Order();
 	}
 	
 	@RequestMapping("/auction/destination")
 	public String viewConfirmOrder(HttpServletRequest request,
-			@Valid @ModelAttribute("Order") Order order, 
+			@ModelAttribute("order") Order order, 
 			BindingResult result, ModelMap model) {	
+		
 		//artsell.SaveAuctionedItem(order);
-		
-		order = (Order) request.getSession().getAttribute("order");
+//		order.setAddress(paddress);
+//		System.out.println(paddress);
+//		order = (Order) request.getSession().getAttribute("order");
+		System.out.println(order.getAddress());
 		validator.validate(order, result);
-		if (result.hasErrors())
+		if (result.hasErrors()) {
+			System.out.println("validate 오류");
+//			redirectAttributes.addAttribute("itemId", order.getItemId());
 			return "auctioned_buyer";
-		
+		}
 		model.put("order", order);
 		System.out.println(order.getItemId());	
 		return "auctioned_destination";
 	}
 	
 	@RequestMapping("/auction/receipt")
-	public String viewOrder(HttpServletRequest request,
-			@ModelAttribute("orderForm") OrderForm orderForm, 
+	public String viewOrder(HttpServletRequest request, 
 			SessionStatus status) {
 		//artsell.insertOrder(orderForm.getOrder());
 		Order order = (Order) request.getSession().getAttribute("order");
