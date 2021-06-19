@@ -20,6 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.artsell.domain.Account;
 import com.example.artsell.domain.Item;
+import com.example.artsell.domain.AuctionItem;
+import com.example.artsell.service.AccountFormValidator;
+import com.example.artsell.service.AccountValidator;
 import com.example.artsell.service.ArtSellFacade;
 
 @Controller

@@ -21,7 +21,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 			String url = request.getRequestURL().toString(); 
 			String query = request.getQueryString();
 			//ModelAndView modelAndView = new ModelAndView("tiles/loginForm"); 	// use Tiles
-			ModelAndView modelAndView = new ModelAndView("loginForm");
+			ModelAndView modelAndView = new ModelAndView("thyme/login");
 			if (query != null) {
 				modelAndView.addObject("loginForwardAction", url+"?"+query);
 			}

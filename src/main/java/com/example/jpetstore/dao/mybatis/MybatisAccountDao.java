@@ -18,13 +18,12 @@ public class MybatisAccountDao implements AccountDao {
 
 	@Autowired
 	private AccountMapper accountMapper;
-	
+
 	public Account getAccount(String username) throws DataAccessException {
 		return accountMapper.getAccountByUsername(username);
 	}
 
-	public Account getAccount(String username, String password) 
-			throws DataAccessException {
+	public Account getAccount(String username, String password) throws DataAccessException {
 		return accountMapper.getAccountByUsernameAndPassword(username, password);
 	}
 
@@ -37,13 +36,13 @@ public class MybatisAccountDao implements AccountDao {
 	public void updateAccount(Account account) throws DataAccessException {
 		accountMapper.updateAccount(account);
 		accountMapper.updateProfile(account);
-		if (account.getPassword() != null && account.getPassword().length() > 0) 
-		{
+		if (account.getPassword() != null && account.getPassword().length() > 0) {
 			accountMapper.updateSignon(account);
 		}
 	}
- 
+
 	public List<String> getUsernameList() throws DataAccessException {
 		return accountMapper.getUsernameList();
 	}
+
 }

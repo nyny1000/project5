@@ -6,15 +6,28 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div align="center">
-	<form>
+	
 		<h1>내 그림 관리</h1>
 		<table>
 			<tr align="center" bgcolor="#D5D5D5">
 				<th>상품이름</th>
 				<th width="200px">상품이미지</th>
-				<th>state</th>
+				<th>
+					<form action='<c:url value="/stateTypeSelect_mypaintingList"/>'>
+						<select name="stateT2"> 
+							<option value="3" <c:if test="${key == 3}">selected</c:if> >state</option>
+							<option value="0" <c:if test="${key == 0}">selected</c:if> >경매중</option>
+							<option value="1" <c:if test="${key == 1}">selected</c:if> >낙찰대기중</option>
+							<option value="2" <c:if test="${key == 2}">selected</c:if> >결제완료</option>
+							<option value="5" <c:if test="${key == 5}">selected</c:if> >유찰</option>
+						</select>
+						<input type="submit" value="선택"/>
+						
+				</th>
 				<th>&nbsp;</th>
 			</tr>
+			</form>
+			<form>
 			<c:forEach var="myItem" items="${myPaintList.pageList}">
 				<tr align="center">
 					<td><a
@@ -27,20 +40,26 @@
 						<c:param name="itemId" value="${myItem.itemId}" /></c:url>">
 							<img src="<c:out value="${myItem.picture}" />" width="200" height="150" />
 					</a></td>
-					<td><c:if test="${myItem.state == 0}">
-					<a href="<c:url value="/auction/info_seller">
-						<c:param name="itemId" value="${myItem.itemId}" /></c:url>">
-						경매중</a></c:if>
-					<c:if test="${myItem.state == 1}">낙찰대기중</c:if>
-					<c:if test="${myItem.state == 2}">
-					<a href="<c:url value="/auction/seller"> <!-- 수정 -->
-						<c:param name="itemId" value="${myItem.itemId}" /></c:url>">
-						결제완료</a></c:if>
-					<c:if test="${myItem.state == 5}">
-					<a href="<c:url value="/auction/fail">
-						<c:param name="itemId" value="${myItem.itemId}" /></c:url>">
-						유찰</a></c:if>
+					
+					<td>
+						<c:if test="${myItem.state == 0}">
+							<a href="<c:url value="/auction/info_seller">
+								<c:param name="itemId" value="${myItem.itemId}" /></c:url>">
+								경매중</a>
+						</c:if>
+						<c:if test="${myItem.state == 1}">낙찰대기중</c:if>
+						<c:if test="${myItem.state == 2}">
+							<a href="<c:url value="/auction/seller"> <!-- 수정 -->
+								<c:param name="itemId" value="${myItem.itemId}" /></c:url>">
+								결제완료</a>
+						</c:if>
+						<c:if test="${myItem.state == 5}">
+							<a href="<c:url value="/auction/fail">
+								<c:param name="itemId" value="${myItem.itemId}" /></c:url>">
+								유찰</a>
+						</c:if>
 					</td>
+					
 					<td><a
 						href='<c:url value="/myitem/delete">
 	            		<c:param name="itemId" value="${myItem.itemId}"/></c:url>'>
