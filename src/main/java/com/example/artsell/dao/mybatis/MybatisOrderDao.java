@@ -1,5 +1,7 @@
 package com.example.artsell.dao.mybatis;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
@@ -30,8 +32,8 @@ public class MybatisOrderDao implements OrderDao {
 		orderMapper.editDestination(order, des);
 	}
 	@Transactional
-	public void SaveAuctionedItem (String itemId, int myPrice, String userId, String address) throws DataAccessException {
-		orderMapper.SaveAuctionedItem(itemId, myPrice, userId, address);
+	public void SaveAuctionedItem (String itemId, int myPrice, String userId, String address, Date sellDate) throws DataAccessException {
+		orderMapper.SaveAuctionedItem(itemId, myPrice, userId, address, sellDate);
 	}
 	@Transactional
 	public void updateAuctionedState(String itemId, String userId) throws DataAccessException {
