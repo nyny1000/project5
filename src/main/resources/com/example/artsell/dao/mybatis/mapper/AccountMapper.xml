@@ -33,7 +33,8 @@
 		UPDATE ACCOUNT SET
 		EMAIL = #{email},
 		NAME = #{name},
-		ADDRESS = #{address},
+		ADDRESS1 = #{address1},
+		ADDRESS2 = #{address2},
 		PASSWORD = #{password},
 		PHONE = #{phone},
 		CREDIT = #{credit}
@@ -42,9 +43,9 @@
 
 	<insert id="insertAccount" parameterType="Account">
 		INSERT INTO ACCOUNT
-		(EMAIL, NAME, PASSWORD, ADDRESS, PHONE, CREDIT, USERID)
+		(EMAIL, NAME, PASSWORD, ADDRESS1, ADDRESS2, PHONE, CREDIT, USERID)
 		VALUES
-		(#{email}, #{name}, #{password}, #{address}, #{phone}, #{credit}, #{userId})
+		(#{email}, #{name}, #{password}, #{address1},  #{address2}, #{phone}, #{credit}, #{userId})
 	</insert>
 	
 	<delete id="deleteAccount" parameterType="String">

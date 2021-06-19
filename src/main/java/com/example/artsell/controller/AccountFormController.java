@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.WebUtils;
 import com.example.artsell.service.AccountFormValidator;
 import com.example.artsell.service.ArtSellFacade;
@@ -93,7 +94,7 @@ public class AccountFormController {
 	}
 
 	@RequestMapping("/user/edit")
-	public String onSubmit(HttpServletRequest request, HttpSession session,
+	public String onSubmit(HttpServletRequest request, @RequestParam(value="address1", required=false) String address1, HttpSession session,
 			@Valid @ModelAttribute("accountForm") AccountForm accountForm, BindingResult result) throws Exception {
 
 		validator.validate(accountForm, result);

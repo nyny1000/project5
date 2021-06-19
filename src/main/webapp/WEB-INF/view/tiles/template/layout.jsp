@@ -24,7 +24,6 @@ $(function() {
   });
 });
 </script>
-
 <script>
 function findAddr(){
 	new daum.Postcode({

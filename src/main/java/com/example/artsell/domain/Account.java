@@ -14,7 +14,8 @@ public class Account implements Serializable {
 
 	private String userId;
 	private String password;
-	private String address;
+	private String address1;
+	private String address2;
 	@Email
 	private String email;
 	@Pattern(regexp="\\(\\d{3}\\)\\d{3}-\\d{4}") 
@@ -39,13 +40,22 @@ public class Account implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 
-	public String getAddress() {
-		return address;
+	public String getAddress1() {
+		return address1;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
+
+	public String getAddress2() {
+		return address2;
+	}
+
+	public void setAddress2(String address2) {
+		this.address2 = address2;
 	}
 
 	public String getEmail() {
