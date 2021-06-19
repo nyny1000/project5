@@ -5,8 +5,14 @@
 
 <div align="center">
    <h2>
-      상품이름 :
-      <c:out value="${item.itemName}" />
+      <p>상품이름 :
+      <c:out value="${item.itemName}" /></p>
+      최소가:
+      <c:out value="${item.minPrice}" />
+      <br>
+      최고가:
+      <c:out value="${item.bestPrice}" />
+      
    </h2>
    <p>
    <table class="border">
