@@ -117,6 +117,8 @@ public interface ArtSellFacade {
 	void insertAuctionItem(AuctionItem auctionItem);
 	
 	void bidSuccess(String itemId);
+
+	int getItemState(String itemId);
 	
 	AuctionedItem getAuctionedItemByItemId_SellerId(String itemId);
 	

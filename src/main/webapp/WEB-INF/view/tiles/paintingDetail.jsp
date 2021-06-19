@@ -15,6 +15,10 @@
          <td><c:out value="${item.categoryId}" /></td> <!-- 카테고리 이름으로 바꾸기 -->
       </tr>
       <tr align="center">
+         <td>경매 시작가</td>
+         <td><c:out value="${item.minPrice}" /></td>
+      </tr>
+      <tr align="center">
          <td>현재 최고가</td>
          <td><c:out value="${item.bestPrice}" /></td>
       </tr>
