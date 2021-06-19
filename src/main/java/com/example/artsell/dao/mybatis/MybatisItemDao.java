@@ -40,7 +40,7 @@ public class MybatisItemDao implements ItemDao {
 		if ("".equals(categoryId)) {
 			categoryId = null;
 		}
-		return itemMapper.searchItemList(keywords, artist, categoryId);
+		return itemMapper.searchItemList("%" + keywords.toLowerCase() + "%", artist, categoryId);
 	}
 
 	public List<Item> getItemListByCategory(String categoryId) throws DataAccessException {
@@ -79,6 +79,7 @@ public class MybatisItemDao implements ItemDao {
 	//유찰때
 	public void updateReload(String itemId, int minPrice, Date deadline, String userId) throws DataAccessException {
 		// TODO Auto-generated method stub
+		System.out.println("itemId: " + itemId);
 		auctionItemMapper.changeState(userId, itemId, 4);
 		itemMapper.updateReload(itemId, minPrice, deadline, userId);
 	}

@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -92,7 +93,7 @@ public class JoinAuctionController {
 		validator.validate(bidder, result);
 		if (result.hasErrors()) {
 			System.out.println("입찰가 validation 에러");
-			return "redirect:/auction/info";
+			return "auction_buyer";
 		}
 
 		// validation 검사 후이기때문에 정상 입찰가만 db에 저장.
@@ -232,7 +233,7 @@ public class JoinAuctionController {
 
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 		cal.add(Calendar.DATE, 7);
 		Date deadline = null;
@@ -246,23 +247,36 @@ public class JoinAuctionController {
 		model.addObject("minPrice", minPrice);
 		model.addObject("newPrice", newPrice);
 		model.addObject("deadline", deadline);
+		model.addObject("itemId", itemId);
 		return model;
 
 	}
-
+	
 	@RequestMapping("/auction/fail/ok")
 	public String Reupload(@ModelAttribute("userSession") UserSession userSession,
 			@RequestParam("itemId") String itemId, @RequestParam("minPrice") int minPrice,
-			@RequestParam("deadline") Date deadline, RedirectAttributes redirectAttributes) {
+			@RequestParam("deadline") String deadline, RedirectAttributes redirectAttributes) {
+		System.out.println(deadline);
+		
 		String userId = userSession.getAccount().getUserId();
+		DateFormat parser2 = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+		DateFormat parser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
+		
+		Date dl = null;
+		try {
+			dl = parser.parse(parser.format(parser2.parse(deadline)));
+			//dl = parser.parse(deadline);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		artSell.auctionScheduler(dl, itemId);
 
-		artSell.auctionScheduler(deadline, itemId);
+		System.out.println("itemId1: " + itemId);
+		artSell.updateReload(itemId, minPrice, dl, userId);
 
-		artSell.updateReload(itemId, minPrice, deadline, userId);
-
-		redirectAttributes.addAttribute("itemId", itemId);
-
-		return "redirect:/shop/viewItem";
+		return "redirect:/myitem/list";
 	}
 
 	// 유찰 안하겠다고 했을때

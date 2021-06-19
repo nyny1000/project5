@@ -16,7 +16,7 @@ import com.example.artsell.domain.Item;
 import com.example.artsell.service.ArtSellFacade;
 
 @Controller
-@SessionAttributes("userSession")
+@SessionAttributes({"userSession","itemList1","itemList2"})
 public class AuctionItemListController {
 	@Autowired
 	private ArtSellFacade artSell;
@@ -25,7 +25,9 @@ public class AuctionItemListController {
 	public String viewAuctionItemList(@ModelAttribute("userSession") UserSession userSession, ModelMap model) {
 		PagedListHolder<AuctionItem> itemList1 = new PagedListHolder<AuctionItem>(
 				this.artSell.getItemListByAuctionItem(userSession.getAccount().getUserId()));
-		itemList1.setPageSize(4);
+
+		itemList1.setPageSize(2);
+
 		model.put("itemList1", itemList1);
 		
 		//낙찰된(결제까지 다 한) 목록
