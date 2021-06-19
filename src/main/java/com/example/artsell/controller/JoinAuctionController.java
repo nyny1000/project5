@@ -105,6 +105,7 @@ public class JoinAuctionController {
 
 				artSell.updateItemBestPrice(itemId, myPrice);
 				System.out.println("업데이트 됐음");
+				
 				return "redirect:/auction/info";
 			}
 		} else {
@@ -217,7 +218,7 @@ public class JoinAuctionController {
 		System.out.println("아이디" + itemId);
 		artSell.changeDeadline(now, itemId);
 		artSell.bidSuccess(itemId);
-
+		
 		return "redirect:/myitem/list";
 	}
 
