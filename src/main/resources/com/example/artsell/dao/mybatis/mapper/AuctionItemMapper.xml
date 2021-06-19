@@ -165,13 +165,13 @@
   </select>
   
   <select id="getAuctionedItemByItemId_SellerId" parameterType="String" resultType="AuctionedItem">
-  	SELECT i.userId, i.itemId, auctionedPrice, destination, itemName, picture
+  	SELECT i.userId, i.itemId, auctionedPrice, destination, itemName, picture, sellDate
   	FROM AUCTIONEDITEM a, item i
   	WHERE a.itemId = i.itemId and a.ITEMID = #{itemId}
   </select>
   
   <select id="getAuctionedItemByItemId_BuyerId" parameterType="String" resultType="AuctionedItem">
-  	SELECT a.userId, i.itemId, auctionedPrice, destination, itemName, picture
+  	SELECT a.userId, i.itemId, auctionedPrice, destination, itemName, picture, sellDate
   	FROM AUCTIONEDITEM a, item i
   	WHERE a.itemId = i.itemId and a.ITEMID = #{itemId}
   </select>
