@@ -96,7 +96,6 @@ public class MyItemController {
 	public String ViewMyItemList(
 			@ModelAttribute("userSession") UserSession userSession, ModelMap model) throws Exception {
 
-		
 		PagedListHolder<Item> itemList = new PagedListHolder<Item>(
 				this.artSell.getMyItemList(userSession.getAccount().getUserId()));
 		itemList.setPageSize(2);
