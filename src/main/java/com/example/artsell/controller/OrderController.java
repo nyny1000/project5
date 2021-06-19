@@ -33,11 +33,6 @@ public class OrderController {
 	public void setValidator(OrderValidator validator) {
 		this.validator = validator;
 	}
-	
-//	@ModelAttribute("orderForm")
-//	public OrderForm createOrderForm() {
-//		return new OrderForm();
-//	}
 
 	//회원정보와동일
 	@RequestMapping("/auction/auctioned_buyer_addressCheck")
@@ -56,12 +51,12 @@ public class OrderController {
 	@RequestMapping("/auction/auctioned_buyer")
 	public String viewShippingForm(HttpServletRequest request,
 			@RequestParam("itemId") String itemId,
-			@ModelAttribute("orderForm") OrderForm orderForm, ModelMap model,
+			@ModelAttribute("order") Order order, ModelMap model,
 			BindingResult result) throws ModelAndViewDefiningException {
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
 		if (itemId != null) {
 			// Re-read account from DB at team's request.
-			Order order = artsell.getOrder(itemId, userSession.getAccount().getUserId());
+			order = artsell.getOrder(itemId, userSession.getAccount().getUserId());
 			
 			order.setAddress(null);
 			
@@ -84,14 +79,14 @@ public class OrderController {
 	}
 	
 	@ModelAttribute("order")
-	public Order aa() {
+	public Order returnOrder() {
 		return new Order();
 	}
 	
 	@RequestMapping("/auction/destination")
-	public String viewConfirmOrder(HttpServletRequest request, @RequestParam(value="putAddress", required=false) String paddress,
+	public String viewConfirmOrder(HttpServletRequest request,
 			@ModelAttribute("order") Order order, 
-			BindingResult result, ModelMap model, RedirectAttributes redirectAttributes) {	
+			BindingResult result, ModelMap model) {	
 		
 		//artsell.SaveAuctionedItem(order);
 //		order.setAddress(paddress);
@@ -110,8 +105,7 @@ public class OrderController {
 	}
 	
 	@RequestMapping("/auction/receipt")
-	public String viewOrder(HttpServletRequest request,
-			@ModelAttribute("orderForm") OrderForm orderForm, 
+	public String viewOrder(HttpServletRequest request, 
 			SessionStatus status) {
 		//artsell.insertOrder(orderForm.getOrder());
 		Order order = (Order) request.getSession().getAttribute("order");
