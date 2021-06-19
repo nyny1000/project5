@@ -11,25 +11,31 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-	@Autowired
+   @Autowired
+   @Qualifier(value = "loginInterceptor")
+   private HandlerInterceptor loginInterceptor;
 
-	@Qualifier(value = "signonInterceptor")
-	private HandlerInterceptor interceptor;
+   @Autowired
+   @Qualifier(value = "auctionInterceptor")
+   private HandlerInterceptor auctionInterceptor;
 
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/home").setViewName("main"); //로고 눌렀을 때 메인페이지
-		registry.addViewController("/user/main").setViewName("main");
+   @Override
+   public void addViewControllers(ViewControllerRegistry registry) {
+      registry.addViewController("/home").setViewName("main"); // 로고 눌렀을 때 메인페이지
+      registry.addViewController("/user/main").setViewName("main");
+   }
 
-	}
-
-	/*
-	 * @Override public void addInterceptors(InterceptorRegistry registry) {
-	 * registry.addInterceptor(interceptor).addPathPatterns(); }
-	 */
-	/*
-	 * "/shop/editAccount.do", "/shop/listOrders.do", "/shop/viewOrder.do",
-	 * "/shop/newOrder.do"
-	 */
+   @Override 
+   public void addInterceptors(InterceptorRegistry registry) {
+      registry.addInterceptor(loginInterceptor)
+            .addPathPatterns("/home", "/user/delete", "/user/update", "/user/mypage", "/search/*", "/interesting/*", "/myitem/*", "/auction/*", "/shop/*"); 
+      registry.addInterceptor(auctionInterceptor)
+            .addPathPatterns("/auction/info", "/auction/bid");
+   }
+     
+     
+//   "/shop/editAccount.do", "/shop/listOrders.do", "/shop/viewOrder.do",
+//   "/shop/newOrder.do"
+    
 
 }

@@ -29,22 +29,21 @@ import com.example.jpetstore.domain.Account;
 @Mapper
 public interface AccountMapper {
 
-  Account getAccountByUsername(String username);
+	Account getAccountByUsername(String username);
 
-  Account getAccountByUsernameAndPassword(String username, String password);
+	Account getAccountByUsernameAndPassword(String username, String password);
 
-  List<String> getUsernameList();
-  
-  void insertAccount(Account account);
-  
-  void insertProfile(Account account);
-  
-  void insertSignon(Account account);
+	List<String> getUsernameList();
 
-  void updateAccount(Account account);
+	void insertAccount(Account account);
 
-  void updateProfile(Account account);
+	void insertProfile(Account account);
 
-  void updateSignon(Account account);
+	void insertSignon(Account account);
 
+	void updateAccount(Account account);
+
+	void updateProfile(Account account);
+
+	void updateSignon(Account account);
 }
