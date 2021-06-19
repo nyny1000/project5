@@ -31,8 +31,8 @@
 	</tr>
 	<tr>
 		<td class="bold">주소</td>
-		<td><form:input path="order.address" /> <form:errors
-						path="order.address" cssClass="error" /></td>
+		<td><form:input path="order.address" name="address" /> 
+			<form:errors path="order.address" cssClass="error" /></td>
 	</tr>
 	<tr>
 		<td class="bold">카드번호</td>
