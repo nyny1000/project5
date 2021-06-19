@@ -7,10 +7,10 @@
    <h2>
       <p>상품이름 :
       <c:out value="${item.itemName}" /></p>
-      최소가:
+      경매 시작가:
       <c:out value="${item.minPrice}" />
       <br>
-      최고가:
+      현재 최고가:
       <c:out value="${item.bestPrice}" />
       
    </h2>
