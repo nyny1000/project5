@@ -8,6 +8,8 @@ import com.example.artsell.domain.Item;
 public interface InterestingItemMapper {
 	List<Item> getInterestingItemList(String userId);
 	
+	List<Item> getPastInterestingItemList(String userId);
+	
 	void insertInterestingItem(String userId, String itemId);
 	
 	void deleteInterestingItem(String userId, String itemId); 
