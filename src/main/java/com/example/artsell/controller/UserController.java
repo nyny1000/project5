@@ -123,5 +123,11 @@ public class UserController {
 
 		return "userList";
 	}
+	
+	@RequestMapping("/admin/user_delete")
+	public String deleteUser(@RequestParam("userId") String userId) {
+		artSell.deleteAccount(userId);
+		return "redirect:/admin/manage";
+	}
 
 }
