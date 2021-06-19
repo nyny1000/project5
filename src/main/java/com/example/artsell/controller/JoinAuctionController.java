@@ -29,6 +29,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 
 import com.example.artsell.domain.AuctionItem;
+import com.example.artsell.domain.AuctionedItem;
 import com.example.artsell.domain.Item;
 
 import com.example.artsell.domain.Order;
@@ -327,4 +328,11 @@ public class JoinAuctionController {
 		// return "main";
 	}
 
+	@RequestMapping("/auction/seller")
+	public String viewSellerOk(@RequestParam("itemId") String itemId, ModelMap model) {
+		AuctionedItem auctionedItem = artSell.getAuctionedItemByItemId(itemId);
+		model.put("auctionedItem", auctionedItem);
+		
+		return "auctioned_seller";
+	}
 }

@@ -336,4 +336,10 @@ public class ArtSellImpl implements ArtSellFacade {
 			}
 		}
 	}
+	
+	@Override
+	public AuctionedItem getAuctionedItemByItemId(String itemId) {
+		
+		return auctionItemDao.getAuctionedItemByItemId(itemId);
+	}
 }

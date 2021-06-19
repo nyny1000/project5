@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.dao.DataAccessException;
 
 import com.example.artsell.domain.AuctionItem;
 import com.example.artsell.domain.AuctionedItem;
@@ -56,4 +57,6 @@ public interface AuctionItemMapper {
 	List<AuctionItem> isAuctioning(String itemId);
 	
 	List<Integer> getItemState(String itemId);
+	
+	AuctionedItem getAuctionedItemByItemId(String itemId);
 }
