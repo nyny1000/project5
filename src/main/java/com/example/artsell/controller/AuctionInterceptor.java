@@ -8,9 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.ModelAndViewDefiningException;
-import org.springframework.web.util.WebUtils;
 
 import com.example.artsell.service.ArtSellFacade;
 
@@ -26,9 +23,9 @@ public class AuctionInterceptor implements HandlerInterceptor {
 		if (state != 0) {
 			response.setContentType("text/html; charset=UTF-8");
             PrintWriter out = response.getWriter();
-            out.println("<script>alert('경매가 종료된 상품입니다.'); history.go(-1);</script>");
+            out.println("<script>alert('경매가 종료된 상품입니다.'); history.go(-2);</script>");
             System.out.println("redirect 전");
-            response.sendRedirect("/home");
+            //response.sendRedirect("/home");
             return false;
 		}
 		return true;
