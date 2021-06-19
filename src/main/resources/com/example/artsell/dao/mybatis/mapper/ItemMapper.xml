@@ -16,11 +16,10 @@
 		ARTIST,
 		CATEGORYID,
 		i.USERID
-		FROM ITEM i, AUCTIONITEM
-		a
+		FROM ITEM i, AUCTIONITEM a
 		<where>
 			i.ITEMID = a.ITEMID
-			AND (STATE = 0 or STATE = 4)
+			AND i.deadline &gt; (SELECT SYSDATE FROM DUAL)
 			<if test="keywords != null">
 				AND LOWER(ITEMNAME) LIKE #{keywords}
 			</if>
@@ -53,7 +52,7 @@
 		FROM AUCTIONEDITEM)
 		AND
 		i.ITEMID = a.ITEMID
-		AND (STATE = 0 or STATE = 4)
+		AND i.deadline &gt; (SELECT SYSDATE FROM DUAL)
 	</select>
 
 	<select id="getItem" resultType="Item">
