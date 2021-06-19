@@ -13,11 +13,9 @@
 				<option value="${category.categoryId}"><c:out value="${category.name}" /></option>
 			</c:forEach>
 		</select>
-		<select name="artist">
-			<option value="all" selected>화가명</option>
-			<c:forEach var="artist" items="${artistList}">
-				<option value="${artist}"><c:out value="${artist}" /></option> <!-- 고치기 -->
-			</c:forEach>
+		<select name="job">
+			<option value="작품명" selected="selected">작품명</option>
+			<option value="화가명">화가명</option>
 		</select>
 		<input type="hidden" name="search" value="true"/>
 	    <input type="search" name="keyword" />&nbsp;
