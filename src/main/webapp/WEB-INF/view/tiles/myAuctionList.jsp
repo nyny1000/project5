@@ -63,6 +63,9 @@
 					<td><img src="<c:out value="${itemList2.picture}" />"  width="200" height="150" /></td>
 					<td><fmt:formatDate value="${itemList2.deadline}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					<td><c:out value="${itemList2.auctionedPrice}" /></td>
+					<td><a href="<c:url value="/auction/sell_buyer">
+						<c:param name="itemId" value="${itemList2.itemId}" /></c:url>">
+						결제완료</a></td>
 				</tr>
 			</c:forEach>
 		</table>

@@ -146,7 +146,12 @@ public class MybatisAuctionItemDao implements AuctionItemDao {
 	}
 	
 	@Override
-	public AuctionedItem getAuctionedItemByItemId(String itemId) throws DataAccessException {
-		return auctionItemMapper.getAuctionedItemByItemId(itemId);
+	public AuctionedItem getAuctionedItemByItemId_SellerId(String itemId) throws DataAccessException {
+		return auctionItemMapper.getAuctionedItemByItemId_SellerId(itemId);
+	}
+	
+	@Override
+	public AuctionedItem getAuctionedItemByItemId_BuyerId(String itemId) throws DataAccessException {
+		return auctionItemMapper.getAuctionedItemByItemId_BuyerId(itemId);
 	}
 }
