@@ -193,6 +193,11 @@ public class ArtSellImpl implements ArtSellFacade {
 	}
 	
 	@Override
+	public List<Item> getPastInterestingItemList(String userId) {
+		return interestingItemDao.getPastInterestingItemList(userId);
+	}
+	
+	@Override
 	public void insertInterestingItem(String userId, String itemId) {
 		interestingItemDao.insertInterestingItem(userId, itemId);
 	}

@@ -3,6 +3,7 @@ package com.example.artsell.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -38,7 +39,7 @@ import com.example.artsell.service.PaintRegiValidator;
 
 
 @Controller
-@SessionAttributes({"userSession", "myPaintList"})
+@SessionAttributes({"userSession", "myPaintList", "key"})
 public class MyItemController {
 	
 	@Autowired
@@ -58,6 +59,39 @@ public class MyItemController {
 		return new ItemForm();
 	}
 	
+	@RequestMapping("/stateTypeSelect_mypaintingList")
+	public String selectStateType(@ModelAttribute("userSession") UserSession userSession,
+			HttpServletRequest request, ModelMap model) {
+		System.out.println("들어왔다");
+		PagedListHolder<Item> itemList = new PagedListHolder<Item>(
+				this.artSell.getMyItemList(userSession.getAccount().getUserId()));
+		
+		int key = Integer.parseInt(request.getParameter("stateT2"));
+		List<Item> list = new ArrayList<Item>();
+		
+		System.out.println(key);
+		
+		if (key != 3) {
+			for (Item item : itemList.getSource()) {
+				System.out.println(item.getState() + item.getItemId());
+				if (item.getState() == key) {
+					list.add(item);
+				}
+			}
+			itemList.setSource(list);
+			System.out.println("_______");
+			for (Item item : itemList.getSource()) {
+				System.out.println("앙"+item.getState() + item.getItemId());
+			}
+		}
+		
+		itemList.setPageSize(2);
+		model.put("myPaintList", itemList);
+		model.put("key", key);
+
+		return "myPaintingList";
+	}
+	
 	@RequestMapping("/myitem/list")
 	public String ViewMyItemList(
 			@ModelAttribute("userSession") UserSession userSession, ModelMap model) throws Exception {
@@ -67,7 +101,7 @@ public class MyItemController {
 		itemList.setPageSize(2);
 		model.put("myPaintList", itemList);
 		//handleRequest(page, itemList);
-
+		model.put("key", 3);
 		return "myPaintingList";
 	}
 	
@@ -113,8 +147,8 @@ public class MyItemController {
 		//System.out.println(date);
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
-		calendar.set(Calendar.HOUR_OF_DAY, 19);
-		calendar.set(Calendar.MINUTE, 01);
+		calendar.set(Calendar.HOUR_OF_DAY, 23);
+		calendar.set(Calendar.MINUTE, 59); 
 		calendar.set(Calendar.SECOND, 59);
 		
 		Date deadline = new Date(calendar.getTimeInMillis());

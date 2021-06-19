@@ -47,20 +47,17 @@
 			</td>
 		</tr>
 		</c:forEach>
-		<tr>
-			<td colspan="3" align="center">
-				<p>
-				<c:if test="${!itemList.firstPage}">
-					<a href="<c:url value="/shop/viewCategory2">
-						<c:param name="page" value="previous" /></c:url>">
-				   			<B>&lt;&lt; Prev</B></a>
-				</c:if>
-				<c:if test="${!itemList.lastPage}">
-					<a href="<c:url value="/shop/viewCategory2">
-						<c:param name="page" value="next" /></c:url>">
-				   			<B>Next &gt;&gt;</B></a>
-				</c:if>
-			</td>
-		</tr>
 	</table>
+	<p>
+	<c:if test="${!itemList.firstPage}">
+		<a href="<c:url value="/shop/viewCategory2">
+			<c:param name="page" value="previous" /></c:url>">
+				   	<B>&lt;&lt; Prev</B></a>
+	</c:if>
+	<c:if test="${!itemList.lastPage}">
+		<a href="<c:url value="/shop/viewCategory2">
+			<c:param name="page" value="next" /></c:url>">
+				   	<B>Next &gt;&gt;</B></a>
+	</c:if>
+	
 </div>

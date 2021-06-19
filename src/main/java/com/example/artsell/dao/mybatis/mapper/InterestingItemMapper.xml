@@ -10,7 +10,20 @@
     		SELECT itemId
     		FROM INTERESTINGITEM
     		WHERE userId = #{userId}
-    	)
+    	) and deadline &gt; (SELECT SYSDATE FROM DUAL)
+	</select>
+	
+	<select id="getPastInterestingItemList" parameterType="String" resultType="Item" >
+		<![CDATA[
+			SELECT
+	      		 itemId, itemName, picture, deadline, bestPrice
+	    	FROM ITEM
+	    	WHERE itemId in (
+	    		SELECT itemId
+	    		FROM INTERESTINGITEM
+	    		WHERE userId = #{userId}
+	    	) and deadline <= (SELECT SYSDATE FROM DUAL)
+    	]]>
 	</select>
 	
 	<insert id="insertInterestingItem">

@@ -23,7 +23,7 @@ import com.example.artsell.domain.Item;
 import com.example.artsell.service.ArtSellFacade;
 
 @Controller
-@SessionAttributes({"userSession", "interestList"})
+@SessionAttributes({"userSession", "interestList","pastInterestingList"})
 public class InterestingListController {
 
 	@Autowired
@@ -36,7 +36,12 @@ public class InterestingListController {
 		PagedListHolder<Item> itemList = new PagedListHolder<Item>(
 				this.artSell.getInterestingItemList(userSession.getAccount().getUserId()));
 		itemList.setPageSize(1);
+		
+		PagedListHolder<Item> itemList2 = new PagedListHolder<Item>(
+				this.artSell.getPastInterestingItemList(userSession.getAccount().getUserId()));
+		itemList2.setPageSize(1);
 		model.put("interestList", itemList);	//handleRequest(page, itemList);
+		model.put("pastInterestingList", itemList2);
 		
 		//System.out.println(date1);
 		return "myInterestingList";
@@ -90,6 +95,21 @@ public class InterestingListController {
 	public String handleRequest2(
 			@RequestParam("page") String page, 
 			@ModelAttribute("interestList") PagedListHolder<Item> itemList,
+			BindingResult result) throws Exception {
+
+		if ("next".equals(page)) {
+			itemList.nextPage();
+		} else if ("previous".equals(page)) {
+			itemList.previousPage();
+		} 
+		
+		return "myInterestingList";
+	} 
+	
+	@RequestMapping("/interesting/list3")
+	public String handleRequest3(
+			@RequestParam("page") String page, 
+			@ModelAttribute("pastInterestingList") PagedListHolder<Item> itemList,
 			BindingResult result) throws Exception {
 
 		if ("next".equals(page)) {
