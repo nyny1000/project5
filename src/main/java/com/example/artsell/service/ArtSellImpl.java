@@ -336,4 +336,18 @@ public class ArtSellImpl implements ArtSellFacade {
 			}
 		}
 	}
+	
+	@Override
+	public int getItemState(String itemId) {
+		List<Integer> state = auctionItemDao.getItemState(itemId);
+		if (state.contains(5)) {
+			return 5;
+		} else if (state.contains(1)) {
+			return 1;
+		} else if (state.contains(2)) {
+			return 2;
+		} else {
+			return 0;
+		}
+	}
 }
