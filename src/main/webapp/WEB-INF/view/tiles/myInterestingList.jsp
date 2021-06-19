@@ -62,7 +62,7 @@
 			</a>
 		</c:if>
 		
-		
+		<p>
 		<h1>나의 지난 찜 목록</h1>
 		<table>
 			<tr align="center" bgcolor="#D5D5D5">
