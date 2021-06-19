@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script type="text/javascript">
+<%-- <script type="text/javascript">
 $(document).ready(function() {
 	var userSession = '<%=session.getAttribute("userSession")%>'
 	if (userSession == null) {
@@ -12,7 +12,7 @@ $(document).ready(function() {
 		}
 	}
 });
-</script>
+</script> --%>
 <table class="top">
 	<tr>
 		<td><a href="<c:url value="/home"/>"> <img border="0"

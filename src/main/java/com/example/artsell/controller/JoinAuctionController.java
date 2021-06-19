@@ -47,13 +47,6 @@ public class JoinAuctionController {
 	@Autowired
 	private ArtSellFacade artSell;
 
-	@ModelAttribute("auctionItem")
-	public AuctionItem formBackingObject() {
-		System.out.println("폼백킹입니다");
-		return new AuctionItem();
-
-	}
-
 	@ModelAttribute("order")
 	public Order returnOrder() {
 		return new Order();
@@ -69,10 +62,6 @@ public class JoinAuctionController {
 	@ModelAttribute("auctionItem")
 	public AuctionItem formBackingObject(HttpServletRequest request, HttpSession session, SessionStatus sessionStatus)
 			throws Exception {
-		/*
-		 * session.removeAttribute("userSession"); session.invalidate();
-		 * sessionStatus.setComplete();
-		 */
 		System.out.println("폼백킹입니다");
 		return new AuctionItem();
 
@@ -81,45 +70,38 @@ public class JoinAuctionController {
 	// 입찰, 재입찰
 	@RequestMapping("/auction/bid")
 	public String addAuctionItem(@ModelAttribute("userSession") UserSession userSession, HttpServletRequest request,
-			@ModelAttribute("auctionItem") AuctionItem bidder, BindingResult result,
-			ModelMap model) throws Exception {
+			@ModelAttribute("auctionItem") AuctionItem bidder, BindingResult result, ModelMap model) throws Exception {
 //RedirectAttributes redirectAttributes
 		String itemId = bidder.getItemId();
 		int myPrice = bidder.getMyPrice();
 
 		System.out.println("넘어옴. 아이템아이디는" + itemId);
+
 		System.out.println("넘어옴. 가격은" + myPrice);
 
 		// 확인차
 		String userId = userSession.getAccount().getUserId();
 		Item auctionItem = artSell.getItem(itemId);
 		System.out.println(auctionItem);
+		System.out.println("넘어옴. 해당 아이템의 bestPrice는 " + auctionItem.getBestPrice());
 
 		System.out.println("옥션비더출력" + bidder);
-		//redirectAttributes.addAttribute("itemId", itemId);
-		
+		// redirectAttributes.addAttribute("itemId", itemId);
+
+		boolean bidTry = false;
+
 		model.put("item", auctionItem);
 		List<AuctionItem> buyers = artSell.getBuyersByItemId(itemId);
 		System.out.println("바이어스 출력" + buyers);
-
 		model.put("buyers", buyers);
-		
-		
-		
+
 		validator.validate(bidder, result);
 
-	
 		if (result.hasErrors()) {
 			System.out.println("입찰가 validation 에러");
-<<<<<<< HEAD
-			model.put("itemId", itemId);
-=======
->>>>>>> branch 'master' of https://github.com/Myung518/project5.git
+			System.out.println(result.getGlobalError());
 			return "auction_buyer";
 		}
-		
-		
-		
 
 		// validation 검사 후이기때문에 정상 입찰가만 db에 저장.
 		// 첫 입찰자
@@ -127,13 +109,12 @@ public class JoinAuctionController {
 			System.out.println("첫입찰자로 왔음");
 			if (myPrice > auctionItem.getMinPrice()) {
 				artSell.addPrice(userId, itemId, myPrice);
-				
 				System.out.println("add 됐음");
-
 				artSell.updateItemBestPrice(itemId, myPrice);
 				System.out.println("업데이트 됐음");
-
 				artSell.deleteInterestingItem(userId, itemId);
+				bidTry = true;
+				model.put("bidTry", bidTry);
 				return "auction_buyer";
 			}
 		} else {
@@ -141,18 +122,21 @@ public class JoinAuctionController {
 			if (myPrice > auctionItem.getBestPrice()) {
 				// 새로운 입찰자인지 체크
 				if (artSell.isNewUserPrice(userId, itemId) > 0) { // 헌값 수정!
-					System.out.println("여기로 왔음");
+					System.out.println("새로운 입찰자가 아님 헌값 수정");
 					artSell.updatePrice(userId, itemId, myPrice);
 					artSell.updateItemBestPrice(itemId, myPrice);
 					artSell.deleteInterestingItem(userId, itemId);
+					bidTry = true;
+					model.put("bidTry", bidTry);
 					return "auction_buyer";
 
 				} else { // 새로운 값
-					System.out.println("애드로 왔음");
+					System.out.println("새로운 입찰자");
 					artSell.addPrice(userId, itemId, myPrice);
 					artSell.updateItemBestPrice(itemId, myPrice);
 					artSell.deleteInterestingItem(userId, itemId);
-
+					bidTry = true;
+					model.put("bidTry", bidTry);
 					return "auction_buyer";
 
 				}
@@ -212,13 +196,11 @@ public class JoinAuctionController {
 	public String viewAutionJoinerList(@RequestParam(value = "itemId") String itemId, HttpSession session,
 			ModelMap model) {
 
-		itemId = (String) session.getAttribute("itemId");
 		Item item = artSell.getItem(itemId);
 		System.out.print("참여자들 출력 아이템 아이디는" + itemId);
 		List<AuctionItem> buyers = this.artSell.getBuyersByItemId(item.getItemId());
 		model.put("buyers", buyers);
 		model.put("item", item); // 나영추가
-
 		return "auction_buyer";
 	}
 
