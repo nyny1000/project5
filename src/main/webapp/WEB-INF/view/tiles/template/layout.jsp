@@ -23,13 +23,6 @@ $(function() {
     minDate: 0
   });
 });
-
-$(function() {
-	$("#stateSelect").change(function() {
-		s = $("stateSelect > option:selected").val()
-		alect(s)
-	})
-}
 </script>
 
 </head>
