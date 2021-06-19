@@ -1,6 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%-- <script type="text/javascript">
+$(document).ready(function() {
+	var userSession = '<%=session.getAttribute("userSession")%>'
+	if (userSession == null) {
+		var reLogin = confirm('세션이 만료되었습니다. 확인 시 로그인창으로 이동합니다.');
+		document.write("세션만료");
+		if (reLogin) {
+			location.href = '/user/login';
+		}
+	}
+});
+</script> --%>
 <table class="top">
 	<tr>
 		<td><a href="<c:url value="/home"/>"> <img border="0"

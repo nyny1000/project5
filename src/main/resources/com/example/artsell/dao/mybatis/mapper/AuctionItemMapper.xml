@@ -43,7 +43,7 @@
 	<select id="getBuyers" resultType="AuctionItem">
 		SELECT *
 		FROM AUCTIONITEM
-		WHERE ITEMID = #{itemId} AND STATE = 3
+		WHERE ITEMID = #{itemId} AND STATE = 0
 		ORDER BY myPrice DESC
 	</select>
 
