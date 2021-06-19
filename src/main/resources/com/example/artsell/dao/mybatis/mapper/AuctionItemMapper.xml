@@ -27,11 +27,13 @@
 		= #{itemId}
 	</select>
 
+	 <!-- 
 	<select id="getAuctionItem" resultType="AuctionItem">
 		SELECT *
 		FROM auctionItem
 		WHERE userId = #{userId} and state = 0
 	</select>
+	 -->
 
 	<select id="getBuyersByItemId" resultType="AuctionItem">
 		SELECT *
@@ -95,6 +97,7 @@
 		itemId = #{itemId}
 	</select>
 	
+	<!-- 
 	<select id="getAuctionedItem" resultType="AuctionItem">
 		select itemId,
 		auctionedPrice, userId
@@ -102,6 +105,7 @@
 		where userId = #{userId} and
 		state = 1
 	</select>
+	 -->
 
 	<select id="getOrderedItem" resultType="AuctionItem">
 		SELECT itemId,
@@ -160,4 +164,9 @@
    WHERE ITEMID = #{itemId}
   </select>
   
+  <select id="getAuctionedItemByItemId" parameterType="String" resultType="AuctionedItem">
+  	SELECT *
+  	FROM AUCTIONEDITEM a, item i
+  	WHERE a.itemId = i.itemId and a.ITEMID = #{itemId}
+  </select>
 </mapper>
