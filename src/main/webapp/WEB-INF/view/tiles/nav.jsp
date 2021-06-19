@@ -10,7 +10,7 @@
 			href="<c:url value="/shop/viewCategory?categoryId=ink-and-wash"/>">수묵화</a> <img border="0"
 			src="../images/separator.gif" /> <a
 			href="<c:url value="/shop/viewCategory?categoryId=abstract"/>">추상화</a> <img border="0"
-			src="../images/separator.gif" /> <a
+			src="../images/separator.gif" /> <a                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 			href="<c:url value="/shop/viewCategory?categoryId=stillLife"/>">정물화</a> <img border="0"
 			src="../images/separator.gif" /> <a
 			href="<c:url value="/shop/viewCategory?categoryId=animalization"/>">동물화</a>

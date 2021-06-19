@@ -13,6 +13,18 @@
 			value="/WEB-INF/view/tiles/footer.jsp" />
 	</definition>
 
+	<definition name="search_layout"
+		template="/WEB-INF/view/tiles/template/layout2.jsp">
+		<put-attribute name="title" value="Artsell Demo"
+			type="string" />
+		<put-attribute name="header"
+			value="/WEB-INF/view/tiles/top.jsp" />
+		<put-attribute name="nav2"
+			value="/WEB-INF/view/tiles/nav2.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/view/tiles/footer.jsp" />
+	</definition>
+
 	<definition name="main" extends="base_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/view/tiles/main.jsp" />
@@ -49,7 +61,7 @@
 	</definition>
 
 
-	<definition name="searchResult" extends="base_layout">
+	<definition name="searchResult" extends="search_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/view/tiles/searchResult.jsp" />
 	</definition>
@@ -59,7 +71,7 @@
 			value="/WEB-INF/view/tiles/paintingDetail.jsp" />
 	</definition>
 	
-	<definition name="itemList" extends="base_layout">
+	<definition name="itemList" extends="search_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/view/tiles/itemList.jsp" />
 	</definition>
