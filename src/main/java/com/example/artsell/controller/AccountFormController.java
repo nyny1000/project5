@@ -84,6 +84,6 @@ public class AccountFormController {
 		UserSession userSession = new UserSession(artsell.getAccount(accountForm.getAccount().getUserId())); //userId로 수정.
 	
 		session.setAttribute("userSession", userSession);
-		return successViewName;
+		return "redirect:/user/main";
 	}
 }
