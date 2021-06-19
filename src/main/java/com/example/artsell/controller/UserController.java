@@ -1,11 +1,16 @@
 package com.example.artsell.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model; 
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,10 +19,11 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.artsell.domain.Account;
+import com.example.artsell.domain.Item;
 import com.example.artsell.service.ArtSellFacade;
 
 @Controller
-@SessionAttributes("userSession")
+@SessionAttributes({"userSession","userList"})
 public class UserController {
    private ArtSellFacade artSell;
 
@@ -79,5 +85,28 @@ public class UserController {
       System.out.println("계정이 삭제되었습니다.");
       return "main";
    }
+   
+   @RequestMapping("/admin/manage")
+   public String getUserList(ModelMap model) {
+	   PagedListHolder<Account> userList = new PagedListHolder<Account>(this.artSell.getUserList());
+	   userList.setPageSize(20);
+	   model.put("userList", userList);
+	   return "userList";
+   }
+   
+   @RequestMapping("/admin/page")
+	public String handleRequest(
+			@RequestParam("page") String page, 
+			@ModelAttribute("userList") PagedListHolder<Account> userList,
+			BindingResult result) throws Exception {
+
+		if ("next".equals(page)) {
+			userList.nextPage();
+		} else if ("previous".equals(page)) {
+			userList.previousPage();
+		} 
+		
+		return "userList";
+	}
 
 }

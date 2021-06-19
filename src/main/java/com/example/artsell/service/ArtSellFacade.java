@@ -125,4 +125,6 @@ public interface ArtSellFacade {
 	AuctionedItem getAuctionedItemByItemId_SellerId(String itemId);
 	
 	AuctionedItem getAuctionedItemByItemId_BuyerId (String itemId);
+	
+	List<Account> getUserList();
 }

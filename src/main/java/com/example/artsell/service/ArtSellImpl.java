@@ -366,4 +366,9 @@ public class ArtSellImpl implements ArtSellFacade {
 			return 0;
 		}
 	}
+	
+	@Override
+	public List<Account> getUserList() {
+		return accountDao.getUserList();
+	}
 }
