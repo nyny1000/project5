@@ -77,7 +77,7 @@ public class AccountFormController {
 			}
 		} catch (DataIntegrityViolationException ex) {
 			result.rejectValue("account.userId", "USER_ID_ALREADY_EXISTS",
-					"User ID already exists: choose a different ID.");
+					"User ID already exists: choose a different ID.");  
 			return formViewName;
 		}
 
