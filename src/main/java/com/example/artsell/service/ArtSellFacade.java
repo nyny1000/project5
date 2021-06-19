@@ -118,4 +118,6 @@ public interface ArtSellFacade {
 	
 	void bidSuccess(String itemId);
 	
+	AuctionedItem getAuctionedItemByItemId(String itemId);
+	
 }
