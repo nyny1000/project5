@@ -40,7 +40,7 @@ public class MybatisItemDao implements ItemDao {
 		if ("".equals(categoryId)) {
 			categoryId = null;
 		}
-		return itemMapper.searchItemList(keywords, artist, categoryId);
+		return itemMapper.searchItemList("%" + keywords.toLowerCase() + "%", artist, categoryId);
 	}
 
 	public List<Item> getItemListByCategory(String categoryId) throws DataAccessException {
