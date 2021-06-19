@@ -55,7 +55,7 @@ public class AuctionItemListController {
 		return "myAuctionList";
 	} 
 	
-	@RequestMapping("/auction/listauctioned")
+	@RequestMapping("/auction/listauctioned")  
 	public String viewAuctionItemList3(
 			@RequestParam("page") String page, 
 			@ModelAttribute("itemList2") PagedListHolder<Item> itemList,
