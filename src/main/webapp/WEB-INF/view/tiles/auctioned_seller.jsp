@@ -13,7 +13,8 @@
 		<li><b>가격</b> : <c:out value="${auctionedItem.auctionedPrice}" />원</li>
 		<li><b>결제시각</b> : <c:out value="${auctionedItem.sellDate}" /></li>
 		<li><b>구매자ID</b> : <c:out value="${auctionedItem.userId}" /></li>
-		<li><b>판매자ID</b> : <c:out value="${userSession.account.userId}" /></li>
+		<li><b>판매자ID</b> : <c:if test="${userSession.account.userId} eq '0'"> <c:out value="탈퇴한 회원입니다." /></c:if>
+							<c:if test="${userSession.account.userId} ne '0'"> <c:out value="${userSession.account.userId}" /></c:if></li>
 	</ul>
 	<p>
 	</div>
