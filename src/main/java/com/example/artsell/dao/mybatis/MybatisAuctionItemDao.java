@@ -174,4 +174,10 @@ public class MybatisAuctionItemDao implements AuctionItemDao {
 		}
 		return false;
 	}
+
+	@Override
+	public int checkBid(String itemId) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return auctionItemMapper.checkBid(itemId);
+	}
 }

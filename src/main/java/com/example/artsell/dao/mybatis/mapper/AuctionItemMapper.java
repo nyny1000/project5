@@ -73,4 +73,6 @@ public interface AuctionItemMapper {
 	void deleteAuctionedQuit(String userId);
 	
 	void deleteItemQuit(String userId);
+
+	int checkBid(String itemId);
 }

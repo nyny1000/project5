@@ -60,7 +60,9 @@ public interface AuctionItemDao {
 
 	AuctionedItem getAuctionedItemByItemId_BuyerId(String itemId) throws DataAccessException;
 
-	void deleteUser(String userId);
+	void deleteUser(String userId) throws DataAccessException;
 	
 	boolean isAuctioningQuit(String userId) throws DataAccessException;
+
+	int checkBid(String itemId) throws DataAccessException;
 }
