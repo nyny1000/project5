@@ -65,7 +65,7 @@ function findAddr(){
 				<tr>
 					<td>패스워드</td>
 						<td>
-					<input type="password" th:field="*{account.password}" size="20" /> <span
+					<input type="text" th:field="*{account.password}" size="20" /> <span
 							th:each="err : ${#fields.errors('account.password')}" th:text="${err}">
 					</span></td>
 					
@@ -74,7 +74,7 @@ function findAddr(){
 				<tr>
 					<td>패스워드 확인</td>
 						<td>
-					<input type="password" th:field="*{repeatedPassword}" size="20" /> <span
+					<input type="text" th:field="*{repeatedPassword}" size="20" /> <span
 							th:each="err : ${#fields.errors('repeatedPassword')}" th:text="${err}">
 					</span></td>
 				</tr>
