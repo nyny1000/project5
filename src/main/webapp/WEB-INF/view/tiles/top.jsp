@@ -18,6 +18,7 @@ $(document).ready(function() {
 				src="../images/artsell_logo_white.jpg" /></a>
 	<div class="left-topbar">
 		<c:if test="${!empty userSession.account}">
+			<a href="javascript:void(0);" class="left-topbar-item"><c:out value="${userSession.account.userId}"/>´Ô.</a>
 			<a href="<c:url value="/user/logout"/>" class="left-topbar-item">·Î±×¾Æ¿ô</a>
 			<c:if test="${userSession.account.userId eq 'admin'}">
 				<a href="<c:url value="/admin/manage"/>" class="left-topbar-item">È¸¿ø°ü¸®</a>
