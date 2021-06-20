@@ -178,11 +178,11 @@
   
   <update id="deleteUser" parameterType="String">
   	UPDATE auctionItem
-  	SET userId = "0"
+  	SET userId = '0'
   	WHERE userId = #{userId}
   	
   	UPDATE auctionedItem
-  	SET userId = "0"
+  	SET userId = '0'
   	WHERE userId = #{userId}
   </update>
 </mapper>

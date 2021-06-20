@@ -138,4 +138,16 @@ public class MybatisItemDao implements ItemDao {
 	public int isItemExist(String itemId) throws DataAccessException {
 		return itemMapper.isItemExist(itemId);
 	}
+
+	@Override
+	public List<Item> getNotEndedAuctionItem(Date curTime) {
+		// TODO Auto-generated method stub
+		return itemMapper.getNotEndedAuctionItem(curTime);
+	}
+
+	@Override
+	public List<Item> getEndedAuctionItem(Date curTime) {
+		// TODO Auto-generated method stub
+		return itemMapper.getEndedAuctionItem(curTime);
+	}
 }

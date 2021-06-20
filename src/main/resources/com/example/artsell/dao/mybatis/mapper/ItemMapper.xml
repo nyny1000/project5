@@ -175,4 +175,18 @@
 		from item
 		where itemId = #{itemId}
 	</select>
+	
+	<select id="getNotEndedAuctionItem" parameterType="Date" resultType="Item">
+		select deadline, itemId
+		from item
+		where deadline > #{param1}
+	</select>
+	
+	<select id="getEndedAuctionItem" parameterType="Date" resultType="Item">
+		<![CDATA[
+			select deadline, itemId
+			from item
+			where deadline <= #{pararm1}
+		]]>
+	</select>
 </mapper>
