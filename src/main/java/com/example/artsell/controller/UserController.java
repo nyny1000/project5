@@ -1,6 +1,9 @@
 package com.example.artsell.controller;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,17 +94,25 @@ public class UserController {
 
 	// 2차수정
 	@RequestMapping("/user/delete")
-	public String deleteAccount(HttpSession session) throws Exception {
+	public String deleteAccount(HttpSession session, HttpServletResponse response) throws Exception {
 		UserSession userSession = (UserSession) session.getAttribute("userSession");
 		String userId = userSession.getAccount().getUserId();
 		
+		if(artSell.isAuctioningQuit(userId)) {
+			response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('경매중이므로 탈퇴할 수 없습니다.'); history.go(-1);</script>");
+            out.flush();
+		}
+		else {
+			artSell.deleteAccount(userId);
+
+			session.removeAttribute("userSession");
+			session.invalidate();
+
+			System.out.println("계정이 삭제되었습니다.");
+		}
 		
-		artSell.deleteAccount(userId);
-
-		session.removeAttribute("userSession");
-		session.invalidate();
-
-		System.out.println("계정이 삭제되었습니다.");
 		return "main";
 	}
 
@@ -127,7 +138,13 @@ public class UserController {
 	}
 	
 	@RequestMapping("/admin/user_delete")
-	public String deleteUser(@RequestParam("userId") String userId) {
+	public String deleteUser(@RequestParam("userId") String userId, HttpServletResponse response) throws Exception {
+		if(artSell.isAuctioningQuit(userId)) {
+			response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('경매중이므로 탈퇴할 수 없습니다.'); history.go(-1);</script>");
+            out.flush();
+		}
 		artSell.deleteAccount(userId);
 		return "redirect:/admin/manage";
 	}

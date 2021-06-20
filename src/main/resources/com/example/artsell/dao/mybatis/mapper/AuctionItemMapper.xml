@@ -185,4 +185,19 @@
   	SET userId = "0"
   	WHERE userId = #{userId}
   </update>
+  
+  <select id="isAuctioningBuyer" parameterType="String" resultType="int">
+  	select count(*)
+	from auctionItem
+	where userId = #{userId} and state in (0,1)
+  </select>
+  
+  <select id="isAuctioningSeller" parameterType="String" resultType="int">
+  	select count(*)
+	from auctionItem
+	where state in (0,1,5) and itemId in
+	(select itemId
+	from Item
+	where userId = #{userId})
+  </select>
 </mapper>

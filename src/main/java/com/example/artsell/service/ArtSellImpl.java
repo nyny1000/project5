@@ -374,4 +374,9 @@ public class ArtSellImpl implements ArtSellFacade {
 	public List<Account> getUserList() {
 		return accountDao.getUserList();
 	}
+	
+	@Override
+	public boolean isAuctioningQuit(String userId) {
+		return auctionItemDao.isAuctioningQuit(userId);
+	}
 }

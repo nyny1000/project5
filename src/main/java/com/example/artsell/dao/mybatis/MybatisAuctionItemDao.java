@@ -160,4 +160,15 @@ public class MybatisAuctionItemDao implements AuctionItemDao {
 		// TODO Auto-generated method stub
 		auctionItemMapper.deleteUser(userId);
 	}
+	
+	@Override
+	public boolean isAuctioningQuit(String userId) {
+		if(auctionItemMapper.isAuctioningBuyer(userId) > 0) {
+			return true;
+		}
+		if(auctionItemMapper.isAuctioningSeller(userId) > 0) {
+			return true;
+		}
+		return false;
+	}
 }
