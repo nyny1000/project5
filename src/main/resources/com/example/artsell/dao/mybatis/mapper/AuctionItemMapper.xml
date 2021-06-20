@@ -176,15 +176,23 @@
   	WHERE a.itemId = i.itemId and a.ITEMID = #{itemId}
   </select>
   
-  <update id="deleteUser" parameterType="String">
+  <update id="deleteAuctionQuit" parameterType="String">
   	UPDATE auctionItem
-  	SET userId = "0"
-  	WHERE userId = #{userId}
-  	
-  	UPDATE auctionedItem
-  	SET userId = "0"
+  	SET userId = '0'
   	WHERE userId = #{userId}
   </update>
+  
+   <update id="deleteAuctionedQuit" parameterType="String">
+  	UPDATE auctionedItem
+  	SET userId = '0'
+  	WHERE userId = #{userId}
+    </update>
+    
+    <update id="deleteItemQuit" parameterType="String">
+  	UPDATE Item
+  	SET userId = '0'
+  	WHERE userId = #{userId}
+    </update>
   
   <select id="isAuctioningBuyer" parameterType="String" resultType="int">
   	select count(*)

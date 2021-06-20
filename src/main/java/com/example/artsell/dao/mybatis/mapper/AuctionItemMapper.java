@@ -67,4 +67,10 @@ public interface AuctionItemMapper {
 	int isAuctioningBuyer(String userId);
 	
 	int isAuctioningSeller(String userId);
+	
+	void deleteAuctionQuit(String userId);
+	
+	void deleteAuctionedQuit(String userId);
+	
+	void deleteItemQuit(String userId);
 }

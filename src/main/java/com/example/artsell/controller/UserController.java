@@ -94,7 +94,7 @@ public class UserController {
 
 	// 2차수정
 	@RequestMapping("/user/delete")
-	public String deleteAccount(HttpSession session, HttpServletResponse response) throws Exception {
+	public String deleteAccount(HttpSession session, HttpServletResponse response, SessionStatus sessionStatus) throws Exception {
 		UserSession userSession = (UserSession) session.getAttribute("userSession");
 		String userId = userSession.getAccount().getUserId();
 		
@@ -109,11 +109,12 @@ public class UserController {
 
 			session.removeAttribute("userSession");
 			session.invalidate();
+			sessionStatus.setComplete();
 
 			System.out.println("계정이 삭제되었습니다.");
 		}
 		
-		return "main";
+		return "redirect:/home";
 	}
 
 	@RequestMapping("/admin/manage")
