@@ -5,11 +5,10 @@
 <div align="center">
 	<form>
 		<h1>나의 찜 목록</h1>
-		<table>
+		<table class="table1">
 			<tr align="center" bgcolor="#D5D5D5">
-				<th>상품ID</th>
-				<th>상품이름</th>
-				<th>그림</th>
+				<th>작품명</th>
+				<th>작품사진</th>
 				<th>경매 마감일</th>
 				<th>최고가</th>
 				<th>&nbsp;</th>
@@ -22,7 +21,6 @@
 				
 				<c:forEach var="interestItem" items="${interestList.pageList}">
 					<tr align="center">
-						<td><c:out value="${interestItem.itemId}" /></td>
 						<td><a
 							href="<c:url value="/shop/viewItem">
 							<c:param name="itemId" value="${interestItem.itemId}" /></c:url>">
@@ -68,9 +66,6 @@
 		</c:if>
 		
 		<p>
-		<hr width="60%">
-		<p>
-		
 		<h1>기간 지난 찜 목록</h1>
 		<table>
 			<tr align="center" bgcolor="#D5D5D5">

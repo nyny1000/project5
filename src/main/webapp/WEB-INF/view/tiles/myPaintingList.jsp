@@ -10,8 +10,8 @@
 		<h1>내 그림 관리</h1>
 		<table>
 			<tr align="center" bgcolor="#D5D5D5">
-				<th>상품이름</th>
-				<th width="200px">상품이미지</th>
+				<th>작품명</th>
+				<th width="200px">작품사진</th>
 				<th>
 					<form action='<c:url value="/stateTypeSelect_mypaintingList"/>'>
 						<select name="stateT2"> 

@@ -8,7 +8,7 @@
 		<c:out value="${category.name} 내 검색:" />
 		<select name="job">
 			<option value="작품명" selected="selected">작품명</option>
-			<option value="화가명">화가명</option>
+			<option value="화가명">화가</option>
 		</select>
 		<input type="hidden" name="search" value="true"/>
 		<input type="hidden" name="categoryId" value="${category.categoryId}" value="true" />
@@ -26,8 +26,8 @@
 <div align="center">
 	<table class="table1">
 		<tr>
-			<th>작품</th>
-			<th>제목</th>
+			<th>작품명</th>
+			<th>작품사진</th>
 			<th>화가</th>
 		</tr>
 		<c:if test="${itemList.pageList.size() == 0}">
@@ -36,15 +36,15 @@
 		<c:if test="${itemList.pageList.size() != 0}">
 			<c:forEach var="item" items="${itemList.pageList}">
 			<tr>
+				<td>
+					<a href="<c:url value="/shop/viewItem">
+						<c:param name="itemId" value="${item.itemId}" /></c:url>"><c:out value="${item.itemName}" /></a>
+				</td>
 				<td align="center">
 					<a href="<c:url value="/shop/viewItem">
 						<c:param name="itemId" value="${item.itemId}" /></c:url>">
 						<img src="${item.picture}" width="300" height="200" />
 					</a>
-				</td>
-				<td>
-					<a href="<c:url value="/shop/viewItem">
-						<c:param name="itemId" value="${item.itemId}" /></c:url>"><c:out value="${item.itemName}" /></a>
 				</td>
 				<td>
 					<a href="<c:url value="/search/item">

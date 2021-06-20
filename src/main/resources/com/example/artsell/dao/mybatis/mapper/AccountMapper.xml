@@ -57,6 +57,7 @@
 	<select id="getUserList" resultType="Account">
 		select *
 		from Account
+		where quit = 0
 	</select>
 
 </mapper>

@@ -7,7 +7,7 @@
 	<h2>낙찰되었습니다.</h2>
 	<div class="bg">
 		<ul class="align">
-			<li><b>낙찰품목</b> : <c:out value="${order.itemName}" /></li>
+			<li><b>작품명</b> : <c:out value="${order.itemName}" /></li>
 			<li><b>가격</b> :<c:out value="${order.myPrice}" />원</li>
 		</ul>
 	</div>
