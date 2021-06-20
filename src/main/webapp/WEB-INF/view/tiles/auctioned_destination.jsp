@@ -38,6 +38,6 @@
 	</table>
 	
 	<p>
-	<a href="<c:url value='/auction/buyer' />"><input type="button" value="이전"/></a>
+	<a href="<c:url value='/auction/auctioned_buyer' />"><input type="button" value="이전"/></a>
 	<a href="<c:url value='/auction/receipt' />"><input type="button" value="결제하기"/></a></p>
 </div>

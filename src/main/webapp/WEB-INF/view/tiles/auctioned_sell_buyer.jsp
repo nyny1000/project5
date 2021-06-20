@@ -19,6 +19,6 @@
 	</ul>
 	<p>
 	</div>
-	<p><a href="<c:url value='/home' />"><input type="button" value="확인"/></a></p>
+	<p><a href="<c:url value='/auction/list' />"><input type="button" value="확인"/></a></p>
 	
 </div>
