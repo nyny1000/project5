@@ -59,8 +59,9 @@ public class OrderController {
 		if (itemId != null) {
 			// Re-read account from DB at team's request.
 			order = artsell.getOrder(itemId, userSession.getAccount().getUserId());
-			
-			order.setAddress(null);
+			System.out.println(order.getAddress1());
+			order.setAddress1(null);
+			order.setAddress2(null);
 			
 			model.put("order", order);
 			
@@ -94,7 +95,7 @@ public class OrderController {
 //		order.setAddress(paddress);
 //		System.out.println(paddress);
 //		order = (Order) request.getSession().getAttribute("order");
-		System.out.println(order.getAddress());
+		System.out.println(order.getAddress1());
 		validator.validate(order, result);
 		if (result.hasErrors()) {
 			System.out.println("validate 오류");
@@ -115,7 +116,7 @@ public class OrderController {
 		
 		System.out.println(order.getMyPrice());
 		//db에 저장
-		artsell.SaveAuctionedItem(order.getItemId(), order.getMyPrice(), order.getUserId(), order.getAddress(), sellDate);
+		artsell.SaveAuctionedItem(order.getItemId(), order.getMyPrice(), order.getUserId(), order.getAddress1(), order.getAddress2(), sellDate);
 		//state변경
 		artsell.updateAuctionedState(order.getItemId(), order.getUserId());
 		

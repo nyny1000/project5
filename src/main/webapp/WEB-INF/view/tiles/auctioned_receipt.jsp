@@ -28,7 +28,8 @@
 		</tr>
 		<tr>
 			<td class="bold">주소</td>
-			<td><c:out value="${order.address}" /></td>
+			<td><c:out value="${order.address1}" />
+			<br><c:out value="${order.address2}" /></td>
 		</tr>
 		<tr>
 			<td class="bold">카드번호</td>

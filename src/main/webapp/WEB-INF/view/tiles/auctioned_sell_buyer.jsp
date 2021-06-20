@@ -14,6 +14,8 @@
 		<li><b>결제시각</b> : <c:out value="${auctionedItem.sellDate}" /></li>
 		<li><b>구매자ID</b> : <c:out value="${userSession.account.userId}" /></li>
 		<li><b>판매자ID</b> : <c:out value="${auctionedItem.userId}" /></li>
+		<li><b>배달주소</b> : <c:out value="${auctionedItem.destination1}" /> 
+		<c:out value="${auctionedItem.destination2}" /></li>
 	</ul>
 	<p>
 	</div>

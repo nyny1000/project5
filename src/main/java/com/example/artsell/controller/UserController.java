@@ -74,7 +74,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping("/user/logout")
+	@RequestMapping("/user/logout") 
 	public String logout(HttpSession session, SessionStatus sessionStatus) throws Exception { // ny수정
 		session.removeAttribute("userSession");
 		session.invalidate();
@@ -122,6 +122,12 @@ public class UserController {
 		}
 
 		return "userList";
+	}
+	
+	@RequestMapping("/admin/user_delete")
+	public String deleteUser(@RequestParam("userId") String userId) {
+		artSell.deleteAccount(userId);
+		return "redirect:/admin/manage";
 	}
 
 }

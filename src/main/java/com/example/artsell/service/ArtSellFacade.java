@@ -60,7 +60,7 @@ public interface ArtSellFacade {
 
 	Order getOrder(String itemId, String userId);
 	
-	void SaveAuctionedItem(String itemId, int myPrice, String userId, String address, Date sellDate);
+	void SaveAuctionedItem(String itemId, int myPrice, String userId, String address1, String address2, Date sellDate);
 	
 	void updateAuctionedState(String itemId, String userId);
 

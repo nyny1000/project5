@@ -2,6 +2,8 @@ package com.example.artsell.controller;
 
 import java.io.Serializable;
 
+import javax.validation.Valid;
+
 import com.example.artsell.domain.Account;
 
 /**
@@ -11,6 +13,7 @@ import com.example.artsell.domain.Account;
 @SuppressWarnings("serial")
 public class AccountForm implements Serializable {
 
+	@Valid
 	private Account account;
 
 	private boolean newAccount;

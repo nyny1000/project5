@@ -12,6 +12,8 @@
 			<th>이메일</th>
 			<th>번호</th>
 			<th>카드번호</th>
+			<th>주소</th>
+			<th>삭제</th>
 		</tr>
 		<c:forEach var="user" items="${userList.pageList}">
 			<tr align="center">
@@ -21,6 +23,11 @@
 				<td><c:out value="${user.email}" /></td>
 				<td><c:out value="${user.phone}" /></td>
 				<td><c:out value="${user.credit}" /></td>
+				<td><c:out value="${user.address1} ${user.address2}" /></td>
+				<td><a href='<c:url value="/admin/user_delete">
+				  <c:param name="userId" value="${user.userId}"/></c:url>'>
+								<c:out value="회원탈퇴" />
+						</a></td>
 			</tr>
 		</c:forEach>
 	</table>

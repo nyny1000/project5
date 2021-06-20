@@ -31,9 +31,12 @@
 			</tr>
 			<tr>
 				<td class="bold">주소</td>
-				<td><!--<form:input path="order.address" /> -->
-				<input type="text" value="${order.address}" name="address"/>
-					<form:errors path="order.address" cssClass="error" /></td>
+				<td><input type="text" value="${order.address1}" name="address1" id="member_addr" onclick="findAddr()" readonly/>
+				<form:errors path="order.address1" cssClass="error" /><br>
+				<input type="text" value="${order.address2}" name="address2"/>
+				<form:errors path="order.address2" cssClass="error" /><br>
+				</td>
+				
 			</tr>
 			<tr>
 				<td class="bold">카드번호</td>

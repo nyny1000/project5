@@ -5,6 +5,7 @@
 <div align="center">
 	<h2><c:out value="${category.name}" /></h2>
 	<form action="<c:url value="/search/item" />" method="post">
+		<c:out value="${category.name} 내 검색:" />
 		<select name="job">
 			<option value="작품명" selected="selected">작품명</option>
 			<option value="화가명">화가명</option>

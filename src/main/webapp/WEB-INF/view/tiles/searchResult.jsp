@@ -3,10 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div align="center">
-	<h2>작품 검색</h2>
+<h2>작품 검색</h2>	
 	<p>
-	<c:if test="${!empty categoryName}"><b><c:out value="${categoryName}" /></b>&nbsp;카테고리 내 검색 결과</c:if>
+	
 	<form action="<c:url value="/search/item" />" method="post">
+		<c:out value="전체 검색:" />
 		<select name="categoryId">
 			<option value="" selected>카테고리</option>
 			<c:forEach var="category" items="${categoryList}"> 
@@ -24,6 +25,8 @@
 </div>
 
 <div align="center">
+
+<c:if test="${!empty categoryName}"><b><c:out value="${categoryName}" /></b>&nbsp;카테고리 내 검색 결과</c:if>
 	<%-- <c:if test="${categoryId}"><c:out value="${categoryId }</c:if> --%>
 	<p>총 <strong><c:out value="${total}" /></strong> 개의 작품이 검색되었습니다.</p> <!-- 고치기 -->
 	<table>
