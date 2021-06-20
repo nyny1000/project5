@@ -129,4 +129,6 @@ public interface ArtSellFacade {
 	List<Account> getUserList();
 	
 	boolean isAuctioningQuit(String userId);
+
+	void initScheduler();
 }

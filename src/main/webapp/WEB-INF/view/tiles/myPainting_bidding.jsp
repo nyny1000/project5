@@ -15,6 +15,8 @@
 		 <c:param name="deadline" value="${deadline}" /> </c:url>"><input type="button" value="네"/>
 		</a>
 		
-		<a href="<c:url value="/auction/fail/no"/>"><input type="button" value="아니오"/></a>
+		<a href="<c:url value="/auction/fail/no">
+		 <c:param name="itemId" value="${itemId}" /> </c:url>"> <input type="button" value="아니오"/>
+		</a>
 		
 	</div>
