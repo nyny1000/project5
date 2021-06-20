@@ -43,16 +43,16 @@
 
 	<insert id="insertAccount" parameterType="Account">
 		INSERT INTO ACCOUNT
-		(EMAIL, NAME, PASSWORD, ADDRESS1, ADDRESS2, PHONE, CREDIT, USERID)
+		(EMAIL, NAME, PASSWORD, ADDRESS1, ADDRESS2, PHONE, CREDIT, USERID, QUIT)
 		VALUES
-		(#{email}, #{name}, #{password}, #{address1},  #{address2}, #{phone}, #{credit}, #{userId})
+		(#{email}, #{name}, #{password}, #{address1},  #{address2}, #{phone}, #{credit}, #{userId}, 0)
 	</insert>
 	
-	<delete id="deleteAccount" parameterType="String">
-		DELETE 
-		FROM ACCOUNT
+	<update id="deleteAccount" parameterType="String">
+		update Account
+		set quit = 1
 		WHERE USERID = #{param1}
-	</delete>
+	</update>
 	
 	<select id="getUserList" resultType="Account">
 		select *
