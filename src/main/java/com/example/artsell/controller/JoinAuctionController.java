@@ -89,7 +89,7 @@ public class JoinAuctionController {
 
 		boolean bidTry = false;
 
-		model.put("item", auctionItem);
+
 		List<AuctionItem> buyers = artSell.getBuyersByItemId(itemId);
 		System.out.println("바이어스 출력" + buyers);
 		//model.put("buyers", buyers);
@@ -98,6 +98,7 @@ public class JoinAuctionController {
 
 		if (result.hasErrors()) {
 			model.put("buyers", buyers);
+			model.put("item", auctionItem);
 			System.out.println("입찰가 validation 에러");
 			System.out.println(result.getGlobalError());
 			return "auction_buyer";
@@ -142,8 +143,10 @@ public class JoinAuctionController {
 			}
 		}
 		buyers = artSell.getBuyersByItemId(itemId);
+		auctionItem = artSell.getItem(itemId);
 		System.out.println("바이어스 출력" + buyers);
 		model.put("buyers", buyers);
+		model.put("item", auctionItem);
 
 		return "auction_buyer";
 	}

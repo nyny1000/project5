@@ -91,13 +91,14 @@ public class UserController {
 
 	// 2차수정
 	@RequestMapping("/user/delete")
-	public String deleteAccount(HttpSession session) throws Exception {
+	public String deleteAccount(HttpSession session, SessionStatus sessionStatus) throws Exception {
 		UserSession userSession = (UserSession) session.getAttribute("userSession");
 		String userId = userSession.getAccount().getUserId();
 		artSell.deleteAccount(userId);
 
 		session.removeAttribute("userSession");
 		session.invalidate();
+		sessionStatus.setComplete();
 
 		System.out.println("계정이 삭제되었습니다.");
 		return "main";

@@ -37,7 +37,6 @@
          <form:errors path="myPrice" cssClass="error" />
          <form:hidden path="itemId" value="${item.itemId}" />
          <input type="submit" value="입찰" />
-     		<%-- <c:out value="${userSession.account.userId}" /> --%> <!-- cnrk -->
 			<c:if test="${bidTry==true}">
 			<p>입찰이 성공적으로 완료되었습니다.</p></c:if>
 
