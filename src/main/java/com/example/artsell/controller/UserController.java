@@ -138,16 +138,17 @@ public class UserController {
       return "userList";
    }
    
-   @RequestMapping("/admin/user_delete")
-   public String deleteUser(@RequestParam("userId") String userId, HttpServletResponse response) throws Exception {
-      if(artSell.isAuctioningQuit(userId)) {
-         response.setContentType("text/html; charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            out.println("<script>alert('경매중이므로 탈퇴할 수 없습니다.'); history.go(-1);</script>");
-            out.flush();
-      }
-      artSell.deleteAccount(userId);
-      return "redirect:/admin/manage";
-   }
+//   @RequestMapping("/admin/user_delete")
+//   public String deleteUser(@RequestParam("userId") String userId, HttpServletResponse response) throws Exception {
+//      if(artSell.isAuctioningQuit(userId)) {
+//         response.setContentType("text/html; charset=UTF-8");
+//            PrintWriter out = response.getWriter();
+//            out.println("<script>alert('경매중이므로 탈퇴할 수 없습니다.'); history.go(-1);</script>");
+//            out.flush();
+//      }
+//      artSell.deleteAccount(userId);
+//      
+//      return "redirect:/admin/manage";
+//   }
 
 }
