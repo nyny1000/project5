@@ -7,16 +7,11 @@
 </head>
 <body>
 	<div align="center">
-		<form th:action="@{/user/login}" th:object="${loginAccount}"
-			method="POST">
-
-
-
-			<span th:if="${loginForwardAction != null}"> <input
-				type="hidden" name="loginForwardAction"
-				value='@{$loginForwardAction}"/>' /></span>
-
-
+		<form th:action="@{/user/login}" th:object="${loginAccount}" method="POST">
+			<span th:if="${loginForwardAction}"> 
+				<input size="50" type="hidden" name="loginForwardAction" th:value="@{${loginForwardAction}}" />
+			</span>
+		
 			<div id="leftD">
 				<input name="pic" type="image" src="/images/t1.jpg" width="650px"
 					height="450px">
@@ -51,7 +46,7 @@
 					</tr>
 				</table>
 			</div>
-		</form>
+		</form> 
 	</div>
 </body>
 </html>

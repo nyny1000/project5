@@ -61,4 +61,6 @@ public interface AuctionItemMapper {
 	AuctionedItem getAuctionedItemByItemId_SellerId(String itemId);
 	
 	AuctionedItem getAuctionedItemByItemId_BuyerId(String itemId);
+
+	void deleteUser(String userId);
 }

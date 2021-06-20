@@ -13,12 +13,33 @@ $(document).ready(function() {
 	}
 });
 </script> --%>
-<table class="top">
+<div class="content-topbar">
+	<a href="<c:url value="/home"/>" class="left-topbar-item"><img border="0"
+				src="../images/artsell_logo_white.jpg" /></a>
+	<div class="left-topbar">
+		<c:if test="${!empty userSession.account}">
+			<a href="javascript:void(0);" class="left-topbar-item"><c:out value="${userSession.account.userId}"/>님.</a>
+			<a href="<c:url value="/user/logout"/>" class="left-topbar-item">로그아웃</a>
+			<c:if test="${userSession.account.userId eq 'admin'}">
+				<a href="<c:url value="/admin/manage"/>" class="left-topbar-item">회원관리</a>
+				<a href="<c:url value="/interesting/list"/>" class="left-topbar-item">찜목록</a>
+			</c:if>
+			<c:if test="${userSession.account.userId ne 'admin'}">
+				<a href="<c:url value="/user/mypage"/>" class="left-topbar-item">마이페이지</a>
+			</c:if>
+			<a href="<c:url value="/auction/list"/>" class="left-topbar-item">경매현황</a>
+			<a href="<c:url value="/myitem/add"/>" class="left-topbar-item">그림등록</a>
+			<a href="<c:url value="/myitem/list"/>" class="left-topbar-item">내그림관리</a>
+		</c:if>
+	</div>
+</div>
+
+<%--<table class="top">
 	<tr>
 		<td><a href="<c:url value="/home"/>"> <img border="0"
 				src="../images/artsell_logo_white.jpg" /></a></td>
 		<td style="text-align: right">
-			<%-- <c:out value="${userSession.account.userId}" /> --%> <!-- cnrk -->
+			<!-- <c:out value="${userSession.account.userId}" /> cnrk -->
 			<c:if test="${!empty userSession.account}">
 				<a href="<c:url value="/user/logout"/>">
 					<button>로그아웃</button>
@@ -59,3 +80,4 @@ $(document).ready(function() {
 		</c:if>
 	</tr>
 </table>
+--%>

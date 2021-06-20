@@ -77,7 +77,10 @@ public class ArtSellImpl implements ArtSellFacade {
 	}
 	
 	@Override
+	@Transactional
 	public void deleteAccount(String userId) {
+		interestingItemDao.deleteAll(userId);
+		auctionItemDao.deleteUser(userId);
 		accountDao.deleteAccount(userId);
 	}
 	

@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 
 //나영 수정1
 @SuppressWarnings("serial")
@@ -16,11 +17,12 @@ public class Account implements Serializable {
 	private String password;
 	private String address1;
 	private String address2;
-	@Email
+	@Email(message ="올바른 형식의 이메일을 입력해 주십시오.")
 	private String email;
-	@Pattern(regexp="\\(\\d{3}\\)\\d{3}-\\d{4}") 
+	@Pattern(regexp="^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$" ,message="format:(01x-xxx(x)-xxxx) 올바른 형식의 핸드폰 번호를 입력해 주십시오.") 
 	private String phone;
 	private String name;
+	@Positive(message="카드번호의 숫자만 입력해 주십시오.")
 	private String credit;
 
 	/* JavaBeans Properties */

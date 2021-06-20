@@ -25,7 +25,7 @@ import com.example.artsell.service.ArtSellFacade;
 //123
 import com.example.artsell.service.OrderValidator;
 @Controller
-@SessionAttributes({"sessionCart", "order"})
+@SessionAttributes({"sessionCart", "order", "itemId"})
 public class OrderController {
 	@Autowired
 	private ArtSellFacade artsell;
@@ -52,12 +52,16 @@ public class OrderController {
 	
 	@RequestMapping("/auction/auctioned_buyer")
 	public String viewShippingForm(HttpServletRequest request,
-			@RequestParam("itemId") String itemId,
+			@RequestParam(name="itemId", required=false) String itemId,
 			@ModelAttribute("order") Order order, ModelMap model,
 			BindingResult result) throws ModelAndViewDefiningException {
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
+		if (itemId == null) {
+			itemId = order.getItemId();
+		}
 		if (itemId != null) {
 			// Re-read account from DB at team's request.
+			
 			order = artsell.getOrder(itemId, userSession.getAccount().getUserId());
 			System.out.println(order.getAddress1());
 			order.setAddress1(null);
@@ -102,6 +106,8 @@ public class OrderController {
 //			redirectAttributes.addAttribute("itemId", order.getItemId());
 			return "auctioned_buyer";
 		}
+		String itemId = order.getItemId();
+		model.put("itemId", itemId);
 		model.put("order", order);
 		System.out.println(order.getItemId());	
 		return "auctioned_destination";

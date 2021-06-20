@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
@@ -32,7 +34,8 @@ public class InterestingListController {
 
 	@RequestMapping("/interesting/list") 
 	public String viewInterestingList(
-			@ModelAttribute("userSession") UserSession userSession, ModelMap model) throws Exception {
+			@ModelAttribute("userSession") UserSession userSession, ModelMap model, HttpSession session, SessionStatus sessionStatus) throws Exception {
+		
 		PagedListHolder<Item> itemList = new PagedListHolder<Item>(
 				this.artSell.getInterestingItemList(userSession.getAccount().getUserId()));
 		itemList.setPageSize(1);

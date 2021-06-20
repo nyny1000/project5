@@ -73,7 +73,7 @@ public class AuctionItemListController {
 		//낙찰된(결제까지 다 한) 목록
 		PagedListHolder<AuctionedItem> itemList2 = new PagedListHolder<AuctionedItem>(
 				this.artSell.getItemListByAuctionedItem(userSession.getAccount().getUserId()));
-		itemList2.setPageSize(1);
+		itemList2.setPageSize(2);
 		model.put("itemList2", itemList2);
 		model.put("key", key);
 		return "myAuctionList";

@@ -58,7 +58,7 @@ public class AccountFormController {
 
 	@RequestMapping("/user/register")
 	public String onSubmit_register(HttpServletRequest request, HttpSession session,
-			@ModelAttribute("userRegisterForm") AccountForm registerForm, BindingResult result) {
+			@Valid @ModelAttribute("userRegisterForm") AccountForm registerForm, BindingResult result) {
 		validator.validate(registerForm, result);
 
 		if (result.hasErrors())
