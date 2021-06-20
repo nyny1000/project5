@@ -21,7 +21,8 @@ public class OrderValidator implements Validator {
 	public void validate(Object obj, Errors errors) {
 		Order order = (Order)obj;
 		System.out.println("들어왔니");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address", "ORDER_ADDRESS_REQUIRED", "ADDRESS is required.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address1", "ORDER_ADDRESS_REQUIRED", "ADDRESS is required.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address2", "ORDER_ADDRESS_REQUIRED", "ADDRESS is required.");
 //		if (order.getAddress() == null || order.getAddress().trim().isEmpty()) {
 //			errors.reject("address", "address.required");
 //		}

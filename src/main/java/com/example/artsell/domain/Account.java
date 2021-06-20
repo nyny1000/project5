@@ -15,7 +15,8 @@ public class Account implements Serializable {
 
 	private String userId;
 	private String password;
-	private String address;
+	private String address1;
+	private String address2;
 	@Email(message ="올바른 형식의 이메일을 입력해 주십시오.")
 	private String email;
 	@Pattern(regexp="^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$" ,message="format:(01x-xxx(x)-xxxx) 올바른 형식의 핸드폰 번호를 입력해 주십시오.") 
@@ -41,13 +42,22 @@ public class Account implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 
-	public String getAddress() {
-		return address;
+	public String getAddress1() {
+		return address1;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
+
+	public String getAddress2() {
+		return address2;
+	}
+
+	public void setAddress2(String address2) {
+		this.address2 = address2;
 	}
 
 	public String getEmail() {

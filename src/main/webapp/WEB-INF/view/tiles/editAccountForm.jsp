@@ -60,10 +60,15 @@
 
 			<tr>
 				<td>林家</td>
-				<td><input id="member_addr" type="text" placeholder="Address" readonly onclick="findAddr()"/> <br>
-				<form:input path="account.address" type="text" placeholder="Detailed Address"/>
+				<td>
+				
+				
+				<form:input path="account.address1" type="text" id="member_addr" readonly="true"/> 
+				<input type="button" value="林家茫扁" onclick="findAddr()"/>
+				<br>
+				<form:input path="account.address2" type="text"/>
 				<form:errors
-						path="account.address" cssClass="error" /></td>
+						path="account.address2" cssClass="error" /></td>
 			</tr>
 		</table>
 
