@@ -9,7 +9,7 @@
 	<div align="center">
 		<form th:action="@{/user/login}" th:object="${loginAccount}" method="POST">
 			<span th:if="${loginForwardAction}"> 
-				<input size="50" type="text" name="loginForwardAction" th:value="@{${loginForwardAction}}" />
+				<input size="50" type="hidden" name="loginForwardAction" th:value="@{${loginForwardAction}}" />
 			</span>
 		
 			<div id="leftD">

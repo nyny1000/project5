@@ -71,7 +71,4 @@ public class AuctionedItem implements Serializable {
 	public void setSellDate(Date sellDate) {
 		this.sellDate = sellDate;
 	}
-	
-	
-	
 }

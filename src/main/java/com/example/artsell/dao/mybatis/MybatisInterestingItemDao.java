@@ -16,24 +16,34 @@ public class MybatisInterestingItemDao implements InterestingItemDao {
 	@Autowired
 	private InterestingItemMapper interestingItemMapper;
 	
+	@Override
 	public List<Item> getInterestingItemList(String userId) throws DataAccessException {
 		return interestingItemMapper.getInterestingItemList(userId);
 	}
 	
+	@Override
 	public List<Item> getPastInterestingItemList(String userId) throws DataAccessException {
 		return interestingItemMapper.getPastInterestingItemList(userId);
 	}
 	
-	
+	@Override
 	public void insertInterestingItem(String userId, String itemId) throws DataAccessException {
 		interestingItemMapper.insertInterestingItem(userId, itemId);
 	}
 	
+	@Override
 	public void deleteInterestingItem(String userId, String itemId) throws DataAccessException {
 		interestingItemMapper.deleteInterestingItem(userId, itemId);
 	}
 	
+	@Override
 	public int containsInterestingItem(String userId, String itemId) throws DataAccessException {
 		return interestingItemMapper.containsInterestingItem(userId, itemId);
+	}
+
+	@Override
+	public void deleteAll(String userId) {
+		// TODO Auto-generated method stub
+		interestingItemMapper.deleteAll(userId);
 	}
 }
