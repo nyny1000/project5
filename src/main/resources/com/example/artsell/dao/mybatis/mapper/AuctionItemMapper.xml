@@ -44,9 +44,9 @@
 	
 	<select id="getBuyers" resultType="AuctionItem">
 		SELECT *
-		FROM AUCTIONITEM
-		WHERE ITEMID = #{itemId} AND STATE = 0
-		ORDER BY myPrice DESC
+		FROM AUCTIONITEM a, Account u
+		WHERE a.userId = u.userId and a.ITEMID = #{itemId} AND a.STATE = 3 and u.quit=0
+		ORDER BY a.myPrice DESC
 	</select>
 
 	<select id="calcBestPrice" resultType="int">
