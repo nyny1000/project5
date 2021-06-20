@@ -25,6 +25,7 @@ public class Account implements Serializable {
 	private String name;
 	@PositiveOrZero(message="카드번호의 숫자만 입력해 주십시오.")
 	private String credit;
+	private int quit;
 
 	/* JavaBeans Properties */
 
@@ -91,6 +92,14 @@ public class Account implements Serializable {
 
 	public void setCredit(String credit) {
 		this.credit = credit;
+	}
+
+	public int getQuit() {
+		return quit;
+	}
+
+	public void setQuit(int quit) {
+		this.quit = quit;
 	}
 
 }

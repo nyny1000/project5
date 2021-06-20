@@ -39,11 +39,10 @@ public class AccountValidator implements Validator {
 		String inputUserId = account.getUserId();
 		String inputPassword = account.getPassword();
 		
-		if (artSell.getAccount(inputUserId) == null) {
+		if (artSell.getAccount(inputUserId) == null || artSell.getAccount(inputUserId).getQuit() == 1) {
 			System.out.println("You are an unregistered member. Please register as a member.");
 			errors.reject("userId", "You are an unregistered member. Please register as a member.");
 		}
-		
 		else if (!artSell.getAccount(inputUserId).getPassword().equals(inputPassword)) {
 			System.out.println("input password" + inputPassword);
 			System.out.println("signed password" + artSell.getAccount(inputUserId).getPassword());
