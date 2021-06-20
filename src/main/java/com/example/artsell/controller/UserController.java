@@ -94,6 +94,8 @@ public class UserController {
 	public String deleteAccount(HttpSession session) throws Exception {
 		UserSession userSession = (UserSession) session.getAttribute("userSession");
 		String userId = userSession.getAccount().getUserId();
+		
+		
 		artSell.deleteAccount(userId);
 
 		session.removeAttribute("userSession");
