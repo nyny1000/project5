@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div align="center">
-	<h2>상품이름 : <c:out value="${item.itemName}" /> </h2>
+	<h2>작품명 : <c:out value="${item.itemName}" /> </h2>
 	<p>
 	<img src="<c:out value="${item.picture}" />" width="300" /><br>
 

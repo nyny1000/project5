@@ -4,11 +4,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div align="center">
 
-		<h1>내 경매 참여 목록입니다</h1>
+		<h1>내 경매 참여 목록</h1>
 		<table class="table1">
 			<tr align="center" bgcolor="#D5D5D5">
-				<th>상품ID</th>
-				<th>사진</th>
+				<th>작품ID</th>
+				<th>작품사진</th>
 				<th>경매 마감일</th>
 				<th>최고가</th>
 				<th>내 금액</th>
@@ -63,11 +63,11 @@
 
 	<form>
 		
-		<h1>내 경매 낙찰 목록입니다</h1>
+		<h1>내 경매 낙찰 목록</h1>
 		<table class="table1">
 			<tr align="center" bgcolor="#D5D5D5">
-				<th>상품ID</th>
-				<th>사진</th>
+				<th>작품ID</th>
+				<th>작품사진</th>
 				<th>경매 마감일</th>
 				<th>낙찰가격</th>
 				<th>&nbsp;</th>

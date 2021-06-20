@@ -27,6 +27,10 @@
          <td><c:out value="${item.artist}" /></td>
       </tr>
       <tr align="center">
+         <td>판매자</td>
+         <td><c:out value="${item.userId}" /></td>
+      </tr>
+      <tr align="center">
          <td>마감 기한</td>
          <td><fmt:formatDate value="${item.deadline}"
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
