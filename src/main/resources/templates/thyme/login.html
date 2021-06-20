@@ -7,11 +7,13 @@
 </head>
 <body>
 	<div align="center">
-		<form th:action="@{/user/login}" th:object="${loginAccount}" method="POST">
-			<span th:if="${loginForwardAction}"> 
-				<input size="50" type="hidden" name="loginForwardAction" th:value="@{${loginForwardAction}}" />
+		<form th:action="@{/user/login}" th:object="${loginAccount}"
+			method="POST">
+			<span th:if="${loginForwardAction}"> <input size="50"
+				type="hidden" name="loginForwardAction"
+				th:value="@{${loginForwardAction}}" />
 			</span>
-		
+
 			<div id="leftD">
 				<input name="pic" type="image" src="/images/t1.jpg" width="650px"
 					height="450px">
@@ -38,15 +40,15 @@
 						<td><span th:each="err : ${#fields.globalErrors()}"
 							th:text="${err}"></span> &nbsp;</td>
 						<td>
-							<button type="submit" name="update">로그인</button>&nbsp 
-							<a th:href='@{/user/registerForm}'>
+							<button type="submit" name="update">로그인</button>&nbsp <a
+							th:href='@{/user/registerForm}'>
 								<button type="button" name="button">회원가입</button>
 						</a>
 						</td>
 					</tr>
 				</table>
 			</div>
-		</form> 
+		</form>
 	</div>
 </body>
 </html>
