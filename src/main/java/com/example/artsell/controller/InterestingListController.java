@@ -35,12 +35,6 @@ public class InterestingListController {
 	@RequestMapping("/interesting/list") 
 	public String viewInterestingList(
 			@ModelAttribute("userSession") UserSession userSession, ModelMap model, HttpSession session, SessionStatus sessionStatus) throws Exception {
-		//테스트
-		session.removeAttribute("userSession");
-		session.invalidate();
-		sessionStatus.setComplete();
-		System.out.println("session X");
-		//
 		
 		PagedListHolder<Item> itemList = new PagedListHolder<Item>(
 				this.artSell.getInterestingItemList(userSession.getAccount().getUserId()));
