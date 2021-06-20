@@ -12,31 +12,28 @@
 				<input size="50" type="hidden" name="loginForwardAction" th:value="@{${loginForwardAction}}" />
 			</span>
 		
-			<div id="leftD">
-				<input name="pic" type="image" src="/images/t1.jpg" width="650px"
-					height="450px">
-			</div>
-			<div id="rightD">
+			<div id="leftD" align="center">
+				<input name="pic" type="image" src="/images/artsell_logo_white.jpg" width="650px" height="260px">
+			<br>
 				<table>
 					<tr>
-						<td colspan="2">Please enter your ID and Password. <br />&nbsp;
+						<td colspan="2"><b>Please enter your ID and Password.</b> <br />&nbsp;
 						</td>
 					</tr>
 					<tr>
-						<td>ID:</td>
+						<td><b>ID:</b></td>
 						<td><input type="text" th:field="*{userId}" size="20" /> <span
 							th:each="err : ${#fields.errors('userId')}" th:text="${err}"></span>
 						</td>
 					</tr>
 					<tr>
-						<td>Password:</td>
+						<td><b>Password:</b></td>
 						<td><input type="password" th:field="*{password}" size="20" />
 							<span th:each="err : ${#fields.errors('password')}"
 							th:text="${err}"></span></td>
 					</tr>
 					<tr>
-						<td><span th:each="err : ${#fields.globalErrors()}"
-							th:text="${err}"></span> &nbsp;</td>
+						<td> &nbsp;</td>
 						<td>
 							<button type="submit" name="update">로그인</button>&nbsp 
 							<a th:href='@{/user/registerForm}'>
@@ -45,6 +42,8 @@
 						</td>
 					</tr>
 				</table>
+				<span th:each="err : ${#fields.globalErrors()}"
+							th:text="${err}"></span>
 			</div>
 		</form> 
 	</div>

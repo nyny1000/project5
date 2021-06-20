@@ -195,13 +195,14 @@ table.n13 tr td {
 }
 /*명진*/
 		#leftD {
-			margin-left: 30px;
-			margin-right: 100px;
+			margin-left: 400px;
+			margin-top:100px;
 			float: left;
 		}
 		#rightD {
-			margin-top: 100px;
-			margin-right: 100px;
+			margin-left: 50px;
+			margin-top: 250px;
+			margin-right: 80px;
 			float: left;
 		}
 		table.table1{

@@ -5,7 +5,7 @@
 
 <div align="center">
    <h2>
-      <p>상품이름 :
+      <p>작품명 :
       <c:out value="${item.itemName}" /></p>
       <img src="<c:out value="${item.picture}" />" width="300" /><br>
       경매 시작가:
@@ -34,10 +34,11 @@
          modelAttribute="auctionItem" method="POST">
          <form:errors cssClass="error" />
          <form:input path="myPrice" />
-         <form:errors path="myPrice" cssClass="error" />
+         
          <form:hidden path="itemId" value="${item.itemId}" />
          <input type="submit" value="입찰" />
      		<%-- <c:out value="${userSession.account.userId}" /> --%> <!-- cnrk -->
+     		<br><form:errors path="myPrice" cssClass="error" />
 			<c:if test="${bidTry==true}">
 			<p>입찰이 성공적으로 완료되었습니다.</p></c:if>
 
