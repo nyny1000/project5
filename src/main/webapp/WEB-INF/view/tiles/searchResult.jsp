@@ -5,6 +5,8 @@
 <div align="center">
 	<h2>작품 검색</h2>
 	<p>
+	
+	<!-- 
 	<form action="<c:url value="/search/item" />" method="post">
 		<c:out value="전체 검색:" />
 		<select name="categoryId">
@@ -21,6 +23,47 @@
 			src="/images/search.png" type="image" />
 	</form>
 </div>
+ -->
+
+<form action='<c:url value="/search/item"/>' method="post">
+<div class="ac2">
+	<table>
+		<tr >
+			<td>
+				<c:out value="전체 검색:" />
+			</td>
+			<td>
+				<select name="categoryId" class="s1">
+					<option value="" selected>카테고리</option>
+					<c:forEach var="category" items="${categoryList}">
+						<option value="${category.categoryId}">
+							<c:out value="${category.name}" />
+						</option>
+					</c:forEach>
+				</select>
+			</td>
+			<td>
+ 				<div class="d1">
+					<select name="job" class = "s1">
+						<option value="작품명" selected="selected">작품명</option>
+						<option value="화가명">화가명</option>
+					</select>
+				</div>
+			</td>
+			<td>
+				<div class="pos-relative size-a-2  of-hidden bocl11 m-tb-6 d1">
+					<input class="f1-s-1 cl6 plh9 s-full2 p-l-25 p-r-45" type="text"
+						name="keyword" placeholder="Search">
+					<button
+						class="flex-c-c size-a-1 ab-t-r fs-20 cl2 hov-cl10 trans-03"
+						type="submit"></button>
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+</form>
+
 
 <div align="center">
 
