@@ -374,4 +374,30 @@ public class ArtSellImpl implements ArtSellFacade {
 	public List<Account> getUserList() {
 		return accountDao.getUserList();
 	}
+
+	
+	@Override
+	public boolean isAuctioningQuit(String userId) {
+		return auctionItemDao.isAuctioningQuit(userId);
+	}
+
+
+	@Override
+	public void initScheduler() {
+		// TODO Auto-generated method stub
+		Date curTime = new Date();
+		List<Item> notEndedAuctionItem = itemDao.getNotEndedAuctionItem(curTime);
+
+		for (Item item : notEndedAuctionItem) {
+			Date deadline = item.getDeadline();
+			String itemId = item.getItemId();
+			auctionScheduler(deadline, itemId);
+		}
+		
+		List<Item> EndedAuctionItem = itemDao.getEndedAuctionItem(curTime);
+		
+		for (Item item : EndedAuctionItem) {
+			bidSuccess(item.getItemId());
+		}
+	}
 }

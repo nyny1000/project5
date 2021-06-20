@@ -40,4 +40,8 @@ public interface ItemMapper {
 	void changeDeadline(Date deadline, String itemId) throws DataAccessException;
 	
 	int isItemExist(String itemId) throws DataAccessException;
+
+	List<Item> getNotEndedAuctionItem(Date curTime);
+
+	List<Item> getEndedAuctionItem(Date curTime);
 }

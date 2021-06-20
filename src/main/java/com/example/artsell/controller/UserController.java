@@ -94,14 +94,24 @@ public class UserController {
 	public String deleteAccount(HttpSession session, SessionStatus sessionStatus) throws Exception {
 		UserSession userSession = (UserSession) session.getAttribute("userSession");
 		String userId = userSession.getAccount().getUserId();
-		artSell.deleteAccount(userId);
+		
+		if(artSell.isAuctioningQuit(userId)) {
+			response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('경매중이므로 탈퇴할 수 없습니다.'); history.go(-1);</script>");
+            out.flush();
+		}
+		else {
+			artSell.deleteAccount(userId);
 
-		session.removeAttribute("userSession");
-		session.invalidate();
-		sessionStatus.setComplete();
+			session.removeAttribute("userSession");
+			session.invalidate();
+			sessionStatus.setComplete();
 
-		System.out.println("계정이 삭제되었습니다.");
-		return "main";
+			System.out.println("계정이 삭제되었습니다.");
+		}
+		
+		return "redirect:/home";
 	}
 
 	@RequestMapping("/admin/manage")
@@ -126,7 +136,13 @@ public class UserController {
 	}
 	
 	@RequestMapping("/admin/user_delete")
-	public String deleteUser(@RequestParam("userId") String userId) {
+	public String deleteUser(@RequestParam("userId") String userId, HttpServletResponse response) throws Exception {
+		if(artSell.isAuctioningQuit(userId)) {
+			response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('경매중이므로 탈퇴할 수 없습니다.'); history.go(-1);</script>");
+            out.flush();
+		}
 		artSell.deleteAccount(userId);
 		return "redirect:/admin/manage";
 	}
