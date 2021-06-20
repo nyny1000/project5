@@ -83,7 +83,7 @@ public class UserController {
       session.invalidate();
       sessionStatus.setComplete();
       // return "tiles/login"; // use Tiles
-      return "redirect:/loginform"; // ny수정
+      return "thyme/login"; // ny수정
    }
 
    @RequestMapping("/user/mypage")

@@ -18,6 +18,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Autowired
 	@Qualifier(value = "auctionInterceptor")
 	private HandlerInterceptor auctionInterceptor;
+	
+	@Autowired
+	@Qualifier(value = "logoutInterceptor")
+	private HandlerInterceptor logoutInterceptor;
 
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
@@ -31,6 +35,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 				.addPathPatterns("/home", "/user/delete", "/user/update", "/user/mypage", "/search/*", "/interesting/*", "/myitem/*", "/auction/*", "/shop/*"); 
 		registry.addInterceptor(auctionInterceptor)
 				.addPathPatterns("/auction/info", "/auction/bid");
+		registry.addInterceptor(logoutInterceptor)
+				.addPathPatterns("/user/logout");
 	}
 	  
 	  
