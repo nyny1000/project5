@@ -195,11 +195,16 @@ public class JoinAuctionController {
 
 	// 아이템아이디에 해당하는 경매참여자들 buyer
 	@RequestMapping("/auction/info")
-	public String viewAutionJoinerList(@RequestParam(value = "itemId") String itemId, HttpSession session,
-			ModelMap model) {
-
+	public String viewAutionJoinerList(@ModelAttribute("userSession") UserSession userSession, 
+			@RequestParam(value = "itemId") String itemId, HttpSession session,
+			ModelMap model, RedirectAttributes redirectAttributes) {
+		
 		Item item = artSell.getItem(itemId);
 		System.out.print("참여자들 출력 아이템 아이디는" + itemId);
+		if (item.getUserId().equals(userSession.getAccount().getUserId())) {
+			redirectAttributes.addAttribute("itemId", itemId);
+			return "redirect:/auction/info_seller";
+		}
 		List<AuctionItem> buyers = this.artSell.getBuyersByItemId(item.getItemId());
 		model.put("buyers", buyers);
 		model.put("item", item); // 나영추가
@@ -212,11 +217,17 @@ public class JoinAuctionController {
 			ModelMap model) {
 		System.out.println(item.getItemId());
 		List<AuctionItem> buyers = null;
-		if (item == null)
+		if (item == null) {
+			item = artSell.getItem(itemId);
 			buyers = this.artSell.getBuyersByItemId(itemId);
-		else
+		}
+		else {
+			item = artSell.getItem(itemId);
 			buyers = this.artSell.getBuyersByItemId(item.getItemId());
+		}
+		System.out.println(item.getItemName());
 		model.put("buyers", buyers);
+		model.put("item", item);
 
 		return "auction_seller";
 	}
