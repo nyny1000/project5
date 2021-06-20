@@ -187,6 +187,7 @@ public class MyItemController {
             out.flush();
 		}
 			//model.put("alertmsg", "true");
+		System.out.println("여기 오니???");
 
 		return "redirect:/myitem/list";
 	}
