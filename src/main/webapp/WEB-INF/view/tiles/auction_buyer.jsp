@@ -2,7 +2,17 @@
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+<head>
+<script type="text/javascript">
+	
+  function maxLengthCheck(object){
+    if (object.value.length > object.maxLength){
+      object.value = object.value.slice(0, object.maxLength);
+    }    
+  }
+  
+</script>
+</head>
 <div align="center">
    <h2>
       <p>작품명 :
@@ -33,7 +43,7 @@
          <form:form action="/auction/bid"
          modelAttribute="auctionItem" method="POST">
          <form:errors cssClass="error" />
-         <form:input path="myPrice" />
+         <form:input type="number" min="0" max="2000000000" path="myPrice" />
          
          <form:hidden path="itemId" value="${item.itemId}" />
          <input type="submit" value="입찰" />

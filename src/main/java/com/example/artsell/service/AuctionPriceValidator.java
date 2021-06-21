@@ -40,9 +40,11 @@ public class AuctionPriceValidator implements Validator {
 				System.out.println("validation 최소가보다 낮음");
 				errors.rejectValue("myPrice", "LOWER_BID_THAN_MINPRICE");
 			}
-			else if (bidderPrice > 2000000000) {
-				errors.rejectValue("myPrice", "HIGHER_BID_THAN_MAXIMUMPRICE");
-			}
+			/*
+			 * else if (bidderPrice > 2000000000) { errors.rejectValue("myPrice",
+			 * "HIGHER_BID_THAN_MAXIMUMPRICE"); }
+			 * 
+			 */
 		}
 		// 이후 입찰자들
 		else {
@@ -50,9 +52,10 @@ public class AuctionPriceValidator implements Validator {
 				System.out.println("validation 현재 최고가보다 낮음");
 				errors.rejectValue("myPrice", "LOWER_BID_THAN_BESTPRICE");
 			}
-			else if (bidderPrice > 2000000000) {
-				errors.rejectValue("myPrice", "HIGHER_BID_THAN_MAXIMUMPRICE");
-			}
+			/*
+			 * else if (bidderPrice > 2000000000) { errors.rejectValue("myPrice",
+			 * "HIGHER_BID_THAN_MAXIMUMPRICE"); }
+			 */
 			
 		}
 
