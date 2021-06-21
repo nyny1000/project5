@@ -85,7 +85,7 @@ public class MyItemController {
 			}
 		}
 		
-		itemList.setPageSize(2);
+		itemList.setPageSize(5);
 		model.put("myPaintList", itemList);
 		model.put("key", key);
 
@@ -98,7 +98,7 @@ public class MyItemController {
 
 		PagedListHolder<Item> itemList = new PagedListHolder<Item>(
 				this.artSell.getMyItemList(userSession.getAccount().getUserId()));
-		itemList.setPageSize(2);
+		itemList.setPageSize(5);
 		model.put("myPaintList", itemList);
 		//handleRequest(page, itemList);
 		model.put("key", 3);

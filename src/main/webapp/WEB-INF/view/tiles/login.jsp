@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div align="center">
+<div align="center" class="loginD">
 		<form action='<c:url value="/user/login" />' method="POST">
 			<c:if test="${!empty signonForwardAction}">
       		<input type="hidden" name="forwardAction"

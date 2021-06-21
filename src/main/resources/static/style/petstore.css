@@ -194,16 +194,10 @@ table.n13 tr td {
 	padding: 3px;
 }
 /*명진*/
+	
 		#leftD {
-			margin-left: 400px;
 			margin-top:100px;
-			float: left;
-		}
-		#rightD {
-			margin-left: 50px;
-			margin-top: 250px;
-			margin-right: 80px;
-			float: left;
+			margin-right:100px;
 		}
 		table.table1{
 			width: 60%;
@@ -575,4 +569,8 @@ li.main-menu-active > a::before {
 	font-size:14px;
 	border:2px solid #ddd;
 }
-/*명진 mypage*/
+/*명진 search*/
+.font1 {
+  font-family: Roboto-Regular;
+  font-size: 6px;
+}

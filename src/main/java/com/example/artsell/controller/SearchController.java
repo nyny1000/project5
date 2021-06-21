@@ -55,7 +55,7 @@ public class SearchController {
 			PagedListHolder<Item> itemList = new PagedListHolder<Item>(this.artSell.searchItemList(keyword, artist, categoryId));
 			System.out.println("keyword: " + keyword + " artist: " + artist + " categoryId: " + categoryId);
 			
-			itemList.setPageSize(10);
+			itemList.setPageSize(5);
 			request.getSession().setAttribute("SearchController_itemList", itemList);
 			mv = new ModelAndView("searchResult", "itemList", itemList);
 		} else {

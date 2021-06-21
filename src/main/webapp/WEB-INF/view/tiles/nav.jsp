@@ -53,7 +53,7 @@
 						name="keyword" placeholder="Search">
 					<button
 						class="flex-c-c size-a-1 ab-t-r fs-20 cl2 hov-cl10 trans-03"
-						type="submit"></button>
+						type="submit"><h6>°Ë»ö</h6></button>
 				</div>
 			</td>
 		</tr>
