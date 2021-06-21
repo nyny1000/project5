@@ -569,4 +569,8 @@ li.main-menu-active > a::before {
 	font-size:14px;
 	border:2px solid #ddd;
 }
-/*명진 mypage*/
+/*명진 search*/
+.font1 {
+  font-family: Roboto-Regular;
+  font-size: 6px;
+}
