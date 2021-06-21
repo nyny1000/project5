@@ -214,4 +214,10 @@
   	from auctionItem
   	where state = 0 and itemId = #{itemId}
   </select>
+  
+  <select id="isAuctionItemByItemIdUserId" parameterType="String" resultType="int">
+  	select count(*)
+  	from auctionItem
+  	where userId=#{userId} and itemId = #{itemId}
+  </select>
 </mapper>

@@ -67,7 +67,7 @@
 		
 		<p>
 		<h1>기간 지난 찜 목록</h1>
-		<table>
+		<table class="table1">
 			<tr align="center" bgcolor="#D5D5D5">
 				<th>상품ID</th>
 				<th>상품이름</th>
