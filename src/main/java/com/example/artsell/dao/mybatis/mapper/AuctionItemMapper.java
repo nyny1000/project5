@@ -75,4 +75,6 @@ public interface AuctionItemMapper {
 	void deleteItemQuit(String userId);
 
 	int checkBid(String itemId);
+	
+	int isAuctionItemByItemIdUserId(String itemId, String userId);
 }

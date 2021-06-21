@@ -31,8 +31,22 @@
 			<c:if test="${itemList1.pageList.size() != 0}">
 				<c:forEach var="itemList1" items="${itemList1.pageList}">
 					<tr align="center">
-						<td><c:out value="${itemList1.itemId}" /></td>
-						<td><img src="<c:out value="${itemList1.picture}" />"  width="200" height="150" /></td>
+						<td>
+						<c:if test="${itemList1.state == 0}">
+						<a href="<c:url value="/shop/viewItem">
+						<c:param name="itemId" value="${itemList1.itemId}" /></c:url>">
+						<c:out value="${itemList1.itemId}" /></a>
+						</c:if>
+						
+						</td>
+						<td>
+						<c:if test="${itemList1.state == 0}">
+						<a href="<c:url value="/shop/viewItem">
+						<c:param name="itemId" value="${itemList1.itemId}" /></c:url>">
+						<img src="<c:out value="${itemList1.picture}" />"  width="200" height="150" /></a>
+						</c:if>
+						</td>
+						
 						<td><fmt:formatDate value="${itemList1.deadline}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 						<td><c:out value="${itemList1.bestPrice}" /></td>
 						<td><c:out value="${itemList1.myPrice}" /></td>

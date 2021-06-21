@@ -1,9 +1,6 @@
 package com.example.artsell.dao;
 
-
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
@@ -65,4 +62,6 @@ public interface AuctionItemDao {
 	boolean isAuctioningQuit(String userId) throws DataAccessException;
 
 	int checkBid(String itemId) throws DataAccessException;
+	
+	int isAuctionItemByItemIdUserId(String itemId, String userId) throws DataAccessException;
 }

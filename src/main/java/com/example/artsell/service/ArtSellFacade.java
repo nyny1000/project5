@@ -2,9 +2,6 @@ package com.example.artsell.service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-
-import org.springframework.dao.DataAccessException;
 
 import com.example.artsell.domain.Account;
 
@@ -131,4 +128,6 @@ public interface ArtSellFacade {
 	boolean isAuctioningQuit(String userId);
 
 	void initScheduler();
+	
+	int isAuctionItemByItemIdUserId(String itemId, String userId);
 }
