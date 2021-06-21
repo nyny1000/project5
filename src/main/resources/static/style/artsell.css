@@ -219,6 +219,20 @@ table.n13 tr td {
 			border: 1px solid black;
 			padding: 5px;
 		}
+		table.table2{
+			width: 90%;
+			margin: 20px 0px;
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+		table.table2 th {
+			border: 1px solid black;
+			padding: 5px;
+		}
+		table.table2 td {
+			border: 1px solid black;
+			padding: 5px;
+		}
 /*명진 topbar*/
 
 	.content-topbar {

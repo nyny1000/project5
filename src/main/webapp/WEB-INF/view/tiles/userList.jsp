@@ -4,7 +4,7 @@
 
 <div align="center">
 	<h1>회원 목록</h1>
-	<table class="table1">
+	<table class="table2">
 		<tr align="center" bgcolor="#D5D5D5">
 			<th>ID</th>
 			<th>이름</th>
