@@ -47,7 +47,7 @@
 					<div class="bg-img1 size-a-12 pos-relative" style="background-image: url(../images/landscape.jpg);">
 						<a href="/shop/viewCategory?categoryId=landscape" class="dis-block how1-child1 trans-03"></a>
 						<div class="flex-col-e-s s-full p-rl-25 p-tb-11">
-							<a href="/shop/viewCategory?categoryId=landscape" class="">
+							<a href="/shop/viewCategory?categoryId=landscape" class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
 								<h3>«≥∞Ê»≠</h3>
 							</a>
 						</div>
