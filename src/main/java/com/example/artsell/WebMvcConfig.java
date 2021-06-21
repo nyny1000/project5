@@ -30,7 +30,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		registry.addInterceptor(loginInterceptor)
 				.addPathPatterns("/home", "/user/delete", "/user/update", "/user/mypage", "/search/*", "/interesting/*", "/myitem/*", "/auction/*", "/shop/*"); 
 		registry.addInterceptor(auctionInterceptor)
-				.addPathPatterns("/auction/info", "/auction/bid");
+				.addPathPatterns("/auction/info", "/auction/bid", "/shop/viewItem");
 	}
 	  
 	  

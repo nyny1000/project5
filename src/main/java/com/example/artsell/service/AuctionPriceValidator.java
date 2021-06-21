@@ -35,7 +35,7 @@ public class AuctionPriceValidator implements Validator {
 
 		// 첫 입찰자
 		if (artSell.getBuyersByItemId(itemId).size() == 0) {
-			if (bidderPrice < auctionItem.getMinPrice()) { // 최소가 보다 낮은 금액을 입력했을 경우
+			if (bidderPrice <= auctionItem.getMinPrice()) { // 최소가 보다 낮은 금액을 입력했을 경우
 				System.out.println("사이즈는?" + artSell.getBuyersByItemId(itemId).size());
 				System.out.println("validation 최소가보다 낮음");
 				errors.rejectValue("myPrice", "LOWER_BID_THAN_MINPRICE");
@@ -48,7 +48,7 @@ public class AuctionPriceValidator implements Validator {
 		}
 		// 이후 입찰자들
 		else {
-			if (bidderPrice < auctionItem.getBestPrice()) { // 현재 최고가 보다 낮은 금액을 입력했을 경우
+			if (bidderPrice <= auctionItem.getBestPrice()) { // 현재 최고가 보다 낮은 금액을 입력했을 경우
 				System.out.println("validation 현재 최고가보다 낮음");
 				errors.rejectValue("myPrice", "LOWER_BID_THAN_BESTPRICE");
 			}
