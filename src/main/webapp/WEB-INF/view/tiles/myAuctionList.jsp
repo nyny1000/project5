@@ -37,6 +37,9 @@
 						<c:param name="itemId" value="${itemList1.itemId}" /></c:url>">
 						<c:out value="${itemList1.itemId}" /></a>
 						</c:if>
+						<c:if test="${itemList1.state != 0}">
+						<c:out value="${itemList1.itemId}" />
+						</c:if>
 						
 						</td>
 						<td>
@@ -44,6 +47,10 @@
 						<a href="<c:url value="/shop/viewItem">
 						<c:param name="itemId" value="${itemList1.itemId}" /></c:url>">
 						<img src="<c:out value="${itemList1.picture}" />"  width="200" height="150" /></a>
+						</c:if>
+						
+						<c:if test="${itemList1.state != 0}">
+						<img src="<c:out value="${itemList1.picture}" />"  width="200" height="150" />
 						</c:if>
 						</td>
 						
