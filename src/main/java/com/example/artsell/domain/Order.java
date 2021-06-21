@@ -85,14 +85,4 @@ public class Order implements Serializable {
 	public void setDeadline(Date deadline) {
 		this.deadline = deadline;
 	}
-	
-	public void initOrder(Account account, Item item) {
-		userId = account.getUserId();
-		//orderDate = new Date();
-		phone = account.getPhone();
-		//destination = account.getAddress();
-		credit = account.getCredit();
-		itemName = item.getItemName();
-		myPrice = item.getBestPrice();
-	}
 }
