@@ -71,7 +71,7 @@
 		</c:if>
 		<c:if test="${itemList.pageList.size() != 0}">
 			<c:forEach var="item" items="${itemList.pageList}">
-			<tr>
+			<tr align="center">
 				<td>
 					<a href="<c:url value="/shop/viewItem">
 						<c:param name="itemId" value="${item.itemId}" /></c:url>"><c:out value="${item.itemName}" /></a>
