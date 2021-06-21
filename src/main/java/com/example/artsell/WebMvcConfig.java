@@ -32,10 +32,5 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		registry.addInterceptor(auctionInterceptor)
 				.addPathPatterns("/auction/info", "/auction/bid", "/shop/viewItem");
 	}
-	  
-	  
-//	"/shop/editAccount.do", "/shop/listOrders.do", "/shop/viewOrder.do",
-//	"/shop/newOrder.do"
-	 
-
+	
 }
