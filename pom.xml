@@ -11,7 +11,7 @@
 	</parent>
 	
 	<groupId>com.example</groupId>
-	<artifactId>jpetstore-boot</artifactId>
+	<artifactId>artsell-boot</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>jpetstore.boot</name>
