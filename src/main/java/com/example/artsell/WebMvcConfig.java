@@ -31,12 +31,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Override 
 	public void addInterceptors(InterceptorRegistry registry) {
-//		registry.addInterceptor(loginInterceptor)
-//				.addPathPatterns("/home", "/user/delete", "/user/update", "/user/mypage", "/search/*", "/interesting/*", "/myitem/*", "/auction/*", "/shop/*"); 
-//		registry.addInterceptor(auctionInterceptor)
-//				.addPathPatterns("/auction/info", "/auction/bid");
-		registry.addInterceptor(logoutInterceptor)
-				.addPathPatterns("/*");
+		registry.addInterceptor(loginInterceptor)
+				.addPathPatterns("/home", "/user/delete", "/user/update", "/user/mypage", "/search/*", "/interesting/*", "/myitem/*", "/auction/*", "/shop/*"); 
+		registry.addInterceptor(auctionInterceptor)
+				.addPathPatterns("/auction/info", "/auction/bid");
 	}
 	  
 	  
