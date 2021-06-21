@@ -8,7 +8,7 @@
 <div align="center">
 	
 		<h1>내 그림 관리</h1>
-		<table>
+		<table class="table1">
 			<tr align="center" bgcolor="#D5D5D5">
 				<th>작품명</th>
 				<th width="200px">작품사진</th>
