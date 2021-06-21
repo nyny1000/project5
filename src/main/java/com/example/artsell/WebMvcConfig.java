@@ -18,10 +18,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Autowired
 	@Qualifier(value = "auctionInterceptor")
 	private HandlerInterceptor auctionInterceptor;
-	
-	@Autowired
-	@Qualifier(value = "logoutInterceptor")
-	private HandlerInterceptor logoutInterceptor;
 
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
