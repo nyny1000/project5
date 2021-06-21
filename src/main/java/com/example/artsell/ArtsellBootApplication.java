@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
@@ -16,10 +18,15 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import com.example.artsell.service.ArtSellFacade;
 
 @SpringBootApplication
-public class ArtsellBootApplication implements CommandLineRunner {
+public class ArtsellBootApplication  extends SpringBootServletInitializer implements CommandLineRunner{
 
 	@Autowired
 	ArtSellFacade artSell;
+	
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(ArtsellBootApplication.class);
+	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
