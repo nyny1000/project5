@@ -1,9 +1,11 @@
 package com.example.artsell.controller;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
@@ -29,7 +31,7 @@ public class SearchController {
 	@RequestMapping("/search/item")
 	public ModelAndView handleRequest(HttpServletRequest request, @RequestParam(value="keyword", required=false) String keyword,
 			@RequestParam(value="artist", required=false) String artist, @RequestParam(value="categoryId", required=false) String categoryId,
-			@RequestParam(value="page", required=false) String page, @RequestParam(value="job", required=false) String job) throws Exception
+			@RequestParam(value="page", required=false) String page, @RequestParam(value="job", required=false) String job, HttpServletResponse response) throws Exception
 	{
 		if ("화가명".equals(job)) {
 			artist = keyword;
@@ -40,23 +42,31 @@ public class SearchController {
 		
 		ModelAndView mv;
 		int total;
-		if (keyword != null || artist != null) {
+		if (keyword != null || !"all".equals(artist)) {
 			if (!StringUtils.hasLength(keyword) && "all".equals(artist)) {
-				return new ModelAndView("Error", "message", "Please enter a keyword to search for or select artist, then press the search button.");
-			}
+				//return new ModelAndView("Error", "message", "Please enter a keyword to search for or select artist, then press the search button.");
+				response.setContentType("text/html; charset=UTF-8");
+	            PrintWriter out = response.getWriter();
+	            out.println("<script>alert('키워드를 입력하고 검색 버튼을 눌러주세요.'); history.go(-1);</script>");
+	            out.flush();
+			} 
 			total = this.artSell.searchItemList(keyword, artist, categoryId).size();
 			
 			PagedListHolder<Item> itemList = new PagedListHolder<Item>(this.artSell.searchItemList(keyword, artist, categoryId));
 			System.out.println("keyword: " + keyword + " artist: " + artist + " categoryId: " + categoryId);
 			
-			itemList.setPageSize(10);
+			itemList.setPageSize(5);
 			request.getSession().setAttribute("SearchController_itemList", itemList);
 			mv = new ModelAndView("searchResult", "itemList", itemList);
 		} else {
 			@SuppressWarnings("unchecked")
 			PagedListHolder<Item> itemList = (PagedListHolder<Item>)request.getSession().getAttribute("SearchController_itemList");
 			if (itemList == null) {
-				return new ModelAndView("Error", "message", "Your session has timed out. Please start over again.");
+				//return new ModelAndView("Error", "message", "Your session has timed out. Please start over again.");
+				response.setContentType("text/html; charset=UTF-8");
+	            PrintWriter out = response.getWriter();
+	            out.println("<script>alert('세션이 끊겼습니다. 다시 시작해주세요.'); history.go(-1);</script>");
+	            out.flush();
 			}
 			if ("next".equals(page)) {
 				itemList.nextPage();

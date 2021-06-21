@@ -38,11 +38,11 @@ public class InterestingListController {
 		
 		PagedListHolder<Item> itemList = new PagedListHolder<Item>(
 				this.artSell.getInterestingItemList(userSession.getAccount().getUserId()));
-		itemList.setPageSize(1);
+		itemList.setPageSize(3);
 		
 		PagedListHolder<Item> itemList2 = new PagedListHolder<Item>(
 				this.artSell.getPastInterestingItemList(userSession.getAccount().getUserId()));
-		itemList2.setPageSize(1);
+		itemList2.setPageSize(3);
 		model.put("interestList", itemList);	//handleRequest(page, itemList);
 		model.put("pastInterestingList", itemList2);
 		
