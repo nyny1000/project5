@@ -7,7 +7,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div align="center">
 	
-		<h1>내 그림 관리</h1>
+		<h1>내 작품 관리</h1>
 		<table>
 			<tr align="center" bgcolor="#D5D5D5">
 				<th>작품명</th>

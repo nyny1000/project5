@@ -29,7 +29,7 @@ public class SearchController {
 	}
 	
 	@RequestMapping("/search/item")
-	public ModelAndView handleRequest(HttpServletRequest request, @RequestParam(value="keyword", required=false) String keyword,
+	public ModelAndView itemSearch(HttpServletRequest request, @RequestParam(value="keyword", required=false) String keyword,
 			@RequestParam(value="artist", required=false) String artist, @RequestParam(value="categoryId", required=false) String categoryId,
 			@RequestParam(value="page", required=false) String page, @RequestParam(value="job", required=false) String job, HttpServletResponse response) throws Exception
 	{
