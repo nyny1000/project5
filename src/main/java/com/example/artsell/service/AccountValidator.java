@@ -32,8 +32,8 @@ public class AccountValidator implements Validator {
 
 		//에러 코드 수정완료.
 		
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userId", "USER_ID_REQUIRED", "User ID is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "USER_PASSWORD_REQUIRED", "User password is required.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userId", "USER_ID_REQUIRED", "필수항목입니다.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "USER_PASSWORD_REQUIRED", "필수항목입니다.");
 
 		
 		String inputUserId = account.getUserId();
@@ -41,7 +41,7 @@ public class AccountValidator implements Validator {
 		
 		if (artSell.getAccount(inputUserId) == null || artSell.getAccount(inputUserId).getQuit() == 1) {
 			System.out.println("You are an unregistered member. Please register as a member.");
-			errors.reject("userId", "You are an unregistered member. Please register as a member.");
+			errors.reject("userId", "등록 되지 않은 회원입니다. 회원가입을 해주세요.");
 		}
 		else if (!artSell.getAccount(inputUserId).getPassword().equals(inputPassword)) {
 			System.out.println("input password" + inputPassword);
@@ -50,7 +50,7 @@ public class AccountValidator implements Validator {
 
 			System.out.println("The password is incorrect. Please re-enter.");
 
-			errors.reject("password", "The password is incorrect. Please re-enter.");
+			errors.reject("password", "비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
 
 		}
 		

@@ -16,7 +16,6 @@ import com.example.artsell.domain.Account;
 public class LoginInterceptor implements HandlerInterceptor {
 	@ModelAttribute("loginAccount")
 	public Account formBackingObject(HttpServletRequest request) throws Exception {
-		System.out.println("로그인 폼백킹.");
 		return new Account();
 	}
 	

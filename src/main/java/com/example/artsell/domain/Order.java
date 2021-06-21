@@ -1,18 +1,7 @@
 package com.example.artsell.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-
-import javax.validation.constraints.NotBlank;
-
-import com.example.artsell.domain.Account;
-import com.example.artsell.domain.Item;
-import com.example.jpetstore.domain.Cart;
-import com.example.jpetstore.domain.CartItem;
-import com.example.jpetstore.domain.LineItem;
 
 @SuppressWarnings("serial")
 public class Order implements Serializable {

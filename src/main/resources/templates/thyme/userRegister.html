@@ -66,6 +66,7 @@
 
 				<tr>
 					<td>패스워드</td>
+
 					<td><input type="password" th:field="*{account.password}"
 						size="20" /> <span
 						th:each="err : ${#fields.errors('account.password')}"
@@ -79,6 +80,7 @@
 						size="20" /> <span
 						th:each="err : ${#fields.errors('repeatedPassword')}"
 						th:text="${err}"> </span></td>
+
 				</tr>
 
 				<tr>
