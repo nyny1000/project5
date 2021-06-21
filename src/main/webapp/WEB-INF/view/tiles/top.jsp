@@ -28,8 +28,8 @@ $(document).ready(function() {
 				<a href="<c:url value="/user/mypage"/>" class="left-topbar-item">마이페이지</a>
 			</c:if>
 			<a href="<c:url value="/auction/list"/>" class="left-topbar-item">경매현황</a>
-			<a href="<c:url value="/myitem/add"/>" class="left-topbar-item">그림등록</a>
-			<a href="<c:url value="/myitem/list"/>" class="left-topbar-item">내그림관리</a>
+			<a href="<c:url value="/myitem/add"/>" class="left-topbar-item">작품등록</a>
+			<a href="<c:url value="/myitem/list"/>" class="left-topbar-item">내작품관리</a>
 		</c:if>
 	</div>
 </div>

@@ -11,7 +11,7 @@
 
 	<tr height="100px">
 		<td><a href="<c:url value="/myitem/list"/>"><button>내
-					그림 관리</button></a></td>
+					작품 관리</button></a></td>
 		<td><a href="<c:url value="/user/delete"/>"><button>회원탈퇴</button></a></td>
 
 	</tr>
