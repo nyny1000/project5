@@ -45,7 +45,7 @@
 				</td>
 			</tr> 
 			<tr>
-				<td colspan="2">작품 사진 첨부&nbsp;&nbsp;<input type="file" name="picturefile">
+				<td colspan="2">작품 사진 첨부&nbsp;&nbsp;<input type="file" name="picturefile" accept="image/jpeg,image/png">
 				<form:errors path="picturefile"/></td>
 			</tr>
 			<tr><td colspan="2">그림설명</td>
