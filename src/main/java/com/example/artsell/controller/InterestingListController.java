@@ -61,7 +61,10 @@ public class InterestingListController {
 			@RequestParam("itemId") String itemId, RedirectAttributes redirect) {
 		String userId =userSession.getAccount().getUserId();
 		
-		artSell.insertInterestingItem(userId, itemId);
+		int key = artSell.isAuctionItemByItemIdUserId(itemId, userId);
+		if (key == 0) {
+			artSell.insertInterestingItem(userId, itemId);
+		}
 		redirect.addAttribute("itemId", itemId);
 		return "redirect:/shop/viewItem";
 	}

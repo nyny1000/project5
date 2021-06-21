@@ -1,10 +1,6 @@
 package com.example.artsell.dao.mybatis;
 
-
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -179,5 +175,10 @@ public class MybatisAuctionItemDao implements AuctionItemDao {
 	public int checkBid(String itemId) throws DataAccessException {
 		// TODO Auto-generated method stub
 		return auctionItemMapper.checkBid(itemId);
+	}
+	
+	@Override
+	public int isAuctionItemByItemIdUserId(String itemId, String userId) throws DataAccessException {
+		return auctionItemMapper.isAuctionItemByItemIdUserId(itemId, userId);
 	}
 }
