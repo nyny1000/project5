@@ -52,7 +52,7 @@ public class AuctionItemListController {
 			}
 		}
 		
-		itemList.setPageSize(2);
+		itemList.setPageSize(3);
 		model.put("itemList1", itemList);
 		model.put("key", key);
 
@@ -66,14 +66,14 @@ public class AuctionItemListController {
 		PagedListHolder<AuctionItem> itemList1 = new PagedListHolder<AuctionItem>(
 				this.artSell.getItemListByAuctionItem(userSession.getAccount().getUserId()));
 		
-		itemList1.setPageSize(2);
+		itemList1.setPageSize(3);
 
 		model.put("itemList1", itemList1);
 		
 		//낙찰된(결제까지 다 한) 목록
 		PagedListHolder<AuctionedItem> itemList2 = new PagedListHolder<AuctionedItem>(
 				this.artSell.getItemListByAuctionedItem(userSession.getAccount().getUserId()));
-		itemList2.setPageSize(2);
+		itemList2.setPageSize(3);
 		model.put("itemList2", itemList2);
 		model.put("key", key);
 		return "myAuctionList";
