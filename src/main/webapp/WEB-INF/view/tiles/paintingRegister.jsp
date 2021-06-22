@@ -7,7 +7,7 @@
 
 <div align="center">
 	<h2>그림 등록</h2>
-	<form:form modelAttribute="item" method="post" action="/myitem/add" enctype="multipart/form-data">
+	<form:form modelAttribute="item" method="post" action='<c:url value="/myitem/add" />' enctype="multipart/form-data">
 		<form:errors cssClass="error" />
 		<br>
 		<br>

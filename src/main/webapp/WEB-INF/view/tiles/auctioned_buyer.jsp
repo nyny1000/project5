@@ -12,7 +12,7 @@
 		</ul>
 	</div>
 	<p>
-	<form action="/auction/destination">
+	<form action='<c:url value="/auction/destination" />'>
 		<table class="border">
 			<tr id="c1">
 				<td colspan="2" ><a href="<c:url value="/auction/auctioned_buyer_addressCheck" />">회원정보와 동일</a></td>

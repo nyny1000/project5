@@ -40,7 +40,7 @@
    <p>
    
 
-         <form:form action="/auction/bid"
+         <form:form action='<c:url value="/auction/bid" />'
          modelAttribute="auctionItem" method="POST">
          <form:errors cssClass="error" />
          <form:input type="number" min="0" max="2000000000" path="myPrice" />
