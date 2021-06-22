@@ -18,15 +18,10 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import com.example.artsell.service.ArtSellFacade;
 
 @SpringBootApplication
-public class ArtsellBootApplication  extends SpringBootServletInitializer implements CommandLineRunner{
+public class ArtsellBootApplication implements CommandLineRunner{
 
 	@Autowired
 	ArtSellFacade artSell;
-	
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(ArtsellBootApplication.class);
-	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
