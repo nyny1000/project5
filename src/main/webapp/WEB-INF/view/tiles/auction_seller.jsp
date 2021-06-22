@@ -5,7 +5,7 @@
 <div align="center">
 	<h2>작품명 : <c:out value="${item.itemName}" /> </h2>
 	<p>
-	<img src="<c:out value="${item.picture}" />" width="300" /><br>
+	<img src="<c:url value="${item.picture}" />" width="300" /><br>
 
 	<table class="border">
 		<tr bgcolor="#FFD700">

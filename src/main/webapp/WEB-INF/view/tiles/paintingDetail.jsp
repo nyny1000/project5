@@ -36,7 +36,7 @@
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
       </tr>
       <tr align="center">
-         <td colspan="2"><img src="${item.picture}" width="50%"  /></td>
+         <td colspan="2"><img src='<c:url value="${item.picture}" />' width="50%"  /></td>
       </tr>
       <tr align="center">
          <td colspan="2" width="40" height="8"><b>작품설명: </b><c:out value=" ${item.description}" /></td>
@@ -48,14 +48,14 @@
    <c:if test="${isInterested == 0}">
       <a href="<c:url value="/interesting/add">
          <c:param name="itemId" value="${item.itemId}" /></c:url>"> <!-- 고치기 -->
-         <img src="/images/iconmonstr-heart-thin-32.png" />
+         <img src='<c:url value="/images/iconmonstr-heart-thin-32.png" />' />
       </a>
    </c:if>
 
    <c:if test="${isInterested == 1}">
       <a href="<c:url value="/interesting/delete2">
          <c:param name="itemId" value="${item.itemId}" /></c:url>"> <!-- 고치기 -->
-         <img src="/images/iconmonstr-favorite-3-32.png" />
+         <img src='<c:url value="/images/iconmonstr-favorite-3-32.png" />' />
       </a>
    </c:if>
 </div>

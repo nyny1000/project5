@@ -16,6 +16,8 @@ public interface InterestingItemMapper {
 	
 	int containsInterestingItem(String userId, String itemId);
 
-	void deleteAll(String userId); 
+	void deleteAll(String userId);
+
+	void deleteAllInterestingItem(String itemId); 
 	
 }

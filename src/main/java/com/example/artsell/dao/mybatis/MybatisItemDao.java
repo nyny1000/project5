@@ -69,7 +69,7 @@ public class MybatisItemDao implements ItemDao {
 	public void deleteItem(String userId, String itemId) throws DataAccessException {
 		// TODO Auto-generated method stub
 		auctionItemMapper.deleteAutionItemById(itemId);
-		interestingItemMapper.deleteInterestingItem(userId, itemId);
+		interestingItemMapper.deleteAllInterestingItem(itemId);
 		itemMapper.deleteItem(itemId);
 	}
 

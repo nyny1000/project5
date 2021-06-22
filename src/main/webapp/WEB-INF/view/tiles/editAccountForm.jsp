@@ -5,7 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div align="center">
-	<form:form action="/user/edit" modelAttribute="accountForm" method="post">
+	<form:form action='<c:url value="/user/edit" />' modelAttribute="accountForm" method="post">
 		<form:errors cssClass="error" />
 		<br>
 		<br>
@@ -73,7 +73,7 @@
 		</table>
 
 		<br />
-		<input type="image" src="../images/button_submit.gif" name="submit"
+		<input type="image" src='<c:url value="../images/button_submit.gif" />' name="submit"
 			value="Save Account Information" />
 	</form:form>
 

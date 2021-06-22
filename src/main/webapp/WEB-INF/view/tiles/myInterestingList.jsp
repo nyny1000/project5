@@ -29,7 +29,7 @@
 						<td><a
 							href="<c:url value="/shop/viewItem">
 							<c:param name="itemId" value="${interestItem.itemId}" /></c:url>">
-								<img src="<c:out value="${interestItem.picture}" />"  width="200" height="150" />
+								<img src="<c:url value="${interestItem.picture}" />"  width="200" height="150" />
 						</a></td>
 						<td><fmt:formatDate value="${interestItem.deadline}"
 								pattern="yyyy-MM-dd HH:mm:ss" /></td>
@@ -83,7 +83,7 @@
 					<tr align="center">
 						<td><c:out value="${pastItem.itemId}" /></td>
 						<td><c:out value="${pastItem.itemName}" /></td>
-						<td><img src="<c:out value="${pastItem.picture}" />"  width="200" height="150" /></td>
+						<td><img src="<c:url value="${pastItem.picture}" />"  width="200" height="150" /></td>
 						<td><fmt:formatDate value="${pastItem.deadline}"
 								pattern="yyyy-MM-dd HH:mm:ss" /></td>
 						<td><a

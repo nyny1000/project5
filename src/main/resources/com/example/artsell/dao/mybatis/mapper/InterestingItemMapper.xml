@@ -35,6 +35,11 @@
 		WHERE USERID = #{param1} and ITEMID = #{param2}
 	</delete>
 	
+	<delete id="deleteAllInterestingItem">
+		DELETE FROM INTERESTINGITEM
+		WEHRE ITEMID = #{itemId}
+	</delete>
+	
 	<select id="containsInterestingItem" resultType="int">
 		SELECT COUNT(*)
 		FROM INTERESTINGITEM

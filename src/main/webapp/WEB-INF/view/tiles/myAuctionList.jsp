@@ -46,11 +46,11 @@
 						<c:if test="${itemList1.state == 0}">
 						<a href="<c:url value="/shop/viewItem">
 						<c:param name="itemId" value="${itemList1.itemId}" /></c:url>">
-						<img src="<c:out value="${itemList1.picture}" />"  width="200" height="150" /></a>
+						<img src="<c:url value="${itemList1.picture}" />"  width="200" height="150" /></a>
 						</c:if>
 						
 						<c:if test="${itemList1.state != 0}">
-						<img src="<c:out value="${itemList1.picture}" />"  width="200" height="150" />
+						<img src="<c:url value="${itemList1.picture}" />"  width="200" height="150" />
 						</c:if>
 						</td>
 						
@@ -101,7 +101,7 @@
 				<c:forEach var="itemList2" items="${itemList2.pageList}">
 					<tr align="center">
 						<td><c:out value="${itemList2.itemId}" /></td>
-						<td><img src="<c:out value="${itemList2.picture}" />"  width="200" height="150" /></td>
+						<td><img src="<c:url value="${itemList2.picture}" />"  width="200" height="150" /></td>
 						<td><fmt:formatDate value="${itemList2.deadline}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 						<td><c:out value="${itemList2.auctionedPrice}" /></td>
 						<td><a href="<c:url value="/auction/sell_buyer">

@@ -45,9 +45,9 @@
 			<div class="row m-rl--1">
 				<div class="col-sm-6 col-lg-4 p-rl-1">
 					<div class="bg-img1 size-a-12 pos-relative" style="background-image: url(../images/landscape.jpg);">
-						<a href="/shop/viewCategory?categoryId=landscape" class="dis-block how1-child1 trans-03"></a>
+						<a href='<c:url value="/shop/viewCategory?categoryId=landscape" />' class="dis-block how1-child1 trans-03"></a>
 						<div class="flex-col-e-s s-full p-rl-25 p-tb-11">
-							<a href="/shop/viewCategory?categoryId=landscape" class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
+							<a href='<c:url value="/shop/viewCategory?categoryId=landscape" />' class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
 								<h3>풍경화</h3>
 							</a>
 						</div>
@@ -55,9 +55,9 @@
 				</div>
 				<div class="col-sm-6 col-lg-4 p-rl-1">
 					<div class="bg-img1 size-a-12 pos-relative" style="background-image: url(../images/figure-painting.jpg);">
-						<a href="/shop/viewCategory?categoryId=figure-painting" class="dis-block how1-child1 trans-03"></a>
+						<a href='<c:url value="/shop/viewCategory?categoryId=figure-painting" />' class="dis-block how1-child1 trans-03"></a>
 						<div class="flex-col-e-s s-full p-rl-25 p-tb-11">
-							<a href="/shop/viewCategory?categoryId=figure-painting" class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
+							<a href='<c:url value="/shop/viewCategory?categoryId=figure-painting" />' class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
 								<h3>인물화</h3>
 							</a>
 						</div>
@@ -65,9 +65,9 @@
 				</div>
 				<div class="col-sm-6 col-lg-4 p-rl-1">
 					<div class="bg-img1 size-a-12 pos-relative" style="background-image: url(../images/ink-and-wash.jpg);">
-						<a href="/shop/viewCategory?categoryId=ink-and-wash" class="dis-block how1-child1 trans-03"></a>
+						<a href='<c:url value="/shop/viewCategory?categoryId=ink-and-wash" />' class="dis-block how1-child1 trans-03"></a>
 						<div class="flex-col-e-s s-full p-rl-25 p-tb-11">
-							<a href="/shop/viewCategory?categoryId=ink-and-wash" class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
+							<a href='<c:url value="/shop/viewCategory?categoryId=ink-and-wash" />' class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
 								<h3>수묵화</h3>
 							</a>
 						</div>
@@ -75,9 +75,9 @@
 				</div>
 				<div class="col-sm-6 col-lg-4 p-rl-1">
 					<div class="bg-img1 size-a-12 pos-relative" style="background-image: url(../images/abstract.jpg);">
-						<a href="/shop/viewCategory?categoryId=abstract" class="dis-block how1-child1 trans-03"></a>
+						<a href='<c:url value="/shop/viewCategory?categoryId=abstract" />' class="dis-block how1-child1 trans-03"></a>
 						<div class="flex-col-e-s s-full p-rl-25 p-tb-11">
-							<a href="/shop/viewCategory?categoryId=abstract" class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
+							<a href='<c:url value="/shop/viewCategory?categoryId=abstract" />' class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
 								<h3>추상화</h3>
 							</a>
 						</div>
@@ -85,9 +85,9 @@
 				</div>
 				<div class="col-sm-6 col-lg-4 p-rl-1">
 					<div class="bg-img1 size-a-12 pos-relative" style="background-image: url(../images/stillLife.jpg);">
-						<a href="/shop/viewCategory?categoryId=stillLife" class="dis-block how1-child1 trans-03"></a>
+						<a href='<c:url value="/shop/viewCategory?categoryId=stillLife" />' class="dis-block how1-child1 trans-03"></a>
 						<div class="flex-col-e-s s-full p-rl-25 p-tb-11">
-							<a href="/shop/viewCategory?categoryId=stillLife" class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
+							<a href='<c:url value="/shop/viewCategory?categoryId=stillLife" />' class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
 								<h3>정물화</h3>
 							</a>
 						</div>
@@ -95,9 +95,9 @@
 				</div>
 				<div class="col-sm-6 col-lg-4 p-rl-1">
 					<div class="bg-img1 size-a-12 pos-relative" style="background-image: url(../images/animalization.png);">
-						<a href="/shop/viewCategory?categoryId=animalization" class="dis-block how1-child1 trans-03"></a>
+						<a href='<c:url value="/shop/viewCategory?categoryId=animalization" />' class="dis-block how1-child1 trans-03"></a>
 						<div class="flex-col-e-s s-full p-rl-25 p-tb-11">
-							<a href="/shop/viewCategory?categoryId=animalization" class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
+							<a href='<c:url value="/shop/viewCategory?categoryId=animalization" />' class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
 								<h3>동물화</h3>
 							</a>
 						</div>

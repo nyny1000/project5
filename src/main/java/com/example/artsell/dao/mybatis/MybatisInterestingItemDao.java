@@ -46,4 +46,10 @@ public class MybatisInterestingItemDao implements InterestingItemDao {
 		// TODO Auto-generated method stub
 		interestingItemMapper.deleteAll(userId);
 	}
+
+	@Override
+	public void deleteAllInterestingItem(String itemId) {
+		// TODO Auto-generated method stub
+		interestingItemMapper.deleteAllInterestingItem(itemId);
+	}
 }

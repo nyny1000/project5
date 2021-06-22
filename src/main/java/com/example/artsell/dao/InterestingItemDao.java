@@ -18,4 +18,6 @@ public interface InterestingItemDao {
 	int containsInterestingItem(String userId, String itemId) throws DataAccessException;
 
 	void deleteAll(String userId);
+
+	void deleteAllInterestingItem(String itemId);
 }
