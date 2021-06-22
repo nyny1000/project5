@@ -36,7 +36,7 @@
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
       </tr>
       <tr align="center">
-         <td colspan="2"><img src="${item.picture}" width="50%"  /></td>
+         <td colspan="2"><img src='<c:url value="${item.picture}" />' width="50%"  /></td>
       </tr>
       <tr align="center">
          <td colspan="2" width="40" height="8"><b>작품설명: </b><c:out value=" ${item.description}" /></td>

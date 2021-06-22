@@ -43,7 +43,7 @@
                <td><a
                   href="<c:url value="/shop/viewItem">
                   <c:param name="itemId" value="${myItem.itemId}" /></c:url>">
-                     <img src="<c:out value="${myItem.picture}" />" width="200" height="150" />
+                     <img src="<c:url value="${myItem.picture}" />" width="200" height="150" />
                </a></td>
                
                <td>

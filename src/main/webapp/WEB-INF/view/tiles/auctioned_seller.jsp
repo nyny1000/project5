@@ -9,7 +9,7 @@
 	<div class="bg">
 	<ul class="align">
 		<li><b>작품명</b> : <c:out value="${auctionedItem.itemName}" /> </li>
-		<li><b>작품사진</b> : <img src="<c:out value="${auctionedItem.picture}" />"  width="200" height="150" /></li>
+		<li><b>작품사진</b> : <img src="<c:url value="${auctionedItem.picture}" />"  width="200" height="150" /></li>
 		<li><b>가격</b> : <c:out value="${auctionedItem.auctionedPrice}" />원</li>
 		<li><b>결제시각</b> : <c:out value="${auctionedItem.sellDate}" /></li>
 		<li><b>구매자ID</b> : <c:out value="${auctionedItem.userId}" /></li>
