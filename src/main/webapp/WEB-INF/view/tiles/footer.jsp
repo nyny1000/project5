@@ -4,10 +4,10 @@
 		<table>
 			<tr>
 				<td><a href="http://www.springframework.org"> <img
-						border="0" src="../images/spring-logo.png"
+						border="0" src='<c:url value="../images/spring-logo.png" />'
 						alt="Powered by the Spring Framework" /></a></td>
 				<td><a href="http://www.ibatis.com"> <img border="0"
-						src="../images/mybatis-logo.png" alt="Powered by MyBatis" /></a></td>
+						src='<c:url value="../images/mybatis-logo.png" />' alt="Powered by MyBatis" /></a></td>
 			</tr>
 		</table>
 	</div>
