@@ -37,7 +37,7 @@
 	
 	<delete id="deleteAllInterestingItem">
 		DELETE FROM INTERESTINGITEM
-		WEHRE ITEMID = #{itemId}
+		WHERE ITEMID = #{itemId}
 	</delete>
 	
 	<select id="containsInterestingItem" resultType="int">
