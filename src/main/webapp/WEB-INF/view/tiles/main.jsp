@@ -45,9 +45,9 @@
 			<div class="row m-rl--1">
 				<div class="col-sm-6 col-lg-4 p-rl-1">
 				<!-- 
-					<div class="bg-img1 size-a-12 pos-relative" style="background-image: url(../images/landscape.jpg);"> -->
-					<div class="bg-img1 size-a-12 pos-relative" style="background-image: src='<c:url value="../images/artsell_logo_white.jpg" />';">
-				
+					<div class="bg-img1 size-a-12 pos-relative" style="background-image: url(../images/landscape.jpg);">
+					<div class="bg-img1 size-a-12 pos-relative" style="background-image: src='<c:url value="../images/landscape.jpg" />';"> -->
+					<div class="bg-img1 size-a-12 pos-relative bgi1"> 
 				
 				
 						<a href='<c:url value="/shop/viewCategory?categoryId=landscape" />' class="dis-block how1-child1 trans-03"></a>
