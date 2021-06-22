@@ -15,7 +15,7 @@ $(document).ready(function() {
 </script> --%>
 <div class="content-topbar">
 	<a href="<c:url value="/home"/>" class="left-topbar-item"><img border="0"
-				src="../images/artsell_logo_white.jpg" /></a>
+				src='<c:url value="../images/artsell_logo_white.jpg" />'/></a>
 	<div class="left-topbar">
 		<c:if test="${!empty userSession.account}">
 			<a href="javascript:void(0);" class="left-topbar-item"><c:out value="${userSession.account.userId}"/>ดิ.</a>
