@@ -44,7 +44,12 @@
 		<div class="container d4">
 			<div class="row m-rl--1">
 				<div class="col-sm-6 col-lg-4 p-rl-1">
+				<!-- 
 					<div class="bg-img1 size-a-12 pos-relative" style="background-image: url(../images/landscape.jpg);">
+					<div class="bg-img1 size-a-12 pos-relative" style="background-image: src='<c:url value="../images/landscape.jpg" />';"> -->
+					<div class="bg-img1 size-a-12 pos-relative bgi1"> 
+				
+				
 						<a href='<c:url value="/shop/viewCategory?categoryId=landscape" />' class="dis-block how1-child1 trans-03"></a>
 						<div class="flex-col-e-s s-full p-rl-25 p-tb-11">
 							<a href='<c:url value="/shop/viewCategory?categoryId=landscape" />' class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
