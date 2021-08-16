@@ -1,4 +1,4 @@
-# JPetStore (boot)
+# Artsell (boot)
 JPetStore project based on Spring Boot 2.4
 
 ####변경 사항     
