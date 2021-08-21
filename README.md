@@ -64,26 +64,42 @@ Artsell project based on Spring Boot 2.4
 > * 회원은 낙찰에 성공해 결제 대기중인 작품과 , 자신의 작품이 낙찰되어 구매자의 결제를 대기중인 작품이 존재하지 않다면 회원 탈퇴가 가능하다.
 
 
-####변경 사항     
-1. pom.xml: Spring Boot Starter Dependencies 사용 
-2. com.example.jpetstore.JpetstoreBootApplication: 시작 및 설정 클래스 
-3. com.example.jpetstore.WebMvcConfig: Spring MVC 관련 설정 클래스
-4. com.example.jpetstore.controller.SignonInterceptor: @Component 추가 (bean scan 대상)
-5. com.example.jpetstore.controller.dao.mybatis.mapper.*: @Mapper 추가 (mapper scan 대상)
-6. src/main/resources/{기존 properties, xml 설정 파일} 삭제
-7. src/main/resources/application.properties: bean property 설정
-8. src/main/webapp/{images, style, *.html}를 src/main/resources/static/ 으로 이동 
-9. src/main/webapp/META-INF 삭제
-10. src/main/webapp/WEB-INF/*.xml 삭제
-11. src/main/webapp/WEB-INF/lib/ojdbc6.jar 삭제
- 
-####실행
-* Eclise: com.example.jpetstore.JpetstoreBootApplication 선택 > Run As > Java Application  
-* Maven: mvnw spring-boot:run
-* http://localhost:8088/ 
+## 구현 방법
+------------
+< web Application 개발 >
+- Spring Boot를 이용하여 설정 코드를 최소화하고 비즈니스 로직 구현에 집중.
 
-####Oralce 대신 H2 in-memory database 이용 방법
-* pom.xml에 com.h2database:h2 dependency 추가
-* application.properties 파일의 spring.datasource.* 설정들을 H2 관련 값으로 변경
-* src/main/resources/{schema.sql, data.sql} 파일 생성(DB schema 생성 및 초기 data load)
- 
+< view 구현 >
+- Thymeleaf template engine을 이용해 html 뷰 구현.
+( login.html , userRegister.html ) 
+- Tiles layout templating framework를 이용해 반복되는 구성요소들을 레이아웃으로
+정의하여, 페이지 레이아웃과 컨텐트를 분리한 jsp 뷰를 구현.
+( 위의 두 개의 페이지를 제외한 나머지 페이지 )
+
+< DB 구축 및 조작 기술>
+- Oracle SQL Developer를 이용한 DB 구축.
+- MyBatis를 이용하여 dao를 작성 후 Mapper XML에 sql문 작성하여 DB조작.
+- 경매 유찰 시 item ID를 update할 때 trigger 사용
+- item ID를 자동으로 생성하기 위해 sequence 생성 후 사용
+- 
+< 기능 구현 >
+- task scheduler를 이용하여 상품 등록시 스케줄러 등록 후, db에 저장된 마감기한에
+자동으로 낙찰될 수 있도록 구현.
+- 서버가 끊기거나 재시작했을 때 스케줄러에 등록된 작업들을 복원하기 위해
+CommandLineRunner 인터페이스를 구현하여 애플리케이션 구동 시점에 경매 마감이
+되지 않은 상품들을 스케줄러에 등록해 주는 작업 실시.
+
+- HandlerInterceptor 인터페이스를 구현한 LogInInterceptor 클래스를 이용하여 세션
+소실시 사용자에게 재로그인을 요구하고 로그인을 하면 이전의 작업을 하던 곳으로
+돌아가도록 구현.
+- HandlerInterceptor 인터페이스를 구현한 AuctionInterceptor 클래스를 이용하여
+사용자가 입찰하는 순간이나 상세페이지를 보고 있는 순간에 경매가 종료되었을 때
+생기는 문제를 해결.
+- Validator 인터페이스를 구현하여 AccountFormValidator, AuctionItemValidator, 
+PaintRegiValidator class 등을 이용하여 해당하는 command 객체의 field값의 유효성을
+검사함.
+- API를 이용하여 회원의 주소정보를 편리하게 입력받을 수 있도록 구현.
+
+### 시스템 구조 및 구성 요소
+<img width="605" alt="시스템구성요소" src="https://user-images.githubusercontent.com/59862783/130314309-592a9d55-b694-47ec-8c1c-a338eadd2e78.PNG">
+<img width="607" alt="시스템구성요소2" src="https://user-images.githubusercontent.com/59862783/130314318-70ebe852-2298-4324-9665-fcfab6053350.PNG">
